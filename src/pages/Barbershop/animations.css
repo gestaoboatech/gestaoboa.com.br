@@ -1,0 +1,356 @@
+/* Animações para a landing page de barbearia */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Aplicação das animações */
+.barbershop-hero {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.barbershop-problem-item {
+  animation: slideInLeft 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.barbershop-problem-item:nth-child(even) {
+  animation: slideInRight 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.barbershop-solution-item {
+  animation: slideInRight 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.barbershop-solution-item:nth-child(even) {
+  animation: slideInLeft 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.barbershop-feature-card {
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.barbershop-testimonial {
+  animation: fadeInUp 0.8s ease-out;
+  animation-fill-mode: both;
+}
+
+/* Delays escalonados para efeito sequencial */
+.barbershop-problem-item:nth-child(1) { animation-delay: 0.1s; }
+.barbershop-problem-item:nth-child(2) { animation-delay: 0.2s; }
+.barbershop-problem-item:nth-child(3) { animation-delay: 0.3s; }
+.barbershop-problem-item:nth-child(4) { animation-delay: 0.4s; }
+.barbershop-problem-item:nth-child(5) { animation-delay: 0.5s; }
+.barbershop-problem-item:nth-child(6) { animation-delay: 0.6s; }
+
+.barbershop-solution-item:nth-child(1) { animation-delay: 0.1s; }
+.barbershop-solution-item:nth-child(2) { animation-delay: 0.2s; }
+.barbershop-solution-item:nth-child(3) { animation-delay: 0.3s; }
+.barbershop-solution-item:nth-child(4) { animation-delay: 0.4s; }
+.barbershop-solution-item:nth-child(5) { animation-delay: 0.5s; }
+.barbershop-solution-item:nth-child(6) { animation-delay: 0.6s; }
+
+.barbershop-feature-card:nth-child(1) { animation-delay: 0.1s; }
+.barbershop-feature-card:nth-child(2) { animation-delay: 0.2s; }
+.barbershop-feature-card:nth-child(3) { animation-delay: 0.3s; }
+.barbershop-feature-card:nth-child(4) { animation-delay: 0.4s; }
+.barbershop-feature-card:nth-child(5) { animation-delay: 0.5s; }
+.barbershop-feature-card:nth-child(6) { animation-delay: 0.6s; }
+
+.barbershop-testimonial:nth-child(1) { animation-delay: 0.2s; }
+.barbershop-testimonial:nth-child(2) { animation-delay: 0.4s; }
+.barbershop-testimonial:nth-child(3) { animation-delay: 0.6s; }
+
+/* Efeitos hover aprimorados */
+.barbershop-cta-button {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.barbershop-cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.barbershop-cta-button:hover::before {
+  left: 100%;
+}
+
+.barbershop-cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Estilo para seção de garantia */
+.barbershop-guarantee {
+  position: relative;
+}
+
+.barbershop-guarantee::before {
+  content: '🛡️';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3rem;
+  background: white;
+  padding: 0 1rem;
+}
+
+/* Responsividade aprimorada */
+@media (max-width: 768px) {
+  .barbershop-hero {
+    padding: 2rem 0;
+  }
+  
+  .barbershop-feature-grid {
+    gap: 1rem;
+  }
+  
+  .barbershop-testimonial {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Efeitos de foco para acessibilidade */
+.barbershop-cta-button:focus {
+  outline: 3px solid #3498db;
+  outline-offset: 2px;
+}
+
+/* Animação do preço */
+.barbershop-price {
+  animation: pulse 2s infinite;
+}
+
+/* Gradientes personalizados para barbearia */
+.barbershop-gradient-primary {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+}
+
+.barbershop-gradient-success {
+  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+}
+
+.barbershop-gradient-warning {
+  background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+}
+
+/* Efeito de parallax sutil */
+.barbershop-parallax {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Estilo para ícones de features */
+.barbershop-feature-icon {
+  display: inline-block;
+  padding: 1rem;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+/* Estilo para badges */
+.barbershop-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  animation: pulse 2s infinite;
+}
+
+/* Animações para seletor de planos */
+.plan-type-selector {
+  animation: slideInDown 0.6s ease-out;
+}
+
+.plan-type-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.plan-type-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.plan-type-button:hover::before {
+  left: 100%;
+}
+
+.plan-type-button.active {
+  animation: buttonActivated 0.3s ease;
+}
+
+@keyframes buttonActivated {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animação para mudança de preços */
+.pricing-grid {
+  animation: priceChange 0.4s ease-in-out;
+}
+
+@keyframes priceChange {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(0.98); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Estilo para preço original */
+.original-price {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Estilo para economias */
+.savings {
+  animation: pulse 2s infinite;
+}
+
+/* Estilo para nota de preços */
+.pricing-note {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  text-align: center;
+}
+
+/* Estilos adicionais para os cards de preços */
+.pricing-grid {
+  perspective: 1000px;
+}
+
+.pricing-grid .pricing-card {
+  transform-style: preserve-3d;
+  transition: all 0.3s ease;
+}
+
+.pricing-grid .pricing-card:hover {
+  transform: rotateY(5deg) translateY(-10px);
+}
+
+.plan-features li {
+  opacity: 0;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.plan-features li:nth-child(1) { animation-delay: 0.1s; }
+.plan-features li:nth-child(2) { animation-delay: 0.2s; }
+.plan-features li:nth-child(3) { animation-delay: 0.3s; }
+.plan-features li:nth-child(4) { animation-delay: 0.4s; }
+.plan-features li:nth-child(5) { animation-delay: 0.5s; }
+.plan-features li:nth-child(6) { animation-delay: 0.6s; }
+.plan-features li:nth-child(7) { animation-delay: 0.7s; }
+.plan-features li:nth-child(8) { animation-delay: 0.8s; }
+.plan-features li:nth-child(9) { animation-delay: 0.9s; }
+.plan-features li:nth-child(10) { animation-delay: 1.0s; }
+
+/* Pulse animation para o plano mais popular */
+.popular-badge {
+  animation: pulse 2s infinite;
+}
+
+/* Loader para vídeo */
+.barbershop-video-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.barbershop-video-loader::after {
+  content: '';
+  width: 50px;
+  height: 50px;
+  border: 5px solid #e9ecef;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

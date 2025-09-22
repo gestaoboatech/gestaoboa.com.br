@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import About from "./pages/About";
 import AnuncioGestaoBoa from "./pages/AnuncioGestaoBoa";
+import Barbershop from "./pages/Barbershop";
 import Home from "./pages/Home";
 import Price from "./pages/Price";
 import Privacy from "./pages/Privacy";
@@ -19,6 +20,7 @@ function App() {
         <Route path="/preco" element={<Price />} />
         <Route path="/solucao" element={<Solution />} />
         <Route path="/vendas" element={<Sales />} />
+        <Route path="/barbearia" element={<Barbershop />} />
         <Route path="/anuncio-gestaoboa" element={<AnuncioGestaoBoa />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
