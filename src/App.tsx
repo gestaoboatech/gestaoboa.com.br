@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Price from "./pages/Price";
 import Privacy from "./pages/Privacy";
 import Sales from "./pages/Sales";
+import SalaoEstetica from "./pages/SalaoEstetica";
 import Solution from "./pages/Solution";
 import Terms from "./pages/Terms";
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/solucao" element={<Solution />} />
         <Route path="/vendas" element={<Sales />} />
         <Route path="/barbearia" element={<Barbershop />} />
+        <Route path="/salao-estetica" element={<SalaoEstetica />} />
         <Route path="/anuncio-gestaoboa" element={<AnuncioGestaoBoa />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

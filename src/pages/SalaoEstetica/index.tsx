@@ -4,9 +4,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Button from '../../components/Button';
 import { FB_PIXEL } from '../../utils/pixel';
-import { submitBarbershopForm, BarbershopFormData } from '../../services/formSubmission';
 import './animations.css';
-import './form.css';
 import { 
   Container, 
   Content,
@@ -54,155 +52,48 @@ import {
   FeatureDescription,
   PricingSection,
   PricingTitle,
+  PricingCard,
+  PricingPrice,
+  PricingPeriod,
   FinalCTASection,
   GuaranteeSection,
   GuaranteeTitle,
   GuaranteeDescription
 } from './styles';
 
-const Barbershop: React.FC = () => {
-  // Estado do formulário
-  const [formData, setFormData] = useState({
-    nomeCompleto: '',
-    telefone: '',
-    tempoAberta: '',
-    numeroBarbeiros: ''
-  });
+type PlanType = "Anual" | "Semestral" | "Mensal";
 
-  // Estado de loading do formulário
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
+const getDiscount = (type: PlanType) => {
+  switch (type) {
+    case "Anual":
+      return 0.24; // 24% off
+    case "Semestral":
+      return 0.15; // 15% off
+    default:
+      return 0;
+  }
+};
 
-  // Função para fazer scroll até o formulário
-  const scrollToForm = () => {
-    const formElement = document.getElementById('barbershop-form-section');
-    if (formElement) {
-      // Scroll suave com offset para dispositivos móveis
-      const offsetTop = formElement.offsetTop - 80; // 80px de offset para o header
-      
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      });
-      
-      // Alternativa para browsers que não suportam scrollTo com options
-      if (!window.requestAnimationFrame) {
-        formElement.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    }
-  };
+const calculateDiscountedPrice = (price: number, type: PlanType) => {
+  const discount = getDiscount(type);
+  return price * (1 - discount);
+};
 
-  // Função para formatar telefone
-  const formatPhone = (value: string) => {
-    // Remove tudo que não é número
-    const numbers = value.replace(/\D/g, '');
-    
-    // Aplica a máscara (11) 99999-9999
-    if (numbers.length <= 2) {
-      return `(${numbers}`;
-    } else if (numbers.length <= 7) {
-      return `(${numbers.slice(0, 2)}) ${numbers.slice(2)}`;
-    } else {
-      return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`;
-    }
-  };
-
-  // Função para atualizar os dados do formulário
-  const handleInputChange = (field: string, value: string) => {
-    // Se for telefone, aplicar formatação
-    if (field === 'telefone') {
-      value = formatPhone(value);
-    }
-    
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
-  };
-
-  // Função para enviar o formulário
-  const handleFormSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Validação básica
-    if (!formData.nomeCompleto || !formData.telefone || !formData.tempoAberta || !formData.numeroBarbeiros) {
-      alert('Por favor, preencha todos os campos obrigatórios.');
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      // Prepara os dados para envio
-      const dataToSubmit: BarbershopFormData = {
-        nomeCompleto: formData.nomeCompleto,
-        telefone: formData.telefone,
-        tempoAberta: formData.tempoAberta,
-        numeroBarbeiros: formData.numeroBarbeiros,
-        timestamp: new Date().toISOString()
-      };
-
-      // Envia os dados
-      const success = await submitBarbershopForm(dataToSubmit);
-
-      if (success) {
-        // Rastreamento do pixel
-        FB_PIXEL.trackCustomEvent("BarbershopFormSubmit", {
-          page: "barbershop",
-          nome_completo: formData.nomeCompleto,
-          telefone: formData.telefone,
-          tempo_aberta: formData.tempoAberta,
-          numero_barbeiros: formData.numeroBarbeiros,
-          timestamp: new Date().toISOString(),
-        });
-
-        console.log("Formulário enviado com sucesso:", dataToSubmit);
-        
-        setSubmitSuccess(true);
-        
-        // Limpa o formulário
-        setFormData({
-          nomeCompleto: '',
-          telefone: '',
-          tempoAberta: '',
-          numeroBarbeiros: ''
-        });
-
-        // Mostra mensagem de sucesso
-        alert('Formulário enviado com sucesso! Em breve entraremos em contato.');
-        
-        // Redireciona para o acesso grátis após 2 segundos
-        setTimeout(() => {
-          window.open("https://app.gestaoboa.com.br", "_blank");
-        }, 2000);
-
-      } else {
-        throw new Error('Falha ao enviar formulário');
-      }
-
-    } catch (error) {
-      console.error('Erro ao enviar formulário:', error);
-      alert('Erro ao enviar formulário. Tente novamente ou entre em contato conosco.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+const SalaoEstetica: React.FC = () => {
+  const [planType, setPlanType] = useState<PlanType>("Anual");
 
   // Rastreamento do carregamento da página
   useEffect(() => {
     // Rastreia pageview
     FB_PIXEL.pageView();
     
-    // Rastreia evento customizado para página de barbearia
-    FB_PIXEL.trackCustomEvent("ViewBarbershopPage", {
-      page: "barbershop",
+    // Rastreia evento customizado para página de salão/estética
+    FB_PIXEL.trackCustomEvent("ViewSalaoEsteticaPage", {
+      page: "salao_estetica",
       timestamp: new Date().toISOString(),
     });
 
-    // Observer para rastrear quando o usuário visualiza a seção de agendamento online
+    // Observer para rastrear quando o usuário visualiza seções importantes
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -210,13 +101,13 @@ const Barbershop: React.FC = () => {
             const section = entry.target.getAttribute('data-section');
             if (section === 'online-booking') {
               FB_PIXEL.trackCustomEvent("ViewOnlineBookingSection", {
-                page: "barbershop",
+                page: "salao_estetica",
                 section: "online_booking",
                 timestamp: new Date().toISOString(),
               });
             } else if (section === 'about-us') {
               FB_PIXEL.trackCustomEvent("ViewAboutUsSection", {
-                page: "barbershop",
+                page: "salao_estetica",
                 section: "about_us",
                 timestamp: new Date().toISOString(),
               });
@@ -242,28 +133,74 @@ const Barbershop: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Função para redirecionar para acesso grátis
+  // Price data
+  const monthlyPrices = {
+    Basico: 64.90,
+    Crescimento: 89.90,
+    Empresarial: 129.90,
+  };
+
+  // Função para redirecionar para teste grátis
   const handleFreeTrialClick = () => {
     // Rastreamento do pixel
     FB_PIXEL.trackStartTrial({
-      source: "barbershop_page",
+      source: "salao_estetica_page",
+      plan_type: planType,
       timestamp: new Date().toISOString(),
     });
     
     FB_PIXEL.trackCustomEvent("FreeTrial_ButtonClick", {
-      page: "barbershop",
+      page: "salao_estetica",
+      plan_selected: planType,
       button_location: "cta",
     });
     
-    console.log("Navegando para o formulário..."); // Para debug
-    scrollToForm(); // Navega para o formulário ao invés de abrir link externo
+    console.log("Botão de teste grátis clicado!"); // Para debug
+    window.open("https://app.gestaoboa.com.br", "_blank");
   };
+
+  // Funções específicas para cada plano
+  const handlePlanClick = (planName: string) => {
+    // Rastreamento do pixel
+    FB_PIXEL.trackStartTrial({
+      source: "salao_estetica_page",
+      plan_type: planType,
+      plan_name: planName,
+      timestamp: new Date().toISOString(),
+    });
+    
+    FB_PIXEL.trackCustomEvent("PlanSelection", {
+      page: "salao_estetica",
+      plan_selected: planName,
+      plan_type: planType,
+      button_location: "pricing_card",
+    });
+    
+    console.log(`Plano ${planName} selecionado!`); // Para debug
+    window.open("https://app.gestaoboa.com.br", "_blank");
+  };
+
   return (
     <>
       <Helmet>
-        <title>Gestão Boa - Sistema Completo para Barbearias</title>
-        <meta name="description" content="Transforme sua barbearia com o sistema de gestão mais completo do mercado. Agendamento online, controle financeiro, gestão de clientes e muito mais." />
-        <meta name="keywords" content="sistema barbearia, agendamento online, gestão barbearia, software barbeiro" />
+        <title>Gestão Boa - Sistema Completo para Salões de Beleza e Clínicas de Estética</title>
+        <meta name="description" content="Transforme seu salão de beleza ou clínica de estética com o sistema de gestão mais completo do mercado. Agendamento online, controle financeiro, gestão de clientes e muito mais." />
+        <meta name="keywords" content="sistema salão beleza, agendamento online, gestão estética, software salão, clínica estética" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://gestaoboa.com.br/salao-estetica" />
+        
+        {/* Open Graph Meta Tags */}
+        <meta property="og:title" content="Sistema Completo para Salões de Beleza e Clínicas de Estética" />
+        <meta property="og:description" content="Transforme seu salão ou clínica com agendamento online, controle financeiro e gestão completa. Teste grátis por 20 dias!" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://gestaoboa.com.br/salao-estetica" />
+        <meta property="og:image" content="https://gestaoboa.com.br/salao-estetica-og.jpg" />
+        
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Sistema para Salões de Beleza e Clínicas de Estética" />
+        <meta name="twitter:description" content="Agendamento online, controle financeiro e gestão completa para seu negócio de beleza." />
+        <meta name="twitter:image" content="https://gestaoboa.com.br/salao-estetica-twitter.jpg" />
       </Helmet>
       
       <Header />
@@ -273,19 +210,17 @@ const Barbershop: React.FC = () => {
           {/* Hero Section */}
           <HeroSection>
             <HeroTitle>
-              Transforme sua barbearia no <span>negócio mais organizado</span> da cidade
+              Transforme seu salão ou clínica no <span>negócio mais organizado</span> da região
             </HeroTitle>
             <HeroSubtitle>
-              Pare de perder clientes e dinheiro por falta de organização. Junte-se as barbearias que já usam o Gestão Boa e tenha controle total do seu negócio.
+              Pare de perder clientes e dinheiro por falta de organização. Junte-se aos salões e clínicas que já usam o Gestão Boa e tenha controle total do seu negócio de beleza.
             </HeroSubtitle>
             <Button 
-              text="PREENCHA O FORMULÁRIO E GANHE UM ACESSO GRÁTIS"
+              text="TESTE GRÁTIS POR 20 DIAS"
               method={handleFreeTrialClick}
               type="focused"
             />
           </HeroSection>
-
-          {/* Video Section */}
 
           {/* Problem & Solution Section */}
           <ProblemSolutionContainer>
@@ -294,22 +229,22 @@ const Barbershop: React.FC = () => {
               <ProblemTitle>Se você não aguenta mais...</ProblemTitle>
               <ProblemList>
                 <ProblemItem>
-                  ❌ Perder clientes porque não consegue organizar os agendamentos...
+                  ❌ Perder clientes porque não consegue organizar os agendamentos de procedimentos...
                 </ProblemItem>
                 <ProblemItem>
-                  ❌ Ficar perdido sem saber quanto está ganhando ou gastando...
+                  ❌ Ficar perdida sem saber quanto está ganhando com cada tratamento...
                 </ProblemItem>
                 <ProblemItem>
-                  ❌ Esquecer de cobrar serviços ou produtos vendidos...
+                  ❌ Esquecer de cobrar produtos de beleza ou procedimentos realizados...
                 </ProblemItem>
                 <ProblemItem>
-                  ❌ Não conseguir fidelizar clientes por falta de controle...
+                  ❌ Não conseguir fidelizar clientes por falta de controle dos tratamentos...
                 </ProblemItem>
                 <ProblemItem>
-                  ❌ Trabalhar mais e ganhar menos por desorganização...
+                  ❌ Trabalhar mais e ganhar menos por desorganização da agenda...
                 </ProblemItem>
                 <ProblemItem>
-                  ❌ Ter dor de cabeça com papelada e controles manuais...
+                  ❌ Ter dor de cabeça com papelada e controles manuais de pacotes...
                 </ProblemItem>
               </ProblemList>
             </ProblemSection>
@@ -319,22 +254,22 @@ const Barbershop: React.FC = () => {
               <SolutionTitle>Você será capaz de...</SolutionTitle>
               <SolutionList>
                 <SolutionItem>
-                  ✅ Ter seu link de agendamento personalizado...
+                  ✅ Ter seu link de agendamento personalizado para todos os serviços...
                 </SolutionItem>
                 <SolutionItem>
-                  ✅ Controlar todas as finanças da sua barbearia em tempo real...
+                  ✅ Controlar todas as finanças do seu salão/clínica em tempo real...
                 </SolutionItem>
                 <SolutionItem>
-                  ✅ Nunca mais esquecer de cobrar um serviço ou produto...
+                  ✅ Nunca mais esquecer de cobrar um procedimento ou produto de beleza...
                 </SolutionItem>
                 <SolutionItem>
-                  ✅ Fidelizar clientes com histórico completo de atendimentos...
+                  ✅ Fidelizar clientes com histórico completo de tratamentos e preferências...
                 </SolutionItem>
                 <SolutionItem>
-                  ✅ Trabalhar menos e ganhar mais com organização total...
+                  ✅ Trabalhar menos e ganhar mais com organização total da agenda...
                 </SolutionItem>
                 <SolutionItem>
-                  ✅ Ter relatórios automáticos e controle profissional...
+                  ✅ Ter relatórios automáticos e controle profissional de pacotes...
                 </SolutionItem>
               </SolutionList>
             </SolutionSection>
@@ -343,44 +278,44 @@ const Barbershop: React.FC = () => {
           {/* Testimonials Section */}
           <TestimonialsSection>
             <TestimonialsTitle>
-              Barbeiros já estão transformando seus negócios
+              Profissionais da beleza já estão transformando seus negócios
             </TestimonialsTitle>
             
             <TestimonialCard>
               <TestimonialContent>
-                "O app da gestão boa vem me ajudando muito desde o primeiro dia, consigo saber com exatidão quantos clientes eu tenho e atendo, faturamento, venda de produtos, etc. Comecei a ter controle não só dos cortes, mas das vendas dos produtos e dos custos."
+                "O app da gestão boa vem me ajudando muito desde o primeiro dia, consigo saber com exatidão quantas clientes eu tenho e atendo, faturamento, venda de produtos, etc. Comecei a ter controle não só dos procedimentos, mas das vendas dos produtos de beleza e dos custos."
               </TestimonialContent>
               <TestimonialAuthor>
-                <img src="/PedroArthur.jpg" alt="Pedro Arthur" />
+                <img src="/kaiane.jpeg" alt="Kaiane Silva" />
                 <div>
-                  <strong>Pedro Arthur</strong>
-                  <span>Proprietário da Prime Barbershop</span>
+                  <strong>Kaiane Silva</strong>
+                  <span>Proprietária do Espaço Beleza Kaiane</span>
                 </div>
               </TestimonialAuthor>
             </TestimonialCard>
 
             <TestimonialCard>
               <TestimonialContent>
-                "Com o Gestão Boa aumentei meu faturamento e organizei completamente minha barbearia. Agora tenho controle total do meu negócio e sei exatamente quanto estou lucrando."
+                "Com o Gestão Boa aumentei meu faturamento e organizei completamente minha clínica de estética. Agora tenho controle total dos tratamentos e sei exatamente quanto estou lucrando com cada procedimento."
               </TestimonialContent>
               <TestimonialAuthor>
-                <img src="/leandro.png" alt="Leandro Figueiredo" />
+                <img src="/karine.png" alt="Karine Mendes" />
                 <div>
-                  <strong>Leandro Figueiredo</strong>
-                  <span>Proprietário da Barbearia Duque</span>
+                  <strong>Karine Mendes</strong>
+                  <span>Proprietária da Clínica Bem Estar</span>
                 </div>
               </TestimonialAuthor>
             </TestimonialCard>
 
             <TestimonialCard>
               <TestimonialContent>
-                "Fora de série, fora de série mesmo! Eu te chamo, tu me responde. Tinha muito receio, pois já contratei outros serviços e não tinha esse retorno pra tirar minhas dúvidas. Poderia ser um sistema funcional, mas quando eu tinha dúvidas, eles não supriam. Tu responde, tira minhas dúvidas, não faz corpo mole, e me mostra tudo certinho. Cara, tá show de bola!"
+                "Fora de série, fora de série mesmo! Eu te chamo, tu me responde. Tinha muito receio, pois já contratei outros sistemas e não tinha esse retorno pra tirar minhas dúvidas. Tu responde, tira minhas dúvidas, não faz corpo mole, e me mostra tudo certinho. Cara, tá show de bola!"
               </TestimonialContent>
               <TestimonialAuthor>
-                <img src="/gustavo.jpg" alt="Gustavo" />
+                <img src="/WhatsApp Image 2024-07-05 at 10.01.10.jpeg" alt="Juliana Santos" />
                 <div>
-                  <strong>Gustavo</strong>
-                  <span>Proprietário da Barbaria Conceito</span>
+                  <strong>Juliana Santos</strong>
+                  <span>Proprietária do Studio J Beauty</span>
                 </div>
               </TestimonialAuthor>
             </TestimonialCard>
@@ -393,34 +328,34 @@ const Barbershop: React.FC = () => {
                 <span className="highlight">Agendamento online</span> é muito mais fácil do que você imagina.
               </OnlineBookingTitle>
               <OnlineBookingDescription>
-                O problema é que, quando se trata dos seus serviços e horários, você sente vergonha de ofertar. Tem medo de parecer um barbeiro chato.
+                O problema é que, quando se trata dos seus serviços e horários, você sente vergonha de ofertar. Tem medo de parecer uma profissional insistente.
               </OnlineBookingDescription>
               <OnlineBookingBenefits>
-                <li>Seus clientes agendam 24h por dia, sem você precisar atender o telefone</li>
-                <li>Reduz faltas e remarcações de última hora</li>
-                <li>Clientes recebem lembretes automáticos por WhatsApp</li>
-                <li>Você tem controle total da sua agenda em tempo real</li>
+                <li>Suas clientes agendam 24h por dia, sem você precisar atender o telefone</li>
+                <li>Reduz faltas e remarcações de última hora nos tratamentos</li>
+                <li>Clientes recebem lembretes automáticos por WhatsApp dos procedimentos</li>
+                <li>Você tem controle total da sua agenda de beleza em tempo real</li>
                 <li>Aumenta seu faturamento com agendamentos noturnos e fins de semana</li>
-                <li>Cria uma imagem mais profissional para sua barbearia</li>
+                <li>Cria uma imagem mais profissional para seu salão ou clínica</li>
               </OnlineBookingBenefits>
               <OnlineBookingDescription>
-                Você não precisa conhecer mil técnicas, gatilhos mentais ou palavras mágicas. A única coisa que você precisa é entender a lógica por trás do desejo de consumo — e usar isso a seu favor.
+                Você não precisa conhecer mil técnicas de vendas ou palavras mágicas. A única coisa que você precisa é entender a lógica por trás do desejo de beleza — e usar isso a seu favor.
               </OnlineBookingDescription>
             </OnlineBookingContent>
             <OnlineBookingImageContainer>
-              <img src="/Muitos_Agendamentos.png" alt="Interface do sistema de agendamento online" />
+              <img src="/Muitos_Agendamentos.png" alt="Interface do sistema de agendamento online para salões" />
             </OnlineBookingImageContainer>
           </OnlineBookingSection>
 
           {/* Features Section */}
           <FeatureSection>
-            <FeatureTitle>Tudo que sua barbearia precisa em um só lugar</FeatureTitle>
+            <FeatureTitle>Tudo que seu salão ou clínica precisa em um só lugar</FeatureTitle>
             <FeatureGrid>
               <FeatureCard>
                 <FeatureIcon>📅</FeatureIcon>
                 <FeatureCardTitle>Agendamento Online</FeatureCardTitle>
                 <FeatureDescription>
-                  Seus clientes agendam direto pelo celular, 24h por dia. Sem mais ligações perdidas ou confusão nos horários.
+                  Suas clientes agendam procedimentos direto pelo celular, 24h por dia. Sem mais ligações perdidas ou confusão nos horários.
                 </FeatureDescription>
               </FeatureCard>
 
@@ -428,7 +363,7 @@ const Barbershop: React.FC = () => {
                 <FeatureIcon>💰</FeatureIcon>
                 <FeatureCardTitle>Controle Financeiro</FeatureCardTitle>
                 <FeatureDescription>
-                  Acompanhe receitas, despesas e lucro em tempo real. Relatórios automáticos para você tomar melhores decisões.
+                  Acompanhe receitas, despesas e lucro por procedimento em tempo real. Relatórios automáticos para você tomar melhores decisões.
                 </FeatureDescription>
               </FeatureCard>
 
@@ -436,7 +371,7 @@ const Barbershop: React.FC = () => {
                 <FeatureIcon>👥</FeatureIcon>
                 <FeatureCardTitle>Gestão de Clientes</FeatureCardTitle>
                 <FeatureDescription>
-                  Histórico completo de cada cliente, preferências, aniversários e lembretes automáticos para fidelização.
+                  Histórico completo de cada cliente, preferências de tratamentos, aniversários e lembretes automáticos para fidelização.
                 </FeatureDescription>
               </FeatureCard>
 
@@ -444,7 +379,7 @@ const Barbershop: React.FC = () => {
                 <FeatureIcon>🎯</FeatureIcon>
                 <FeatureCardTitle>Comissões Automáticas</FeatureCardTitle>
                 <FeatureDescription>
-                  Calcule automaticamente as comissões dos barbeiros e tenha relatórios detalhados de cada profissional.
+                  Calcule automaticamente as comissões das profissionais e tenha relatórios detalhados de cada especialista.
                 </FeatureDescription>
               </FeatureCard>
 
@@ -452,7 +387,7 @@ const Barbershop: React.FC = () => {
                 <FeatureIcon>📊</FeatureIcon>
                 <FeatureCardTitle>Relatórios Inteligentes</FeatureCardTitle>
                 <FeatureDescription>
-                  Dashboards com tudo que você precisa saber: faturamento, clientes mais fiéis, serviços mais vendidos.
+                  Dashboards com tudo que você precisa saber: faturamento, clientes mais fiéis, procedimentos mais realizados.
                 </FeatureDescription>
               </FeatureCard>
 
@@ -460,7 +395,7 @@ const Barbershop: React.FC = () => {
                 <FeatureIcon>🔄</FeatureIcon>
                 <FeatureCardTitle>Estoque e Produtos</FeatureCardTitle>
                 <FeatureDescription>
-                  Controle total do estoque, alertas de produtos em falta e gestão completa de vendas de produtos.
+                  Controle total do estoque de produtos de beleza, alertas de produtos em falta e gestão completa de vendas.
                 </FeatureDescription>
               </FeatureCard>
             </FeatureGrid>
@@ -472,21 +407,21 @@ const Barbershop: React.FC = () => {
               Quanto dinheiro você está perdendo por desorganização?
             </CTATitle>
             <CTADescription>
-              Todo dia sem organização é dinheiro que sai do seu bolso. Clientes perdidos, serviços não cobrados, 
-              despesas desnecessárias... Preencha o formulário abaixo e ganhe acesso grátis ao Gestão Boa.
+              Todo dia sem organização é dinheiro que sai do seu bolso. Clientes perdidas, procedimentos não cobrados, 
+              despesas desnecessárias... Teste o Gestão Boa por 20 dias grátis e pare de perder dinheiro.
             </CTADescription>
             <Button 
-              text="PREENCHER FORMULÁRIO E GANHAR ACESSO GRÁTIS"
+              text="TESTAR GRÁTIS POR 20 DIAS"
               method={handleFreeTrialClick}
               type="focused"
             />
           </CTASection>
 
-          {/* Pricing Section - COMENTADO
+          {/* Pricing Section */}
           <PricingSection>
-            <PricingTitle>Escolha o plano ideal para sua barbearia</PricingTitle>
+            <PricingTitle>Escolha o plano ideal para seu salão ou clínica</PricingTitle>
             
-            {/* Plan Type Selector *\/}
+            {/* Plan Type Selector */}
             <div className="plan-type-selector">
               {[
                 {
@@ -510,7 +445,7 @@ const Barbershop: React.FC = () => {
                     
                     // Rastreamento da seleção de plano
                     FB_PIXEL.trackCustomEvent("PlanTypeSelection", {
-                      page: "barbershop",
+                      page: "salao_estetica",
                       plan_type: newPlanType,
                       previous_plan: planType,
                       discount_percentage: plan.discount || "none",
@@ -526,11 +461,11 @@ const Barbershop: React.FC = () => {
             </div>
             
             <div className="pricing-grid">
-              {/* Plano Básico *\/}
+              {/* Plano Básico */}
               <PricingCard>
                 <div className="plan-header">
                   <h3>Plano Básico</h3>
-                  <p>Perfeito para quem está começando</p>
+                  <p>Perfeito para profissionais solo</p>
                 </div>
                 <PricingPrice>
                   <span>
@@ -576,12 +511,12 @@ const Barbershop: React.FC = () => {
                 </ul>
               </PricingCard>
 
-              {/* Plano Crescimento *\/}
+              {/* Plano Crescimento */}
               <PricingCard className="featured">
                 <div className="popular-badge">MAIS POPULAR</div>
                 <div className="plan-header">
                   <h3>Plano Crescimento</h3>
-                  <p>Para pequenos negócios</p>
+                  <p>Para salões pequenos e médios</p>
                 </div>
                 <PricingPrice>
                   <span>
@@ -629,11 +564,11 @@ const Barbershop: React.FC = () => {
                 </ul>
               </PricingCard>
 
-              {/* Plano Empresarial *\/}
+              {/* Plano Empresarial */}
               <PricingCard>
                 <div className="plan-header">
                   <h3>Plano Empresarial</h3>
-                  <p>Perfeito para quem já tem funcionários</p>
+                  <p>Para clínicas e salões grandes</p>
                 </div>
                 <PricingPrice>
                   <span>
@@ -683,102 +618,13 @@ const Barbershop: React.FC = () => {
               </PricingCard>
             </div>
           </PricingSection>
-          */}
-
-          {/* Formulário de Contato */}
-          <PricingSection id="barbershop-form-section">
-            <PricingTitle>Conte-nos sobre sua barbearia</PricingTitle>
-            <div className="barbershop-form-container">
-              <form className="barbershop-form" onSubmit={handleFormSubmit}>
-                <div className="form-field">
-                  <label className="form-label">Nome Completo *</label>
-                  <input
-                    type="text"
-                    className="form-input"
-                    placeholder="Digite seu nome completo"
-                    value={formData.nomeCompleto}
-                    onChange={(e) => handleInputChange('nomeCompleto', e.target.value)}
-                    required
-                  />
-                </div>
-
-                <div className="form-field">
-                  <label className="form-label">Telefone/WhatsApp *</label>
-                  <input
-                    type="tel"
-                    className="form-input"
-                    placeholder="(11) 99999-9999"
-                    value={formData.telefone}
-                    onChange={(e) => handleInputChange('telefone', e.target.value)}
-                    maxLength={15}
-                    required
-                  />
-                </div>
-
-                <div className="form-field">
-                  <label className="form-label">Há quanto tempo sua barbearia está aberta? *</label>
-                  <select
-                    className="form-select"
-                    value={formData.tempoAberta}
-                    onChange={(e) => handleInputChange('tempoAberta', e.target.value)}
-                    required
-                    title="Selecione há quanto tempo sua barbearia está aberta"
-                  >
-                    <option value="">Selecione uma opção</option>
-                    <option value="menos-6-meses">Menos de 6 meses</option>
-                    <option value="6-meses-1-ano">De 6 meses a 1 ano</option>
-                    <option value="1-2-anos">De 1 a 2 anos</option>
-                    <option value="2-5-anos">De 2 a 5 anos</option>
-                    <option value="mais-5-anos">Mais de 5 anos</option>
-                  </select>
-                </div>
-
-                <div className="form-field">
-                  <label className="form-label">Quantos barbeiros trabalham na sua barbearia? *</label>
-                  <select
-                    className="form-select"
-                    value={formData.numeroBarbeiros}
-                    onChange={(e) => handleInputChange('numeroBarbeiros', e.target.value)}
-                    required
-                    title="Selecione quantos barbeiros trabalham na sua barbearia"
-                  >
-                    <option value="">Selecione uma opção</option>
-                    <option value="apenas-eu">Apenas eu (proprietário)</option>
-                    <option value="2-barbeiros">2 barbeiros</option>
-                    <option value="3-barbeiros">3 barbeiros</option>
-                    <option value="4-5-barbeiros">4 a 5 barbeiros</option>
-                    <option value="mais-5-barbeiros">Mais de 5 barbeiros</option>
-                  </select>
-                </div>
-
-                <div className="form-button-container">
-                  <button 
-                    type="submit"
-                    className="form-submit-button"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting 
-                      ? 'ENVIANDO...' 
-                      : submitSuccess 
-                        ? 'ENVIADO COM SUCESSO!' 
-                        : 'PREENCHER FORMULÁRIO E GANHAR ACESSO GRÁTIS'
-                    }
-                  </button>
-                </div>
-
-                <p className="form-disclaimer">
-                  <strong>*</strong> Campos obrigatórios. <strong>Preencha o formulário e ganhe um acesso grátis</strong>, sem compromisso, sem cartão de crédito.
-                </p>
-              </form>
-            </div>
-          </PricingSection>
 
           {/* 20 Days Free Trial Section */}
           <GuaranteeSection>
-            <GuaranteeTitle>Acesso grátis garantido</GuaranteeTitle>
+            <GuaranteeTitle>20 dias grátis para testar</GuaranteeTitle>
             <GuaranteeDescription>
-              Preencha o formulário acima e ganhe acesso completo ao Gestão Boa. 
-              Sem compromisso, sem cartão de crédito. Veja na prática como o sistema pode transformar sua barbearia.
+              Teste todas as funcionalidades do Gestão Boa por 20 dias completamente grátis. 
+              Sem compromisso, sem cartão de crédito. Veja na prática como o sistema pode transformar seu salão ou clínica.
             </GuaranteeDescription>
           </GuaranteeSection>
 
@@ -842,14 +688,14 @@ const Barbershop: React.FC = () => {
           {/* Final CTA */}
           <FinalCTASection>
             <CTATitle>
-              Comece hoje mesmo - Preencha o formulário e ganhe acesso grátis
+              Comece hoje mesmo - 20 dias grátis para transformar seu salão ou clínica
             </CTATitle>
             <CTADescription>
-              Junte-se às barbearias que já usam o Gestão Boa. 
-              Preencha o formulário acima com as informações da sua barbearia e ganhe acesso completo ao sistema.
+              Junte-se aos salões e clínicas que já usam o Gestão Boa. 
+              Teste todas as funcionalidades por 20 dias sem compromisso e veja a diferença na organização do seu negócio.
             </CTADescription>
             <Button 
-              text="PREENCHER FORMULÁRIO E GANHAR ACESSO GRÁTIS"
+              text="COMEÇAR TESTE GRÁTIS AGORA"
               method={handleFreeTrialClick}
               type="focused"
             />
@@ -862,4 +708,4 @@ const Barbershop: React.FC = () => {
   );
 };
 
-export default Barbershop;
+export default SalaoEstetica;
