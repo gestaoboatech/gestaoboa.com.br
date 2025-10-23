@@ -12,6 +12,11 @@ export const Container = styled.div<{ isMenuOpen?: boolean }>`
     position: fixed;
     z-index: 200;
     background-color: #ffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    top: 0;
+    left: 0;
+    right: 0;
+    min-height: 70px;
 
     &::after {
         content: '';
@@ -44,18 +49,31 @@ export const Container = styled.div<{ isMenuOpen?: boolean }>`
         }
     }
 
+    @media (max-width: 1030px) {
+        width: 96%;
+        padding: 12px 20px;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 10;
+        min-height: 60px;
+    }
+
     @media (max-width: 800px){
-        position: relative;
-        width: calc(100% - 100px);
-        padding-left: 50px;
-        padding-right: 50px;
-	}
+        padding: 10px 15px;
+        min-height: 55px;
+    }
 
     @media (max-width: 750px){
-        width: 100%;
-        justify-content: center;
-        padding-left: 0px;
-        padding-right: 0px;
+        padding: 8px 15px;
+        min-height: 50px;
+    }
+
+    @media (max-width: 480px) {
+        padding: 6px 10px;
+        min-height: 45px;
     }
 
     @media (max-width: 768px) {
@@ -74,13 +92,32 @@ export const Logo = styled.div`
     align-items: center;
     gap: 18px;
     font-family: "Montserrat";
+    cursor: pointer;
+    
+    @media (max-width: 1030px) {
+        flex: 1;
+        justify-content: flex-start;
+    }
+    
+    @media (max-width: 480px) {
+        gap: 12px;
+        flex: 1;
+    }
 `
 
 export const LogoImg = styled.img`
     width: 79.73px;
 
+    @media (max-width: 1030px){
+        width: 60px;
+    }
+
     @media (max-width: 800px){
         width: 50px;
+    }
+    
+    @media (max-width: 480px) {
+        width: 45px;
     }
 `
 
@@ -88,8 +125,20 @@ export const Title = styled.div`
     font-size: 32px;
     color: #03045E;
 
+    @media (max-width: 1030px){
+        font-size: 28px;
+    }
+
     @media (max-width: 800px){
         font-size: 26px;
+    }
+    
+    @media (max-width: 480px) {
+        font-size: 22px;
+    }
+    
+    @media (max-width: 360px) {
+        font-size: 20px;
     }
 `
 
@@ -118,8 +167,9 @@ export const LinkItem = styled.a`
 
 export const TestNow = styled.div`
     display: flex;
+    align-items: center;
 
-    @media (max-width: 750px){
+    @media (max-width: 1030px){
         display: none;
     }
 `
@@ -135,6 +185,7 @@ export const MenuButton = styled.button<{ isOpen: boolean }>`
     cursor: pointer;
     padding: 0;
     z-index: 300;
+    align-items: center;
 
     span {
         width: 32px;
@@ -161,6 +212,17 @@ export const MenuButton = styled.button<{ isOpen: boolean }>`
 
     @media (max-width: 1030px) {
         display: flex;
+        margin-left: auto;
+    }
+    
+    @media (max-width: 480px) {
+        width: 28px;
+        height: 20px;
+        
+        span {
+            width: 28px;
+            height: 2.5px;
+        }
     }
 `;
 
@@ -202,6 +264,28 @@ export const MobileLinks = styled.div<{ isOpen: boolean }>`
 
     @media (max-width: 1030px) {
         display: flex;
+    }
+    
+    @media (max-width: 480px) {
+        width: 85%;
+        max-width: 280px;
+        padding: 70px 15px 15px;
+        
+        ${LinkItem} {
+            padding: 12px 0;
+            font-size: 16px;
+        }
+    }
+    
+    @media (max-width: 360px) {
+        width: 90%;
+        max-width: 250px;
+        padding: 60px 10px 10px;
+        
+        ${LinkItem} {
+            padding: 10px 0;
+            font-size: 15px;
+        }
     }
 `;
 

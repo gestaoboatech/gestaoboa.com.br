@@ -9,9 +9,18 @@ export const Content = styled.div`
   max-width: 1400px;
   margin: 0 auto;
   padding: 2rem 1rem;
+  padding-top: 100px; /* Compensa o header fixo */
   
   @media (max-width: 768px) {
-    padding: 1rem 0.5rem;
+    padding: 1rem;
+    padding-top: 80px; /* Header menor em mobile */
+    margin: 0;
+    max-width: 100%;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 0.5rem;
+    padding-top: 70px; /* Header ainda menor */
   }
 `;
 
@@ -19,6 +28,16 @@ export const HeroSection = styled.section`
   text-align: center;
   padding: 4rem 0;
   margin-bottom: 3rem;
+  
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 1.5rem 0.5rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 export const HeroTitle = styled.h1`
@@ -37,11 +56,16 @@ export const HeroTitle = styled.h1`
   }
   
   @media (max-width: 768px) {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+    line-height: 1.3;
   }
   
   @media (max-width: 480px) {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    padding: 0 0.5rem;
   }
 `;
 
@@ -55,7 +79,16 @@ export const HeroSubtitle = styled.p`
   line-height: 1.6;
   
   @media (max-width: 768px) {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+    max-width: 100%;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
   }
 `;
 
@@ -79,8 +112,15 @@ export const ProblemSolutionContainer = styled.div`
   
   @media (max-width: 768px) {
     flex-direction: column;
+    gap: 1.5rem;
+    margin: 1rem 0;
+    padding: 0 1rem;
+  }
+  
+  @media (max-width: 480px) {
+    margin: 0.5rem 0;
+    padding: 0 0.5rem;
     gap: 1rem;
-    margin: 1rem 0.5rem;
   }
 `;
 
@@ -94,8 +134,16 @@ export const ProblemSection = styled.section`
   min-width: 400px;
   
   @media (max-width: 768px) {
-    padding: 1.5rem 1rem;
+    padding: 2rem 1.5rem;
     min-width: unset;
+    border-radius: 15px;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
   }
 `;
 
@@ -146,8 +194,16 @@ export const SolutionSection = styled.section`
   min-width: 400px;
   
   @media (max-width: 768px) {
-    padding: 1.5rem 1rem;
+    padding: 2rem 1.5rem;
     min-width: unset;
+    border-radius: 15px;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
   }
 `;
 
@@ -191,6 +247,16 @@ export const SolutionItem = styled.div`
 export const TestimonialsSection = styled.section`
   padding: 4rem 0;
   margin: 4rem 0;
+  
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+    margin: 2rem 0;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 1.5rem 0.5rem;
+    margin: 1.5rem 0;
+  }
 `;
 
 export const TestimonialsTitle = styled.h2`
@@ -201,7 +267,15 @@ export const TestimonialsTitle = styled.h2`
   color: #2c3e50;
   
   @media (max-width: 768px) {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
   }
 `;
 
@@ -212,9 +286,23 @@ export const TestimonialCard = styled.div`
   margin-bottom: 2rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   border: 1px solid #f1f3f4;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   
   @media (max-width: 768px) {
     padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 1rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    border-radius: 10px;
   }
 `;
 
@@ -224,9 +312,17 @@ export const TestimonialContent = styled.p`
   margin-bottom: 1.5rem;
   line-height: 1.6;
   font-style: italic;
+  text-align: center;
   
   @media (max-width: 768px) {
     font-size: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    line-height: 1.4;
   }
 `;
 
@@ -262,6 +358,16 @@ export const TestimonialAuthor = styled.div`
 export const FeatureSection = styled.section`
   padding: 4rem 0;
   margin: 4rem 0;
+  
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+    margin: 2rem 0;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 1.5rem 0.5rem;
+    margin: 1.5rem 0;
+  }
 `;
 
 export const FeatureTitle = styled.h2`
@@ -272,7 +378,15 @@ export const FeatureTitle = styled.h2`
   color: #2c3e50;
   
   @media (max-width: 768px) {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
   }
 `;
 
@@ -280,9 +394,18 @@ export const FeatureGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
   
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+  
+  @media (max-width: 480px) {
+    gap: 1rem;
+    padding: 0 0.5rem;
   }
 `;
 
@@ -301,7 +424,17 @@ export const FeatureCard = styled.div`
   }
   
   @media (max-width: 768px) {
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+    
+    &:hover {
+      transform: none;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    padding: 1.5rem 1rem;
+    border-radius: 10px;
   }
 `;
 
@@ -332,7 +465,15 @@ export const CTASection = styled.section`
   color: white;
   
   @media (max-width: 768px) {
+    padding: 3rem 1.5rem;
+    margin: 2rem 1rem;
+    border-radius: 15px;
+  }
+  
+  @media (max-width: 480px) {
     padding: 2rem 1rem;
+    margin: 1.5rem 0.5rem;
+    border-radius: 12px;
   }
 `;
 
@@ -342,7 +483,13 @@ export const CTATitle = styled.h2`
   margin-bottom: 1.5rem;
   
   @media (max-width: 768px) {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
   }
 `;
 
@@ -357,6 +504,15 @@ export const CTADescription = styled.p`
   
   @media (max-width: 768px) {
     font-size: 1rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+    max-width: 100%;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
   }
 `;
 
@@ -658,8 +814,18 @@ export const OnlineBookingSection = styled.section`
   
   @media (max-width: 768px) {
     flex-direction: column;
-    padding: 2rem 1rem;
+    padding: 3rem 1.5rem;
     gap: 2rem;
+    margin: 2rem 1rem;
+    border-radius: 15px;
+    text-align: center;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 2rem 1rem;
+    margin: 1.5rem 0.5rem;
+    border-radius: 12px;
+    gap: 1.5rem;
   }
 `;
 
@@ -681,7 +847,14 @@ export const OnlineBookingTitle = styled.h2`
   }
   
   @media (max-width: 768px) {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
   }
 `;
 
@@ -690,6 +863,17 @@ export const OnlineBookingDescription = styled.p`
   line-height: 1.6;
   margin-bottom: 2rem;
   opacity: 0.95;
+  
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 export const OnlineBookingBenefits = styled.ul`
@@ -707,6 +891,27 @@ export const OnlineBookingBenefits = styled.ul`
       content: "✅";
       margin-right: 0.8rem;
       font-size: 1.2rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    margin: 1.5rem 0;
+    text-align: left;
+    max-width: 100%;
+    
+    li {
+      font-size: 0.9rem;
+      margin-bottom: 0.8rem;
+      justify-content: flex-start;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    margin: 1rem 0;
+    
+    li {
+      font-size: 0.85rem;
+      margin-bottom: 0.6rem;
     }
   }
 `;
@@ -765,14 +970,40 @@ export const AboutUsSection = styled.section`
   
   @media (max-width: 768px) {
     flex-direction: column-reverse;
-    padding: 2rem 1rem;
+    padding: 3rem 1.5rem;
     gap: 2rem;
-    margin: 2rem 0 0 0;
+    margin: 2rem 1rem 0 1rem;
+    border-radius: 15px;
+    text-align: center;
     
     &::before,
     &::after {
       top: 15px;
-      left: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    &::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    padding: 2rem 1rem;
+    margin: 1.5rem 0.5rem 0 0.5rem;
+    border-radius: 12px;
+    gap: 1.5rem;
+    
+    &::before {
+      width: 35px;
+      height: 35px;
+      top: 10px;
+    }
+    
+    &::after {
+      top: 17px;
+      font-size: 1rem;
     }
   }
 `;
@@ -831,7 +1062,13 @@ export const FoundersGrid = styled.div`
   
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    gap: 1.2rem;
+    margin: 1.5rem 0;
+  }
+  
+  @media (max-width: 480px) {
     gap: 1rem;
+    margin: 1rem 0;
   }
 `;
 
@@ -884,6 +1121,116 @@ export const AboutUsImageContainer = styled.div`
   @media (max-width: 768px) {
     img {
       max-width: 70%;
+    }
+  }
+`;
+
+// Estilo para containers de botões CTA espalhados pela página
+export const CTAButtonContainer = styled.div`
+  text-align: center;
+  margin: 40px 0;
+  padding: 20px;
+  
+  @media (max-width: 768px) {
+    margin: 30px auto;
+    padding: 15px;
+    max-width: 100%;
+  }
+  
+  @media (max-width: 480px) {
+    margin: 20px auto;
+    padding: 10px;
+  }
+`;
+
+// Botão CTA flutuante fixo
+export const FloatingCTAButton = styled.div`
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  
+  button {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    padding: 20px 15px;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    min-height: 200px;
+    
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(231, 76, 60, 0.6);
+      background: linear-gradient(135deg, #c0392b, #e74c3c);
+    }
+    
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    display: none;
+  }
+`;
+
+// Botão CTA fixo no fundo para mobile
+export const MobileFixedCTAButton = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  display: none;
+  
+  button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(231, 76, 60, 0.6);
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    display: block;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 12px;
+    
+    button {
+      padding: 12px;
+      font-size: 14px;
+      border-radius: 8px;
     }
   }
 `;

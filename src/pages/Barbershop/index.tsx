@@ -57,7 +57,9 @@ import {
   FinalCTASection,
   GuaranteeSection,
   GuaranteeTitle,
-  GuaranteeDescription
+  GuaranteeDescription,
+  CTAButtonContainer,
+  MobileFixedCTAButton
 } from './styles';
 
 const Barbershop: React.FC = () => {
@@ -279,7 +281,7 @@ const Barbershop: React.FC = () => {
               Pare de perder clientes e dinheiro por falta de organização. Junte-se as barbearias que já usam o Gestão Boa e tenha controle total do seu negócio.
             </HeroSubtitle>
             <Button 
-              text="PREENCHA O FORMULÁRIO E GANHE UM ACESSO GRÁTIS"
+              text="QUERO ACESSO GRÁTIS"
               method={handleFreeTrialClick}
               type="focused"
             />
@@ -339,6 +341,15 @@ const Barbershop: React.FC = () => {
               </SolutionList>
             </SolutionSection>
           </ProblemSolutionContainer>
+          
+          {/* CTA Button após problemas/soluções */}
+          <CTAButtonContainer>
+            <Button 
+              text="QUERO TER TUDO ISSO AGORA"
+              method={handleFreeTrialClick}
+              type="focused"
+            />
+          </CTAButtonContainer>
 
           {/* Testimonials Section */}
           <TestimonialsSection>
@@ -384,6 +395,15 @@ const Barbershop: React.FC = () => {
                 </div>
               </TestimonialAuthor>
             </TestimonialCard>
+            
+            {/* CTA Button após depoimentos */}
+            <CTAButtonContainer>
+              <Button 
+                text="QUERO ACESSO GRÁTIS AGORA"
+                method={handleFreeTrialClick}
+                type="focused"
+              />
+            </CTAButtonContainer>
           </TestimonialsSection>
 
           {/* Online Booking Section */}
@@ -406,6 +426,15 @@ const Barbershop: React.FC = () => {
               <OnlineBookingDescription>
                 Você não precisa conhecer mil técnicas, gatilhos mentais ou palavras mágicas. A única coisa que você precisa é entender a lógica por trás do desejo de consumo — e usar isso a seu favor.
               </OnlineBookingDescription>
+              
+              {/* CTA Button na seção de agendamento */}
+              <CTAButtonContainer>
+                <Button 
+                  text="QUERO TER AGENDAMENTO ONLINE"
+                  method={handleFreeTrialClick}
+                  type="focused"
+                />
+              </CTAButtonContainer>
             </OnlineBookingContent>
             <OnlineBookingImageContainer>
               <img src="/Muitos_Agendamentos.png" alt="Interface do sistema de agendamento online" />
@@ -464,6 +493,15 @@ const Barbershop: React.FC = () => {
                 </FeatureDescription>
               </FeatureCard>
             </FeatureGrid>
+            
+            {/* CTA Button após recursos */}
+            <CTAButtonContainer>
+              <Button 
+                text="QUERO TODAS ESSAS FUNCIONALIDADES"
+                method={handleFreeTrialClick}
+                type="focused"
+              />
+            </CTAButtonContainer>
           </FeatureSection>
 
           {/* CTA Section */}
@@ -475,11 +513,6 @@ const Barbershop: React.FC = () => {
               Todo dia sem organização é dinheiro que sai do seu bolso. Clientes perdidos, serviços não cobrados, 
               despesas desnecessárias... Preencha o formulário abaixo e ganhe acesso grátis ao Gestão Boa.
             </CTADescription>
-            <Button 
-              text="PREENCHER FORMULÁRIO E GANHAR ACESSO GRÁTIS"
-              method={handleFreeTrialClick}
-              type="focused"
-            />
           </CTASection>
 
           {/* Pricing Section - COMENTADO
@@ -833,6 +866,15 @@ const Barbershop: React.FC = () => {
                 Porque quando a tecnologia trabalha a seu favor, empreender se torna 
                 muito mais simples e prazeroso.
               </AboutUsHighlight>
+              
+              {/* CTA Button na seção sobre nós */}
+              <CTAButtonContainer>
+                <Button 
+                  text="QUERO ACESSO GRÁTIS"
+                  method={handleFreeTrialClick}
+                  type="focused"
+                />
+              </CTAButtonContainer>
             </AboutUsContent>
             <AboutUsImageContainer>
               <img src="/time.png" alt="Equipe Gestão Boa - Sílvio, Karine e Victor, fundadores da empresa" />
@@ -849,12 +891,20 @@ const Barbershop: React.FC = () => {
               Preencha o formulário acima com as informações da sua barbearia e ganhe acesso completo ao sistema.
             </CTADescription>
             <Button 
-              text="PREENCHER FORMULÁRIO E GANHAR ACESSO GRÁTIS"
+              text="GANHAR ACESSO GRÁTIS"
               method={handleFreeTrialClick}
               type="focused"
             />
           </FinalCTASection>
         </Content>
+        
+        
+        {/* Botão CTA fixo no fundo para mobile */}
+        <MobileFixedCTAButton>
+          <button onClick={handleFreeTrialClick}>
+            QUERO ACESSO GRÁTIS
+          </button>
+        </MobileFixedCTAButton>
       </Container>
       
       <Footer />

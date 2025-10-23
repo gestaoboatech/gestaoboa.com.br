@@ -8,10 +8,41 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+@media (max-width: 768px) {
+  .barbershop-form-container {
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 30px 20px;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .barbershop-form-container {
+    max-width: 100%;
+    margin: 0 1rem;
+    padding: 20px 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+}
+
 .barbershop-form {
   display: flex;
   flex-direction: column;
   gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .barbershop-form {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .barbershop-form {
+    gap: 16px;
+  }
 }
 
 .form-field {
@@ -27,6 +58,18 @@
   margin-bottom: 4px;
 }
 
+@media (max-width: 768px) {
+  .form-label {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-label {
+    font-size: 14px;
+  }
+}
+
 .form-input,
 .form-select {
   padding: 14px 16px;
@@ -39,6 +82,24 @@
   font-family: inherit;
   width: 100%;
   box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .form-input,
+  .form-select {
+    padding: 12px 14px;
+    font-size: 16px; /* Mantém 16px para evitar zoom no iOS */
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-input,
+  .form-select {
+    padding: 12px;
+    font-size: 16px; /* Importante manter 16px no mobile */
+    border-radius: 8px;
+  }
 }
 
 .form-input:focus,
