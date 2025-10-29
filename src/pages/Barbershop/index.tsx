@@ -74,6 +74,7 @@ const Barbershop: React.FC = () => {
   // Estado de loading do formulário
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [showWhatsAppModal, setShowWhatsAppModal] = useState(false);
 
   // Função para fazer scroll até o formulário
   const scrollToForm = () => {
@@ -125,6 +126,41 @@ const Barbershop: React.FC = () => {
     }));
   };
 
+  // Funções para o modal do WhatsApp
+  const handleJoinWhatsApp = () => {
+    // Link do grupo do WhatsApp (substitua pelo seu link real)
+    const whatsappGroupLink = "https://chat.whatsapp.com/JWC0pUmu04l3ZkXZUErEUN";
+    
+    // Abre o link do WhatsApp
+    window.open(whatsappGroupLink, "_blank");
+    
+    // Rastreamento do pixel para entrada no grupo
+    FB_PIXEL.trackCustomEvent("WhatsAppGroupJoin", {
+      page: "barbershop",
+      action: "join_group",
+      timestamp: new Date().toISOString(),
+    });
+    
+    // Fecha o modal
+    setShowWhatsAppModal(false);
+  };
+
+  const handleSkipWhatsApp = () => {
+    // Fecha o modal
+    setShowWhatsAppModal(false);
+    
+    // Oferece acesso direto ao app
+    setTimeout(() => {
+      const confirmApp = confirm(
+        'Gostaria de acessar nossa plataforma para começar seu teste gratuito?'
+      );
+      
+      if (confirmApp) {
+        window.open("https://app.gestaoboa.com.br", "_blank");
+      }
+    }, 500);
+  };
+
   // Função para enviar o formulário
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -173,13 +209,8 @@ const Barbershop: React.FC = () => {
           numeroBarbeiros: ''
         });
 
-        // Mostra mensagem de sucesso
-        alert('Formulário enviado com sucesso! Em breve entraremos em contato.');
-        
-        // Redireciona para o acesso grátis após 2 segundos
-        setTimeout(() => {
-          window.open("https://app.gestaoboa.com.br", "_blank");
-        }, 2000);
+        // Mostra modal de sucesso e convite para WhatsApp
+        setShowWhatsAppModal(true);
 
       } else {
         throw new Error('Falha ao enviar formulário');
@@ -275,13 +306,13 @@ const Barbershop: React.FC = () => {
           {/* Hero Section */}
           <HeroSection>
             <HeroTitle>
-              Transforme sua barbearia no <span>negócio mais organizado</span> da cidade
+              🔥 <span>BLACK FRIDAY</span> Gestão Boa - Oferta especial será revelada dia <span>14/11</span>
             </HeroTitle>
             <HeroSubtitle>
-              Pare de perder clientes e dinheiro por falta de organização. Junte-se as barbearias que já usam o Gestão Boa e tenha controle total do seu negócio.
+              Não perca a maior promoção do ano! Para receber nossa oferta EXCLUSIVA de Black Friday, preencha o formulário abaixo e entre no nosso grupo VIP do WhatsApp. A oferta será revelada apenas para os membros do grupo no dia 14/11! 🎯
             </HeroSubtitle>
             <Button 
-              text="QUERO ACESSO GRÁTIS"
+              text="🎁 QUERO A OFERTA EXCLUSIVA"
               method={handleFreeTrialClick}
               type="focused"
             />
@@ -345,7 +376,7 @@ const Barbershop: React.FC = () => {
           {/* CTA Button após problemas/soluções */}
           <CTAButtonContainer>
             <Button 
-              text="QUERO TER TUDO ISSO AGORA"
+              text="🎁 QUERO A OFERTA EXCLUSIVA"
               method={handleFreeTrialClick}
               type="focused"
             />
@@ -399,7 +430,7 @@ const Barbershop: React.FC = () => {
             {/* CTA Button após depoimentos */}
             <CTAButtonContainer>
               <Button 
-                text="QUERO ACESSO GRÁTIS AGORA"
+                text="🎁 QUERO A OFERTA EXCLUSIVA"
                 method={handleFreeTrialClick}
                 type="focused"
               />
@@ -430,7 +461,7 @@ const Barbershop: React.FC = () => {
               {/* CTA Button na seção de agendamento */}
               <CTAButtonContainer>
                 <Button 
-                  text="QUERO TER AGENDAMENTO ONLINE"
+                  text="🎁 QUERO A OFERTA EXCLUSIVA"
                   method={handleFreeTrialClick}
                   type="focused"
                 />
@@ -497,7 +528,7 @@ const Barbershop: React.FC = () => {
             {/* CTA Button após recursos */}
             <CTAButtonContainer>
               <Button 
-                text="QUERO TODAS ESSAS FUNCIONALIDADES"
+                text="🎁 QUERO A OFERTA EXCLUSIVA"
                 method={handleFreeTrialClick}
                 type="focused"
               />
@@ -720,7 +751,10 @@ const Barbershop: React.FC = () => {
 
           {/* Formulário de Contato */}
           <PricingSection id="barbershop-form-section">
-            <PricingTitle>Conte-nos sobre sua barbearia</PricingTitle>
+            <PricingTitle>🎁 Garanta sua oferta EXCLUSIVA de Black Friday</PricingTitle>
+            <div className="black-friday-subtitle">
+              Preencha os dados abaixo e entre no nosso grupo VIP para receber a oferta especial no dia 14/11! 🔥
+            </div>
             <div className="barbershop-form-container">
               <form className="barbershop-form" onSubmit={handleFormSubmit}>
                 <div className="form-field">
@@ -793,8 +827,8 @@ const Barbershop: React.FC = () => {
                     {isSubmitting 
                       ? 'ENVIANDO...' 
                       : submitSuccess 
-                        ? 'ENVIADO COM SUCESSO!' 
-                        : 'PREENCHER FORMULÁRIO E GANHAR ACESSO GRÁTIS'
+                        ? '✅ FORMULÁRIO ENVIADO - AGUARDE O GRUPO VIP!' 
+                        : '🎁 QUERO A OFERTA EXCLUSIVA'
                     }
                   </button>
                 </div>
@@ -870,7 +904,7 @@ const Barbershop: React.FC = () => {
               {/* CTA Button na seção sobre nós */}
               <CTAButtonContainer>
                 <Button 
-                  text="QUERO ACESSO GRÁTIS"
+                  text="🎁 QUERO A OFERTA EXCLUSIVA"
                   method={handleFreeTrialClick}
                   type="focused"
                 />
@@ -902,10 +936,57 @@ const Barbershop: React.FC = () => {
         {/* Botão CTA fixo no fundo para mobile */}
         <MobileFixedCTAButton>
           <button onClick={handleFreeTrialClick}>
-            QUERO ACESSO GRÁTIS
+            🎁 QUERO A OFERTA EXCLUSIVA
           </button>
         </MobileFixedCTAButton>
       </Container>
+      
+      {/* Modal do WhatsApp */}
+      {showWhatsAppModal && (
+        <div className="whatsapp-modal-overlay">
+          <div className="whatsapp-modal">
+            <div className="whatsapp-modal-header">
+              <h3>🔥 BLACK FRIDAY - Formulário enviado com sucesso!</h3>
+            </div>
+            
+            <div className="whatsapp-modal-content">
+              <div className="whatsapp-icon">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="30" cy="30" r="30" fill="#25D366"/>
+                  <path d="M45.5 14.4C42.9 11.8 39.7 10.1 36.2 9.4C32.7 8.7 29.1 9 25.8 10.2C22.5 11.4 19.6 13.5 17.4 16.2C15.2 18.9 13.8 22.1 13.4 25.5C13 28.9 13.5 32.3 15 35.4L13 47L24.9 45.1C27.8 46.4 30.9 47.1 34.1 47C37.3 46.9 40.4 46.1 43.2 44.6C46 43.1 48.4 40.9 50.2 38.2C52 35.5 53.1 32.4 53.4 29.2C53.7 26 53.2 22.8 51.9 19.9C50.6 17 48.6 14.5 46.1 12.6L45.5 14.4ZM30 43.3C27.3 43.3 24.7 42.6 22.4 41.3L21.8 41L16.7 42.3L18 37.3L17.6 36.7C16.2 34.3 15.4 31.6 15.4 28.8C15.4 21.8 21.1 16.1 28.1 16.1C31.4 16.1 34.5 17.4 36.8 19.7C39.1 22 40.4 25.1 40.4 28.4C40.4 35.4 34.7 41.1 27.7 41.1L30 43.3Z" fill="white"/>
+                </svg>
+              </div>
+              
+              <h4>🎁 Entre no grupo VIP para a oferta BLACK FRIDAY!</h4>
+              <p>Sua oferta EXCLUSIVA será revelada dia <strong>14/11</strong>! Entre no grupo VIP e receba:</p>
+              
+              <ul className="whatsapp-benefits">
+                <li>🔥 Oferta EXCLUSIVA de Black Friday (revelada 14/11)</li>
+                <li>💰 Preços especiais apenas para o grupo VIP</li>
+                <li>⚡ Acesso prioritário às promoções</li>
+                <li>✅ Suporte direto e preferencial</li>
+                <li>📈 Dicas para aumentar o faturamento da barbearia</li>
+              </ul>
+            </div>
+            
+            <div className="whatsapp-modal-actions">
+              <button 
+                className="whatsapp-join-btn"
+                onClick={handleJoinWhatsApp}
+              >
+                🎁 QUERO A OFERTA EXCLUSIVA
+              </button>
+              
+              <button 
+                className="whatsapp-skip-btn"
+                onClick={handleSkipWhatsApp}
+              >
+                Pular por agora
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       
       <Footer />
     </>

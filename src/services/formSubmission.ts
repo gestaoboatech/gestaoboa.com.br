@@ -83,3 +83,80 @@ export const submitBarbershopForm = async (formData: BarbershopFormData): Promis
     return false;
   }
 };
+
+// Interface para dados do formulário do salão/estética
+export interface SalaoFormData {
+  nomeCompleto: string;
+  telefone: string;
+  tempoAberta: string;
+  numeroProfissionais: string;
+  timestamp?: string;
+}
+
+// Função para sanitizar dados do salão
+const sanitizeSalaoData = (data: SalaoFormData): SalaoFormData => {
+  const sanitizeString = (str: string): string => {
+    if (!str) return str;
+    
+    return str
+      .replace(/[<>\"'&]/g, '')
+      .replace(/[^\w\sÀ-ÿ\u00f1\u00d1().\-@]/g, '')
+      .trim();
+  };
+
+  return {
+    nomeCompleto: sanitizeString(data.nomeCompleto),
+    telefone: sanitizeString(data.telefone),
+    tempoAberta: data.tempoAberta,
+    numeroProfissionais: data.numeroProfissionais,
+    timestamp: data.timestamp
+  };
+};
+
+// Envio para Google Sheets do salão
+export const sendSalaoToGoogleSheets = async (formData: SalaoFormData): Promise<boolean> => {
+  try {
+    // URL do Google Apps Script Web App (pode ser o mesmo ou diferente)
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzZCVvfSdIzMsq1stPqU6R1Fv1seF-PiF-ea2pAwi2gKup64yhVPQhpwPpi1AYQ5kH5/exec';
+    
+    const sanitizedData = sanitizeSalaoData(formData);
+    console.log('Dados do salão sanitizados:', sanitizedData);
+    
+    const dataToSend = {
+      ...sanitizedData,
+      timestamp: new Date().toISOString(),
+      source: 'salao_estetica_page'
+    };
+
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(dataToSend),
+      mode: 'no-cors'
+    });
+
+    console.log('Dados enviados para Google Sheets (Salão):', dataToSend);
+    return true;
+
+  } catch (error) {
+    console.error('Erro ao enviar para Google Sheets (Salão):', error);
+    return false;
+  }
+};
+
+// Função principal para submissão do formulário do salão
+export const submitSalaoForm = async (formData: SalaoFormData): Promise<boolean> => {
+  try {
+    // Envia para Google Sheets
+    const googleSheetsSuccess = await sendSalaoToGoogleSheets(formData);
+    
+    console.log('Dados do salão enviados para Google Sheets:', formData);
+    
+    return googleSheetsSuccess;
+  } catch (error) {
+    console.error('Erro no envio do formulário do salão:', error);
+    return false;
+  }
+};

@@ -8,6 +8,15 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* Black Friday Subtitle */
+.black-friday-subtitle {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+  color: #666;
+  font-weight: 500;
+}
+
 @media (max-width: 768px) {
   .barbershop-form-container {
     max-width: 95%;
@@ -326,5 +335,243 @@
     .form-select {
       border-radius: 8px;
     }
+  }
+}
+
+/* Modal do WhatsApp */
+.whatsapp-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.whatsapp-modal {
+  background: white;
+  border-radius: 20px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.4s ease-out;
+  position: relative;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.whatsapp-modal-header {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: white;
+  padding: 20px 25px;
+  border-radius: 20px 20px 0 0;
+  text-align: center;
+}
+
+.whatsapp-modal-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.whatsapp-modal-content {
+  padding: 30px 25px 20px;
+  text-align: center;
+}
+
+.whatsapp-icon {
+  margin: 0 auto 20px;
+  display: flex;
+  justify-content: center;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.whatsapp-modal-content h4 {
+  margin: 0 0 15px;
+  font-size: 1.4rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.whatsapp-modal-content p {
+  margin: 0 0 20px;
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.whatsapp-benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 25px;
+  text-align: left;
+}
+
+.whatsapp-benefits li {
+  padding: 8px 0;
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.4;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.whatsapp-benefits li:last-child {
+  border-bottom: none;
+}
+
+.whatsapp-modal-actions {
+  padding: 0 25px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.whatsapp-join-btn {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-join-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-join-btn:active {
+  transform: translateY(0);
+}
+
+.whatsapp-skip-btn {
+  background: #f8f9fa;
+  color: #666;
+  border: 1px solid #e9ecef;
+  padding: 12px 25px;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.whatsapp-skip-btn:hover {
+  background: #e9ecef;
+  color: #495057;
+}
+
+/* Responsividade do modal */
+@media (max-width: 768px) {
+  .whatsapp-modal {
+    width: 95%;
+    max-width: 400px;
+  }
+  
+  .whatsapp-modal-header h3 {
+    font-size: 1.1rem;
+  }
+  
+  .whatsapp-modal-content {
+    padding: 25px 20px 15px;
+  }
+  
+  .whatsapp-modal-content h4 {
+    font-size: 1.2rem;
+  }
+  
+  .whatsapp-modal-actions {
+    padding: 0 20px 20px;
+  }
+  
+  .whatsapp-join-btn {
+    font-size: 1rem;
+    padding: 14px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .whatsapp-modal {
+    width: 95%;
+    border-radius: 16px;
+  }
+  
+  .whatsapp-modal-header {
+    border-radius: 16px 16px 0 0;
+    padding: 15px 20px;
+  }
+  
+  .whatsapp-modal-header h3 {
+    font-size: 1rem;
+  }
+  
+  .whatsapp-modal-content {
+    padding: 20px 15px 10px;
+  }
+  
+  .whatsapp-modal-content h4 {
+    font-size: 1.1rem;
+  }
+  
+  .whatsapp-benefits li {
+    font-size: 0.9rem;
+    padding: 6px 0;
+  }
+  
+  .whatsapp-modal-actions {
+    padding: 0 15px 15px;
+    gap: 10px;
+  }
+  
+  .whatsapp-join-btn {
+    font-size: 0.95rem;
+    padding: 12px 15px;
+  }
+  
+  .whatsapp-skip-btn {
+    padding: 10px 15px;
+    font-size: 0.9rem;
   }
 }

@@ -4,7 +4,9 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Button from '../../components/Button';
 import { FB_PIXEL } from '../../utils/pixel';
+import { submitSalaoForm, SalaoFormData } from '../../services/formSubmission';
 import './animations.css';
+import '../Barbershop/form.css'; // Importando CSS do formulário
 import { 
   Container, 
   Content,
@@ -52,9 +54,6 @@ import {
   FeatureDescription,
   PricingSection,
   PricingTitle,
-  PricingCard,
-  PricingPrice,
-  PricingPeriod,
   FinalCTASection,
   GuaranteeSection,
   GuaranteeTitle,
@@ -63,24 +62,35 @@ import {
 
 type PlanType = "Anual" | "Semestral" | "Mensal";
 
-const getDiscount = (type: PlanType) => {
-  switch (type) {
-    case "Anual":
-      return 0.24; // 24% off
-    case "Semestral":
-      return 0.15; // 15% off
-    default:
-      return 0;
-  }
-};
+// const getDiscount = (type: PlanType) => {
+//   switch (type) {
+//     case "Anual":
+//       return 0.24; // 24% off
+//     case "Semestral":
+//       return 0.15; // 15% off
+//     default:
+//       return 0;
+//   }
+// };
 
-const calculateDiscountedPrice = (price: number, type: PlanType) => {
-  const discount = getDiscount(type);
-  return price * (1 - discount);
-};
+// const calculateDiscountedPrice = (price: number, type: PlanType) => {
+//   const discount = getDiscount(type);
+//   return price * (1 - discount);
+// };
 
 const SalaoEstetica: React.FC = () => {
   const [planType, setPlanType] = useState<PlanType>("Anual");
+  
+  // Estados para o formulário
+  const [formData, setFormData] = useState({
+    nomeCompleto: '',
+    telefone: '',
+    tempoAberta: '',
+    numeroProfissionais: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [showWhatsAppModal, setShowWhatsAppModal] = useState(false);
 
   // Rastreamento do carregamento da página
   useEffect(() => {
@@ -134,11 +144,11 @@ const SalaoEstetica: React.FC = () => {
   }, []);
 
   // Price data
-  const monthlyPrices = {
-    Basico: 64.90,
-    Crescimento: 89.90,
-    Empresarial: 129.90,
-  };
+  // const monthlyPrices = {
+  //   Basico: 64.90,
+  //   Crescimento: 89.90,
+  //   Empresarial: 129.90,
+  // };
 
   // Função para redirecionar para teste grátis
   const handleFreeTrialClick = () => {
@@ -155,29 +165,134 @@ const SalaoEstetica: React.FC = () => {
       button_location: "cta",
     });
     
-    console.log("Botão de teste grátis clicado!"); // Para debug
-    window.open("https://app.gestaoboa.com.br", "_blank");
+    scrollToForm(); // Navega para o formulário ao invés de abrir link externo
   };
 
   // Funções específicas para cada plano
-  const handlePlanClick = (planName: string) => {
-    // Rastreamento do pixel
-    FB_PIXEL.trackStartTrial({
-      source: "salao_estetica_page",
-      plan_type: planType,
-      plan_name: planName,
-      timestamp: new Date().toISOString(),
-    });
+  // const handlePlanClick = (planName: string) => {
+  //   // Rastreamento do pixel
+  //   FB_PIXEL.trackStartTrial({
+  //     source: "salao_estetica_page",
+  //     plan_type: planType,
+  //     plan_name: planName,
+  //     timestamp: new Date().toISOString(),
+  //   });
     
-    FB_PIXEL.trackCustomEvent("PlanSelection", {
+  //   FB_PIXEL.trackCustomEvent("PlanSelection", {
+  //     page: "salao_estetica",
+  //     plan_selected: planName,
+  //     plan_type: planType,
+  //     button_location: "pricing_card",
+  //   });
+    
+  //   console.log(`Plano ${planName} selecionado!`); // Para debug
+  //   window.open("https://app.gestaoboa.com.br", "_blank");
+  // };
+
+  // Função para scroll para o formulário
+  const scrollToForm = () => {
+    const formElement = document.getElementById('salao-form');
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Função para lidar com mudanças no formulário
+  const handleInputChange = (field: string, value: string) => {
+    setFormData({
+      ...formData,
+      [field]: value
+    });
+  };
+
+  // Função para lidar com mudanças no formulário (legacy)
+  // const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  //   setFormData({
+  //     ...formData,
+  //     [e.target.name]: e.target.value
+  //   });
+  // };
+
+  // Função para submissão do formulário
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Validação básica
+    if (!formData.nomeCompleto || !formData.telefone || !formData.tempoAberta || !formData.numeroProfissionais) {
+      alert('Por favor, preencha todos os campos obrigatórios.');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Prepara os dados para envio
+      const dataToSubmit: SalaoFormData = {
+        nomeCompleto: formData.nomeCompleto,
+        telefone: formData.telefone,
+        tempoAberta: formData.tempoAberta,
+        numeroProfissionais: formData.numeroProfissionais,
+        timestamp: new Date().toISOString()
+      };
+
+      // Envia os dados
+      const success = await submitSalaoForm(dataToSubmit);
+
+      if (success) {
+        // Rastreamento do pixel
+        FB_PIXEL.trackCustomEvent("SalaoFormSubmit", {
+          page: "salao_estetica",
+          nome_completo: formData.nomeCompleto,
+          telefone: formData.telefone,
+          tempo_aberta: formData.tempoAberta,
+          numero_profissionais: formData.numeroProfissionais,
+          timestamp: new Date().toISOString(),
+        });
+
+        console.log("Formulário do salão enviado com sucesso:", dataToSubmit);
+        
+        setSubmitSuccess(true);
+        
+        // Limpa o formulário
+        setFormData({
+          nomeCompleto: '',
+          telefone: '',
+          tempoAberta: '',
+          numeroProfissionais: ''
+        });
+
+        // Mostra modal de sucesso e convite para WhatsApp
+        setTimeout(() => {
+          setShowWhatsAppModal(true);
+        }, 1000);
+
+      } else {
+        throw new Error('Falha ao enviar formulário');
+      }
+
+    } catch (error) {
+      console.error('Erro ao enviar formulário do salão:', error);
+      alert('Erro ao enviar formulário. Tente novamente.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Função para entrar no WhatsApp
+  const handleJoinWhatsApp = () => {
+    FB_PIXEL.trackCustomEvent("WhatsAppGroupJoin", {
       page: "salao_estetica",
-      plan_selected: planName,
-      plan_type: planType,
-      button_location: "pricing_card",
+      source: "form_modal",
     });
     
-    console.log(`Plano ${planName} selecionado!`); // Para debug
-    window.open("https://app.gestaoboa.com.br", "_blank");
+    // Link do grupo do WhatsApp para salões
+    window.open("https://chat.whatsapp.com/JWC0pUmu04l3ZkXZUErEUN", "_blank");
+    setShowWhatsAppModal(false);
+  };
+
+  // Função para pular o WhatsApp
+  const handleSkipWhatsApp = () => {
+    setShowWhatsAppModal(false);
   };
 
   return (
@@ -210,13 +325,13 @@ const SalaoEstetica: React.FC = () => {
           {/* Hero Section */}
           <HeroSection>
             <HeroTitle>
-              Transforme seu salão ou clínica no <span>negócio mais organizado</span> da região
+              🔥 <span>BLACK FRIDAY</span> Sistema de Gestão para Salões e Clínicas - Oferta especial será revelada dia <span>14/11</span>
             </HeroTitle>
-            <HeroSubtitle>
-              Pare de perder clientes e dinheiro por falta de organização. Junte-se aos salões e clínicas que já usam o Gestão Boa e tenha controle total do seu negócio de beleza.
+            <HeroSubtitle className="black-friday-subtitle">
+              Não perca a maior promoção do ano! Para receber nossa oferta EXCLUSIVA de Black Friday, preencha o formulário abaixo e entre no nosso grupo VIP do WhatsApp. A oferta será revelada apenas para os membros do grupo no dia 14/11! 🎯
             </HeroSubtitle>
             <Button 
-              text="TESTE GRÁTIS POR 20 DIAS"
+              text="🎁 QUERO A OFERTA EXCLUSIVA"
               method={handleFreeTrialClick}
               type="focused"
             />
@@ -343,7 +458,7 @@ const SalaoEstetica: React.FC = () => {
               </OnlineBookingDescription>
             </OnlineBookingContent>
             <OnlineBookingImageContainer>
-              <img src="/Muitos_Agendamentos.png" alt="Interface do sistema de agendamento online para salões" />
+              <img src="/karine agendamentos.png" alt="Interface do sistema de agendamento online para salões" />
             </OnlineBookingImageContainer>
           </OnlineBookingSection>
 
@@ -411,17 +526,16 @@ const SalaoEstetica: React.FC = () => {
               despesas desnecessárias... Teste o Gestão Boa por 20 dias grátis e pare de perder dinheiro.
             </CTADescription>
             <Button 
-              text="TESTAR GRÁTIS POR 20 DIAS"
+              text="🎁 QUERO A OFERTA EXCLUSIVA"
               method={handleFreeTrialClick}
               type="focused"
             />
           </CTASection>
 
-          {/* Pricing Section */}
+          {/* Pricing Section - Comentado para Black Friday */}
+          {/*
           <PricingSection>
             <PricingTitle>Escolha o plano ideal para seu salão ou clínica</PricingTitle>
-            
-            {/* Plan Type Selector */}
             <div className="plan-type-selector">
               {[
                 {
@@ -461,7 +575,6 @@ const SalaoEstetica: React.FC = () => {
             </div>
             
             <div className="pricing-grid">
-              {/* Plano Básico */}
               <PricingCard>
                 <div className="plan-header">
                   <h3>Plano Básico</h3>
@@ -496,7 +609,7 @@ const SalaoEstetica: React.FC = () => {
                 )}
                 <PricingPeriod>Teste grátis por 20 dias</PricingPeriod>
                 <Button 
-                  text="TESTE GRÁTIS POR 20 DIAS"
+                  text="🎁 QUERO A OFERTA EXCLUSIVA"
                   method={() => handlePlanClick("Básico")}
                   type="focused"
                 />
@@ -511,7 +624,6 @@ const SalaoEstetica: React.FC = () => {
                 </ul>
               </PricingCard>
 
-              {/* Plano Crescimento */}
               <PricingCard className="featured">
                 <div className="popular-badge">MAIS POPULAR</div>
                 <div className="plan-header">
@@ -547,7 +659,7 @@ const SalaoEstetica: React.FC = () => {
                 )}
                 <PricingPeriod>Teste grátis por 20 dias</PricingPeriod>
                 <Button 
-                  text="TESTE GRÁTIS POR 20 DIAS"
+                  text="🎁 QUERO A OFERTA EXCLUSIVA"
                   method={() => handlePlanClick("Crescimento")}
                   type="focused"
                 />
@@ -564,7 +676,6 @@ const SalaoEstetica: React.FC = () => {
                 </ul>
               </PricingCard>
 
-              {/* Plano Empresarial */}
               <PricingCard>
                 <div className="plan-header">
                   <h3>Plano Empresarial</h3>
@@ -599,7 +710,7 @@ const SalaoEstetica: React.FC = () => {
                 )}
                 <PricingPeriod>Teste grátis por 20 dias</PricingPeriod>
                 <Button 
-                  text="TESTE GRÁTIS POR 20 DIAS"
+                  text="🎁 QUERO A OFERTA EXCLUSIVA"
                   method={() => handlePlanClick("Empresarial")}
                   type="focused"
                 />
@@ -616,6 +727,96 @@ const SalaoEstetica: React.FC = () => {
                   <li>✅ 30 min de Mentoria com Leandro</li>
                 </ul>
               </PricingCard>
+            </div>
+          </PricingSection>
+          */}
+
+          {/* Formulário Black Friday */}
+          <PricingSection id="salao-form">
+            <PricingTitle>🎁 Garanta sua oferta EXCLUSIVA de Black Friday</PricingTitle>
+            <div className="black-friday-subtitle">
+              Preencha seus dados abaixo e seja o primeiro a saber sobre nossa promoção especial! 
+              A oferta será revelada no dia <strong>14/11</strong> apenas para quem estiver no nosso grupo VIP.
+            </div>
+            
+            <div className="barbershop-form-container">
+              <form onSubmit={handleFormSubmit} className="barbershop-form">
+                <div className="form-field">
+                  <label className="form-label">Nome completo *</label>
+                  <input
+                    type="text"
+                    className="form-input"
+                    placeholder="Digite seu nome completo"
+                    value={formData.nomeCompleto}
+                    onChange={(e) => handleInputChange('nomeCompleto', e.target.value)}
+                    required
+                  />
+                </div>
+
+                <div className="form-field">
+                  <label className="form-label">Telefone/WhatsApp *</label>
+                  <input
+                    type="tel"
+                    className="form-input"
+                    placeholder="(11) 99999-9999"
+                    value={formData.telefone}
+                    onChange={(e) => handleInputChange('telefone', e.target.value)}
+                    maxLength={15}
+                    required
+                  />
+                </div>
+
+                <div className="form-field">
+                  <label className="form-label">Há quanto tempo seu salão/clínica está aberto? *</label>
+                  <select
+                    className="form-select"
+                    value={formData.tempoAberta}
+                    onChange={(e) => handleInputChange('tempoAberta', e.target.value)}
+                    required
+                    title="Selecione há quanto tempo seu salão/clínica está aberto"
+                  >
+                    <option value="">Selecione uma opção</option>
+                    <option value="menos-6-meses">Menos de 6 meses</option>
+                    <option value="6-meses-1-ano">De 6 meses a 1 ano</option>
+                    <option value="1-2-anos">De 1 a 2 anos</option>
+                    <option value="2-5-anos">De 2 a 5 anos</option>
+                    <option value="mais-5-anos">Mais de 5 anos</option>
+                  </select>
+                </div>
+
+                <div className="form-field">
+                  <label className="form-label">Quantos profissionais trabalham no seu salão/clínica? *</label>
+                  <select
+                    className="form-select"
+                    value={formData.numeroProfissionais}
+                    onChange={(e) => handleInputChange('numeroProfissionais', e.target.value)}
+                    required
+                    title="Selecione quantos profissionais trabalham no seu salão/clínica"
+                  >
+                    <option value="">Selecione uma opção</option>
+                    <option value="apenas-eu">Apenas eu (proprietário/a)</option>
+                    <option value="2-profissionais">2 profissionais</option>
+                    <option value="3-profissionais">3 profissionais</option>
+                    <option value="4-5-profissionais">4 a 5 profissionais</option>
+                    <option value="mais-5-profissionais">Mais de 5 profissionais</option>
+                  </select>
+                </div>
+
+                <div className="form-button-container">
+                  <button 
+                    type="submit"
+                    className="form-submit-button"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting 
+                      ? 'ENVIANDO...' 
+                      : submitSuccess 
+                        ? '✅ FORMULÁRIO ENVIADO - AGUARDE O GRUPO VIP!' 
+                        : '🎁 QUERO A OFERTA EXCLUSIVA'
+                    }
+                  </button>
+                </div>
+              </form>
             </div>
           </PricingSection>
 
@@ -695,13 +896,60 @@ const SalaoEstetica: React.FC = () => {
               Teste todas as funcionalidades por 20 dias sem compromisso e veja a diferença na organização do seu negócio.
             </CTADescription>
             <Button 
-              text="COMEÇAR TESTE GRÁTIS AGORA"
+              text="🎁 QUERO A OFERTA EXCLUSIVA"
               method={handleFreeTrialClick}
               type="focused"
             />
           </FinalCTASection>
         </Content>
       </Container>
+      
+      {/* Modal do WhatsApp */}
+      {showWhatsAppModal && (
+        <div className="whatsapp-modal-overlay">
+          <div className="whatsapp-modal">
+            <div className="whatsapp-modal-header">
+              <h3>🔥 BLACK FRIDAY - Formulário enviado com sucesso!</h3>
+            </div>
+            
+            <div className="whatsapp-modal-content">
+              <div className="whatsapp-icon">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="30" cy="30" r="30" fill="#25D366"/>
+                  <path d="M45.5 14.4C42.9 11.8 39.7 10.1 36.2 9.4C32.7 8.7 29.1 9 25.8 10.2C22.5 11.4 19.6 13.5 17.4 16.2C15.2 18.9 13.8 22.1 13.4 25.5C13 28.9 13.5 32.3 15 35.4L13 47L24.9 45.1C27.8 46.4 30.9 47.1 34.1 47C37.3 46.9 40.4 46.1 43.2 44.6C46 43.1 48.4 40.9 50.2 38.2C52 35.5 53.1 32.4 53.4 29.2C53.7 26 53.2 22.8 51.9 19.9C50.6 17 48.6 14.5 46.1 12.6L45.5 14.4ZM30 43.3C27.3 43.3 24.7 42.6 22.4 41.3L21.8 41L16.7 42.3L18 37.3L17.6 36.7C16.2 34.3 15.4 31.6 15.4 28.8C15.4 21.8 21.1 16.1 28.1 16.1C31.4 16.1 34.5 17.4 36.8 19.7C39.1 22 40.4 25.1 40.4 28.4C40.4 35.4 34.7 41.1 27.7 41.1L30 43.3Z" fill="white"/>
+                </svg>
+              </div>
+              
+              <h4>🎁 Entre no grupo VIP para a oferta BLACK FRIDAY!</h4>
+              <p>Sua oferta EXCLUSIVA será revelada dia <strong>14/11</strong>! Entre no grupo VIP e receba:</p>
+              
+              <ul className="whatsapp-benefits">
+                <li>🔥 Oferta EXCLUSIVA de Black Friday (revelada 14/11)</li>
+                <li>💰 Preços especiais apenas para o grupo VIP</li>
+                <li>⚡ Acesso prioritário às promoções</li>
+                <li>✅ Suporte direto e preferencial</li>
+                <li>📈 Dicas para aumentar o faturamento do salão/clínica</li>
+              </ul>
+            </div>
+            
+            <div className="whatsapp-modal-actions">
+              <button 
+                className="whatsapp-join-btn"
+                onClick={handleJoinWhatsApp}
+              >
+                🎁 QUERO A OFERTA EXCLUSIVA
+              </button>
+              
+              <button 
+                className="whatsapp-skip-btn"
+                onClick={handleSkipWhatsApp}
+              >
+                Pular por agora
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       
       <Footer />
     </>

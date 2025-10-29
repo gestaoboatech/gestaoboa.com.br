@@ -2,7 +2,7 @@
 import emailjs from "@emailjs/browser";
 import { FormHandles, SubmitHandler } from "@unform/core";
 import { Form } from "@unform/web";
-import { FunctionComponent, useEffect, useRef } from "react";
+import { FunctionComponent, useEffect, useRef, useState } from "react";
 import ScrollSpy from "react-ui-scrollspy";
 import * as yup from "yup";
 import Button from "../../components/Button";
@@ -15,7 +15,7 @@ import { FB_PIXEL } from "../../utils/pixel";
 
 import { Helmet } from "react-helmet-async";
 import ReactPlayer from "react-player";
-import { Banner, Contact, Container, FAQ, Grid, Solutions } from "./styles";
+import { Banner, Contact, Container, FAQ, Grid, Segments, Solutions } from "./styles";
 
 // Import the carousel styles
 import "./performance.css";
@@ -23,6 +23,111 @@ import "./performance.css";
 const Home: FunctionComponent = () => {
   const formRef = useRef<FormHandles>(null);
   const viewedSections = useRef(new Set<string>());
+  
+  // Estado do carrossel
+  const [currentSegmentIndex, setCurrentSegmentIndex] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(1);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  
+  // Atualizar itens por página baseado no tamanho da tela
+  useEffect(() => {
+    const updateItemsPerPage = () => {
+      if (window.innerWidth >= 1200) {
+        setItemsPerPage(3);
+      } else if (window.innerWidth >= 768) {
+        setItemsPerPage(2);
+      } else {
+        setItemsPerPage(1);
+      }
+    };
+
+    updateItemsPerPage();
+    window.addEventListener('resize', updateItemsPerPage);
+    return () => window.removeEventListener('resize', updateItemsPerPage);
+  }, []);
+
+
+  // Dados dos segmentos
+  const segments = [
+    {
+      image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&h=300&fit=crop&crop=center",
+      alt: "Barbearia",
+      title: "Barbearia",
+      description: "Você vai liberar tempo na sua rotina para vender mais com um sistema para agendamentos para barbearia, gerenciamento de equipe, controle de estoque, clube de assinaturas para fidelizar os seus clientes e app para barbeiros.",
+      features: ["Controle de agenda online", "App para profissionais", "Clube de Assinaturas"],
+      link: "/barbershop",
+      linkText: "Soluções para barbearias"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=300&fit=crop&crop=center",
+      alt: "Salão de beleza",
+      title: "Salão de beleza",
+      description: "Seja qual for o tamanho do seu salão de beleza, tenha total controle dos agendamentos, gerencie seus profissionais, fidelize seus clientes e ganhe tempo automatizando a sua gestão.",
+      features: ["Controle de agenda online", "Cálculo e pagamento de comissões", "Fluxo de caixa"],
+      link: "/salao-estetica",
+      linkText: "Soluções para salões de beleza"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1616391182219-e080b4d1043a?w=400&h=300&fit=crop&crop=center",
+      alt: "Clínica de Estética",
+      title: "Clínica de Estética",
+      description: "Faça a gestão dos seus profissionais e atraia mais clientes para a sua clínica de estética com ferramentas de comunicação e marketing exclusivas, criação de pacotes e clube de assinaturas.",
+      features: ["Gestão de pacotes", "Fichas de Anamnese", "Controle de estoque"],
+      link: "/salao-estetica",
+      linkText: "Soluções para clínicas de estética"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1559599101-f09722fb4948?w=400&h=300&fit=crop&crop=center",
+      alt: "Profissionais Autônomos",
+      title: "Profissionais Autônomos",
+      description: "Organize sua agenda, fidelize clientes e profissionalize seu atendimento com ferramentas especializadas para profissionais autônomos da área de beleza e bem-estar.",
+      features: ["Agenda personalizada", "Gestão financeira", "Marketing digital"],
+      link: "/solution",
+      linkText: "Soluções para autônomos"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=400&h=300&fit=crop&crop=center",
+      alt: "Estúdio de Tatuagem",
+      title: "Estúdio de Tatuagem",
+      description: "Gerencie seu estúdio de tatuagem com agendamentos online, controle de materiais, portfolio digital e sistema de pagamentos integrado para uma gestão completa.",
+      features: ["Portfolio digital", "Controle de materiais", "Agendamentos especializados"],
+      link: "/solution",
+      linkText: "Soluções para estúdios de tatuagem"
+    }
+  ];
+
+  // Funções do carrossel
+  const nextSegment = () => {
+    setCurrentSegmentIndex((prevIndex) => {
+      const maxIndex = segments.length - itemsPerPage;
+      return prevIndex >= maxIndex ? 0 : prevIndex + 1;
+    });
+  };
+
+  const prevSegment = () => {
+    setIsAutoPlaying(false); // Pausa auto-play quando usuário navega manualmente
+    setCurrentSegmentIndex((prevIndex) => {
+      const maxIndex = segments.length - itemsPerPage;
+      return prevIndex === 0 ? maxIndex : prevIndex - 1;
+    });
+  };
+
+  const handleNextSegment = () => {
+    setIsAutoPlaying(false); // Pausa auto-play quando usuário navega manualmente
+    nextSegment();
+  };
+
+  const goToSegment = (index: number) => {
+    setIsAutoPlaying(false); // Pausa auto-play quando usuário navega manualmente
+    const maxIndex = segments.length - itemsPerPage;
+    setCurrentSegmentIndex(Math.min(index, maxIndex));
+  };
+
+  // Função para obter os itens visíveis
+  const getVisibleSegments = () => {
+    const endIndex = Math.min(currentSegmentIndex + itemsPerPage, segments.length);
+    return segments.slice(currentSegmentIndex, endIndex);
+  };
 
   // Rastreia visualização da página quando o componente é montado
   useEffect(() => {
@@ -786,6 +891,74 @@ const Home: FunctionComponent = () => {
               </div>
             </div>
           </Solutions>
+
+          {/* Segments Section */}
+          <Segments id="segments">
+            <h2 className="section-title">Segmentos que Atendemos</h2>
+            <p className="section-subtitle">
+              Oferecemos soluções especializadas para diferentes tipos de negócios de beleza e bem-estar
+            </p>
+            
+            <div 
+              className="carousel-container"
+            >
+              {/* Botão anterior */}
+              <button 
+                className="carousel-btn carousel-btn-prev" 
+                onClick={prevSegment}
+                aria-label="Segmento anterior"
+              >
+                ‹
+              </button>
+              
+              {/* Container dos cards visíveis */}
+              <div className="carousel-track">
+                {getVisibleSegments().map((segment, index) => (
+                  <div key={currentSegmentIndex + index} className="carousel-card">
+                    <img 
+                      src={segment.image}
+                      alt={segment.alt}
+                      className="segment-image"
+                    />
+                    <h3 className="segment-title">{segment.title}</h3>
+                    <p className="segment-description">
+                      {segment.description}
+                    </p>
+                    <ul className="segment-features">
+                      {segment.features.map((feature, featureIndex) => (
+                        <li key={featureIndex}>{feature}</li>
+                      ))}
+                    </ul>
+                    <a href={segment.link} className="segment-link">
+                      {segment.linkText}
+                    </a>
+                  </div>
+                ))}
+              </div>
+              
+              {/* Botão próximo */}
+              <button 
+                className="carousel-btn carousel-btn-next" 
+                onClick={handleNextSegment}
+                aria-label="Próximo segmento"
+              >
+                ›
+              </button>
+            </div>
+            
+            {/* Indicadores de posição */}
+            <div className="carousel-indicators">
+              {Array.from({ length: Math.ceil(segments.length / itemsPerPage) }, (_, pageIndex) => (
+                <button
+                  key={pageIndex}
+                  className={`carousel-indicator ${Math.floor(currentSegmentIndex / itemsPerPage) === pageIndex ? 'active' : ''}`}
+                  onClick={() => goToSegment(pageIndex * itemsPerPage)}
+                  aria-label={`Ir para página ${pageIndex + 1}`}
+                />
+              ))}
+            </div>
+
+          </Segments>
 
           {/* FAQ Section */}
           <FAQ id="faq">

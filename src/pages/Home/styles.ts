@@ -1232,3 +1232,283 @@ export const FAQ = styled.section`
     }
   }
 `;
+
+export const Segments = styled.section`
+  padding: 3rem 2rem;
+  grid-column: span 12;
+  background: linear-gradient(135deg, #03045e 0%, #0077b6 100%);
+  color: white;
+
+  .section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 0.8rem;
+    color: white;
+    background: linear-gradient(90deg, #fff 0%, #90e0ef 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .section-subtitle {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+    color: #90e0ef;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .carousel-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+    z-index: 2;
+    flex-shrink: 0;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: scale(1.1);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 1.5rem;
+    flex: 1;
+    overflow: hidden;
+    justify-content: center;
+  }
+
+  .carousel-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+    flex: 1;
+    max-width: 400px;
+    min-height: 500px;
+
+    &:hover {
+      transform: translateY(-8px);
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.05),
+        transparent
+      );
+      transition: transform 0.6s;
+    }
+
+    &:hover::before {
+      transform: translateX(200%);
+    }
+  }
+
+  .segment-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }
+
+  .segment-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 0.8rem;
+    color: white;
+  }
+
+  .segment-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    color: #e0e7ff;
+  }
+
+  .segment-features {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+
+    li {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.5rem 0.8rem;
+      margin: 0.3rem 0;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      position: relative;
+
+      &:before {
+        content: "✓";
+        color: #90e0ef;
+        font-weight: bold;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  .segment-link {
+    display: inline-block;
+    background: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%);
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin-top: auto;
+
+    &:hover {
+      background: linear-gradient(135deg, #005577 0%, #0096c7 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 150, 199, 0.3);
+    }
+  }
+
+  .carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+  }
+
+  .carousel-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &.active {
+      background: white;
+      transform: scale(1.2);
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.7);
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .carousel-track {
+      gap: 1rem;
+    }
+
+    .carousel-card {
+      max-width: 350px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+
+    .section-title {
+      font-size: 1.8rem;
+    }
+
+    .carousel-container {
+      gap: 0.8rem;
+    }
+
+    .carousel-btn {
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+    }
+
+    .carousel-track {
+      gap: 0;
+    }
+
+    .carousel-card {
+      min-height: 450px;
+      max-width: none;
+      padding: 1.2rem;
+    }
+
+    .segment-title {
+      font-size: 1.1rem;
+    }
+
+    .segment-description {
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.5rem 0.8rem;
+
+    .carousel-container {
+      gap: 0.5rem;
+    }
+
+    .carousel-btn {
+      width: 35px;
+      height: 35px;
+      font-size: 1rem;
+    }
+
+    .carousel-card {
+      min-height: 400px;
+      padding: 1rem;
+    }
+
+    .segment-title {
+      font-size: 1rem;
+    }
+
+    .segment-description {
+      font-size: 0.8rem;
+    }
+
+    .segment-features li {
+      font-size: 0.75rem;
+    }
+  }
+`;
