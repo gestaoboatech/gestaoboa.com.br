@@ -12,7 +12,7 @@ export interface BarbershopFormData {
 const sanitizeData = (data: BarbershopFormData): BarbershopFormData => {
   const sanitizeString = (str: string): string => {
     if (!str) return str;
-    
+
     // Remove caracteres especiais perigosos, mantendo apenas letras, números, espaços e alguns símbolos básicos
     return str
       .replace(/[<>\"'&]/g, '') // Remove caracteres HTML/JS perigosos
@@ -34,11 +34,11 @@ export const sendToGoogleSheets = async (formData: BarbershopFormData): Promise<
   try {
     // URL do Google Apps Script Web App
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzZCVvfSdIzMsq1stPqU6R1Fv1seF-PiF-ea2pAwi2gKup64yhVPQhpwPpi1AYQ5kH5/exec';
-    
+
     // Sanitiza os dados antes de enviar
     const sanitizedData = sanitizeData(formData);
     console.log('Dados sanitizados:', sanitizedData);
-    
+
     const dataToSend = {
       ...sanitizedData,
       timestamp: new Date().toISOString(),
@@ -54,7 +54,7 @@ export const sendToGoogleSheets = async (formData: BarbershopFormData): Promise<
     });
 
     console.log('Response status:', response.status);
-    
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -72,10 +72,10 @@ export const submitBarbershopForm = async (formData: BarbershopFormData): Promis
   try {
     // SOLUÇÃO PRINCIPAL: Envia para Google Sheets
     const googleSheetsSuccess = await sendToGoogleSheets(formData);
-    
+
     // Log para debug
     console.log('Dados enviados para Google Sheets:', formData);
-    
+
     // Retorna sucesso do Google Sheets
     return googleSheetsSuccess;
   } catch (error) {
@@ -97,7 +97,7 @@ export interface SalaoFormData {
 const sanitizeSalaoData = (data: SalaoFormData): SalaoFormData => {
   const sanitizeString = (str: string): string => {
     if (!str) return str;
-    
+
     return str
       .replace(/[<>\"'&]/g, '')
       .replace(/[^\w\sÀ-ÿ\u00f1\u00d1().\-@]/g, '')
@@ -118,17 +118,17 @@ export const sendSalaoToGoogleSheets = async (formData: SalaoFormData): Promise<
   try {
     // URL do Google Apps Script Web App (pode ser o mesmo ou diferente)
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzZCVvfSdIzMsq1stPqU6R1Fv1seF-PiF-ea2pAwi2gKup64yhVPQhpwPpi1AYQ5kH5/exec';
-    
+
     const sanitizedData = sanitizeSalaoData(formData);
     console.log('Dados do salão sanitizados:', sanitizedData);
-    
+
     const dataToSend = {
       ...sanitizedData,
       timestamp: new Date().toISOString(),
       source: 'salao_estetica_page'
     };
 
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
+    await fetch(GOOGLE_SCRIPT_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -151,9 +151,9 @@ export const submitSalaoForm = async (formData: SalaoFormData): Promise<boolean>
   try {
     // Envia para Google Sheets
     const googleSheetsSuccess = await sendSalaoToGoogleSheets(formData);
-    
+
     console.log('Dados do salão enviados para Google Sheets:', formData);
-    
+
     return googleSheetsSuccess;
   } catch (error) {
     console.error('Erro no envio do formulário do salão:', error);

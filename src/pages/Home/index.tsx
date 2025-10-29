@@ -28,6 +28,8 @@ const Home: FunctionComponent = () => {
   const [currentSegmentIndex, setCurrentSegmentIndex] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(1);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  console.log(isAutoPlaying)
   
   // Atualizar itens por página baseado no tamanho da tela
   useEffect(() => {

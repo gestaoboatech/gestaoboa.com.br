@@ -60,7 +60,7 @@ import {
   GuaranteeDescription
 } from './styles';
 
-type PlanType = "Anual" | "Semestral" | "Mensal";
+// type PlanType = "Anual" | "Semestral" | "Mensal";
 
 // const getDiscount = (type: PlanType) => {
 //   switch (type) {
@@ -79,7 +79,7 @@ type PlanType = "Anual" | "Semestral" | "Mensal";
 // };
 
 const SalaoEstetica: React.FC = () => {
-  const [planType, setPlanType] = useState<PlanType>("Anual");
+  const planType = "Anual";
   
   // Estados para o formulário
   const [formData, setFormData] = useState({
