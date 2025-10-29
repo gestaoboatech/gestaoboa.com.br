@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { FB_PIXEL } from '../../utils/pixel';
 import { submitSalaoForm, SalaoFormData } from '../../services/formSubmission';
@@ -10,7 +9,6 @@ import {
   ContentWrapper,
   LeftSection,
   RightSection,
-  BlackFridayBadge,
   MainTitle,
   Subtitle,
   BenefitsSection,
