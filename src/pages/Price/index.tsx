@@ -69,7 +69,7 @@ const Price = () => {
         </title>
         <meta
           name="description"
-          content="Planos de sistema de gestão da Gestão Boa a partir de R$ 49,90/mês. Teste grátis por 20 dias! Agendamentos, finanças, estoque e muito mais. Compare preços e funcionalidades."
+          content="Planos de sistema de gestão da Gestão Boa a partir de R$ 49,90/mês. Teste grátis por 20 dias! Link de agendemento online, finanças, estoque e muito mais. Compare preços e funcionalidades."
         />
         <meta
           name="keywords"
@@ -87,7 +87,7 @@ const Price = () => {
         />
         <meta
           property="og:description"
-          content="Planos de sistema de gestão da Gestão Boa a partir de R$ 49,90/mês. Teste grátis por 20 dias! Agendamentos, finanças, estoque e muito mais."
+          content="Planos de sistema de gestão da Gestão Boa a partir de R$ 49,90/mês. Teste grátis por 20 dias! Link de agendemento online, finanças, estoque e muito mais."
         />
         <meta property="og:url" content="https://gestaoboa.com.br/preco" />
         <meta property="og:site_name" content="Gestão Boa" />
@@ -159,7 +159,7 @@ const Price = () => {
                   {
                     "@type": "TypeAndQuantityNode",
                     amountOfThisGood: 1,
-                    typeOfGood: "Agendamentos",
+                    typeOfGood: "Link de agendemento online",
                   },
                   {
                     "@type": "TypeAndQuantityNode",
@@ -243,7 +243,7 @@ const Price = () => {
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web, iOS, Android",
             description:
-              "Sistema completo de gestão com agendamentos, finanças, estoque e muito mais",
+              "Sistema completo de gestão com Link de agendemento online, finanças, estoque e muito mais",
             offers: {
               "@type": "AggregateOffer",
               lowPrice: "49.90",
@@ -400,7 +400,6 @@ const Price = () => {
                   : undefined
               }
               showDiscount={planType !== "Mensal"}
-              planType={planType}
             />{" "}
             <button
               className="sign-button"
@@ -422,65 +421,109 @@ const Price = () => {
             >
               TESTE GRATIS POR 20 DIAS!
             </button>{" "}
-            <ul className="benefits-list">
-              <li>
-                <span className="check-icon" aria-label="Incluído">
-                  ✔
-                </span>{" "}
-                Agendamentos
-              </li>
-              <li>
-                <span className="check-icon" aria-label="Incluído">
-                  ✔
-                </span>{" "}
-                Finanças
-              </li>
-              <li>
-                <span className="check-icon" aria-label="Incluído">
-                  ✔
-                </span>{" "}
-                Gestão de estoque
-              </li>
-              <li>
-                <span className="check-icon" aria-label="Incluído">
-                  ✔
-                </span>{" "}
-                Relatórios
-              </li>
-              <li>
-                <span className="check-icon" aria-label="Incluído">
-                  ✔
-                </span>{" "}
-                Suporte via WhatsApp
-              </li>
-              <li>
-                <span className="check-icon" aria-label="Incluído">
-                  ✔
-                </span>{" "}
-                Gestão de clientes
-              </li>
-              <li>
-                <span className="x-icon" aria-label="Não incluído">
-                  ✖
-                </span>{" "}
-                Gestão de equipes
-              </li>
-              <li>
-                <span className="x-icon" aria-label="Não incluído">
-                  ✖
-                </span>{" "}
-                Comissões automáticas
-              </li>
-              <li>
-                <span className="check-icon" aria-label="Incluído">
-                  ✔
-                </span>{" "}
-                Limite de 1 usuário
-              </li>
-            </ul>
+            <div className="benefits-list">
+              {/* Módulo: Clientes e Agenda */}
+              <div className="benefit-module">
+                <div className="module-title">
+                  <span className="module-icon">📅</span>
+                  Clientes e Agenda
+                </div>
+                <ul>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Agenda Online Inteligente
+                  </li>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Lembretes Automáticos via WhatsApp
+                  </li>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    CRM com Histórico de Clientes
+                  </li>
+                </ul>
+              </div>
+
+              {/* Módulo: Financeiro */}
+              <div className="benefit-module">
+                <div className="module-title">
+                  <span className="module-icon">💰</span>
+                  Financeiro
+                </div>
+                <ul>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Fluxo de Caixa Simplificado
+                  </li>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Controle de Receitas e Despesas
+                  </li>
+                  <li>
+                    <span className="x-icon">✖</span>
+                    Cálculo Automático de Comissões
+                  </li>
+                </ul>
+              </div>
+
+              {/* Módulo: Estoque e Produtos */}
+              <div className="benefit-module">
+                <div className="module-title">
+                  <span className="module-icon">📦</span>
+                  Estoque e Produtos
+                </div>
+                <ul>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Gestão Completa de Estoque
+                  </li>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Controle de Produtos e Serviços
+                  </li>
+                </ul>
+              </div>
+
+              {/* Módulo: Equipe */}
+              <div className="benefit-module">
+                <div className="module-title">
+                  <span className="module-icon">👥</span>
+                  Equipe e Colaboradores
+                </div>
+                <ul>
+                  <li>
+                    <span className="x-icon">✖</span>
+                    Gestão de Equipe e Desempenho
+                  </li>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    1 Usuário
+                  </li>
+                </ul>
+              </div>
+
+              {/* Módulo: Relatórios e Suporte */}
+              <div className="benefit-module">
+                <div className="module-title">
+                  <span className="module-icon">📊</span>
+                  Relatórios e Suporte
+                </div>
+                <ul>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Relatórios de Desempenho
+                  </li>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Suporte via WhatsApp
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>{" "}
           {/* Plano Standard */}
           <div className="plan-card">
+            <div className="plan-popular-badge">⭐ Mais Popular</div>
             {(planType === "Anual" || planType === "Semestral") && (
               <div className="plan-discount-badge">
                 {planType === "Anual" ? "24% OFF" : "15% OFF"}
@@ -515,7 +558,6 @@ const Price = () => {
                   : undefined
               }
               showDiscount={planType !== "Mensal"}
-              planType={planType}
             />{" "}
             <button
               className="sign-button"
@@ -537,35 +579,105 @@ const Price = () => {
             >
               TESTE GRATIS POR 20 DIAS!
             </button>{" "}
-            <ul className="benefits-list">
-              <li>
-                <span className="check-icon">✔</span> Agendamentos
-              </li>
-              <li>
-                <span className="check-icon">✔</span> Finanças
-              </li>
-              <li>
-                <span className="check-icon">✔</span> Gestão de estoque
-              </li>
-              <li>
-                <span className="check-icon">✔</span> Relatórios
-              </li>
-              <li>
-                <span className="check-icon">✔</span> Suporte via WhatsApp
-              </li>
-              <li>
-                <span className="check-icon">✔</span> Gestão de clientes
-              </li>
-              <li>
-                <span className="check-icon">✔</span> Gestão de equipes
-              </li>
-              <li>
-                <span className="check-icon">✔</span> Comissões automáticas
-              </li>
-              <li>
-                <span className="check-icon">✔</span> Limite de 2 usuários
-              </li>
-            </ul>
+            <div className="benefits-list">
+              {/* Módulo: Clientes e Agenda */}
+              <div className="benefit-module">
+                <div className="module-title">
+                  <span className="module-icon">📅</span>
+                  Clientes e Agenda
+                </div>
+                <ul>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Agenda Online Inteligente
+                  </li>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Lembretes Automáticos via WhatsApp
+                  </li>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    CRM com Histórico de Clientes
+                  </li>
+                </ul>
+              </div>
+
+              {/* Módulo: Financeiro */}
+              <div className="benefit-module">
+                <div className="module-title">
+                  <span className="module-icon">💰</span>
+                  Financeiro e Equipe
+                </div>
+                <ul>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Fluxo de Caixa Simplificado
+                  </li>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Controle de Receitas e Despesas
+                  </li>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Cálculo Automático de Comissões
+                  </li>
+                </ul>
+              </div>
+
+              {/* Módulo: Estoque e Produtos */}
+              <div className="benefit-module">
+                <div className="module-title">
+                  <span className="module-icon">📦</span>
+                  Estoque e Produtos
+                </div>
+                <ul>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Gestão Completa de Estoque
+                  </li>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Controle de Produtos e Serviços
+                  </li>
+                </ul>
+              </div>
+
+              {/* Módulo: Equipe */}
+              <div className="benefit-module">
+                <div className="module-title">
+                  <span className="module-icon">👥</span>
+                  Equipe e Colaboradores
+                </div>
+                <ul>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Gestão de Equipe e Desempenho
+                  </li>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Até 3 Usuários
+                  </li>
+                </ul>
+              </div>
+
+              {/* Módulo: Relatórios e Suporte */}
+              <div className="benefit-module">
+                <div className="module-title">
+                  <span className="module-icon">📊</span>
+                  Relatórios e Suporte
+                </div>
+                <ul>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Relatórios de Desempenho
+                  </li>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Suporte via WhatsApp
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>{" "}
           {/* Plano Premium */}
           <div className="plan-card">
@@ -603,7 +715,6 @@ const Price = () => {
                   : undefined
               }
               showDiscount={planType !== "Mensal"}
-              planType={planType}
             />{" "}
             <button
               className="sign-button"
@@ -625,47 +736,121 @@ const Price = () => {
             >
               TESTE GRATIS POR 20 DIAS!
             </button>{" "}
-            <ul className="benefits-list">
-              <li>
-                <span className="check-icon">✔</span> Agendamentos
-              </li>
-              <li>
-                <span className="check-icon">✔</span> Finanças
-              </li>
-              <li>
-                <span className="check-icon">✔</span> Gestão de estoque
-              </li>
-              <li>
-                <span className="check-icon">✔</span> Relatórios
-              </li>
-              <li>
-                <span className="check-icon">✔</span> Suporte via WhatsApp
-              </li>
-              <li>
-                <span className="check-icon">✔</span> Gestão de clientes
-              </li>
-              <li>
-                <span className="check-icon">✔</span> Gestão de equipes
-              </li>
-              <li>
-                <span className="check-icon">✔</span> Comissões automáticas
-              </li>
-              <li>
-                <span className="check-icon">✔</span> Usuários ilimitados
-              </li>
-              <li>
-                <span className="check-icon">✔</span> 30 minutos de Mentoria com
-                Leandro Figueiredo
-              </li>
-            </ul>
-            <button
-              className="instagram-button"
-              onClick={() => {
-                window.open("https://www.instagram.com/oleandrofigueiredo/");
-              }}
-            >
-              Saiba mais sobre a mentoria
-            </button>
+            <div className="benefits-list">
+              {/* Módulo: Clientes e Agenda */}
+              <div className="benefit-module">
+                <div className="module-title">
+                  <span className="module-icon">📅</span>
+                  Clientes e Agenda
+                </div>
+                <ul>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Agenda Online Inteligente
+                  </li>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Lembretes Automáticos via WhatsApp
+                  </li>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    CRM com Histórico de Clientes
+                  </li>
+                </ul>
+              </div>
+
+              {/* Módulo: Financeiro */}
+              <div className="benefit-module">
+                <div className="module-title">
+                  <span className="module-icon">💰</span>
+                  Financeiro e Equipe
+                </div>
+                <ul>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Fluxo de Caixa Simplificado
+                  </li>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Controle de Receitas e Despesas
+                  </li>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Cálculo Automático de Comissões
+                  </li>
+                </ul>
+              </div>
+
+              {/* Módulo: Estoque e Produtos */}
+              <div className="benefit-module">
+                <div className="module-title">
+                  <span className="module-icon">📦</span>
+                  Estoque e Produtos
+                </div>
+                <ul>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Gestão Completa de Estoque
+                  </li>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Controle de Produtos e Serviços
+                  </li>
+                </ul>
+              </div>
+
+              {/* Módulo: Equipe */}
+              <div className="benefit-module">
+                <div className="module-title">
+                  <span className="module-icon">👥</span>
+                  Equipe e Colaboradores
+                </div>
+                <ul>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Gestão de Equipe e Desempenho
+                  </li>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Usuários Ilimitados
+                  </li>
+                </ul>
+              </div>
+
+              {/* Módulo: Relatórios e Suporte */}
+              <div className="benefit-module">
+                <div className="module-title">
+                  <span className="module-icon">📊</span>
+                  Relatórios e Suporte
+                </div>
+                <ul>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Relatórios de Desempenho
+                  </li>
+                  <li>
+                    <span className="check-icon">✔</span>
+                    Suporte via WhatsApp
+                  </li>
+                  {planType === "Anual" && (
+                    <li>
+                      <span className="check-icon">✔</span>
+                      30 minutos de Mentoria com Leandro Figueiredo
+                    </li>
+                  )}
+                </ul>
+              </div>
+            </div>
+            {planType === "Anual" && (
+              <button
+                className="instagram-button"
+                onClick={() => {
+                  window.open("https://www.instagram.com/oleandrofigueiredo/");
+                }}
+              >
+                Saiba mais sobre a mentoria
+              </button>
+            )}
           </div>
         </div>
         <div className="support-section">
