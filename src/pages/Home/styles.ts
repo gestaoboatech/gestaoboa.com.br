@@ -165,50 +165,42 @@ export const Banner = styled.div`
   }
 
   @media (max-width: 960px) {
-    .images {
-      height: 450px;
-      justify-self: flex-end;
-    }
-
-    .images .cellphone {
-      height: 400px;
-    }
-  }
-
-  @media (max-width: 800px) {
     display: flex;
     flex-direction: column;
-    padding: 15px 15px;
+    padding: 60px 40px;
+    height: auto;
+
+    .content {
+      width: 100%;
+      gap: 30px;
+    }
 
     .content .title {
-      font-size: 32px;
+      font-size: 48px;
       text-align: center;
       width: 100%;
     }
 
     .content .subtitle {
-      font-size: 20px;
-      font-weight: normal;
+      font-size: 22px;
       text-align: center;
       width: 100%;
     }
-    .content .title {
-      font-size: 32px;
-      text-align: center;
-    }
+
     .content .buttons {
-      flex-direction: column;
-      gap: 15px;
+      flex-direction: row;
+      justify-content: center;
+      gap: 20px;
       width: 100%;
     }
 
-    .images {
-      width: 100%;
+    .content .buttons .button {
+      width: 250px;
     }
-  }
 
-  @media (max-width: 600px) {
+    /* Esconde a imagem do celular */
     .images {
+      display: none;
     }
 
     .images .cellphone {
@@ -218,9 +210,26 @@ export const Banner = styled.div`
     .images .elipse {
       display: none;
     }
+  }
+
+  @media (max-width: 800px) {
+    padding: 80px 20px 40px 20px;
+
+    .content .title {
+      font-size: 40px;
+    }
+
+    .content .subtitle {
+      font-size: 20px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    padding: 100px 15px 30px 15px;
 
     .content {
-      width: calc(100% - 20px);
+      width: 100%;
+      gap: 25px;
     }
 
     .content .title {
@@ -228,7 +237,12 @@ export const Banner = styled.div`
     }
 
     .content .subtitle {
-      font-size: 20px;
+      font-size: 18px;
+    }
+
+    .content .buttons {
+      flex-direction: column;
+      gap: 15px;
     }
 
     .content .buttons .button {

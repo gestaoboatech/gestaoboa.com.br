@@ -10,6 +10,7 @@ import CustomInput from "../../components/CustomInput";
 import CustomTextarea from "../../components/CustomTextArea";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
+import CookieConsentModal from "../../components/CookieConsentModal";
 import { UnformErrors } from "../../interfaces/interfaces";
 import { FB_PIXEL } from "../../utils/pixel";
 
@@ -55,9 +56,9 @@ const Home: FunctionComponent = () => {
       image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&h=300&fit=crop&crop=center",
       alt: "Barbearia",
       title: "Barbearia",
-      description: "Você vai liberar tempo na sua rotina para vender mais com um sistema para agendamentos para barbearia, gerenciamento de equipe, controle de estoque, clube de assinaturas para fidelizar os seus clientes e app para barbeiros.",
-      features: ["Controle de agenda online", "App para profissionais", "Clube de Assinaturas"],
-      link: "/barbershop",
+      description: "Você vai liberar tempo na sua rotina para vender mais com um sistema para agendamentos para barbearia, gerenciamento de equipe, controle de estoque, lembretes antes do agendamento para fidelizar os seus clientes e app para barbeiros.",
+      features: ["Controle de agenda online", "App para profissionais", "Lembrete para clientes no whatsApp"],
+      link: "/barbearia",
       linkText: "Soluções para barbearias"
     },
     {
@@ -73,8 +74,8 @@ const Home: FunctionComponent = () => {
       image: "https://images.unsplash.com/photo-1616391182219-e080b4d1043a?w=400&h=300&fit=crop&crop=center",
       alt: "Clínica de Estética",
       title: "Clínica de Estética",
-      description: "Faça a gestão dos seus profissionais e atraia mais clientes para a sua clínica de estética com ferramentas de comunicação e marketing exclusivas, criação de pacotes e clube de assinaturas.",
-      features: ["Gestão de pacotes", "Fichas de Anamnese", "Controle de estoque"],
+      description: "Faça a gestão dos seus profissionais e atraia mais clientes para a sua clínica de estética com ferramentas de comunicação e marketing exclusivas, criação de pacotes.",
+      features: ["Gestão de pacotes", "Histórico de clientes", "Controle de estoque"],
       link: "/salao-estetica",
       linkText: "Soluções para clínicas de estética"
     },
@@ -85,16 +86,7 @@ const Home: FunctionComponent = () => {
       description: "Organize sua agenda, fidelize clientes e profissionalize seu atendimento com ferramentas especializadas para profissionais autônomos da área de beleza e bem-estar.",
       features: ["Agenda personalizada", "Gestão financeira", "Marketing digital"],
       link: "/solution",
-      linkText: "Soluções para autônomos"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=400&h=300&fit=crop&crop=center",
-      alt: "Estúdio de Tatuagem",
-      title: "Estúdio de Tatuagem",
-      description: "Gerencie seu estúdio de tatuagem com agendamentos online, controle de materiais, portfolio digital e sistema de pagamentos integrado para uma gestão completa.",
-      features: ["Portfolio digital", "Controle de materiais", "Agendamentos especializados"],
-      link: "/solution",
-      linkText: "Soluções para estúdios de tatuagem"
+      linkText: "barbearia"
     }
   ];
 
@@ -1115,6 +1107,7 @@ const Home: FunctionComponent = () => {
           <Footer />
         </Grid>
       </Container>
+      <CookieConsentModal />
     </ScrollSpy>
   );
 };
