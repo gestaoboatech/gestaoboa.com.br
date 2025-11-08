@@ -2,13 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./styles.css";
 
-// Declare fbq como global do Facebook Pixel que já está no index.html
-declare global {
-  interface Window {
-    fbq?: (...args: unknown[]) => void;
-  }
-}
-
 const CookieConsentModal: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
 

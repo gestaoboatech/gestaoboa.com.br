@@ -1,7 +1,7 @@
 // Utilitário para o Facebook Pixel
 declare global {
   interface Window {
-    fbq: any;
+    fbq?: any;
   }
 }
 
