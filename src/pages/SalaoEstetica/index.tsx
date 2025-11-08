@@ -22,11 +22,6 @@ import {
   SolutionTitle,
   SolutionList,
   SolutionItem,
-  TestimonialsSection,
-  TestimonialsTitle,
-  TestimonialCard,
-  TestimonialContent,
-  TestimonialAuthor,
   OnlineBookingSection,
   OnlineBookingContent,
   OnlineBookingTitle,
@@ -389,52 +384,6 @@ const SalaoEstetica: React.FC = () => {
               </SolutionList>
             </SolutionSection>
           </ProblemSolutionContainer>
-
-          {/* Testimonials Section */}
-          <TestimonialsSection>
-            <TestimonialsTitle>
-              Profissionais da beleza já estão transformando seus negócios
-            </TestimonialsTitle>
-            
-            <TestimonialCard>
-              <TestimonialContent>
-                "O app da gestão boa vem me ajudando muito desde o primeiro dia, consigo saber com exatidão quantas clientes eu tenho e atendo, faturamento, venda de produtos, etc. Comecei a ter controle não só dos procedimentos, mas das vendas dos produtos de beleza e dos custos."
-              </TestimonialContent>
-              <TestimonialAuthor>
-                <img src="/kaiane.jpeg" alt="Kaiane Silva" />
-                <div>
-                  <strong>Kaiane Silva</strong>
-                  <span>Proprietária do Espaço Beleza Kaiane</span>
-                </div>
-              </TestimonialAuthor>
-            </TestimonialCard>
-
-            <TestimonialCard>
-              <TestimonialContent>
-                "Com o Gestão Boa aumentei meu faturamento e organizei completamente minha clínica de estética. Agora tenho controle total dos tratamentos e sei exatamente quanto estou lucrando com cada procedimento."
-              </TestimonialContent>
-              <TestimonialAuthor>
-                <img src="/karine.png" alt="Karine Mendes" />
-                <div>
-                  <strong>Karine Mendes</strong>
-                  <span>Proprietária da Clínica Bem Estar</span>
-                </div>
-              </TestimonialAuthor>
-            </TestimonialCard>
-
-            <TestimonialCard>
-              <TestimonialContent>
-                "Fora de série, fora de série mesmo! Eu te chamo, tu me responde. Tinha muito receio, pois já contratei outros sistemas e não tinha esse retorno pra tirar minhas dúvidas. Tu responde, tira minhas dúvidas, não faz corpo mole, e me mostra tudo certinho. Cara, tá show de bola!"
-              </TestimonialContent>
-              <TestimonialAuthor>
-                <img src="/WhatsApp Image 2024-07-05 at 10.01.10.jpeg" alt="Juliana Santos" />
-                <div>
-                  <strong>Juliana Santos</strong>
-                  <span>Proprietária do Studio J Beauty</span>
-                </div>
-              </TestimonialAuthor>
-            </TestimonialCard>
-          </TestimonialsSection>
 
           {/* Online Booking Section */}
           <OnlineBookingSection data-section="online-booking">
