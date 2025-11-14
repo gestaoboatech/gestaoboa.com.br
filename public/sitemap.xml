@@ -15,7 +15,7 @@
   </url>
   <url>
     <loc>https://gestaoboa.com.br/solucao</loc>
-    <lastmod>2025-08-18</lastmod>
+    <lastmod>2025-11-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -25,14 +25,32 @@
   </url>
   <url>
     <loc>https://gestaoboa.com.br/preco</loc>
-    <lastmod>2025-08-18</lastmod>
+    <lastmod>2025-11-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+	<url>
+    <loc>https://gestaoboa.com.br/black-friday</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+	<url>
+    <loc>https://gestaoboa.com.br/barbearia</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+	<url>
+    <loc>https://gestaoboa.com.br/salao-estetica</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://gestaoboa.com.br/sobre</loc>
-    <lastmod>2025-08-18</lastmod>
+    <lastmod>2025-11-14</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
 </urlset>
