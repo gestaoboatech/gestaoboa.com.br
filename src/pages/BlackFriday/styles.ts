@@ -195,3 +195,175 @@ export const FormSubtitle = styled.p`
     margin-bottom: 24px;
   }
 `;
+
+export const PurchaseButtonContainer = styled.div`
+  margin-top: 2rem;
+`;
+
+export const PurchaseButton = styled.button`
+  width: 100%;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8800 100%);
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 1.5rem 2rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+  animation: pulse 2s infinite;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+    }
+    50% {
+      transform: scale(1.02);
+      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    padding: 1.2rem 1.5rem;
+  }
+`;
+
+export const SecurePaymentText = styled.p`
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #666;
+`;
+
+export const PriceSection = styled.div`
+  background: linear-gradient(135deg, #fff8e1 0%, #ffe0b2 100%);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 2px solid #ff6b35;
+  box-shadow: 0 8px 24px rgba(255, 107, 53, 0.15);
+`;
+
+export const PriceSectionTitle = styled.h3`
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+`;
+
+export const PriceItem = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+  
+  &:last-child {
+    border-bottom: none;
+  }
+`;
+
+export const PriceItemLabel = styled.span`
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 500;
+  flex: 1;
+`;
+
+export const PriceItemValue = styled.span`
+  font-size: 1rem;
+  color: #666;
+  font-weight: 600;
+  text-decoration: line-through;
+  opacity: 0.7;
+`;
+
+export const TotalSection = styled.div`
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 2px solid #ff6b35;
+`;
+
+export const TotalRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+`;
+
+export const TotalLabel = styled.span`
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+`;
+
+export const TotalValue = styled.span`
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #666;
+  text-decoration: line-through;
+`;
+
+export const BlackFridayPrice = styled.div`
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8800 100%);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  margin-top: 12px;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+`;
+
+export const BlackFridayPriceLabel = styled.div`
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+`;
+
+export const BlackFridayPriceValue = styled.div`
+  color: #ffffff;
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1;
+  
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+`;
+
+export const SaveBadge = styled.div`
+  background: #ffd93d;
+  color: #1a1a2e;
+  font-size: 0.95rem;
+  font-weight: 800;
+  padding: 8px 16px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-top: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+`;
+
+export const SaveBadgeContainer = styled.div`
+  text-align: center;
+`;
