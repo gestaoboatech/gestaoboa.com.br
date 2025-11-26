@@ -25,31 +25,33 @@ export const Banner = styled.div`
   align-items: center;
   grid-column: span 12;
   padding-top: 150px;
-  padding-bottom: 100px;
+  padding-bottom: 60px;
   padding-left: 100px;
   padding-right: 100px;
-  height: 77vh;
+  min-height: auto;
 
   .content {
     display: flex;
     flex-direction: column;
     grid-column: span 7;
-    gap: 40px;
+    gap: 30px;
     justify-self: flex-start;
   }
 
   .content .title {
     font-weight: bold;
-    font-size: 92px;
+    font-size: 72px;
     text-align: start;
-    width: 850px;
+    max-width: 700px;
+    line-height: 1.1;
   }
 
   .content .subtitle {
     font-weight: lighter;
-    font-size: 32px;
+    font-size: 24px;
     text-align: start;
-    width: 850px;
+    max-width: 600px;
+    line-height: 1.4;
   }
 
   .content .subtitle span {
@@ -59,17 +61,19 @@ export const Banner = styled.div`
 
   .content .buttons {
     display: flex;
-    width: 850px;
-    gap: 25px;
-    align-items: flex-start;
+    max-width: 600px;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
   }
 
   .content .buttons .button {
-    width: 300px;
+    width: 250px;
   }
 
   .content .buttons .button-link {
     text-decoration: none;
+    display: inline-block;
   }
 
   .images {
@@ -77,7 +81,7 @@ export const Banner = styled.div`
     grid-column: span 5;
     position: relative;
     width: fit-content;
-    height: 700px;
+    height: 600px;
     align-items: center;
     justify-self: center;
   }
@@ -85,7 +89,8 @@ export const Banner = styled.div`
   .images .cellphone {
     position: absolute;
     z-index: 100;
-    height: 700px;
+    height: 600px;
+    width: auto;
   }
 
   .images .elipse {
@@ -102,56 +107,67 @@ export const Banner = styled.div`
 
   @media (max-width: 1780px) {
     .content .title {
-      font-size: 64px;
-      width: 600px;
+      font-size: 56px;
+      max-width: 550px;
     }
 
     .content .subtitle {
-      width: 600px;
-      font-size: 28px;
+      max-width: 500px;
+      font-size: 20px;
     }
 
     .content .buttons {
-      width: 600px;
+      max-width: 500px;
     }
 
     .images {
-      height: 550px;
+      height: 500px;
     }
 
     .images .cellphone {
-      height: 550px;
+      height: 500px;
     }
   }
 
   @media (max-width: 1300px) {
+    padding-left: 60px;
+    padding-right: 60px;
+
     .content .title {
-      font-size: 54px;
-      width: 450px;
+      font-size: 44px;
+      max-width: 420px;
     }
 
     .content .subtitle {
-      width: 450px;
-      font-size: 24px;
+      max-width: 400px;
+      font-size: 18px;
     }
 
     .content .buttons {
-      width: 450px;
+      max-width: 400px;
     }
 
     .images {
-      height: 450px;
+      height: 420px;
     }
 
     .images .cellphone {
-      height: 450px;
+      height: 420px;
     }
   }
 
   @media (max-width: 1080px) {
+    padding-left: 40px;
+    padding-right: 40px;
+
+    .content {
+      grid-column: span 6;
+    }
+
     .images {
+      grid-column: span 6;
       justify-self: center;
-      height: 500px;
+      height: 400px;
     }
 
     .images .elipse {
@@ -160,42 +176,42 @@ export const Banner = styled.div`
 
     .images .cellphone {
       position: unset;
-      height: 500px;
+      height: 400px;
     }
   }
 
   @media (max-width: 960px) {
     display: flex;
     flex-direction: column;
-    padding: 60px 40px;
+    padding: 120px 40px 60px 40px;
     height: auto;
 
     .content {
       width: 100%;
-      gap: 30px;
+      gap: 25px;
     }
 
     .content .title {
-      font-size: 48px;
+      font-size: 42px;
       text-align: center;
-      width: 100%;
+      max-width: 100%;
     }
 
     .content .subtitle {
-      font-size: 22px;
+      font-size: 18px;
       text-align: center;
-      width: 100%;
+      max-width: 100%;
     }
 
     .content .buttons {
       flex-direction: row;
       justify-content: center;
-      gap: 20px;
-      width: 100%;
+      gap: 15px;
+      max-width: 100%;
     }
 
     .content .buttons .button {
-      width: 250px;
+      width: 200px;
     }
 
     /* Esconde a imagem do celular */
@@ -213,36 +229,41 @@ export const Banner = styled.div`
   }
 
   @media (max-width: 800px) {
-    padding: 80px 20px 40px 20px;
+    padding: 100px 20px 40px 20px;
 
     .content .title {
-      font-size: 40px;
+      font-size: 36px;
     }
 
     .content .subtitle {
-      font-size: 20px;
+      font-size: 17px;
+    }
+
+    .content .buttons .button {
+      width: 180px;
     }
   }
 
   @media (max-width: 600px) {
-    padding: 100px 15px 30px 15px;
+    padding: 100px 15px 40px 15px;
 
     .content {
       width: 100%;
-      gap: 25px;
+      gap: 20px;
     }
 
     .content .title {
-      font-size: 32px;
+      font-size: 28px;
     }
 
     .content .subtitle {
-      font-size: 18px;
+      font-size: 16px;
     }
 
     .content .buttons {
       flex-direction: column;
-      gap: 15px;
+      gap: 12px;
+      width: 100%;
     }
 
     .content .buttons .button {
@@ -356,56 +377,356 @@ export const Solutions = styled.div`
     z-index: 100;
   }
 
+  /* Seção de Métricas - Números que falam por si */
+  .metrics-section {
+    background: linear-gradient(135deg, #03045e 0%, #0077b6 100%);
+    padding: 4rem 2rem;
+    text-align: center;
+
+    .metrics-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.75rem;
+    }
+
+    .metrics-subtitle {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 3rem;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .metric-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.12);
+        transform: translateY(-4px);
+      }
+
+      .metric-icon {
+        width: 56px;
+        height: 56px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.25rem;
+
+        svg {
+          stroke: #00b4d8;
+        }
+      }
+
+      .metric-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 0.5rem;
+      }
+
+      .metric-label {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 0.25rem;
+      }
+
+      .metric-description {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+
+    @media (max-width: 1024px) {
+      padding: 3rem 1.5rem;
+
+      .metrics-title {
+        font-size: 2rem;
+      }
+
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+      }
+
+      .metric-card {
+        padding: 1.5rem 1rem;
+
+        .metric-value {
+          font-size: 2rem;
+        }
+      }
+    }
+
+    @media (max-width: 600px) {
+      padding: 2.5rem 1rem;
+
+      .metrics-title {
+        font-size: 1.75rem;
+      }
+
+      .metrics-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .metric-card {
+        padding: 1.25rem 0.75rem;
+
+        .metric-icon {
+          width: 44px;
+          height: 44px;
+          margin-bottom: 1rem;
+
+          svg {
+            width: 22px;
+            height: 22px;
+          }
+        }
+
+        .metric-value {
+          font-size: 1.75rem;
+        }
+
+        .metric-label {
+          font-size: 0.95rem;
+        }
+
+        .metric-description {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+
   .benefits {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    padding: 2rem;
+    gap: 1.5rem;
+    padding: 3rem 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
 
     .benefit {
       background: #ffffff;
-      border-radius: 8px;
+      border-radius: 12px;
       padding: 1.5rem;
-      text-align: center;
-      transition: transform 0.2s;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      border: 1px solid #f0f0f0;
 
       &:hover {
-        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(3, 4, 94, 0.1);
+        border-color: #e0e0e0;
       }
 
-      img {
-        width: 96px;
-        height: 96px;
+      .benefit-icon {
+        width: 48px;
+        height: 48px;
         margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f5f8fc;
+        border-radius: 12px;
+
+        svg {
+          width: 24px;
+          height: 24px;
+        }
       }
 
-      .title {
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-        color: #333;
-      }
+      .info {
+        .title {
+          font-size: 1.1rem;
+          font-weight: 600;
+          margin-bottom: 0.5rem;
+          color: #1a1a1a;
+        }
 
-      .subtitle {
-        font-size: 0.9rem;
-        color: #666;
-        line-height: 1.4;
+        .subtitle {
+          font-size: 0.9rem;
+          color: #666;
+          line-height: 1.5;
+          margin-bottom: 1rem;
+        }
       }
 
       .benefit-button {
         text-decoration: none;
-        margin-top: 15px;
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        color: #0077b6;
+        font-size: 0.9rem;
+        font-weight: 500;
+        
+        &:hover {
+          color: #03045e;
+        }
       }
+    }
+
+    @media (max-width: 1024px) {
+      padding: 2rem;
+      gap: 1.25rem;
     }
 
     @media (max-width: 768px) {
       grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      padding: 1.5rem;
+
+      .benefit {
+        padding: 1.25rem;
+      }
     }
 
     @media (max-width: 480px) {
       grid-template-columns: 1fr;
+      padding: 1rem;
+    }
+  }
+
+  .benefits-section {
+    padding: 4rem 2rem;
+    background: #ffffff;
+    
+    .benefits-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #03045e;
+      margin-bottom: 3rem;
+    }
+
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+
+      .benefit {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 1.5rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        border: 1px solid #f0f0f0;
+
+        &:hover {
+          box-shadow: 0 8px 24px rgba(3, 4, 94, 0.1);
+          border-color: #e0e0e0;
+        }
+
+        .benefit-icon {
+          flex-shrink: 0;
+          width: 48px;
+          height: 48px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #f5f8fc;
+          border-radius: 12px;
+
+          svg {
+            width: 24px;
+            height: 24px;
+          }
+        }
+
+        .benefit-content {
+          flex: 1;
+          text-align: left;
+
+          .benefit-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+          }
+
+          .benefit-description {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 0.75rem;
+          }
+
+          .benefit-link {
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            color: #0077b6;
+            font-size: 0.9rem;
+            font-weight: 500;
+            
+            &:hover {
+              color: #03045e;
+            }
+          }
+        }
+      }
+    }
+
+    @media (max-width: 1024px) {
+      padding: 3rem 1.5rem;
+      
+      .benefits-title {
+        font-size: 2rem;
+      }
+      
+      .benefits {
+        gap: 1.25rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      padding: 2.5rem 1rem;
+      
+      .benefits-title {
+        font-size: 1.75rem;
+        margin-bottom: 2rem;
+      }
+      
+      .benefits {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+
+        .benefit {
+          padding: 1.25rem;
+        }
+      }
+    }
+
+    @media (max-width: 480px) {
+      .benefits {
+        grid-template-columns: 1fr;
+      }
     }
   }
 

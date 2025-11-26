@@ -400,7 +400,7 @@ const Home: FunctionComponent = () => {
             <div className="images">
               <img
                 className="cellphone"
-                src="/cellphone.png"
+                src="/smartphone.png"
                 alt="Aplicativo Gestão Boa em smartphone mostrando interface de gestão"
                 loading="eager"
                 width="300"
@@ -416,177 +416,169 @@ const Home: FunctionComponent = () => {
           </Banner>
 
           <Solutions id="solution">
-            <div className="solutionBanner">
-              <div className="vignette"></div>
-              <h2 className="title">
-                Como a Gestão Boa pode turbinar o seu negócio?
-              </h2>
+            <div className="metrics-section">
+              <h2 className="metrics-title">Números que falam por si</h2>
+              <p className="metrics-subtitle">
+                Empresas já transformaram sua gestão com a Gestão Boa
+              </p>
+              
+              <div className="metrics-grid">
+                <div className="metric-card">
+                  <div className="metric-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="9" cy="7" r="4"></circle>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                  </div>
+                  <div className="metric-value">+100</div>
+                  <div className="metric-label">Profissionais cadastrados</div>
+                  <div className="metric-description">Confiam na nossa plataforma</div>
+                </div>
+
+                <div className="metric-card">
+                  <div className="metric-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                      <line x1="16" y1="2" x2="16" y2="6"></line>
+                      <line x1="8" y1="2" x2="8" y2="6"></line>
+                      <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                  </div>
+                  <div className="metric-value">+8.000</div>
+                  <div className="metric-label">Agendamentos</div>
+                  <div className="metric-description">Realizados com sucesso</div>
+                </div>
+
+                <div className="metric-card">
+                  <div className="metric-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="12" y1="1" x2="12" y2="23"></line>
+                      <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                  </div>
+                  <div className="metric-value">+R$ 800 mil</div>
+                  <div className="metric-label">Gerenciados</div>
+                  <div className="metric-description">Através do app</div>
+                </div>
+
+                <div className="metric-card">
+                  <div className="metric-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                  </div>
+                  <div className="metric-value">90%</div>
+                  <div className="metric-label">Satisfação</div>
+                  <div className="metric-description">Clientes recomendam</div>
+                </div>
+              </div>
             </div>
 
-            <div className="benefits">
-              <div className="benefit">
-                <img
-                  src="/check-list.png"
-                  alt="Ícone de agenda simplificada - checklist para organização de compromissos"
-                  loading="lazy"
-                  width="64"
-                  height="64"
-                />
-                <div className="info">
-                  <h3 className="title">Agenda Simplificada</h3>
-                  <div className="subtitle">
-                    Mantenha seus compromissos sempre à mão.
+            {/* Benefícios / Soluções */}
+            <div className="benefits-section">
+              <h2 className="benefits-title">Como a Gestão Boa pode turbinar o seu negócio?</h2>
+              <div className="benefits">
+                <div className="benefit">
+                  <div className="benefit-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                      <line x1="16" y1="2" x2="16" y2="6"></line>
+                      <line x1="8" y1="2" x2="8" y2="6"></line>
+                      <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
                   </div>
-                  <a
-                    href="/solucao#agenda"
-                    className="benefit-button"
-                    title="Saiba mais sobre Agenda Simplificada"
-                  >
-                    <Button
-                      width="120px"
-                      text="Saiba mais"
-                      method={() => {}}
-                      type={"unfocused"}
-                    />
-                  </a>
+                  <div className="benefit-content">
+                    <h3 className="benefit-title">Agenda Simplificada</h3>
+                    <p className="benefit-description">
+                      Mantenha seus compromissos sempre à mão. Sistema intuitivo de agendamento com notificações automáticas.
+                    </p>
+                    <a href="/solucao#agenda" className="benefit-link">Saiba mais →</a>
+                  </div>
                 </div>
-              </div>
-              <div className="benefit">
-                <img
-                  src="calendar (1) 1 (1).svg"
-                  alt="Ícone de gerenciamento de produtos - controle de estoque e vendas"
-                  loading="lazy"
-                  width="64"
-                  height="64"
-                />
-                <div className="info">
-                  <h3 className="title">Gerenciamento e vendas de produtos</h3>
-                  <div className="subtitle">
-                    Controle seu estoque, e tenha uma análise completa sobre as
-                    vendas dos seus produtos.
+
+                <div className="benefit">
+                  <div className="benefit-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                      <line x1="3" y1="6" x2="21" y2="6"></line>
+                      <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
                   </div>
-                  <a
-                    href="/solucao#produtos"
-                    className="benefit-button"
-                    title="Saiba mais sobre Gerenciamento e vendas de produtos"
-                  >
-                    <Button
-                      width="120px"
-                      text="Saiba mais"
-                      method={() => {}}
-                      type={"unfocused"}
-                    />
-                  </a>
+                  <div className="benefit-content">
+                    <h3 className="benefit-title">Gerenciamento de Produtos</h3>
+                    <p className="benefit-description">
+                      Controle completo do estoque com análise detalhada de vendas e giro de produtos.
+                    </p>
+                    <a href="/solucao#produtos" className="benefit-link">Saiba mais →</a>
+                  </div>
                 </div>
-              </div>
-              <div className="benefit">
-                <img
-                  src="calendar (1) 1.svg"
-                  alt="Ícone de controle de custos - gestão financeira de despesas"
-                  loading="lazy"
-                  width="64"
-                  height="64"
-                />
-                <div className="info">
-                  <h3 className="title">Controle de Custos</h3>
-                  <div className="subtitle">
-                    Lidar com contas para pagar é uma tarefa complicada. No
-                    nosso app você pode já registrar quanto e quando vai pagar
-                    seus boletos.
+
+                <div className="benefit">
+                  <div className="benefit-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="12" y1="1" x2="12" y2="23"></line>
+                      <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
                   </div>
-                  <a
-                    href="/solucao#financeiro"
-                    className="benefit-button"
-                    title="Saiba mais sobre Controle de Custos"
-                  >
-                    <Button
-                      width="120px"
-                      text="Saiba mais"
-                      method={() => {}}
-                      type={"unfocused"}
-                    />
-                  </a>
+                  <div className="benefit-content">
+                    <h3 className="benefit-title">Controle Financeiro</h3>
+                    <p className="benefit-description">
+                      Gestão completa de entradas e saídas com relatórios detalhados por método de pagamento.
+                    </p>
+                    <a href="/solucao#financeiro" className="benefit-link">Saiba mais →</a>
+                  </div>
                 </div>
-              </div>
-              <div className="benefit">
-                <img
-                  src="calendar (1) 2.svg"
-                  alt="Ícone de gestão financeira - acompanhamento de entradas e saídas"
-                  loading="lazy"
-                  width="64"
-                  height="64"
-                />
-                <div className="info">
-                  <h3 className="title">Gestão Financeira</h3>
-                  <div className="subtitle">
-                    Acompanhe entradas e saídas por método de pagamento.
+
+                <div className="benefit">
+                  <div className="benefit-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="18" y1="20" x2="18" y2="10"></line>
+                      <line x1="12" y1="20" x2="12" y2="4"></line>
+                      <line x1="6" y1="20" x2="6" y2="14"></line>
+                    </svg>
                   </div>
-                  <a
-                    href="/solucao#financeiro"
-                    className="benefit-button"
-                    title="Saiba mais sobre Gestão Financeira"
-                  >
-                    <Button
-                      width="120px"
-                      text="Saiba mais"
-                      method={() => {}}
-                      type={"unfocused"}
-                    />
-                  </a>
+                  <div className="benefit-content">
+                    <h3 className="benefit-title">Análises Detalhadas</h3>
+                    <p className="benefit-description">
+                      Dashboard completo com métricas em tempo real para decisões baseadas em dados.
+                    </p>
+                    <a href="/solucao#analytics" className="benefit-link">Saiba mais →</a>
+                  </div>
                 </div>
-              </div>
-              <div className="benefit">
-                <img
-                  src="calendar (1) 3.svg"
-                  alt="Ícone de análises detalhadas - relatórios e insights de negócio"
-                  loading="lazy"
-                  width="64"
-                  height="64"
-                />
-                <div className="info">
-                  <h3 className="title">Análises Detalhadas</h3>
-                  <div className="subtitle">
-                    Visualize resultados e tome decisões baseadas em dados.
+
+                <div className="benefit">
+                  <div className="benefit-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
                   </div>
-                  <a
-                    href="/solucao#analytics"
-                    className="benefit-button"
-                    title="Saiba mais sobre Análises Detalhadas"
-                  >
-                    <Button
-                      width="120px"
-                      text="Saiba mais"
-                      method={() => {}}
-                      type={"unfocused"}
-                    />
-                  </a>
+                  <div className="benefit-content">
+                    <h3 className="benefit-title">Fidelização de Clientes</h3>
+                    <p className="benefit-description">
+                      Automatize mensagens personalizadas e construa relacionamentos duradouros.
+                    </p>
+                    <a href="/solucao#clientes" className="benefit-link">Saiba mais →</a>
+                  </div>
                 </div>
-              </div>
-              <div className="benefit">
-                <img
-                  src="calendar (1) 3 (1).svg"
-                  alt="Ícone de fidelização do cliente - automação de mensagens e relacionamento"
-                  loading="lazy"
-                  width="64"
-                  height="64"
-                />
-                <div className="info">
-                  <div className="title">Fidelização do Cliente</div>
-                  <div className="subtitle">
-                    Automatize mensagens e crie relacionamentos duradouros.
+
+                <div className="benefit">
+                  <div className="benefit-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="9" cy="7" r="4"></circle>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
                   </div>
-                  <a
-                    href="/solucao#clientes"
-                    className="benefit-button"
-                    title="Saiba mais sobre Fidelização do Cliente"
-                  >
-                    <Button
-                      width="120px"
-                      text="Saiba mais"
-                      method={() => {}}
-                      type={"unfocused"}
-                    />
-                  </a>
+                  <div className="benefit-content">
+                    <h3 className="benefit-title">Gestão de Comissões</h3>
+                    <p className="benefit-description">
+                      Calcule automaticamente comissões de equipe com total transparência e precisão.
+                    </p>
+                    <a href="/solucao#comissoes" className="benefit-link">Saiba mais →</a>
+                  </div>
                 </div>
               </div>
             </div>

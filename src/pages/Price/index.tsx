@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
@@ -27,6 +28,7 @@ const calculateDiscountedPrice = (price: number, type: PlanType) => {
 };
 
 const Price = () => {
+  const navigate = useNavigate();
   const [planType, setPlanType] = useState<PlanType>("Anual");
   const [showPaymentForm, setShowPaymentForm] = useState(false);
   const [showRegistrationForm, setShowRegistrationForm] = useState(false);
@@ -404,19 +406,7 @@ const Price = () => {
             <button
               className="sign-button"
               onClick={() => {
-                setSelectedPlan({
-                  name: "Básico",
-                  price:
-                    planType === "Mensal"
-                      ? prices.Mensal.Basico.parcelas
-                      : calculateDiscountedPrice(
-                          prices.Mensal.Basico.original,
-                          planType
-                        )
-                          .toFixed(2)
-                          .replace(".", ","),
-                });
-                setShowRegistrationForm(true);
+                navigate('/criar-conta?plano=basico');
               }}
             >
               TESTE GRATIS POR 20 DIAS!
@@ -562,19 +552,7 @@ const Price = () => {
             <button
               className="sign-button"
               onClick={() => {
-                setSelectedPlan({
-                  name: "Crescimento",
-                  price:
-                    planType === "Mensal"
-                      ? prices.Mensal.Standard.parcelas
-                      : calculateDiscountedPrice(
-                          prices.Mensal.Standard.original,
-                          planType
-                        )
-                          .toFixed(2)
-                          .replace(".", ","),
-                });
-                setShowRegistrationForm(true);
+                navigate('/criar-conta?plano=crescimento');
               }}
             >
               TESTE GRATIS POR 20 DIAS!
@@ -719,19 +697,7 @@ const Price = () => {
             <button
               className="sign-button"
               onClick={() => {
-                setSelectedPlan({
-                  name: "Empresarial",
-                  price:
-                    planType === "Mensal"
-                      ? prices.Mensal.Premium.parcelas
-                      : calculateDiscountedPrice(
-                          prices.Mensal.Premium.original,
-                          planType
-                        )
-                          .toFixed(2)
-                          .replace(".", ","),
-                });
-                setShowRegistrationForm(true);
+                navigate('/criar-conta?plano=empresarial');
               }}
             >
               TESTE GRATIS POR 20 DIAS!

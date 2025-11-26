@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div<{ isMenuOpen?: boolean }>`
     display: flex;
-    width: 90%;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
     grid-column: span 12;
@@ -50,7 +50,7 @@ export const Container = styled.div<{ isMenuOpen?: boolean }>`
     }
 
     @media (max-width: 1030px) {
-        width: 96%;
+        width: 100%;
         padding: 12px 20px;
         justify-content: space-between;
         align-items: center;
