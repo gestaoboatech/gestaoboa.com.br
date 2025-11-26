@@ -62,7 +62,7 @@
 
 .form-label {
   font-weight: 600;
-  color: #2c3e50;
+  color: #03045e;
   font-size: 16px;
   margin-bottom: 4px;
 }
@@ -191,7 +191,7 @@
 }
 
 .form-disclaimer strong {
-  color: #2c3e50;
+  color: #03045e;
 }
 
 /* Melhorias para tablets */
@@ -573,5 +573,636 @@
   .whatsapp-skip-btn {
     padding: 10px 15px;
     font-size: 0.9rem;
+  }
+}
+
+/* ============================
+   BLACK FRIDAY PROMO SECTION
+   ============================ */
+
+.black-friday-promo-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #03045e 0%, #023e8a 50%, #0077b6 100%);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.promo-package {
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.promo-package h3 {
+  text-align: center;
+  color: #ffd93d;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.promo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.promo-item-name {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.promo-item-price-original {
+  color: #b0b0b0;
+  font-size: 1rem;
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.promo-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  margin-top: 8px;
+  border-top: 2px solid rgba(255, 107, 53, 0.3);
+}
+
+.promo-total span:first-child {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.promo-total-original {
+  color: #b0b0b0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: line-through;
+}
+
+.promo-final-price {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8800 100%);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  margin-top: 16px;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+}
+
+.promo-label {
+  display: block;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.promo-price {
+  display: block;
+  color: #ffffff;
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.promo-savings {
+  background: #ffd93d;
+  color: #03045e;
+  font-size: 0.95rem;
+  font-weight: 800;
+  padding: 12px 20px;
+  border-radius: 20px;
+  display: block;
+  margin-top: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.promo-benefits {
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 30px;
+}
+
+.promo-benefits h4 {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.promo-benefits ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.promo-benefits li {
+  color: #e0e0e0;
+  font-size: 1rem;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.promo-benefits li:last-child {
+  border-bottom: none;
+}
+
+.promo-button {
+  animation: pulse 2s infinite;
+  font-size: 1.2rem !important;
+  padding: 18px 30px !important;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+  }
+}
+
+.promo-disclaimer {
+  text-align: center;
+  color: #b0b0b0;
+  font-size: 0.9rem;
+  margin-top: 20px;
+}
+
+/* Responsividade da Promo Section */
+@media (max-width: 768px) {
+  .black-friday-promo-container {
+    padding: 30px 15px;
+    border-radius: 16px;
+  }
+
+  .promo-package {
+    padding: 20px;
+  }
+
+  .promo-package h3 {
+    font-size: 1.3rem;
+  }
+
+  .promo-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .promo-item-name {
+    font-size: 0.95rem;
+  }
+
+  .promo-price {
+    font-size: 2.5rem;
+  }
+
+  .promo-button {
+    font-size: 1rem !important;
+    padding: 16px 24px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .black-friday-promo-container {
+    padding: 20px 12px;
+    margin: 0 10px;
+  }
+
+  .promo-package {
+    padding: 16px;
+  }
+
+  .promo-package h3 {
+    font-size: 1.1rem;
+  }
+
+  .promo-item-name {
+    font-size: 0.9rem;
+  }
+
+  .promo-price {
+    font-size: 2.2rem;
+  }
+
+  .promo-benefits {
+    padding: 16px;
+  }
+
+  .promo-benefits h4 {
+    font-size: 1.1rem;
+  }
+
+  .promo-benefits li {
+    font-size: 0.9rem;
+  }
+
+  .promo-button {
+    font-size: 0.95rem !important;
+    padding: 14px 20px !important;
+  }
+}
+
+/* ============================
+   CONTADOR REGRESSIVO
+   ============================ */
+
+.promo-countdown {
+  background: linear-gradient(135deg, #023e8a 0%, #0077b6 100%);
+  border: 2px solid #ff6b35;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.countdown-title {
+  color: #ff6b35;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 60px;
+}
+
+.countdown-value {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8800 100%);
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 900;
+  padding: 10px 15px;
+  border-radius: 10px;
+  min-width: 50px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+}
+
+.countdown-label {
+  color: #b0b0b0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+.countdown-separator {
+  color: #ff6b35;
+  font-size: 2rem;
+  font-weight: 900;
+  margin-top: -15px;
+}
+
+/* ============================
+   ALERTA DE ESCASSEZ
+   ============================ */
+
+.promo-scarcity {
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  border-radius: 12px;
+  padding: 14px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  animation: scarcityPulse 1.5s infinite;
+}
+
+@keyframes scarcityPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 6px 25px rgba(220, 53, 69, 0.6);
+  }
+}
+
+.scarcity-icon {
+  font-size: 1.3rem;
+  animation: fireAnimation 0.5s infinite alternate;
+}
+
+@keyframes fireAnimation {
+  0% { transform: scale(1) rotate(-5deg); }
+  100% { transform: scale(1.1) rotate(5deg); }
+}
+
+.scarcity-text {
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.scarcity-text strong {
+  color: #ffd93d;
+  font-weight: 800;
+}
+
+/* ============================
+   GARANTIA DE 7 DIAS
+   ============================ */
+
+.promo-guarantee {
+  background: linear-gradient(135deg, rgba(40, 167, 69, 0.15) 0%, rgba(40, 167, 69, 0.05) 100%);
+  border: 2px solid rgba(40, 167, 69, 0.5);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.guarantee-icon {
+  font-size: 2.5rem;
+}
+
+.guarantee-content strong {
+  color: #0077b6;
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.guarantee-content p {
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ============================
+   MINI DEPOIMENTOS
+   ============================ */
+
+.promo-testimonials {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.promo-testimonial {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.promo-testimonial img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ff6b35;
+}
+
+.testimonial-text {
+  flex: 1;
+}
+
+.testimonial-text p {
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-style: italic;
+  margin: 0 0 6px 0;
+  line-height: 1.4;
+}
+
+.testimonial-text span {
+  color: #ff6b35;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* ============================
+   BOTÃO MOBILE MELHORADO
+   ============================ */
+
+.mobile-cta-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+.mobile-cta-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.mobile-cta-discount {
+  background: #dc3545;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+.mobile-cta-price {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mobile-cta-price .old-price {
+  color: #999;
+  font-size: 0.85rem;
+  text-decoration: line-through;
+}
+
+.mobile-cta-price .new-price {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.mobile-cta-content button {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8800 100%);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+  transition: all 0.3s ease;
+}
+
+.mobile-cta-content button:active {
+  transform: scale(0.98);
+}
+
+/* ============================
+   RESPONSIVIDADE NOVOS ELEMENTOS
+   ============================ */
+
+@media (max-width: 768px) {
+  .countdown-item {
+    min-width: 50px;
+  }
+  
+  .countdown-value {
+    font-size: 1.5rem;
+    padding: 8px 12px;
+    min-width: 42px;
+  }
+  
+  .countdown-separator {
+    font-size: 1.5rem;
+  }
+  
+  .promo-scarcity {
+    padding: 12px 16px;
+  }
+  
+  .scarcity-text {
+    font-size: 0.85rem;
+  }
+  
+  .promo-guarantee {
+    padding: 14px 16px;
+  }
+  
+  .guarantee-icon {
+    font-size: 2rem;
+  }
+  
+  .guarantee-content strong {
+    font-size: 1rem;
+  }
+  
+  .promo-testimonial {
+    padding: 12px;
+  }
+  
+  .promo-testimonial img {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .testimonial-text p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .promo-countdown {
+    padding: 16px;
+  }
+  
+  .countdown-title {
+    font-size: 0.8rem;
+  }
+  
+  .countdown-timer {
+    gap: 4px;
+  }
+  
+  .countdown-item {
+    min-width: 40px;
+  }
+  
+  .countdown-value {
+    font-size: 1.2rem;
+    padding: 6px 10px;
+    min-width: 35px;
+  }
+  
+  .countdown-label {
+    font-size: 0.65rem;
+  }
+  
+  .countdown-separator {
+    font-size: 1.2rem;
+    margin: 0 2px;
+  }
+  
+  .promo-scarcity {
+    flex-direction: row;
+    text-align: center;
+  }
+  
+  .scarcity-text {
+    font-size: 0.8rem;
+  }
+  
+  .promo-guarantee {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+  
+  .guarantee-icon {
+    font-size: 2.5rem;
+  }
+  
+  .promo-testimonial {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .testimonial-text {
+    text-align: center;
+  }
+  
+  .mobile-cta-content {
+    padding: 0 8px;
+  }
+  
+  .mobile-cta-content button {
+    padding: 12px 18px;
+    font-size: 0.85rem;
   }
 }

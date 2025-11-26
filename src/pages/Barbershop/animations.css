@@ -173,15 +173,15 @@
 
 /* Gradientes personalizados para barbearia */
 .barbershop-gradient-primary {
-  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  background: linear-gradient(135deg, #03045e 0%, #0077b6 100%);
 }
 
 .barbershop-gradient-success {
-  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+  background: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%);
 }
 
 .barbershop-gradient-warning {
-  background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8800 100%);
 }
 
 /* Efeito de parallax sutil */
@@ -206,7 +206,7 @@
 .barbershop-badge {
   display: inline-block;
   padding: 0.5rem 1rem;
-  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  background: linear-gradient(135deg, #ff6b35, #ff8800);
   color: white;
   border-radius: 25px;
   font-size: 0.9rem;

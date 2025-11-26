@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Button from '../../components/Button';
 import { FB_PIXEL } from '../../utils/pixel';
-import { submitBarbershopForm, BarbershopFormData } from '../../services/formSubmission';
 import './animations.css';
 import './form.css';
 import { 
@@ -63,165 +63,49 @@ import {
 } from './styles';
 
 const Barbershop: React.FC = () => {
-  // Estado do formulário
-  const [formData, setFormData] = useState({
-    nomeCompleto: '',
-    telefone: '',
-    tempoAberta: '',
-    numeroBarbeiros: ''
+  const navigate = useNavigate();
+  
+  // Estado para o contador regressivo (termina dia 28/11/2025 às 23:59:59)
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
   });
 
-  // Estado de loading do formulário
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [showWhatsAppModal, setShowWhatsAppModal] = useState(false);
-
-  // Função para fazer scroll até o formulário
-  const scrollToForm = () => {
-    const formElement = document.getElementById('barbershop-form-section');
-    if (formElement) {
-      // Scroll suave com offset para dispositivos móveis
-      const offsetTop = formElement.offsetTop - 80; // 80px de offset para o header
+  // Contador regressivo
+  useEffect(() => {
+    const targetDate = new Date('2025-11-28T23:59:59-03:00').getTime();
+    
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
       
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      });
-      
-      // Alternativa para browsers que não suportam scrollTo com options
-      if (!window.requestAnimationFrame) {
-        formElement.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000)
         });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
       }
-    }
-  };
+    };
+    
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+    
+    return () => clearInterval(interval);
+  }, []);
 
-  // Função para formatar telefone
-  const formatPhone = (value: string) => {
-    // Remove tudo que não é número
-    const numbers = value.replace(/\D/g, '');
-    
-    // Aplica a máscara (11) 99999-9999
-    if (numbers.length <= 2) {
-      return `(${numbers}`;
-    } else if (numbers.length <= 7) {
-      return `(${numbers.slice(0, 2)}) ${numbers.slice(2)}`;
-    } else {
-      return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`;
-    }
-  };
-
-  // Função para atualizar os dados do formulário
-  const handleInputChange = (field: string, value: string) => {
-    // Se for telefone, aplicar formatação
-    if (field === 'telefone') {
-      value = formatPhone(value);
-    }
-    
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
-  };
-
-  // Funções para o modal do WhatsApp
-  const handleJoinWhatsApp = () => {
-    // Link do grupo do WhatsApp (substitua pelo seu link real)
-    const whatsappGroupLink = "https://chat.whatsapp.com/JWC0pUmu04l3ZkXZUErEUN";
-    
-    // Abre o link do WhatsApp
-    window.open(whatsappGroupLink, "_blank");
-    
-    // Rastreamento do pixel para entrada no grupo
-    FB_PIXEL.trackCustomEvent("WhatsAppGroupJoin", {
+  // Função para navegar para a página de criar conta
+  const handlePromoClick = () => {
+    FB_PIXEL.trackCustomEvent("BlackFridayPromoClick", {
       page: "barbershop",
-      action: "join_group",
       timestamp: new Date().toISOString(),
     });
-    
-    // Fecha o modal
-    setShowWhatsAppModal(false);
-  };
-
-  const handleSkipWhatsApp = () => {
-    // Fecha o modal
-    setShowWhatsAppModal(false);
-    
-    // Oferece acesso direto ao app
-    setTimeout(() => {
-      const confirmApp = confirm(
-        'Gostaria de acessar nossa plataforma para começar seu teste gratuito?'
-      );
-      
-      if (confirmApp) {
-        window.open("https://app.gestaoboa.com.br", "_blank");
-      }
-    }, 500);
-  };
-
-  // Função para enviar o formulário
-  const handleFormSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Validação básica
-    if (!formData.nomeCompleto || !formData.telefone || !formData.tempoAberta || !formData.numeroBarbeiros) {
-      alert('Por favor, preencha todos os campos obrigatórios.');
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      // Prepara os dados para envio
-      const dataToSubmit: BarbershopFormData = {
-        nomeCompleto: formData.nomeCompleto,
-        telefone: formData.telefone,
-        tempoAberta: formData.tempoAberta,
-        numeroBarbeiros: formData.numeroBarbeiros,
-        timestamp: new Date().toISOString()
-      };
-
-      // Envia os dados
-      const success = await submitBarbershopForm(dataToSubmit);
-
-      if (success) {
-        // Rastreamento do pixel
-        FB_PIXEL.trackCustomEvent("BarbershopFormSubmit", {
-          page: "barbershop",
-          nome_completo: formData.nomeCompleto,
-          telefone: formData.telefone,
-          tempo_aberta: formData.tempoAberta,
-          numero_barbeiros: formData.numeroBarbeiros,
-          timestamp: new Date().toISOString(),
-        });
-
-        console.log("Formulário enviado com sucesso:", dataToSubmit);
-        
-        setSubmitSuccess(true);
-        
-        // Limpa o formulário
-        setFormData({
-          nomeCompleto: '',
-          telefone: '',
-          tempoAberta: '',
-          numeroBarbeiros: ''
-        });
-
-        // Mostra modal de sucesso e convite para WhatsApp
-        setShowWhatsAppModal(true);
-
-      } else {
-        throw new Error('Falha ao enviar formulário');
-      }
-
-    } catch (error) {
-      console.error('Erro ao enviar formulário:', error);
-      alert('Erro ao enviar formulário. Tente novamente ou entre em contato conosco.');
-    } finally {
-      setIsSubmitting(false);
-    }
+    navigate('/criar-conta?plano=black-friday');
   };
 
   // Rastreamento do carregamento da página
@@ -275,28 +159,12 @@ const Barbershop: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Função para redirecionar para acesso grátis
-  const handleFreeTrialClick = () => {
-    // Rastreamento do pixel
-    FB_PIXEL.trackStartTrial({
-      source: "barbershop_page",
-      timestamp: new Date().toISOString(),
-    });
-    
-    FB_PIXEL.trackCustomEvent("FreeTrial_ButtonClick", {
-      page: "barbershop",
-      button_location: "cta",
-    });
-    
-    console.log("Navegando para o formulário..."); // Para debug
-    scrollToForm(); // Navega para o formulário ao invés de abrir link externo
-  };
   return (
     <>
       <Helmet>
-        <title>Gestão Boa - Sistema Completo para Barbearias</title>
-        <meta name="description" content="Transforme sua barbearia com o sistema de gestão mais completo do mercado. Agendamento online, controle financeiro, gestão de clientes e muito mais." />
-        <meta name="keywords" content="sistema barbearia, agendamento online, gestão barbearia, software barbeiro" />
+        <title>Gestão Boa - Sistema Completo para Barbearias | BLACK FRIDAY R$ 9,90</title>
+        <meta name="description" content="BLACK FRIDAY! Transforme sua barbearia com o sistema de gestão mais completo do mercado por apenas R$ 9,90. Agendamento online, controle financeiro, gestão de clientes e muito mais." />
+        <meta name="keywords" content="sistema barbearia, agendamento online, gestão barbearia, software barbeiro, black friday" />
       </Helmet>
       
       <Header />
@@ -306,14 +174,14 @@ const Barbershop: React.FC = () => {
           {/* Hero Section */}
           <HeroSection>
             <HeroTitle>
-              🔥 <span>BLACK FRIDAY</span> Gestão Boa - Oferta especial será revelada dia <span>14/11</span>
+              🔥 <span>BLACK FRIDAY</span> Gestão Boa - Tudo por apenas <span>R$ 9,90!</span>
             </HeroTitle>
             <HeroSubtitle>
-              Não perca a maior promoção do ano! Para receber nossa oferta EXCLUSIVA de Black Friday, preencha o formulário abaixo e entre no nosso grupo VIP do WhatsApp. A oferta será revelada apenas para os membros do grupo no dia 14/11! 🎯
+              A maior promoção do ano está acontecendo AGORA! 3 meses de sistema + 70 modelos de canvas + consultoria de metas 2026. De R$ 535,00 por apenas R$ 9,90! �
             </HeroSubtitle>
             <Button 
-              text="🎁 QUERO A OFERTA EXCLUSIVA"
-              method={handleFreeTrialClick}
+              text="🎁 PEGAR PROMOÇÃO - R$ 9,90"
+              method={handlePromoClick}
               type="focused"
             />
           </HeroSection>
@@ -376,8 +244,8 @@ const Barbershop: React.FC = () => {
           {/* CTA Button após problemas/soluções */}
           <CTAButtonContainer>
             <Button 
-              text="🎁 QUERO A OFERTA EXCLUSIVA"
-              method={handleFreeTrialClick}
+              text="🎁 PEGAR PROMOÇÃO - R$ 9,90"
+              method={handlePromoClick}
               type="focused"
             />
           </CTAButtonContainer>
@@ -430,8 +298,8 @@ const Barbershop: React.FC = () => {
             {/* CTA Button após depoimentos */}
             <CTAButtonContainer>
               <Button 
-                text="🎁 QUERO A OFERTA EXCLUSIVA"
-                method={handleFreeTrialClick}
+                text="🎁 PEGAR PROMOÇÃO - R$ 9,90"
+                method={handlePromoClick}
                 type="focused"
               />
             </CTAButtonContainer>
@@ -461,8 +329,8 @@ const Barbershop: React.FC = () => {
               {/* CTA Button na seção de agendamento */}
               <CTAButtonContainer>
                 <Button 
-                  text="🎁 QUERO A OFERTA EXCLUSIVA"
-                  method={handleFreeTrialClick}
+                  text="🎁 PEGAR PROMOÇÃO - R$ 9,90"
+                  method={handlePromoClick}
                   type="focused"
                 />
               </CTAButtonContainer>
@@ -528,8 +396,8 @@ const Barbershop: React.FC = () => {
             {/* CTA Button após recursos */}
             <CTAButtonContainer>
               <Button 
-                text="🎁 QUERO A OFERTA EXCLUSIVA"
-                method={handleFreeTrialClick}
+                text="🎁 PEGAR PROMOÇÃO - R$ 9,90"
+                method={handlePromoClick}
                 type="focused"
               />
             </CTAButtonContainer>
@@ -542,7 +410,7 @@ const Barbershop: React.FC = () => {
             </CTATitle>
             <CTADescription>
               Todo dia sem organização é dinheiro que sai do seu bolso. Clientes perdidos, serviços não cobrados, 
-              despesas desnecessárias... Preencha o formulário abaixo e ganhe acesso grátis ao Gestão Boa.
+              despesas desnecessárias... Aproveite a BLACK FRIDAY e tenha acesso completo ao Gestão Boa por apenas R$ 9,90!
             </CTADescription>
           </CTASection>
 
@@ -749,103 +617,142 @@ const Barbershop: React.FC = () => {
           </PricingSection>
           */}
 
-          {/* Formulário de Contato */}
-          <PricingSection id="barbershop-form-section">
-            <PricingTitle>🎁 Garanta sua oferta EXCLUSIVA de Black Friday</PricingTitle>
+          {/* Seção de Promoção Black Friday */}
+          <PricingSection id="barbershop-promo-section">
+            <PricingTitle>🔥 BLACK FRIDAY - TUDO POR APENAS R$ 9,90! 🔥</PricingTitle>
             <div className="black-friday-subtitle">
-              Preencha os dados abaixo e entre no nosso grupo VIP para receber a oferta especial no dia 14/11! 🔥
+              A maior promoção do ano! Aproveite antes que acabe!
             </div>
-            <div className="barbershop-form-container">
-              <form className="barbershop-form" onSubmit={handleFormSubmit}>
-                <div className="form-field">
-                  <label className="form-label">Nome Completo *</label>
-                  <input
-                    type="text"
-                    className="form-input"
-                    placeholder="Digite seu nome completo"
-                    value={formData.nomeCompleto}
-                    onChange={(e) => handleInputChange('nomeCompleto', e.target.value)}
-                    required
-                  />
+            
+            <div className="black-friday-promo-container">
+              {/* Contador Regressivo */}
+              <div className="promo-countdown">
+                <div className="countdown-title">⏰ OFERTA TERMINA EM:</div>
+                <div className="countdown-timer">
+                  <div className="countdown-item">
+                    <span className="countdown-value">{timeLeft.days}</span>
+                    <span className="countdown-label">dias</span>
+                  </div>
+                  <div className="countdown-separator">:</div>
+                  <div className="countdown-item">
+                    <span className="countdown-value">{String(timeLeft.hours).padStart(2, '0')}</span>
+                    <span className="countdown-label">horas</span>
+                  </div>
+                  <div className="countdown-separator">:</div>
+                  <div className="countdown-item">
+                    <span className="countdown-value">{String(timeLeft.minutes).padStart(2, '0')}</span>
+                    <span className="countdown-label">min</span>
+                  </div>
+                  <div className="countdown-separator">:</div>
+                  <div className="countdown-item">
+                    <span className="countdown-value">{String(timeLeft.seconds).padStart(2, '0')}</span>
+                    <span className="countdown-label">seg</span>
+                  </div>
                 </div>
+              </div>
 
-                <div className="form-field">
-                  <label className="form-label">Telefone/WhatsApp *</label>
-                  <input
-                    type="tel"
-                    className="form-input"
-                    placeholder="(11) 99999-9999"
-                    value={formData.telefone}
-                    onChange={(e) => handleInputChange('telefone', e.target.value)}
-                    maxLength={15}
-                    required
-                  />
+              {/* Alerta de Vagas Limitadas */}
+              <div className="promo-scarcity">
+                <span className="scarcity-icon">🔥</span>
+                <span className="scarcity-text">RESTAM APENAS <strong>5 VAGAS</strong> NESTE VALOR!</span>
+              </div>
+
+              <div className="promo-package">
+                <h3>📦 PACOTE COMPLETO</h3>
+                
+                <div className="promo-item">
+                  <span className="promo-item-name">3 meses de acesso ao sistema</span>
+                  <span className="promo-item-price-original">R$ 387,00</span>
                 </div>
-
-                <div className="form-field">
-                  <label className="form-label">Há quanto tempo sua barbearia está aberta? *</label>
-                  <select
-                    className="form-select"
-                    value={formData.tempoAberta}
-                    onChange={(e) => handleInputChange('tempoAberta', e.target.value)}
-                    required
-                    title="Selecione há quanto tempo sua barbearia está aberta"
-                  >
-                    <option value="">Selecione uma opção</option>
-                    <option value="menos-6-meses">Menos de 6 meses</option>
-                    <option value="6-meses-1-ano">De 6 meses a 1 ano</option>
-                    <option value="1-2-anos">De 1 a 2 anos</option>
-                    <option value="2-5-anos">De 2 a 5 anos</option>
-                    <option value="mais-5-anos">Mais de 5 anos</option>
-                  </select>
+                
+                <div className="promo-item">
+                  <span className="promo-item-name">+70 modelos de design de canvas</span>
+                  <span className="promo-item-price-original">R$ 49,00</span>
                 </div>
-
-                <div className="form-field">
-                  <label className="form-label">Quantos barbeiros trabalham na sua barbearia? *</label>
-                  <select
-                    className="form-select"
-                    value={formData.numeroBarbeiros}
-                    onChange={(e) => handleInputChange('numeroBarbeiros', e.target.value)}
-                    required
-                    title="Selecione quantos barbeiros trabalham na sua barbearia"
-                  >
-                    <option value="">Selecione uma opção</option>
-                    <option value="apenas-eu">Apenas eu (proprietário)</option>
-                    <option value="2-barbeiros">2 barbeiros</option>
-                    <option value="3-barbeiros">3 barbeiros</option>
-                    <option value="4-5-barbeiros">4 a 5 barbeiros</option>
-                    <option value="mais-5-barbeiros">Mais de 5 barbeiros</option>
-                  </select>
+                
+                <div className="promo-item">
+                  <span className="promo-item-name">Consultoria online sobre metas 2026</span>
+                  <span className="promo-item-price-original">R$ 99,00</span>
                 </div>
-
-                <div className="form-button-container">
-                  <button 
-                    type="submit"
-                    className="form-submit-button"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting 
-                      ? 'ENVIANDO...' 
-                      : submitSuccess 
-                        ? '✅ FORMULÁRIO ENVIADO - AGUARDE O GRUPO VIP!' 
-                        : '🎁 QUERO A OFERTA EXCLUSIVA'
-                    }
-                  </button>
+                
+                <div className="promo-total">
+                  <span>Valor Total:</span>
+                  <span className="promo-total-original">R$ 535,00</span>
                 </div>
+                
+                <div className="promo-final-price">
+                  <span className="promo-label">🎁 BLACK FRIDAY APENAS:</span>
+                  <span className="promo-price">R$ 9,90</span>
+                </div>
+                
+                <div className="promo-savings">
+                  💰 ECONOMIZE R$ 525,10 (98% OFF)
+                </div>
+              </div>
+              
+              <div className="promo-benefits">
+                <h4>✅ O que você vai receber:</h4>
+                <ul>
+                  <li>📅 Sistema de Agendamento Online 24/7</li>
+                  <li>💰 Controle Financeiro Completo</li>
+                  <li>👥 Gestão de Clientes e Histórico</li>
+                  <li>📊 Relatórios e Dashboards</li>
+                  <li>💬 Lembretes via WhatsApp</li>
+                  <li>🎨 +70 Templates de Canvas para Divulgação</li>
+                  <li>🎯 Consultoria para Planejamento de Metas 2026</li>
+                  <li>📞 Suporte via WhatsApp</li>
+                </ul>
+              </div>
 
-                <p className="form-disclaimer">
-                  <strong>*</strong> Campos obrigatórios. <strong>Preencha o formulário e ganhe um acesso grátis</strong>, sem compromisso, sem cartão de crédito.
-                </p>
-              </form>
+              {/* Garantia de 7 dias */}
+              <div className="promo-guarantee">
+                <div className="guarantee-icon">🛡️</div>
+                <div className="guarantee-content">
+                  <strong>Garantia de 7 dias</strong>
+                  <p>Se não gostar, devolvemos 100% do seu dinheiro. Sem perguntas.</p>
+                </div>
+              </div>
+
+              {/* Mini Depoimentos */}
+              <div className="promo-testimonials">
+                <div className="promo-testimonial">
+                  <img src="/PedroArthur.jpg" alt="Pedro Arthur" />
+                  <div className="testimonial-text">
+                    <p>"Consigo saber com exatidão quantos clientes eu tenho e atendo"</p>
+                    <span>Pedro Arthur - Prime Barbershop</span>
+                  </div>
+                </div>
+                <div className="promo-testimonial">
+                  <img src="/leandro.png" alt="Leandro Figueiredo" />
+                  <div className="testimonial-text">
+                    <p>"Aumentei meu faturamento e organizei completamente minha barbearia"</p>
+                    <span>Leandro Figueiredo - Barbearia Duque</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="form-button-container">
+                <button 
+                  type="button"
+                  className="form-submit-button promo-button"
+                  onClick={handlePromoClick}
+                >
+                  🎁 PEGAR PROMOÇÃO AGORA - R$ 9,90
+                </button>
+              </div>
+              
+              <p className="promo-disclaimer">
+                🔒 Pagamento 100% seguro • Acesso imediato • Garantia de 7 dias
+              </p>
             </div>
           </PricingSection>
 
-          {/* 20 Days Free Trial Section */}
+          {/* Guarantee Section */}
           <GuaranteeSection>
-            <GuaranteeTitle>Acesso grátis garantido</GuaranteeTitle>
+            <GuaranteeTitle>🔒 Pagamento 100% Seguro</GuaranteeTitle>
             <GuaranteeDescription>
-              Preencha o formulário acima e ganhe acesso completo ao Gestão Boa. 
-              Sem compromisso, sem cartão de crédito. Veja na prática como o sistema pode transformar sua barbearia.
+              Compra protegida via Asaas. Após o pagamento, você receberá acesso imediato ao sistema 
+              e todos os bônus da promoção Black Friday. Não perca essa oportunidade única!
             </GuaranteeDescription>
           </GuaranteeSection>
 
@@ -904,8 +811,8 @@ const Barbershop: React.FC = () => {
               {/* CTA Button na seção sobre nós */}
               <CTAButtonContainer>
                 <Button 
-                  text="🎁 QUERO A OFERTA EXCLUSIVA"
-                  method={handleFreeTrialClick}
+                  text="🎁 PEGAR PROMOÇÃO - R$ 9,90"
+                  method={handlePromoClick}
                   type="focused"
                 />
               </CTAButtonContainer>
@@ -918,75 +825,37 @@ const Barbershop: React.FC = () => {
           {/* Final CTA */}
           <FinalCTASection>
             <CTATitle>
-              Comece hoje mesmo - Preencha o formulário e ganhe acesso grátis
+              🔥 Não deixe essa oportunidade passar! 🔥
             </CTATitle>
             <CTADescription>
-              Junte-se às barbearias que já usam o Gestão Boa. 
-              Preencha o formulário acima com as informações da sua barbearia e ganhe acesso completo ao sistema.
+              Junte-se às centenas de barbearias que já usam o Gestão Boa. 
+              Aproveite a Black Friday com 98% de desconto - de R$ 535,00 por apenas R$ 9,90!
             </CTADescription>
             <Button 
-              text="GANHAR ACESSO GRÁTIS"
-              method={handleFreeTrialClick}
+              text="🎁 PEGAR PROMOÇÃO - R$ 9,90"
+              method={handlePromoClick}
               type="focused"
             />
           </FinalCTASection>
         </Content>
         
         
-        {/* Botão CTA fixo no fundo para mobile */}
+        {/* Botão CTA fixo no fundo para mobile com mini resumo */}
         <MobileFixedCTAButton>
-          <button onClick={handleFreeTrialClick}>
-            🎁 QUERO A OFERTA EXCLUSIVA
-          </button>
+          <div className="mobile-cta-content">
+            <div className="mobile-cta-info">
+              <span className="mobile-cta-discount">98% OFF</span>
+              <span className="mobile-cta-price">
+                <span className="old-price">R$ 535</span>
+                <span className="new-price">R$ 9,90</span>
+              </span>
+            </div>
+            <button onClick={handlePromoClick}>
+              PEGAR OFERTA
+            </button>
+          </div>
         </MobileFixedCTAButton>
       </Container>
-      
-      {/* Modal do WhatsApp */}
-      {showWhatsAppModal && (
-        <div className="whatsapp-modal-overlay">
-          <div className="whatsapp-modal">
-            <div className="whatsapp-modal-header">
-              <h3>🔥 BLACK FRIDAY - Formulário enviado com sucesso!</h3>
-            </div>
-            
-            <div className="whatsapp-modal-content">
-              <div className="whatsapp-icon">
-                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="30" cy="30" r="30" fill="#25D366"/>
-                  <path d="M45.5 14.4C42.9 11.8 39.7 10.1 36.2 9.4C32.7 8.7 29.1 9 25.8 10.2C22.5 11.4 19.6 13.5 17.4 16.2C15.2 18.9 13.8 22.1 13.4 25.5C13 28.9 13.5 32.3 15 35.4L13 47L24.9 45.1C27.8 46.4 30.9 47.1 34.1 47C37.3 46.9 40.4 46.1 43.2 44.6C46 43.1 48.4 40.9 50.2 38.2C52 35.5 53.1 32.4 53.4 29.2C53.7 26 53.2 22.8 51.9 19.9C50.6 17 48.6 14.5 46.1 12.6L45.5 14.4ZM30 43.3C27.3 43.3 24.7 42.6 22.4 41.3L21.8 41L16.7 42.3L18 37.3L17.6 36.7C16.2 34.3 15.4 31.6 15.4 28.8C15.4 21.8 21.1 16.1 28.1 16.1C31.4 16.1 34.5 17.4 36.8 19.7C39.1 22 40.4 25.1 40.4 28.4C40.4 35.4 34.7 41.1 27.7 41.1L30 43.3Z" fill="white"/>
-                </svg>
-              </div>
-              
-              <h4>🎁 Entre no grupo VIP para a oferta BLACK FRIDAY!</h4>
-              <p>Sua oferta EXCLUSIVA será revelada dia <strong>14/11</strong>! Entre no grupo VIP e receba:</p>
-              
-              <ul className="whatsapp-benefits">
-                <li>🔥 Oferta EXCLUSIVA de Black Friday (revelada 14/11)</li>
-                <li>💰 Preços especiais apenas para o grupo VIP</li>
-                <li>⚡ Acesso prioritário às promoções</li>
-                <li>✅ Suporte direto e preferencial</li>
-                <li>📈 Dicas para aumentar o faturamento da barbearia</li>
-              </ul>
-            </div>
-            
-            <div className="whatsapp-modal-actions">
-              <button 
-                className="whatsapp-join-btn"
-                onClick={handleJoinWhatsApp}
-              >
-                🎁 QUERO A OFERTA EXCLUSIVA
-              </button>
-              
-              <button 
-                className="whatsapp-skip-btn"
-                onClick={handleSkipWhatsApp}
-              >
-                Pular por agora
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
       
       <Footer />
     </>

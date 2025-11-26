@@ -44,7 +44,7 @@ export const HeroTitle = styled.h1`
   font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  color: #2c3e50;
+  color: #03045e;
   line-height: 1.2;
   
   span {
@@ -152,7 +152,7 @@ export const ProblemTitle = styled.h2`
   font-weight: 700;
   text-align: center;
   margin-bottom: 2rem;
-  color: #e74c3c;
+  color: #ff6b35;
   
   @media (max-width: 768px) {
     font-size: 1.6rem;
@@ -173,10 +173,10 @@ export const ProblemList = styled.div`
 export const ProblemItem = styled.div`
   font-size: 1rem;
   padding: 1rem;
-  background: #fff5f5;
-  border-left: 4px solid #e74c3c;
+  background: #fff5f0;
+  border-left: 4px solid #ff6b35;
   border-radius: 8px;
-  color: #2c3e50;
+  color: #03045e;
   
   @media (max-width: 768px) {
     font-size: 0.9rem;
@@ -212,7 +212,7 @@ export const SolutionTitle = styled.h2`
   font-weight: 700;
   text-align: center;
   margin-bottom: 2rem;
-  color: #27ae60;
+  color: #0077b6;
   
   @media (max-width: 768px) {
     font-size: 1.6rem;
@@ -233,10 +233,10 @@ export const SolutionList = styled.div`
 export const SolutionItem = styled.div`
   font-size: 1rem;
   padding: 1rem;
-  background: #f0fff4;
-  border-left: 4px solid #27ae60;
+  background: #e8f4fc;
+  border-left: 4px solid #0077b6;
   border-radius: 8px;
-  color: #2c3e50;
+  color: #03045e;
   
   @media (max-width: 768px) {
     font-size: 0.9rem;
@@ -264,7 +264,7 @@ export const TestimonialsTitle = styled.h2`
   font-weight: 700;
   text-align: center;
   margin-bottom: 3rem;
-  color: #2c3e50;
+  color: #03045e;
   
   @media (max-width: 768px) {
     font-size: 1.8rem;
@@ -308,7 +308,7 @@ export const TestimonialCard = styled.div`
 
 export const TestimonialContent = styled.p`
   font-size: 1.2rem;
-  color: #2c3e50;
+  color: #03045e;
   margin-bottom: 1.5rem;
   line-height: 1.6;
   font-style: italic;
@@ -344,7 +344,7 @@ export const TestimonialAuthor = styled.div`
     
     strong {
       font-size: 1.1rem;
-      color: #2c3e50;
+      color: #03045e;
       margin-bottom: 0.2rem;
     }
     
@@ -375,7 +375,7 @@ export const FeatureTitle = styled.h2`
   font-weight: 700;
   text-align: center;
   margin-bottom: 3rem;
-  color: #2c3e50;
+  color: #03045e;
   
   @media (max-width: 768px) {
     font-size: 1.8rem;
@@ -447,7 +447,7 @@ export const FeatureCardTitle = styled.h3`
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: #2c3e50;
+  color: #03045e;
 `;
 
 export const FeatureDescription = styled.p`
@@ -457,7 +457,7 @@ export const FeatureDescription = styled.p`
 `;
 
 export const CTASection = styled.section`
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #03045e 0%, #0077b6 100%);
   padding: 4rem 2rem;
   border-radius: 20px;
   margin: 4rem 0;
@@ -567,7 +567,7 @@ export const PricingSection = styled.section`
     
     &:hover {
       background: #e9ecef;
-      color: #2c3e50;
+      color: #03045e;
     }
     
     &.active:hover {
@@ -578,8 +578,8 @@ export const PricingSection = styled.section`
     .plan-type-discount {
       font-size: 0.7rem;
       font-weight: 700;
-      color: #e74c3c;
-      background: rgba(231, 76, 60, 0.1);
+      color: #ff6b35;
+      background: rgba(255, 107, 53, 0.1);
       padding: 0.2rem 0.5rem;
       border-radius: 10px;
       margin-top: 0.2rem;
@@ -618,7 +618,7 @@ export const PricingTitle = styled.h2`
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 3rem;
-  color: #2c3e50;
+  color: #03045e;
   
   @media (max-width: 768px) {
     font-size: 2rem;
@@ -668,7 +668,7 @@ export const PricingCard = styled.div`
     h3 {
       font-size: 1.5rem;
       font-weight: 700;
-      color: #2c3e50;
+      color: #03045e;
       margin-bottom: 0.5rem;
     }
     
@@ -694,7 +694,7 @@ export const PricingCard = styled.div`
     .savings {
       display: block;
       font-size: 0.8rem;
-      color: #27ae60;
+      color: #0077b6;
       font-weight: 700;
       margin-top: 0.2rem;
     }
@@ -708,7 +708,7 @@ export const PricingCard = styled.div`
     
     li {
       padding: 0.5rem 0;
-      color: #2c3e50;
+      color: #03045e;
       font-size: 0.95rem;
       
       &:first-child {
@@ -763,12 +763,12 @@ export const PricingPeriod = styled.p`
 `;
 
 export const GuaranteeSection = styled.section`
-  background: #e8f5e8;
+  background: linear-gradient(135deg, rgba(0, 119, 182, 0.1) 0%, rgba(0, 180, 216, 0.05) 100%);
   padding: 3rem 2rem;
   border-radius: 16px;
   margin: 3rem 0;
   text-align: center;
-  border: 2px solid #27ae60;
+  border: 2px solid #0077b6;
   
   @media (max-width: 768px) {
     padding: 2rem 1rem;
@@ -779,11 +779,11 @@ export const GuaranteeTitle = styled.h3`
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: #27ae60;
+  color: #0077b6;
 `;
 
 export const GuaranteeDescription = styled.p`
-  color: #2c3e50;
+  color: #03045e;
   font-size: 1.1rem;
   line-height: 1.6;
   max-width: 600px;
@@ -791,7 +791,7 @@ export const GuaranteeDescription = styled.p`
 `;
 
 export const FinalCTASection = styled.section`
-  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  background: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%);
   padding: 4rem 2rem;
   border-radius: 20px;
   margin: 4rem 0;
@@ -804,7 +804,7 @@ export const FinalCTASection = styled.section`
 `;
 
 export const OnlineBookingSection = styled.section`
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #03045e 0%, #0077b6 100%);
   padding: 4rem 2rem;
   border-radius: 20px;
   margin: 4rem 0;
@@ -840,7 +840,7 @@ export const OnlineBookingTitle = styled.h2`
   margin-bottom: 1.5rem;
   
   .highlight {
-    background: linear-gradient(45deg, #ff6b6b, #ffa726);
+    background: linear-gradient(45deg, #ff6b35, #ff8800);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -937,7 +937,7 @@ export const OnlineBookingImageContainer = styled.div`
 `;
 
 export const AboutUsSection = styled.section`
-  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  background: linear-gradient(135deg, #03045e 0%, #0077b6 100%);
   padding: 4rem 2rem;
   border-radius: 20px;
   margin: 4rem 0 0 0;
@@ -953,7 +953,7 @@ export const AboutUsSection = styled.section`
     left: 30px;
     width: 40px;
     height: 40px;
-    background: #e74c3c;
+    background: #ff6b35;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1014,7 +1014,7 @@ export const AboutUsContent = styled.div`
 `;
 
 export const AboutUsLabel = styled.div`
-  color: #e74c3c;
+  color: #ff6b35;
   font-size: 0.9rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -1088,7 +1088,7 @@ export const FounderCard = styled.div`
   
   .role {
     font-size: 0.9rem;
-    color: #e74c3c;
+    color: #ff6b35;
     font-weight: 500;
     margin-bottom: 0.8rem;
     display: block;
@@ -1155,22 +1155,22 @@ export const FloatingCTAButton = styled.div`
     writing-mode: vertical-rl;
     text-orientation: mixed;
     padding: 20px 15px;
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    background: linear-gradient(135deg, #ff6b35, #ff8800);
     color: white;
     border: none;
     border-radius: 10px;
     font-weight: bold;
     font-size: 14px;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
     transition: all 0.3s ease;
     white-space: nowrap;
     min-height: 200px;
     
     &:hover {
       transform: scale(1.05);
-      box-shadow: 0 6px 20px rgba(231, 76, 60, 0.6);
-      background: linear-gradient(135deg, #c0392b, #e74c3c);
+      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+      background: linear-gradient(135deg, #ff8800, #ff6b35);
     }
     
     &:active {
@@ -1200,19 +1200,19 @@ export const MobileFixedCTAButton = styled.div`
   button {
     width: 100%;
     padding: 15px;
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    background: linear-gradient(135deg, #ff6b35, #ff8800);
     color: white;
     border: none;
     border-radius: 10px;
     font-weight: bold;
     font-size: 16px;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
     transition: all 0.3s ease;
     
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(231, 76, 60, 0.6);
+      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
     }
     
     &:active {

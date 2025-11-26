@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer';
 import { FB_PIXEL } from '../../utils/pixel';
 import '../Barbershop/form.css';
@@ -38,6 +39,8 @@ import {
 } from './styles';
 
 const BlackFriday: React.FC = () => {
+  const navigate = useNavigate();
+  
   // Rastreamento do carregamento da página
   useEffect(() => {
     FB_PIXEL.pageView();
@@ -47,6 +50,14 @@ const BlackFriday: React.FC = () => {
       timestamp: new Date().toISOString(),
     });
   }, []);
+
+  const handlePurchaseClick = () => {
+    FB_PIXEL.trackCustomEvent("BlackFridayPurchaseClick", {
+      page: "black_friday",
+      timestamp: new Date().toISOString(),
+    });
+    navigate('/criar-conta?plano=black-friday');
+  };
 
   return (
     <>
@@ -171,13 +182,7 @@ const BlackFriday: React.FC = () => {
                 <PurchaseButtonContainer>
                   <PurchaseButton 
                     type="button"
-                    onClick={() => {
-                      FB_PIXEL.trackCustomEvent("BlackFridayPurchaseClick", {
-                        page: "black_friday",
-                        timestamp: new Date().toISOString(),
-                      });
-                      window.open('https://www.asaas.com/c/djam9ndwkf1l3lsi', '_blank');
-                    }}
+                    onClick={handlePurchaseClick}
                   >
                     🎁 GARANTIR OFERTA BLACK FRIDAY AGORA
                   </PurchaseButton>

@@ -356,6 +356,157 @@ input:focus {
   color: #495057;
 }
 
+/* ============================
+   INDICADORES DE PROGRESSO
+   ============================ */
+
+.registration-progress {
+  margin-bottom: 24px;
+}
+
+.registration-progress-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.registration-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+}
+
+.registration-step-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e9ecef;
+  color: #6c757d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.registration-step.active .registration-step-number {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8800 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+}
+
+.registration-step.completed .registration-step-number {
+  background: #28a745;
+  color: #ffffff;
+}
+
+.registration-step-text {
+  font-size: 0.7rem;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.registration-step.active .registration-step-text,
+.registration-step.completed .registration-step-text {
+  color: #03045e;
+}
+
+.registration-step-line {
+  width: 40px;
+  height: 3px;
+  background: #e9ecef;
+  margin: 0 8px;
+  margin-bottom: 22px;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.registration-step-line.completed {
+  background: #28a745;
+}
+
+/* Progress Indicator for Company Creation */
+.progress-indicator {
+  margin-top: 10px;
+}
+
+.progress-steps-enhanced {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.progress-step-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.progress-step-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.progress-step-circle.active {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8800 100%);
+  border-color: #ff6b35;
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.5);
+}
+
+.progress-step-circle.completed {
+  background: #28a745;
+  border-color: #28a745;
+  color: #ffffff;
+}
+
+.progress-step-label {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.progress-step-label.active {
+  color: #ffffff;
+}
+
+.progress-line {
+  position: absolute;
+  width: 50px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  top: 17px;
+  left: 100%;
+  margin-left: 5px;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.progress-line.completed {
+  background: #28a745;
+}
+
 /* Responsiveness */
 @media (max-width: 576px) {
   .registration-form-container {
@@ -371,5 +522,36 @@ input:focus {
   .avatar-preview {
     width: 80px;
     height: 80px;
+  }
+  
+  .registration-step-text {
+    font-size: 0.6rem;
+  }
+  
+  .registration-step-number {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+  
+  .registration-step-line {
+    width: 25px;
+    margin: 0 4px;
+    margin-bottom: 20px;
+  }
+  
+  .progress-step-circle {
+    width: 30px;
+    height: 30px;
+    font-size: 0.8rem;
+  }
+  
+  .progress-step-label {
+    font-size: 0.6rem;
+  }
+  
+  .progress-line {
+    width: 30px;
+    top: 14px;
   }
 }
