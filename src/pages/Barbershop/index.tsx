@@ -177,7 +177,7 @@ const Barbershop: React.FC = () => {
               🔥 <span>BLACK FRIDAY</span> Gestão Boa - Tudo por apenas <span>R$ 9,90!</span>
             </HeroTitle>
             <HeroSubtitle>
-              A maior promoção do ano está acontecendo AGORA! 3 meses de sistema + 70 modelos de canvas + consultoria de metas 2026. De R$ 535,00 por apenas R$ 9,90! �
+              A maior promoção do ano está acontecendo AGORA! Aproveite que são vamas limitadas!
             </HeroSubtitle>
             <Button 
               text="🎁 PEGAR PROMOÇÃO - R$ 9,90"
