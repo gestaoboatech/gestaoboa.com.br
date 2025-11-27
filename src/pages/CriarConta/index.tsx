@@ -10,6 +10,30 @@ import {
 } from "../../services/userApi";
 import "./styles.css";
 
+// Google Ads Conversion Tracking
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void;
+  }
+}
+
+function gtag_report_conversion(url?: string) {
+  const callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location.href = url;
+    }
+  };
+  
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'conversion', {
+      'send_to': 'AW-17761069351/6u6iCL3zj8gbEKfSkZVC',
+      'event_callback': callback
+    });
+  }
+  
+  return false;
+}
+
 type PlanType = "basico" | "crescimento" | "empresarial" | "black-friday";
 
 const PLAN_CONFIG: Record<PlanType, { 
@@ -351,6 +375,9 @@ const CriarConta: React.FC = () => {
         throw new Error(result.error.message ?? "Erro ao criar empresa");
       }
 
+      // Trigger Google Ads conversion event
+      gtag_report_conversion();
+      
       window.open(planConfig.paymentLink, "_blank");
       navigate("/");
     } catch (err) {
