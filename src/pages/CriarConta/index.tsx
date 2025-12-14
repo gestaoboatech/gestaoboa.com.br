@@ -46,23 +46,23 @@ const PLAN_CONFIG: Record<PlanType, {
   "basico": {
     name: "Básico",
     price: "R$ 49,90/mês",
-    paymentLink: "https://www.asaas.com/c/basico",
+    paymentLink: "https://www.app.gestaoboa.com.br",
   },
   "crescimento": {
     name: "Crescimento",
-    price: "R$ 99,90/mês",
-    paymentLink: "https://www.asaas.com/c/crescimento",
+    price: "R$ 89,90/mês",
+    paymentLink: "https://www.app.gestaoboa.com.br",
   },
   "empresarial": {
     name: "Empresarial",
-    price: "R$ 199,90/mês",
-    paymentLink: "https://www.asaas.com/c/empresarial",
+    price: "R$ 98,72/mês",
+    paymentLink: "https://www.app.gestaoboa.com.br",
   },
   "black-friday": {
     name: "Black Friday",
     price: "R$ 9,90",
     originalPrice: "R$ 535,00",
-    paymentLink: "https://www.asaas.com/c/djam9ndwkf1l3lsi",
+    paymentLink: "https://www.app.gestaoboa.com.br",
     discount: "98% OFF",
   },
 };
