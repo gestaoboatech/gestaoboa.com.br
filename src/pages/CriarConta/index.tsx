@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import {
   loginUser,
@@ -85,11 +85,8 @@ const CriarConta: React.FC = () => {
   const [companyStep, setCompanyStep] = useState(0);
   const [userToken, setUserToken] = useState<string | null>(null);
   const [formData, setFormData] = useState({
-    photo: "",
     name: "",
     surname: "",
-    document: "",
-    birthday: "",
     phone: "",
     email: "",
     password: "",
@@ -97,7 +94,6 @@ const CriarConta: React.FC = () => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const photoInputRef = useRef<HTMLInputElement>(null);
 
   // Company form states
   const [companyName, setCompanyName] = useState("");
@@ -119,39 +115,6 @@ const CriarConta: React.FC = () => {
       fetchCategories();
     }
   }, [currentStep]);
-
-  const formatCPF = (value: string) => {
-    const cleaned = value.replace(/\D/g, "");
-    if (cleaned.length <= 11) {
-      let formatted = cleaned;
-      if (cleaned.length > 3) {
-        formatted = `${cleaned.slice(0, 3)}.${cleaned.slice(3)}`;
-      }
-      if (cleaned.length > 6) {
-        formatted = `${formatted.slice(0, 7)}.${formatted.slice(7)}`;
-      }
-      if (cleaned.length > 9) {
-        formatted = `${formatted.slice(0, 11)}-${formatted.slice(11)}`;
-      }
-      return formatted;
-    }
-    return value;
-  };
-
-  const formatBirthday = (value: string) => {
-    const cleaned = value.replace(/\D/g, "");
-    if (cleaned.length <= 8) {
-      let formatted = cleaned;
-      if (cleaned.length > 2) {
-        formatted = `${cleaned.slice(0, 2)}/${cleaned.slice(2)}`;
-      }
-      if (cleaned.length > 4) {
-        formatted = `${formatted.slice(0, 5)}/${formatted.slice(5)}`;
-      }
-      return formatted;
-    }
-    return value;
-  };
 
   const formatPhone = (value: string) => {
     const cleaned = value.replace(/\D/g, "");
@@ -179,41 +142,11 @@ const CriarConta: React.FC = () => {
     }
 
     let formattedValue = value;
-    if (name === "document") {
-      formattedValue = formatCPF(value);
-    } else if (name === "birthday") {
-      formattedValue = formatBirthday(value);
-    } else if (name === "phone") {
+    if (name === "phone") {
       formattedValue = formatPhone(value);
     }
 
     setFormData((prev) => ({ ...prev, [name]: formattedValue }));
-  };
-
-  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    if (!file.type.startsWith("image/")) {
-      setError("Por favor, selecione uma imagem válida.");
-      return;
-    }
-
-    if (file.size > 5 * 1024 * 1024) {
-      setError("A imagem deve ter no máximo 5MB.");
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      if (event.target?.result) {
-        setFormData((prev) => ({
-          ...prev,
-          photo: event.target!.result as string,
-        }));
-      }
-    };
-    reader.readAsDataURL(file);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -225,11 +158,8 @@ const CriarConta: React.FC = () => {
       return;
     }
 
-    if (
-      !formData.document.replace(/\D/g, "") ||
-      formData.document.replace(/\D/g, "").length !== 11
-    ) {
-      setError("Por favor, insira um CPF válido.");
+    if (!formData.phone.replace(/\D/g, "") || formData.phone.replace(/\D/g, "").length < 10) {
+      setError("Por favor, insira um telefone válido.");
       return;
     }
 
@@ -251,19 +181,13 @@ const CriarConta: React.FC = () => {
     setLoading(true);
 
     try {
-      const birthdayParts = formData.birthday.split("/");
-      const formattedBirthday =
-        birthdayParts.length === 3
-          ? `${birthdayParts[2]}-${birthdayParts[1]}-${birthdayParts[0]}T17:28:17.213Z`
-          : formData.birthday;
-
       const userData = {
         name: formData.name,
         surname: formData.surname,
-        document: formData.document.replace(/\D/g, ""),
+        document: "",
         email: formData.email,
         password: formData.password,
-        birthday: formattedBirthday,
+        birthday: "",
         phone: formData.phone.replace(/\D/g, ""),
         gender: "",
         cep: "",
@@ -591,28 +515,6 @@ const CriarConta: React.FC = () => {
                   </div>
 
                   <form onSubmit={handleSubmit} className="signup-form">
-                    <div className="avatar-section">
-                      <div
-                        className="avatar-upload"
-                        onClick={() => photoInputRef.current?.click()}
-                        style={{
-                          backgroundImage: formData.photo
-                            ? `url(${formData.photo})`
-                            : "none",
-                        }}
-                      >
-                        {!formData.photo && <span className="avatar-placeholder">+</span>}
-                      </div>
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handlePhotoChange}
-                        ref={photoInputRef}
-                        hidden
-                      />
-                      <span className="avatar-label">Adicionar foto</span>
-                    </div>
-
                     <div className="form-row">
                       <div className="form-group">
                         <label htmlFor="name">Nome *</label>
@@ -641,42 +543,16 @@ const CriarConta: React.FC = () => {
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="document">CPF *</label>
+                      <label htmlFor="phone">Telefone *</label>
                       <input
                         type="text"
-                        id="document"
-                        name="document"
-                        value={formData.document}
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
                         onChange={handleChange}
-                        placeholder="000.000.000-00"
+                        placeholder="(00) 00000-0000"
                         required
                       />
-                    </div>
-
-                    <div className="form-row">
-                      <div className="form-group">
-                        <label htmlFor="birthday">Data de Nascimento</label>
-                        <input
-                          type="text"
-                          id="birthday"
-                          name="birthday"
-                          value={formData.birthday}
-                          onChange={handleChange}
-                          placeholder="DD/MM/AAAA"
-                        />
-                      </div>
-                      <div className="form-group">
-                        <label htmlFor="phone">Telefone *</label>
-                        <input
-                          type="text"
-                          id="phone"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          placeholder="(00) 00000-0000"
-                          required
-                        />
-                      </div>
                     </div>
 
                     <div className="form-group">

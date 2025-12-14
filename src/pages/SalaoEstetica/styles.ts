@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   min-height: 100vh;
-  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
-  color: white;
+  background: linear-gradient(180deg, #fff5f8 0%, #fef0f5 50%, #fff9fb 100%);
+  color: #2d3436;
 `;
 
 export const Content = styled.div`
@@ -30,9 +30,10 @@ export const HeroTitle = styled.h1`
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 2rem;
+  color: #2d3436;
   
   span {
-    background: linear-gradient(135deg, #ff6b9d, #c44569);
+    background: linear-gradient(135deg, #e84393, #fd79a8);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -48,7 +49,7 @@ export const HeroSubtitle = styled.p`
   font-size: 1.3rem;
   line-height: 1.6;
   margin-bottom: 3rem;
-  opacity: 0.9;
+  color: #636e72;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
@@ -188,7 +189,7 @@ export const TestimonialsSection = styled.section`
 export const TestimonialsTitle = styled.h2`
   font-size: 2.5rem;
   margin-bottom: 4rem;
-  background: linear-gradient(135deg, #ff6b9d, #c44569);
+  background: linear-gradient(135deg, #e84393, #fd79a8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -200,18 +201,18 @@ export const TestimonialsTitle = styled.h2`
 `;
 
 export const TestimonialCard = styled.div`
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: white;
+  border: 1px solid rgba(232, 67, 147, 0.15);
   border-radius: 20px;
   padding: 2rem;
   margin-bottom: 2rem;
   text-align: left;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(232, 67, 147, 0.08);
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(255, 107, 157, 0.2);
+    box-shadow: 0 20px 40px rgba(232, 67, 147, 0.15);
   }
 
   @media (max-width: 768px) {
@@ -224,7 +225,7 @@ export const TestimonialContent = styled.blockquote`
   line-height: 1.6;
   margin-bottom: 1.5rem;
   font-style: italic;
-  opacity: 0.9;
+  color: #636e72;
 
   @media (max-width: 768px) {
     font-size: 1rem;
@@ -241,7 +242,7 @@ export const TestimonialAuthor = styled.div`
     height: 60px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid rgba(255, 107, 157, 0.5);
+    border: 2px solid rgba(232, 67, 147, 0.4);
   }
 
   div {
@@ -261,7 +262,7 @@ export const TestimonialAuthor = styled.div`
 `;
 
 export const OnlineBookingSection = styled.section`
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #e84393 0%, #fd79a8 100%);
   padding: 4rem 2rem;
   border-radius: 20px;
   margin: 4rem 0;
@@ -287,7 +288,7 @@ export const OnlineBookingTitle = styled.h2`
   margin-bottom: 1.5rem;
   
   .highlight {
-    background: linear-gradient(45deg, #ff6b6b, #ffa726);
+    background: linear-gradient(45deg, #fff, #ffe0ec);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -356,7 +357,7 @@ export const FeatureTitle = styled.h2`
   font-size: 2.5rem;
   text-align: center;
   margin-bottom: 4rem;
-  background: linear-gradient(135deg, #ff6b9d, #c44569);
+  background: linear-gradient(135deg, #e84393, #fd79a8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -379,17 +380,18 @@ export const FeatureGrid = styled.div`
 `;
 
 export const FeatureCard = styled.div`
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: white;
+  border: 1px solid rgba(232, 67, 147, 0.12);
   border-radius: 20px;
   padding: 2rem;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(232, 67, 147, 0.06);
 
   &:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(255, 107, 157, 0.2);
+    box-shadow: 0 20px 40px rgba(232, 67, 147, 0.15);
+    border-color: rgba(232, 67, 147, 0.25);
   }
 
   @media (max-width: 768px) {
@@ -405,13 +407,13 @@ export const FeatureIcon = styled.div`
 export const FeatureCardTitle = styled.h3`
   font-size: 1.3rem;
   margin-bottom: 1rem;
-  color: #ff6b9d;
+  color: #e84393;
 `;
 
 export const FeatureDescription = styled.p`
   font-size: 1rem;
   line-height: 1.6;
-  opacity: 0.9;
+  color: #636e72;
 
   @media (max-width: 768px) {
     font-size: 0.9rem;
@@ -421,7 +423,7 @@ export const FeatureDescription = styled.p`
 export const CTASection = styled.section`
   text-align: center;
   padding: 6rem 2rem;
-  background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(196, 69, 105, 0.1));
+  background: linear-gradient(135deg, rgba(232, 67, 147, 0.08), rgba(253, 121, 168, 0.12));
   border-radius: 30px;
   margin: 4rem 0;
 
@@ -434,7 +436,7 @@ export const CTASection = styled.section`
 export const CTATitle = styled.h2`
   font-size: 2.5rem;
   margin-bottom: 2rem;
-  background: linear-gradient(135deg, #ff6b9d, #c44569);
+  background: linear-gradient(135deg, #e84393, #fd79a8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -448,6 +450,7 @@ export const CTADescription = styled.p`
   font-size: 1.2rem;
   line-height: 1.6;
   margin-bottom: 3rem;
+  color: #636e72;
   opacity: 0.9;
   max-width: 800px;
   margin-left: auto;
@@ -471,11 +474,11 @@ export const PricingSection = styled.section`
   }
 
   .plan-type-button {
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: white;
+    border: 2px solid rgba(232, 67, 147, 0.2);
     border-radius: 15px;
     padding: 1rem 2rem;
-    color: white;
+    color: #2d3436;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
@@ -483,15 +486,17 @@ export const PricingSection = styled.section`
     align-items: center;
     gap: 0.5rem;
     min-width: 120px;
+    box-shadow: 0 2px 10px rgba(232, 67, 147, 0.08);
 
     &:hover {
-      background: rgba(255, 107, 157, 0.2);
-      border-color: rgba(255, 107, 157, 0.5);
+      background: rgba(232, 67, 147, 0.05);
+      border-color: rgba(232, 67, 147, 0.4);
     }
 
     &.active {
-      background: linear-gradient(135deg, #ff6b9d, #c44569);
-      border-color: #ff6b9d;
+      background: linear-gradient(135deg, #e84393, #fd79a8);
+      border-color: #e84393;
+      color: white;
       transform: scale(1.05);
     }
 
@@ -502,9 +507,15 @@ export const PricingSection = styled.section`
 
     .plan-type-discount {
       font-size: 0.8rem;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(232, 67, 147, 0.15);
       padding: 0.25rem 0.5rem;
       border-radius: 10px;
+      color: #e84393;
+    }
+    
+    &.active .plan-type-discount {
+      background: rgba(255, 255, 255, 0.25);
+      color: white;
     }
   }
 
@@ -529,7 +540,7 @@ export const PricingTitle = styled.h2`
   font-size: 2.5rem;
   text-align: center;
   margin-bottom: 3rem;
-  background: linear-gradient(135deg, #ff6b9d, #c44569);
+  background: linear-gradient(135deg, #e84393, #fd79a8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -540,31 +551,31 @@ export const PricingTitle = styled.h2`
 `;
 
 export const PricingCard = styled.div`
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: white;
+  border: 1px solid rgba(232, 67, 147, 0.15);
   border-radius: 20px;
   padding: 2rem;
   text-align: center;
   position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(232, 67, 147, 0.08);
 
   &:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(255, 107, 157, 0.2);
+    box-shadow: 0 20px 40px rgba(232, 67, 147, 0.18);
   }
 
   &.featured {
     transform: scale(1.05);
-    border-color: #ff6b9d;
-    box-shadow: 0 20px 40px rgba(255, 107, 157, 0.3);
+    border-color: #e84393;
+    box-shadow: 0 20px 40px rgba(232, 67, 147, 0.2);
 
     .popular-badge {
       position: absolute;
       top: -15px;
       left: 50%;
       transform: translateX(-50%);
-      background: linear-gradient(135deg, #ff6b9d, #c44569);
+      background: linear-gradient(135deg, #e84393, #fd79a8);
       color: white;
       padding: 0.5rem 1.5rem;
       border-radius: 20px;
@@ -580,11 +591,11 @@ export const PricingCard = styled.div`
     h3 {
       font-size: 1.5rem;
       margin-bottom: 0.5rem;
-      color: #ff6b9d;
+      color: #e84393;
     }
 
     p {
-      opacity: 0.7;
+      color: #636e72;
       font-size: 0.9rem;
     }
   }
@@ -620,7 +631,8 @@ export const PricingCard = styled.div`
     li {
       padding: 0.5rem 0;
       font-size: 0.9rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(232, 67, 147, 0.1);
+      color: #2d3436;
 
       &:last-child {
         border-bottom: none;
@@ -643,19 +655,19 @@ export const PricingPrice = styled.div`
   span:first-child {
     display: block;
     font-size: 0.9rem;
-    opacity: 0.7;
+    color: #636e72;
     margin-bottom: 0.5rem;
   }
 
   strong {
     font-size: 2.5rem;
-    color: #ff6b9d;
+    color: #e84393;
     font-weight: 700;
   }
 
   .period {
     font-size: 1rem;
-    opacity: 0.7;
+    color: #636e72;
   }
 
   @media (max-width: 768px) {
@@ -667,14 +679,14 @@ export const PricingPrice = styled.div`
 
 export const PricingPeriod = styled.p`
   font-size: 0.9rem;
-  opacity: 0.7;
+  color: #636e72;
   margin-bottom: 2rem;
 `;
 
 export const GuaranteeSection = styled.section`
   text-align: center;
   padding: 4rem 2rem;
-  background: rgba(76, 217, 100, 0.1);
+  background: linear-gradient(135deg, rgba(232, 67, 147, 0.08), rgba(253, 121, 168, 0.12));
   border-radius: 20px;
   margin: 4rem 0;
 
@@ -687,7 +699,7 @@ export const GuaranteeSection = styled.section`
 export const GuaranteeTitle = styled.h2`
   font-size: 2rem;
   margin-bottom: 1rem;
-  color: #4cd964;
+  color: #e84393;
 
   @media (max-width: 768px) {
     font-size: 1.6rem;
@@ -697,7 +709,7 @@ export const GuaranteeTitle = styled.h2`
 export const GuaranteeDescription = styled.p`
   font-size: 1.1rem;
   line-height: 1.6;
-  opacity: 0.9;
+  color: #636e72;
   max-width: 600px;
   margin: 0 auto;
 
@@ -707,7 +719,7 @@ export const GuaranteeDescription = styled.p`
 `;
 
 export const AboutUsSection = styled.section`
-  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
   padding: 4rem 2rem;
   border-radius: 20px;
   margin: 4rem 0 0 0;
@@ -715,6 +727,7 @@ export const AboutUsSection = styled.section`
   align-items: center;
   gap: 3rem;
   position: relative;
+  border: 1px solid rgba(232, 67, 147, 0.1);
   
   &::before {
     content: '';
@@ -723,7 +736,7 @@ export const AboutUsSection = styled.section`
     left: 30px;
     width: 40px;
     height: 40px;
-    background: #e74c3c;
+    background: linear-gradient(135deg, #e84393, #fd79a8);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -754,11 +767,11 @@ export const AboutUsSection = styled.section`
 
 export const AboutUsContent = styled.div`
   flex: 1;
-  color: white;
+  color: #2d3436;
 `;
 
 export const AboutUsLabel = styled.div`
-  color: #e74c3c;
+  color: #e84393;
   font-size: 0.9rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -776,6 +789,7 @@ export const AboutUsTitle = styled.h2`
   font-weight: 700;
   margin-bottom: 1.5rem;
   line-height: 1.2;
+  color: #2d3436;
   
   @media (max-width: 768px) {
     font-size: 2rem;
@@ -786,8 +800,7 @@ export const AboutUsDescription = styled.p`
   font-size: 1rem;
   line-height: 1.7;
   margin-bottom: 1.5rem;
-  opacity: 0.95;
-  color: #bdc3c7;
+  color: #636e72;
 `;
 
 export const AboutUsHighlight = styled.p`
@@ -795,7 +808,7 @@ export const AboutUsHighlight = styled.p`
   line-height: 1.6;
   margin-bottom: 1.5rem;
   font-weight: 500;
-  color: white;
+  color: #2d3436;
 `;
 
 export const FoundersGrid = styled.div`
@@ -811,22 +824,22 @@ export const FoundersGrid = styled.div`
 `;
 
 export const FounderCard = styled.div`
-  background: rgba(255, 255, 255, 0.1);
+  background: white;
   border-radius: 15px;
   padding: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
+  border: 1px solid rgba(232, 67, 147, 0.15);
+  box-shadow: 0 4px 15px rgba(232, 67, 147, 0.08);
   
   h4 {
     font-size: 1.1rem;
     font-weight: 600;
-    color: white;
+    color: #2d3436;
     margin-bottom: 0.3rem;
   }
   
   .role {
     font-size: 0.9rem;
-    color: #e74c3c;
+    color: #e84393;
     font-weight: 500;
     margin-bottom: 0.8rem;
     display: block;
@@ -835,7 +848,7 @@ export const FounderCard = styled.div`
   p {
     font-size: 0.9rem;
     line-height: 1.5;
-    color: #bdc3c7;
+    color: #636e72;
     margin: 0;
   }
   
@@ -852,8 +865,8 @@ export const AboutUsImageContainer = styled.div`
     max-width: 100%;
     height: auto;
     border-radius: 20px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-    border: 3px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px rgba(232, 67, 147, 0.15);
+    border: 3px solid rgba(232, 67, 147, 0.1);
   }
   
   @media (max-width: 768px) {
@@ -864,7 +877,7 @@ export const AboutUsImageContainer = styled.div`
 `;
 
 export const FinalCTASection = styled.section`
-  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  background: linear-gradient(135deg, #e84393 0%, #fd79a8 100%);
   padding: 4rem 2rem;
   border-radius: 20px;
   margin: 4rem 0;
@@ -873,5 +886,109 @@ export const FinalCTASection = styled.section`
   
   @media (max-width: 768px) {
     padding: 2rem 1rem;
+  }
+`;
+
+// Estilo para containers de botões CTA espalhados pela página
+export const CTAButtonContainer = styled.div`
+  text-align: center;
+  margin: 40px 0;
+  padding: 20px;
+  
+  @media (max-width: 768px) {
+    margin: 30px auto;
+    padding: 15px;
+    max-width: 100%;
+  }
+  
+  @media (max-width: 480px) {
+    margin: 20px auto;
+    padding: 10px;
+  }
+`;
+
+// Botão CTA fixo no fundo para mobile
+export const MobileFixedCTAButton = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 12px 15px;
+  background: rgba(26, 26, 46, 0.98);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 107, 157, 0.3);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+  display: none;
+  
+  .mobile-cta-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .mobile-cta-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .mobile-cta-highlight {
+    font-size: 14px;
+    font-weight: 800;
+    color: #ff6b9d;
+    letter-spacing: 0.5px;
+  }
+  
+  .mobile-cta-text {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  button {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #ff6b9d, #c44569);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 107, 157, 0.6);
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    display: block;
+  }
+  
+  @media (max-width: 380px) {
+    padding: 10px 12px;
+    
+    .mobile-cta-highlight {
+      font-size: 12px;
+    }
+    
+    .mobile-cta-text {
+      font-size: 11px;
+    }
+    
+    button {
+      padding: 10px 16px;
+      font-size: 12px;
+    }
   }
 `;

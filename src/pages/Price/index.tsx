@@ -512,7 +512,7 @@ const Price = () => {
             </div>
           </div>{" "}
           {/* Plano Standard */}
-          <div className="plan-card">
+          <div className="plan-card popular">
             <div className="plan-popular-badge">⭐ Mais Popular</div>
             {(planType === "Anual" || planType === "Semestral") && (
               <div className="plan-discount-badge">

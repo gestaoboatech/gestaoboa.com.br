@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
@@ -7,6 +7,33 @@ import Button from '../../components/Button';
 import { FB_PIXEL } from '../../utils/pixel';
 import './animations.css';
 import './form.css';
+
+type PlanType = "Anual" | "Semestral" | "Mensal";
+
+// Preços mensais base
+const monthlyPrices = {
+  Basico: 64.90,
+  Standard: 89.90,
+  Premium: 129.90,
+};
+
+// Descontos por tipo de plano
+const getDiscount = (type: PlanType) => {
+  switch (type) {
+    case "Anual":
+      return 0.24; // 24% off
+    case "Semestral":
+      return 0.15; // 15% off
+    default:
+      return 0;
+  }
+};
+
+// Calcular preço com desconto
+const calculatePrice = (basePrice: number, planType: PlanType) => {
+  const discount = getDiscount(planType);
+  return basePrice * (1 - discount);
+};
 import { 
   Container, 
   Content,
@@ -64,48 +91,26 @@ import {
 
 const Barbershop: React.FC = () => {
   const navigate = useNavigate();
-  
-  // Estado para o contador regressivo (termina dia 28/11/2025 às 23:59:59)
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
-
-  // Contador regressivo
-  useEffect(() => {
-    const targetDate = new Date('2025-11-28T23:59:59-03:00').getTime();
-    
-    const updateCountdown = () => {
-      const now = new Date().getTime();
-      const difference = targetDate - now;
-      
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((difference % (1000 * 60)) / 1000)
-        });
-      } else {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-      }
-    };
-    
-    updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
-    
-    return () => clearInterval(interval);
-  }, []);
+  const [planType, setPlanType] = useState<PlanType>("Anual");
 
   // Função para navegar para a página de criar conta
   const handlePromoClick = () => {
-    FB_PIXEL.trackCustomEvent("BlackFridayPromoClick", {
+    FB_PIXEL.trackCustomEvent("TrialStartClick", {
       page: "barbershop",
       timestamp: new Date().toISOString(),
     });
-    navigate('/criar-conta?plano=black-friday');
+    navigate('/criar-conta');
+  };
+
+  // Funções para cada plano específico
+  const handlePlanClick = (plan: 'basico' | 'standard' | 'premium') => {
+    FB_PIXEL.trackCustomEvent("TrialStartClick", {
+      page: "barbershop",
+      plan: plan,
+      planType: planType,
+      timestamp: new Date().toISOString(),
+    });
+    navigate(`/criar-conta?plano=${plan}`);
   };
 
   // Rastreamento do carregamento da página
@@ -162,9 +167,9 @@ const Barbershop: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Gestão Boa - Sistema Completo para Barbearias | BLACK FRIDAY R$ 9,90</title>
-        <meta name="description" content="BLACK FRIDAY! Transforme sua barbearia com o sistema de gestão mais completo do mercado por apenas R$ 9,90. Agendamento online, controle financeiro, gestão de clientes e muito mais." />
-        <meta name="keywords" content="sistema barbearia, agendamento online, gestão barbearia, software barbeiro, black friday" />
+        <title>Gestão Boa - Sistema Completo para Barbearias | Teste Grátis 20 Dias</title>
+        <meta name="description" content="Transforme sua barbearia com o sistema de gestão mais completo do mercado. Agendamento online, controle financeiro, gestão de clientes e muito mais. Teste grátis por 20 dias!" />
+        <meta name="keywords" content="sistema barbearia, agendamento online, gestão barbearia, software barbeiro, controle financeiro barbearia" />
       </Helmet>
       
       <Header />
@@ -174,13 +179,13 @@ const Barbershop: React.FC = () => {
           {/* Hero Section */}
           <HeroSection>
             <HeroTitle>
-              🔥 <span>BLACK FRIDAY</span> Gestão Boa - Tudo por apenas <span>R$ 9,90!</span>
+              Pare de <span>perder dinheiro</span> com agendamentos bagunçados e clientes esquecidos
             </HeroTitle>
             <HeroSubtitle>
-              A maior promoção do ano está acontecendo AGORA! Aproveite que são vamas limitadas!
+              O sistema que já ajudou +500 barbearias a aumentar o faturamento em até 40% com agendamento online e controle financeiro automático
             </HeroSubtitle>
             <Button 
-              text="🎁 PEGAR PROMOÇÃO - R$ 9,90"
+              text="💉 TESTAR GRÁTIS POR 20 DIAS"
               method={handlePromoClick}
               type="focused"
             />
@@ -244,7 +249,7 @@ const Barbershop: React.FC = () => {
           {/* CTA Button após problemas/soluções */}
           <CTAButtonContainer>
             <Button 
-              text="🎁 PEGAR PROMOÇÃO - R$ 9,90"
+              text="💉 TESTAR GRÁTIS POR 20 DIAS"
               method={handlePromoClick}
               type="focused"
             />
@@ -298,7 +303,7 @@ const Barbershop: React.FC = () => {
             {/* CTA Button após depoimentos */}
             <CTAButtonContainer>
               <Button 
-                text="🎁 PEGAR PROMOÇÃO - R$ 9,90"
+                text="💉 TESTAR GRÁTIS POR 20 DIAS"
                 method={handlePromoClick}
                 type="focused"
               />
@@ -329,7 +334,7 @@ const Barbershop: React.FC = () => {
               {/* CTA Button na seção de agendamento */}
               <CTAButtonContainer>
                 <Button 
-                  text="🎁 PEGAR PROMOÇÃO - R$ 9,90"
+                  text="💉 TESTAR GRÁTIS POR 20 DIAS"
                   method={handlePromoClick}
                   type="focused"
                 />
@@ -396,7 +401,7 @@ const Barbershop: React.FC = () => {
             {/* CTA Button após recursos */}
             <CTAButtonContainer>
               <Button 
-                text="🎁 PEGAR PROMOÇÃO - R$ 9,90"
+                text="💉 TESTAR GRÁTIS POR 20 DIAS"
                 method={handlePromoClick}
                 type="focused"
               />
@@ -410,7 +415,7 @@ const Barbershop: React.FC = () => {
             </CTATitle>
             <CTADescription>
               Todo dia sem organização é dinheiro que sai do seu bolso. Clientes perdidos, serviços não cobrados, 
-              despesas desnecessárias... Aproveite a BLACK FRIDAY e tenha acesso completo ao Gestão Boa por apenas R$ 9,90!
+              despesas desnecessárias... Teste o Gestão Boa grátis por 20 dias e veja a diferença!
             </CTADescription>
           </CTASection>
 
@@ -617,142 +622,163 @@ const Barbershop: React.FC = () => {
           </PricingSection>
           */}
 
-          {/* Seção de Promoção Black Friday */}
+          {/* Seção de Preços */}
           <PricingSection id="barbershop-promo-section">
-            <PricingTitle>🔥 BLACK FRIDAY - TUDO POR APENAS R$ 9,90! 🔥</PricingTitle>
+            <PricingTitle>Escolha o plano ideal para sua barbearia</PricingTitle>
             <div className="black-friday-subtitle">
-              A maior promoção do ano! Aproveite antes que acabe!
+              Teste grátis por 20 dias. Sem compromisso, cancele quando quiser.
             </div>
             
-            <div className="black-friday-promo-container">
-              {/* Contador Regressivo */}
-              <div className="promo-countdown">
-                <div className="countdown-title">⏰ OFERTA TERMINA EM:</div>
-                <div className="countdown-timer">
-                  <div className="countdown-item">
-                    <span className="countdown-value">{timeLeft.days}</span>
-                    <span className="countdown-label">dias</span>
-                  </div>
-                  <div className="countdown-separator">:</div>
-                  <div className="countdown-item">
-                    <span className="countdown-value">{String(timeLeft.hours).padStart(2, '0')}</span>
-                    <span className="countdown-label">horas</span>
-                  </div>
-                  <div className="countdown-separator">:</div>
-                  <div className="countdown-item">
-                    <span className="countdown-value">{String(timeLeft.minutes).padStart(2, '0')}</span>
-                    <span className="countdown-label">min</span>
-                  </div>
-                  <div className="countdown-separator">:</div>
-                  <div className="countdown-item">
-                    <span className="countdown-value">{String(timeLeft.seconds).padStart(2, '0')}</span>
-                    <span className="countdown-label">seg</span>
-                  </div>
+            {/* Switch de tipo de plano */}
+            <div className="plan-type-selector">
+              {[
+                { type: "Anual" as PlanType, discount: "24% off" },
+                { type: "Semestral" as PlanType, discount: "15% off" },
+                { type: "Mensal" as PlanType },
+              ].map((plan) => (
+                <button
+                  key={plan.type}
+                  className={`plan-type-button ${planType === plan.type ? "active" : ""}`}
+                  onClick={() => setPlanType(plan.type)}
+                >
+                  <span>{plan.type}</span>
+                  {plan.discount && (
+                    <span className="plan-type-discount">{plan.discount}</span>
+                  )}
+                </button>
+              ))}
+            </div>
+            
+            <div className="pricing-plans-grid">
+              {/* Plano Básico */}
+              <div className="pricing-plan-card">
+                <div className="plan-header-simple">
+                  <h3>Básico</h3>
+                  <p>Ideal para quem trabalha sozinho</p>
                 </div>
-              </div>
-
-              {/* Alerta de Vagas Limitadas */}
-              <div className="promo-scarcity">
-                <span className="scarcity-icon">🔥</span>
-                <span className="scarcity-text">RESTAM APENAS <strong>5 VAGAS</strong> NESTE VALOR!</span>
-              </div>
-
-              <div className="promo-package">
-                <h3>📦 PACOTE COMPLETO</h3>
-                
-                <div className="promo-item">
-                  <span className="promo-item-name">3 meses de acesso ao sistema</span>
-                  <span className="promo-item-price-original">R$ 387,00</span>
+                <div className="plan-price-simple">
+                  <span className="price-label">
+                    {planType === "Mensal" ? "Por mês" : planType === "Semestral" ? "6x de" : "12x de"}
+                  </span>
+                  <span className="price-value">
+                    R$ {calculatePrice(monthlyPrices.Basico, planType).toFixed(2).replace(".", ",")}
+                  </span>
+                  {planType !== "Mensal" && (
+                    <span className="price-original">
+                      De R$ {monthlyPrices.Basico.toFixed(2).replace(".", ",")}/mês
+                    </span>
+                  )}
                 </div>
-                
-                <div className="promo-item">
-                  <span className="promo-item-name">+70 modelos de design de canvas</span>
-                  <span className="promo-item-price-original">R$ 49,00</span>
-                </div>
-                
-                <div className="promo-item">
-                  <span className="promo-item-name">Consultoria online sobre metas 2026</span>
-                  <span className="promo-item-price-original">R$ 99,00</span>
-                </div>
-                
-                <div className="promo-total">
-                  <span>Valor Total:</span>
-                  <span className="promo-total-original">R$ 535,00</span>
-                </div>
-                
-                <div className="promo-final-price">
-                  <span className="promo-label">🎁 BLACK FRIDAY APENAS:</span>
-                  <span className="promo-price">R$ 9,90</span>
-                </div>
-                
-                <div className="promo-savings">
-                  💰 ECONOMIZE R$ 525,10 (98% OFF)
-                </div>
-              </div>
-              
-              <div className="promo-benefits">
-                <h4>✅ O que você vai receber:</h4>
-                <ul>
-                  <li>📅 Sistema de Agendamento Online 24/7</li>
-                  <li>💰 Controle Financeiro Completo</li>
-                  <li>👥 Gestão de Clientes e Histórico</li>
-                  <li>📊 Relatórios e Dashboards</li>
-                  <li>💬 Lembretes via WhatsApp</li>
-                  <li>🎨 +70 Templates de Canvas para Divulgação</li>
-                  <li>🎯 Consultoria para Planejamento de Metas 2026</li>
-                  <li>📞 Suporte via WhatsApp</li>
+                <ul className="plan-features-simple">
+                  <li>✅ Agendamento online 24/7</li>
+                  <li>✅ Controle financeiro</li>
+                  <li>✅ Gestão de clientes</li>
+                  <li>✅ Relatórios básicos</li>
+                  <li>✅ Lembretes WhatsApp</li>
+                  <li>✅ 1 usuário</li>
+                  <li>✅ Suporte via WhatsApp</li>
                 </ul>
-              </div>
-
-              {/* Garantia de 7 dias */}
-              <div className="promo-guarantee">
-                <div className="guarantee-icon">🛡️</div>
-                <div className="guarantee-content">
-                  <strong>Garantia de 7 dias</strong>
-                  <p>Se não gostar, devolvemos 100% do seu dinheiro. Sem perguntas.</p>
-                </div>
-              </div>
-
-              {/* Mini Depoimentos */}
-              <div className="promo-testimonials">
-                <div className="promo-testimonial">
-                  <img src="/PedroArthur.jpg" alt="Pedro Arthur" />
-                  <div className="testimonial-text">
-                    <p>"Consigo saber com exatidão quantos clientes eu tenho e atendo"</p>
-                    <span>Pedro Arthur - Prime Barbershop</span>
-                  </div>
-                </div>
-                <div className="promo-testimonial">
-                  <img src="/leandro.png" alt="Leandro Figueiredo" />
-                  <div className="testimonial-text">
-                    <p>"Aumentei meu faturamento e organizei completamente minha barbearia"</p>
-                    <span>Leandro Figueiredo - Barbearia Duque</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="form-button-container">
                 <button 
                   type="button"
-                  className="form-submit-button promo-button"
-                  onClick={handlePromoClick}
+                  className="plan-button"
+                  onClick={() => handlePlanClick('basico')}
                 >
-                  🎁 PEGAR PROMOÇÃO AGORA - R$ 9,90
+                  TESTAR GRÁTIS 20 DIAS
                 </button>
               </div>
-              
-              <p className="promo-disclaimer">
-                🔒 Pagamento 100% seguro • Acesso imediato • Garantia de 7 dias
-              </p>
+
+              {/* Plano Standard - Destaque */}
+              <div className="pricing-plan-card featured">
+                <div className="popular-tag">MAIS POPULAR</div>
+                <div className="plan-header-simple">
+                  <h3>Standard</h3>
+                  <p>Para barbearias com equipe</p>
+                </div>
+                <div className="plan-price-simple">
+                  <span className="price-label">
+                    {planType === "Mensal" ? "Por mês" : planType === "Semestral" ? "6x de" : "12x de"}
+                  </span>
+                  <span className="price-value">
+                    R$ {calculatePrice(monthlyPrices.Standard, planType).toFixed(2).replace(".", ",")}
+                  </span>
+                  {planType !== "Mensal" && (
+                    <span className="price-original">
+                      De R$ {monthlyPrices.Standard.toFixed(2).replace(".", ",")}/mês
+                    </span>
+                  )}
+                </div>
+                <ul className="plan-features-simple">
+                  <li>✅ Tudo do Básico +</li>
+                  <li>✅ Gestão de equipe</li>
+                  <li>✅ Comissões automáticas</li>
+                  <li>✅ Controle de estoque</li>
+                  <li>✅ Relatórios avançados</li>
+                  <li>✅ Até 3 usuários</li>
+                  <li>✅ Suporte prioritário</li>
+                </ul>
+                <button 
+                  type="button"
+                  className="plan-button featured"
+                  onClick={() => handlePlanClick('standard')}
+                >
+                  TESTAR GRÁTIS 20 DIAS
+                </button>
+              </div>
+
+              {/* Plano Premium */}
+              <div className="pricing-plan-card">
+                <div className="plan-header-simple">
+                  <h3>Premium</h3>
+                  <p>Para redes e franquias</p>
+                </div>
+                <div className="plan-price-simple">
+                  <span className="price-label">
+                    {planType === "Mensal" ? "Por mês" : planType === "Semestral" ? "6x de" : "12x de"}
+                  </span>
+                  <span className="price-value">
+                    R$ {calculatePrice(monthlyPrices.Premium, planType).toFixed(2).replace(".", ",")}
+                  </span>
+                  {planType !== "Mensal" && (
+                    <span className="price-original">
+                      De R$ {monthlyPrices.Premium.toFixed(2).replace(".", ",")}/mês
+                    </span>
+                  )}
+                </div>
+                <ul className="plan-features-simple">
+                  <li>✅ Tudo do Standard +</li>
+                  <li>✅ Usuários ilimitados</li>
+                  <li>✅ Relatórios via WhatsApp</li>
+                  <li>✅ Gerente de conta dedicado</li>
+                  <li>✅ Onboarding personalizado</li>
+                  <li>✅ Lembretes para clientes</li>
+                  <li>✅ Lembretes para barbeiros</li>
+                </ul>
+                <button 
+                  type="button"
+                  className="plan-button"
+                  onClick={() => handlePlanClick('premium')}
+                >
+                  TESTAR GRÁTIS 20 DIAS
+                </button>
+              </div>
+            </div>
+
+            {/* Garantia */}
+            <div className="pricing-guarantee">
+              <div className="guarantee-icon">🛡️</div>
+              <div className="guarantee-content">
+                <strong>Teste sem risco por 20 dias</strong>
+                <p>Não precisa de cartão de crédito. Se não gostar, é só não continuar.</p>
+              </div>
             </div>
           </PricingSection>
 
           {/* Guarantee Section */}
           <GuaranteeSection>
-            <GuaranteeTitle>🔒 Pagamento 100% Seguro</GuaranteeTitle>
+            <GuaranteeTitle>🔒 Segurança e Confiança</GuaranteeTitle>
             <GuaranteeDescription>
-              Compra protegida via Asaas. Após o pagamento, você receberá acesso imediato ao sistema 
-              e todos os bônus da promoção Black Friday. Não perca essa oportunidade única!
+              Seus dados estão protegidos com criptografia de ponta. Já ajudamos mais de 500 barbearias 
+              a organizarem seus negócios. Teste grátis e veja a diferença!
             </GuaranteeDescription>
           </GuaranteeSection>
 
@@ -811,7 +837,7 @@ const Barbershop: React.FC = () => {
               {/* CTA Button na seção sobre nós */}
               <CTAButtonContainer>
                 <Button 
-                  text="🎁 PEGAR PROMOÇÃO - R$ 9,90"
+                  text="💉 TESTAR GRÁTIS POR 20 DIAS"
                   method={handlePromoClick}
                   type="focused"
                 />
@@ -825,14 +851,14 @@ const Barbershop: React.FC = () => {
           {/* Final CTA */}
           <FinalCTASection>
             <CTATitle>
-              🔥 Não deixe essa oportunidade passar! 🔥
+              Pronto para transformar sua barbearia?
             </CTATitle>
             <CTADescription>
               Junte-se às centenas de barbearias que já usam o Gestão Boa. 
-              Aproveite a Black Friday com 98% de desconto - de R$ 535,00 por apenas R$ 9,90!
+              Teste grátis por 20 dias e veja como é fácil organizar seu negócio!
             </CTADescription>
             <Button 
-              text="🎁 PEGAR PROMOÇÃO - R$ 9,90"
+              text="💉 TESTAR GRÁTIS POR 20 DIAS"
               method={handlePromoClick}
               type="focused"
             />
@@ -840,18 +866,15 @@ const Barbershop: React.FC = () => {
         </Content>
         
         
-        {/* Botão CTA fixo no fundo para mobile com mini resumo */}
+        {/* Botão CTA fixo no fundo para mobile */}
         <MobileFixedCTAButton>
           <div className="mobile-cta-content">
             <div className="mobile-cta-info">
-              <span className="mobile-cta-discount">98% OFF</span>
-              <span className="mobile-cta-price">
-                <span className="old-price">R$ 535</span>
-                <span className="new-price">R$ 9,90</span>
-              </span>
+              <span className="mobile-cta-highlight">20 DIAS GRÁTIS</span>
+              <span className="mobile-cta-text">Teste sem compromisso</span>
             </div>
             <button onClick={handlePromoClick}>
-              PEGAR OFERTA
+              COMEÇAR AGORA
             </button>
           </div>
         </MobileFixedCTAButton>
