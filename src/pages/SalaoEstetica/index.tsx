@@ -49,7 +49,6 @@ import {
   FeatureDescription,
   PricingSection,
   PricingTitle,
-  FinalCTASection,
   GuaranteeSection,
   GuaranteeTitle,
   GuaranteeDescription,
