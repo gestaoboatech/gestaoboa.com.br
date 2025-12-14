@@ -1308,168 +1308,297 @@ export const Team = styled.div`
   }
 `;
 
+export const InstagramSection = styled.section`
+  grid-column: span 12;
+  padding: 60px 40px;
+  margin: 40px;
+  background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+  }
+
+  .instagram-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .instagram-icon {
+    flex-shrink: 0;
+    
+    img {
+      width: 100px;
+      height: 100px;
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  .instagram-text {
+    color: white;
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      opacity: 0.95;
+
+      strong {
+        font-weight: 700;
+      }
+    }
+  }
+
+  .instagram-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    color: #833ab4;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    img {
+      filter: none;
+    }
+
+    &:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 40px 24px;
+    margin: 20px 16px;
+
+    .instagram-content {
+      flex-direction: column;
+      text-align: center;
+      gap: 24px;
+    }
+
+    .instagram-icon img {
+      width: 70px;
+      height: 70px;
+    }
+
+    .instagram-text {
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    .instagram-button {
+      padding: 12px 24px;
+      font-size: 1rem;
+    }
+  }
+`;
+
 export const Contact = styled.div`
   display: grid;
-  padding: 100px;
-  padding-left: 100px;
-  padding-right: 100px;
-  padding-bottom: 100px;
+  padding: 80px 100px;
   grid-column: span 12;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
   position: relative;
-
-  .info,
-  .form {
-    display: flex;
-    flex-direction: column;
-    grid-column: span 5;
-  }
-
-  .space {
-    grid-column: span 2;
-  }
+  background: linear-gradient(135deg, #f8f9ff 0%, #e8f4fc 100%);
+  border-radius: 30px;
+  margin: 40px;
 
   .info {
     display: flex;
-    gap: 81px;
     flex-direction: column;
+    justify-content: center;
+    gap: 40px;
   }
 
   .info .title {
-    font-weight: bold;
-    font-size: 72px;
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 1.2;
+    color: #03045e;
+    max-width: 500px;
   }
 
   .info .links {
     display: flex;
     flex-direction: column;
-    font-weight: bold;
-    font-size: 26px;
-    gap: 26px;
+    font-weight: 600;
+    font-size: 20px;
+    gap: 20px;
   }
 
   .info .links a {
     display: flex;
     align-items: center;
-    gap: 18px;
-    color: #000;
+    gap: 14px;
+    color: #03045e;
     width: fit-content;
+    padding: 12px 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(3, 4, 94, 0.08);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateX(8px);
+      box-shadow: 0 6px 20px rgba(3, 4, 94, 0.15);
+    }
+    
+    img {
+      width: 28px;
+      height: 28px;
+    }
   }
 
-  .profits {
-    position: absolute;
-    left: 100px;
-    bottom: -5px;
-  }
-
-  .profits img {
-    width: 500px;
-  }
-
-  .form,
-  .form form .input,
-  .form form .textarea {
-    display: flex;
-    flex-direction: column;
+  .space {
+    display: none;
   }
 
   .form {
-    grid-column: span 5;
-    align-items: end;
-    gap: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 
   .form form {
-    display: grid;
-    width: 703px;
-    grid-template-columns: 1fr 1fr;
-    gap: 26px;
-    background-color: #03045e;
-    border-radius: 10px;
-    padding: 40px;
-  }
-
-  .input-wrapper,
-  .textarea {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(3, 4, 94, 0.1);
+    border: 1px solid rgba(3, 4, 94, 0.05);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .input-wrapper .input-group {
+    width: 100% !important;
+  }
+
+  .input-wrapper.full-width {
+    width: 100%;
   }
 
   .label {
-    color: #fff;
-    font-weight: bold;
-  }
-
-  .double,
-  .textarea {
-    grid-column: span 2;
+    color: #03045e;
+    font-weight: 600;
+    font-size: 14px;
+    margin-left: 4px;
   }
 
   textarea {
-    font-family: "Mulish";
+    font-family: "Mulish", sans-serif;
+    min-height: 120px;
   }
 
   .form .button {
-    width: 169px;
-    display: flex;
-    justify-content: flex-end;
+    width: 100%;
+    margin-top: 10px;
   }
 
-  @media (max-width: 1370px) {
-    .info {
-      grid-column: span 7;
-    }
-
-    .form form {
-      display: flex;
-      flex-direction: column;
-      width: 80%;
-      padding: 30px;
-    }
-
-    .space {
-      display: none;
-    }
-  }
-
-  @media (max-width: 800px) {
-    flex-direction: column;
-    display: flex;
-    padding: 41px;
-    gap: 30px;
-
-    .space,
-    .profits {
-      display: none;
-    }
-
-    .info {
-      gap: 30px;
-    }
+  @media (max-width: 1100px) {
+    grid-template-columns: 1fr;
+    padding: 60px 40px;
+    gap: 40px;
+    margin: 20px;
 
     .info .title {
       font-size: 36px;
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    display: flex;
+    padding: 40px 24px;
+    gap: 30px;
+    margin: 16px;
+    border-radius: 20px;
+
+    .info {
+      gap: 24px;
+    }
+
+    .info .title {
+      font-size: 28px;
     }
 
     .info .links {
-      font-size: 18px;
+      font-size: 16px;
+      gap: 12px;
     }
 
-    .info .links img {
-      width: 27px;
-    }
-
-    .form {
-      justify-content: center;
-      align-items: center;
+    .info .links a {
+      padding: 10px 16px;
+      gap: 10px;
+      
+      img {
+        width: 24px;
+        height: 24px;
+      }
     }
 
     .form form {
-      display: flex;
-      flex-direction: column;
-      width: 80%;
-      padding: 10%;
+      padding: 24px;
+      gap: 16px;
+      border-radius: 16px;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .label {
+      font-size: 13px;
     }
 
     .form .button {

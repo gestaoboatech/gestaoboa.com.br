@@ -16,7 +16,7 @@ import { FB_PIXEL } from "../../utils/pixel";
 
 import { Helmet } from "react-helmet-async";
 import ReactPlayer from "react-player";
-import { Banner, Contact, Container, FAQ, Grid, Segments, Solutions } from "./styles";
+import { Banner, Contact, Container, FAQ, Grid, InstagramSection, Segments, Solutions } from "./styles";
 
 // Import the carousel styles
 import "./performance.css";
@@ -839,7 +839,7 @@ const Home: FunctionComponent = () => {
               <div className="player">
                 <ReactPlayer
                   className="buying"
-                  url="/demonstracao.mp4"
+                  url="/video app.mp4"
                   width="fit-content"
                   height="85vh"
                   controls={true}
@@ -1026,6 +1026,38 @@ const Home: FunctionComponent = () => {
             </div>
           </FAQ>
 
+          <InstagramSection>
+            <div className="instagram-content">
+              <div className="instagram-icon">
+                <img
+                  src="/instagram-1@2x.png"
+                  alt="Instagram da Gestão Boa"
+                  loading="lazy"
+                />
+              </div>
+              <div className="instagram-text">
+                <h2>Siga nosso Instagram</h2>
+                <p>
+                  No nosso Instagram, compartilhamos conteúdos exclusivos sobre <strong>educação e gestão</strong> para ajudar você a alcançar o sucesso no seu negócio. Dicas essenciais de gerenciamento, estratégias de crescimento, organização financeira e muito mais para transformar a sua empresa!
+                </p>
+                <a 
+                  href="https://www.instagram.com/gestaoboa/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="instagram-button"
+                >
+                  <img
+                    src="/instagram-1@2x.png"
+                    alt=""
+                    width="24"
+                    height="24"
+                  />
+                  @gestaoboa
+                </a>
+              </div>
+            </div>
+          </InstagramSection>
+
           <Contact id="contact">
             {/* */}
             <div className="info">
@@ -1056,27 +1088,29 @@ const Home: FunctionComponent = () => {
                 onPointerEnterCapture={undefined}
                 onPointerLeaveCapture={undefined}
               >
-                <div className="input-wrapper double">
-                  <div className="label">Nome completo</div>
-                  <CustomInput width="100%" name="name" placeholder="Nome" />
+                <div className="form-row">
+                  <div className="input-wrapper">
+                    <div className="label">Nome completo</div>
+                    <CustomInput width="100%" name="name" placeholder="Nome" />
+                  </div>
+                  <div className="input-wrapper">
+                    <div className="label">Telefone</div>
+                    <CustomInput
+                      width="100%"
+                      name="phone"
+                      placeholder="(00) 00000-0000"
+                    />
+                  </div>
                 </div>
-                <div className="input-wrapper">
+                <div className="input-wrapper full-width">
                   <div className="label">Email</div>
                   <CustomInput
-                    width="98%"
+                    width="100%"
                     name="email"
                     placeholder="seumelhoremail@mail.com"
                   />
                 </div>
-                <div className="input-wrapper">
-                  <div className="label">Telefone</div>
-                  <CustomInput
-                    width="98%"
-                    name="phone"
-                    placeholder="(00) 00000-0000"
-                  />
-                </div>
-                <div className="textarea">
+                <div className="input-wrapper full-width">
                   <div className="label">Mensagem</div>
                   <CustomTextarea
                     width="100%"
