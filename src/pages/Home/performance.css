@@ -1,0 +1,427 @@
+/* Otimizações de Performance */
+
+/* Hidden SEO navigation - invisible mas indexável pelos buscadores */
+.seo-navigation {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Hidden rating for SEO */
+.hidden-rating {
+  display: none;
+}
+
+/* Container dos depoimentos */
+.testimonies {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  padding: 80px 20px;
+  min-height: 100vh;
+}
+
+.testimonies .heading {
+  color: #1a202c;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 60px;
+  line-height: 1.2;
+}
+
+/* Cards de Depoimentos - Design Limpo e Legível */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+  padding: 0 20px;
+}
+
+/* Seletores mais específicos para garantir aplicação */
+.testimonials-grid .testimonial-card-new .testimonial-text,
+.testimonial-card-new p.testimonial-text,
+div.testimonial-card-new p[itemProp="reviewBody"] {
+  color: #000000 !important;
+  font-size: 0.75rem !important;
+  line-height: 1.4 !important;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.testimonial-card-new {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
+  border-radius: 20px;
+  padding: 32px 24px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonial-card-new:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+  border-color: rgba(0, 188, 212, 0.3);
+}
+
+.testimonial-card-new::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #00bcd4, #2196f3);
+  border-radius: 20px 20px 0 0;
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.testimonial-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(0, 188, 212, 0.3);
+  flex-shrink: 0;
+}
+
+.testimonial-info h4 {
+  color: #1a202c;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+}
+
+.testimonial-info p {
+  color: #00bcd4;
+  font-size: 0.9rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+.testimonial-title {
+  color: #1a202c;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.testimonial-text {
+  color: #000000 !important;
+  font-size: 0.75rem !important;
+  line-height: 1.4 !important;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+/* Force application on all testimonial text elements */
+.testimonies p,
+.testimonies .desc,
+.testimonial-card-new p,
+.testimonials-grid p {
+  color: #000000 !important;
+  font-size: 0.75rem !important;
+}
+
+.testimonial-rating {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.star {
+  color: #ffd700;
+  font-size: 18px;
+}
+
+.testimonial-quote {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  font-size: 48px;
+  color: rgba(0, 188, 212, 0.2);
+  font-family: serif;
+  line-height: 1;
+}
+
+/* Responsividade melhorada */
+@media (max-width: 768px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    padding: 0 16px;
+    gap: 20px;
+  }
+  
+  .testimonial-card-new {
+    padding: 24px 20px;
+  }
+  
+  .testimonial-avatar {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .testimonial-info h4 {
+    font-size: 1rem;
+  }
+  
+  .testimonial-title {
+    font-size: 1.1rem;
+  }
+  
+  .testimonial-text {
+    font-size: 0.7rem;
+  }
+}
+
+/* Estilos para o card em destaque (featured-testimonial) */
+.featured-testimonial {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto 60px auto;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.95) 100%);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  border: 2px solid rgba(0, 188, 212, 0.2);
+  gap: 40px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.featured-testimonial::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #00bcd4, #2196f3, #9c27b0);
+  border-radius: 24px 24px 0 0;
+}
+
+  .featured-testimonial video {
+    width: 240px;
+    height: 420px;
+    margin: 0 auto;
+  }.featured-testimonial video:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+}
+
+.featured-testimonial video::-webkit-media-controls-panel {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.featured-testimonial video::-webkit-media-controls-play-button {
+  background-color: #00bcd4;
+  border-radius: 50%;
+}
+
+.featured-testimonial .texts {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.featured-testimonial .texts .title {
+  color: #1a202c !important;
+  font-size: 2rem !important;
+  font-weight: 800 !important;
+  margin-bottom: 16px;
+  line-height: 1.2;
+  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.featured-testimonial .texts .desc,
+.card.featured-testimonial .texts .desc,
+div.featured-testimonial div.texts div.desc {
+  color: #2d3748 !important;
+  font-size: 1.1rem !important;
+  line-height: 1.6 !important;
+  margin-bottom: 20px;
+  text-align: left;
+  font-weight: 400;
+}
+
+.featured-testimonial .texts .person {
+  color: #00bcd4 !important;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1rem;
+  border-left: 4px solid #00bcd4;
+  padding-left: 16px;
+  margin-top: 10px;
+}
+
+/* Badge de destaque */
+.featured-testimonial::after {
+  content: '⭐ DESTAQUE';
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #ffd700, #ffa000);
+  color: #1a202c;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+/* Responsividade para o card em destaque - Otimizado para vídeo vertical */
+@media (max-width: 1024px) {
+  .featured-testimonial {
+    flex-direction: column;
+    text-align: center;
+    padding: 32px 24px;
+    align-items: center;
+  }
+  
+  .featured-testimonial video {
+    width: 240px;
+    height: 420px;
+    margin-bottom: 20px;
+  }
+  
+  .featured-testimonial .texts .title {
+    font-size: 1.8rem !important;
+  }
+  
+  .featured-testimonial .texts .desc {
+    font-size: 1rem !important;
+    text-align: center;
+  }
+  
+  .featured-testimonial .texts .person {
+    text-align: center;
+    border-left: none;
+    border-top: 4px solid #00bcd4;
+    padding-left: 0;
+    padding-top: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .featured-testimonial {
+    padding: 24px 20px;
+    gap: 20px;
+  }
+  
+  .featured-testimonial video {
+    width: 200px;
+    height: 350px;
+  }
+  
+  .featured-testimonial .texts .title {
+    font-size: 1.5rem !important;
+  }
+  
+  .featured-testimonial .texts .desc {
+    font-size: 0.9rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .featured-testimonial {
+    margin: 0 16px 40px 16px;
+    padding: 20px 16px;
+  }
+  
+  .featured-testimonial video {
+    width: 180px;
+    height: 320px;
+  }
+  
+  .featured-testimonial .texts .title {
+    font-size: 1.3rem !important;
+  }
+  
+  .featured-testimonial .texts .desc {
+    font-size: 0.9rem !important;
+  }
+  
+  .testimonials-grid {
+    padding: 0 12px;
+  }
+  
+  .testimonial-card-new {
+    padding: 20px 16px;
+  }
+  
+  .testimonial-header {
+    gap: 12px;
+  }
+}
+
+/* Preload crítico */
+.critical-images {
+  position: relative;
+}
+
+/* Lazy loading placeholder */
+img[loading="lazy"] {
+  transition: opacity 0.3s ease;
+}
+
+img[loading="lazy"]:not([src]) {
+  opacity: 0;
+}
+
+/* Otimização para vídeos */
+video {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Prevent layout shift */
+.testimonials-carousel img {
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+/* Optimize animations */
+.benefit,
+.card {
+  will-change: transform;
+}
+
+/* Reduce repaints */
+.buttons a,
+.benefit-button {
+  contain: layout style paint;
+}
+
+/* Critical rendering path optimization */
+.cellphone {
+  content-visibility: auto;
+  contain-intrinsic-size: 300px 600px;
+}
+
+/* Video optimization */
+video[preload="metadata"] {
+  background-color: #f0f0f0;
+  background-image: linear-gradient(45deg, #f0f0f0 25%, transparent 25%),
+    linear-gradient(-45deg, #f0f0f0 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #f0f0f0 75%),
+    linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}

@@ -1,0 +1,18 @@
+.instagram-button {
+  border-radius: 8px;
+  padding: 12px;
+  background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+.instagram-button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

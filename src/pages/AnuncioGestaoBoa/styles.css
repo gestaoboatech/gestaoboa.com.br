@@ -1,0 +1,442 @@
+/* Propaganda Component Styles */
+
+/* Container Principal */
+.anuncio-video-container {
+  width: 100%;
+  height: 100vh;
+  aspect-ratio: 16 / 9;
+  background-color: #03045e;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+  color: #FFFFFF;
+  overflow: hidden;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.anuncio-video-container:not(.is-playing) {
+  opacity: 0.2;
+}
+
+.anuncio-video-container.restarting {
+}
+
+.anuncio-animation-section {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Seção 1: Logo e Benefícios */
+.anuncio-logo-image {
+  width: 450px;
+  height: auto;
+  position: absolute;
+  top: 20%;
+}
+
+.anuncio-benefits-text-container {
+  position: absolute;
+  bottom: 25%;
+  text-align: center;
+  width: 100%;
+  height: 40px;
+}
+
+.anuncio-benefit-text {
+  font-size: clamp(1.8rem, 4.5vw, 3.3rem);
+  font-weight: 600;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Seção 2: Funcionalidades */
+.anuncio-features-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  gap: 2rem;
+}
+
+.anuncio-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.anuncio-feature-list-item {
+  font-size: clamp(2.5rem, 4.2vw, 2.5rem);
+  font-weight: 600;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.anuncio-app-image {
+  border-radius: 30px;
+  border: 3px solid #007BFF;
+  object-fit: cover;
+}
+
+/* Seção 3: Depoimento */
+.anuncio-testimonial-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.anuncio-testimonial-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #5CADFF;
+}
+
+.anuncio-testimonial-text {
+  font-size: clamp(2.5rem, 4.5vw, 2.5rem);
+  font-style: italic;
+  text-align: center;
+  max-width: 80%;
+  line-height: 1.6;
+  margin: 0;
+  color: #FFFFFF;
+}
+
+.anuncio-testimonial-author {
+  color: #5CADFF;
+  font-weight: 700;
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+}
+
+/* Seção 4: CTA */
+.anuncio-cta-container {
+  text-align: center;
+}
+
+.anuncio-qr-code {
+  width: 150px;
+  height: 150px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.anuncio-cta-headline {
+  font-size: clamp(3rem, 9vw, 5.25rem);
+  font-weight: 700;
+  margin: 20px 0 5px 0;
+}
+
+.anuncio-cta-subheadline {
+  color: #5CADFF;
+  font-size: clamp(1.5rem, 4.5vw, 2.25rem);
+  margin: 0;
+}
+
+/* Seção 5: Anúncio */
+.anuncio-ad-section {
+  background-color: #000;
+}
+
+.anuncio-ad-content {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  gap: 2rem;
+}
+
+.anuncio-ad-logo-image {
+  width: 180px;
+  height: 180px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 3px solid #FFFFFF;
+}
+
+.anuncio-ad-info {
+  text-align: left;
+  color: #FFFFFF;
+}
+
+.anuncio-ad-info-headline {
+  font-size: clamp(2.25rem, 6vw, 3.75rem);
+  margin: 0 0 20px 0;
+  color: #5CADFF;
+  font-weight: 700;
+}
+
+.anuncio-ad-info-p {
+  font-size: clamp(1.5rem, 3.75vw, 2.1rem);
+  margin: 10px 0;
+}
+
+.anuncio-ad-info-price {
+  font-weight: 700;
+  color: #5CADFF;
+}
+
+/* Seção 5: Before After */
+.anuncio-before-after-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.anuncio-before-after-title {
+  font-size: 5.25rem;
+  font-weight: bold;
+  margin-bottom: 60px;
+  color: white;
+}
+
+.anuncio-comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-top: 40px;
+}
+
+.anuncio-comparison-side {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 50px 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.anuncio-comparison-side.before {
+  border-color: rgba(239, 68, 68, 0.5);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.anuncio-comparison-side.after {
+  border-color: rgba(16, 185, 129, 0.5);
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.anuncio-comparison-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.anuncio-comparison-list {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.anuncio-comparison-list li {
+  font-size: 2.1rem;
+  margin: 20px 0;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: white;
+  font-weight: 500;
+}
+
+/* Stats Section */
+.anuncio-stats-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.anuncio-stats-title {
+  font-size: 5.25rem;
+  font-weight: bold;
+  margin-bottom: 60px;
+  color: white;
+}
+
+.anuncio-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.anuncio-stat-item {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 40px 20px;
+  border-radius: 20px;
+  border: 2px solid rgba(59, 130, 246, 0.3);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.anuncio-stat-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+}
+
+.anuncio-stat-number {
+  font-size: 4rem;
+  font-weight: 900;
+  color: #3b82f6;
+  margin-bottom: 10px;
+}
+
+.anuncio-stat-label {
+  font-size: 1.95rem;
+  color: #e2e8f0;
+  font-weight: 500;
+}
+
+/* Video Section */
+.anuncio-video-container-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.anuncio-video-title {
+  font-size: 4.5rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.anuncio-video-wrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border: 3px solid #5CADFF;
+}
+
+.anuncio-demo-video {
+  width: 100%;
+  height: auto;
+  max-width: 800px;
+  border-radius: 20px;
+}
+
+.anuncio-video-fallback {
+  text-align: center;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+}
+
+.anuncio-video-placeholder {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 12px;
+}
+
+.anuncio-video-fallback-text {
+  font-size: 1.8rem;
+  color: #5CADFF;
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+/* Animações */
+@keyframes fadeIn { 
+  0% { opacity: 0; } 
+  100% { opacity: 1; } 
+}
+
+@keyframes fadeOut { 
+  0% { opacity: 1; } 
+  100% { opacity: 0; } 
+}
+
+@keyframes fadeInOutText { 
+  0% { opacity: 0; transform: translateY(20px); } 
+  20%, 80% { opacity: 1; transform: translateY(0); } 
+  100% { opacity: 0; transform: translateY(0); } 
+}
+
+@keyframes restartPulse {
+  0% { 
+    opacity: 0.2; 
+    transform: scale(1);
+  }
+  25% { 
+    opacity: 0.1; 
+    transform: scale(0.98);
+  }
+  50% { 
+    opacity: 0.05; 
+    transform: scale(0.95);
+  }
+  75% { 
+    opacity: 0.3; 
+    transform: scale(0.98);
+  }
+  100% { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+}
+
+.is-playing #anuncio-logo-benefits-section { 
+  animation: fadeIn 1s ease-in-out 0.5s forwards, fadeOut 1s ease-in-out 10s forwards; 
+}
+
+.is-playing .anuncio-benefit-text-1 { 
+  animation: fadeInOutText 2.5s ease-in-out 2.5s forwards; 
+}
+
+.is-playing .anuncio-benefit-text-2 { 
+  animation: fadeInOutText 2.5s ease-in-out 5.0s forwards; 
+}
+
+.is-playing .anuncio-benefit-text-3 { 
+  animation: fadeInOutText 2.5s ease-in-out 7.5s forwards; 
+}
+
+.is-playing #anuncio-features-section { 
+  animation: fadeIn 1.5s ease-in-out 11s forwards, fadeOut 1s ease-in-out 17s forwards; 
+}
+
+.is-playing #anuncio-stats-section { 
+  animation: fadeIn 1.5s ease-in-out 18s forwards, fadeOut 1s ease-in-out 32s forwards; 
+}
+
+.is-playing #anuncio-before-after-section { 
+  animation: fadeIn 1.5s ease-in-out 33s forwards, fadeOut 1s ease-in-out 47s forwards; 
+}
+
+.is-playing #anuncio-testimonial-section { 
+  animation: fadeIn 1.5s ease-in-out 48s forwards, fadeOut 1s ease-in-out 59s forwards; 
+}
+
+.is-playing #anuncio-cta-section { 
+  animation: fadeIn 1.5s ease-in-out 60s forwards, fadeOut 1s ease-in-out 74s forwards; 
+}
+
+.is-playing #anuncio-ad-section { 
+  animation: fadeIn 1.5s ease-in-out 75s forwards, fadeOut 1s ease-in-out 89s forwards; 
+}
+
+.anuncio-features-list li::before { 
+  content: '✓'; 
+  color: #5CADFF; 
+  font-weight: 700; 
+  margin-right: 15px; 
+  font-size: 2.25em; 
+}

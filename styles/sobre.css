@@ -1,0 +1,142 @@
+:root {
+    --primary-color: #2196F3;
+    --text-color: #333;
+    --background-color: #F5F6FA;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hero {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.hero .subtitle {
+    font-size: 20px;
+    opacity: 0.9;
+}
+
+.story {
+    padding: 80px 0;
+}
+
+.story-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.story-content p {
+    margin-bottom: 24px;
+    font-size: 18px;
+    color: #4A4A4A;
+}
+
+.team {
+    padding: 80px 0;
+    background-color: white;
+}
+
+.team h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+}
+
+.team-image {
+    max-width: 1000px;
+    margin: 0 auto 60px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.team-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.team-members {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.member {
+    text-align: center;
+    padding: 20px;
+    background-color: #F8F9FA;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.member:hover {
+    transform: translateY(-5px);
+}
+
+.member h3 {
+    color: var(--primary-color);
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.member .role {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 16px;
+}
+
+.member .bio {
+    color: #4A4A4A;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 60px 0;
+    }
+    
+    .hero h1 {
+        font-size: 36px;
+    }
+    
+    .story-content p {
+        font-size: 16px;
+    }
+    
+    .team-members {
+        grid-template-columns: 1fr;
+    }
+    
+    .member {
+        padding: 15px;
+    }
+}

@@ -1,0 +1,560 @@
+/* Animações personalizadas aprimoradas */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 30px rgba(255, 193, 7, 0.6); }
+  50% { box-shadow: 0 0 50px rgba(255, 193, 7, 0.9); }
+}
+
+@keyframes slide-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Novas animações */
+@keyframes scale-up {
+  0% { transform: scale(0.94); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes bounce-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes rotate-bg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Classes para animações */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+  will-change: box-shadow;
+}
+
+.animate-slide-in-up {
+  animation: slide-in-up 0.6s ease-out forwards;
+  will-change: opacity, transform;
+}
+
+.animate-scale-up {
+  animation: scale-up 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.animate-bounce-soft {
+  animation: bounce-soft 4s ease-in-out infinite;
+}
+
+/* Classes para atrasos de transição */
+.delay-100 {
+  transition-delay: 0.1s !important;
+}
+
+.delay-200 {
+  transition-delay: 0.2s !important;
+}
+
+.delay-300 {
+  transition-delay: 0.3s !important;
+}
+
+.delay-400 {
+  transition-delay: 0.4s !important;
+}
+
+/* Efeitos de hover personalizados */
+.hover-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-shine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s;
+}
+
+.hover-shine:hover::before {
+  left: 100%;
+}
+
+/* Gradientes personalizados */
+.bg-gradient-hero {
+  background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #192841);
+  background-size: 400% 400%;
+  animation: rotate-bg 15s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-gradient-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.05), transparent 50%);
+  z-index: 1;
+}
+
+/* Background gradients adicionais */
+.bg-gradient-cta {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  background-size: 200% 200%;
+  animation: rotate-bg 15s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shadow styles */
+.shadow-warm {
+  box-shadow: 0 10px 25px rgba(251, 191, 36, 0.2);
+}
+
+/* Botões especiais */
+.btn-primary {
+  background: linear-gradient(135deg, #fbbf24 0%, #f97316 100%);
+  color: #000;
+  font-weight: 700;
+  padding: 16px 32px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(251, 191, 36, 0.2);
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(251, 191, 36, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(251, 191, 36, 0.2);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 16px 32px;
+  border: 2px solid #ffffff;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary:hover {
+  background: #ffffff;
+  color: #1e3a8a;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+/* Cards com efeitos especiais */
+.feature-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.feature-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Pricing cards */
+.pricing-card {
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 32px;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.pricing-card:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
+  transform: translateY(-4px);
+}
+
+.pricing-card.featured {
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+  color: #ffffff;
+  transform: scale(1.05);
+  box-shadow: 0 25px 50px rgba(59, 130, 246, 0.3);
+  border: none;
+}
+
+.pricing-card.featured:hover {
+  transform: scale(1.08) translateY(-4px);
+  box-shadow: 0 30px 60px rgba(59, 130, 246, 0.4);
+}
+
+/* Testimonial cards */
+.testimonial-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.testimonial-card::before {
+  content: '"';
+  position: absolute;
+  top: -5px;
+  left: 20px;
+  font-size: 60px;
+  color: #3b82f6;
+  font-family: Georgia, serif;
+  opacity: 0.2;
+  line-height: 1;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Video player personalizado */
+.video-container {
+  position: relative;
+  background: linear-gradient(135deg, #111827 0%, #374151 100%);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.video-play-button {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
+}
+
+.video-play-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);
+}
+
+@keyframes pulse-video {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.video-play-button::before {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 2px solid rgba(220, 38, 38, 0.3);
+  border-radius: 50%;
+  animation: pulse-video 2s ease-out infinite;
+}
+
+/* Stats counter */
+.stats-item {
+  text-align: center;
+  padding: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.stats-number {
+  font-size: 48px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fbbf24 0%, #f97316 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 6px;
+  line-height: 1;
+  display: block;
+}
+
+.stats-label {
+  color: #ffffff;
+  font-size: 16px;
+  margin-top: 8px;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+/* Seções com parallax effect */
+.parallax-bg {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  z-index: 0;
+}
+
+@supports (-webkit-overflow-scrolling: touch) {
+  /* Fix para iOS que não suporta bem background-attachment: fixed */
+  .parallax-bg {
+    background-attachment: scroll;
+  }
+}
+
+/* Elementos flutuantes */
+.floating-element {
+  position: absolute;
+  opacity: 0.15;
+  animation: float 6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+  filter: blur(1px);
+}
+
+.floating-element:nth-child(2) {
+  animation-delay: -2s;
+  animation-duration: 8s;
+}
+
+.floating-element:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 7s;
+}
+
+/* Scroll animations */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: opacity, transform;
+}
+
+.fade-in-up.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Loading spinner para video */
+.loading-spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid #ffffff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .feature-card,
+  .pricing-card,
+  .testimonial-card {
+    padding: 24px;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    padding: 14px 24px;
+    font-size: 16px;
+  }
+  
+  .stats-number {
+    font-size: 36px;
+  }
+  
+  .video-play-button {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .video-play-button::before {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .feature-card:hover,
+  .testimonial-card:hover {
+    transform: translateY(-6px);
+  }
+}
+
+@media (max-width: 640px) {
+  .pricing-card.featured {
+    transform: none;
+    margin: 24px 0;
+  }
+  
+  .pricing-card.featured:hover {
+    transform: translateY(-4px);
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    padding: 14px 20px;
+  }
+  
+  .stats-number {
+    font-size: 32px;
+  }
+  
+  .stats-label {
+    font-size: 14px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-pulse-glow,
+  .animate-slide-in-up,
+  .bg-gradient-hero,
+  .floating-element,
+  .video-play-button::before {
+    animation: none !important;
+  }
+  
+  .feature-card:hover,
+  .pricing-card:hover,
+  .testimonial-card:hover,
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .video-play-button:hover {
+    transform: none;
+    transition: none;
+  }
+  
+  .fade-in-up {
+    transition: opacity 0.2s ease;
+    transform: none;
+  }
+  
+  .hover-shine::before {
+    display: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .video-container,
+  .btn-primary,
+  .btn-secondary {
+    display: none;
+  }
+}
+
+/* Testimonial styles */
+.testimonial-rating {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 12px;
+}
+
+.testimonial-text {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-style: italic;
+  color: #4b5563;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.testimonial-author-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #e5e7eb;
+  background-size: cover;
+  background-position: center;
+}
+
+.testimonial-author-name {
+  font-weight: 600;
+  color: #111827;
+}
+
+.testimonial-author-business {
+  font-size: 14px;
+  color: #6b7280;
+}

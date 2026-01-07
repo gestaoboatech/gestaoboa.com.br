@@ -1,0 +1,1208 @@
+.barbershop-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Black Friday Subtitle */
+.black-friday-subtitle {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+  color: #666;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .barbershop-form-container {
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 30px 20px;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .barbershop-form-container {
+    max-width: 100%;
+    margin: 0 1rem;
+    padding: 20px 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.barbershop-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .barbershop-form {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .barbershop-form {
+    gap: 16px;
+  }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #03045e;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 768px) {
+  .form-label {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-label {
+    font-size: 14px;
+  }
+}
+
+.form-input,
+.form-select {
+  padding: 14px 16px;
+  border: 2px solid #e1e8ed;
+  border-radius: 12px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .form-input,
+  .form-select {
+    padding: 12px 14px;
+    font-size: 16px; /* Mantém 16px para evitar zoom no iOS */
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-input,
+  .form-select {
+    padding: 12px;
+    font-size: 16px; /* Importante manter 16px no mobile */
+    border-radius: 8px;
+  }
+}
+
+.form-input:focus,
+.form-select:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+  transform: translateY(-1px);
+}
+
+.form-input::placeholder {
+  color: #95a5a6;
+}
+
+.form-select {
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 20px;
+  padding-right: 40px;
+}
+
+.form-select option {
+  padding: 10px;
+}
+
+.form-button-container {
+  margin-top: 8px;
+}
+
+.form-submit-button {
+  width: 100%;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-submit-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2980b9 0%, #1f5f8b 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
+}
+
+.form-submit-button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+}
+
+.form-submit-button:disabled {
+  background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.form-disclaimer {
+  text-align: center;
+  font-size: 14px;
+  color: #7f8c8d;
+  margin-top: 16px;
+  line-height: 1.6;
+  padding: 0 8px;
+}
+
+.form-disclaimer strong {
+  color: #03045e;
+}
+
+/* Melhorias para tablets */
+@media (max-width: 768px) {
+  .barbershop-form-container {
+    margin: 0 16px;
+    padding: 32px 24px;
+    border-radius: 12px;
+  }
+  
+  .barbershop-form {
+    gap: 20px;
+  }
+  
+  .form-label {
+    font-size: 15px;
+  }
+  
+  .form-input,
+  .form-select {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 12px 14px;
+    min-height: 48px;
+    box-sizing: border-box;
+  }
+
+  .form-submit-button {
+    font-size: 16px;
+    padding: 14px 20px;
+    min-height: 52px;
+    letter-spacing: 0.3px;
+  }
+  
+  .form-disclaimer {
+    font-size: 13px;
+    padding: 0 4px;
+  }
+}
+
+/* Melhorias para celulares */
+@media (max-width: 480px) {
+  .barbershop-form-container {
+    margin: 0 8px;
+    padding: 24px 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .barbershop-form {
+    gap: 18px;
+  }
+  
+  .form-field {
+    gap: 6px;
+  }
+  
+  .form-label {
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+  
+  .form-input,
+  .form-select {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 12px;
+    min-height: 44px;
+    border-radius: 8px;
+    border-width: 1.5px;
+  }
+  
+  .form-select {
+    background-size: 18px;
+    background-position: right 10px center;
+    padding-right: 35px;
+  }
+
+  .form-submit-button {
+    font-size: 14px;
+    padding: 12px 16px;
+    min-height: 48px;
+    border-radius: 8px;
+    letter-spacing: 0.2px;
+  }
+  
+  .form-disclaimer {
+    font-size: 12px;
+    margin-top: 12px;
+    line-height: 1.5;
+    padding: 0 2px;
+  }
+}
+
+/* Melhorias para celulares muito pequenos */
+@media (max-width: 360px) {
+  .barbershop-form-container {
+    margin: 0 4px;
+    padding: 20px 12px;
+  }
+  
+  .form-input,
+  .form-select {
+    padding: 10px;
+    min-height: 42px;
+  }
+  
+  .form-submit-button {
+    font-size: 13px;
+    padding: 10px 12px;
+    min-height: 44px;
+  }
+  
+  .form-disclaimer {
+    font-size: 11px;
+  }
+}
+
+/* Melhorias para acessibilidade e UX */
+@media (hover: none) and (pointer: coarse) {
+  .form-input:focus,
+  .form-select:focus {
+    transform: none; /* Remove transform em dispositivos touch */
+  }
+  
+  .form-submit-button:hover {
+    transform: none; /* Remove hover effects em dispositivos touch */
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+  }
+}
+
+/* Fix para iOS Safari */
+@supports (-webkit-touch-callout: none) {
+  .form-input,
+  .form-select {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 12px;
+  }
+  
+  @media (max-width: 480px) {
+    .form-input,
+    .form-select {
+      border-radius: 8px;
+    }
+  }
+}
+
+/* Modal do WhatsApp */
+.whatsapp-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.whatsapp-modal {
+  background: white;
+  border-radius: 20px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.4s ease-out;
+  position: relative;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.whatsapp-modal-header {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: white;
+  padding: 20px 25px;
+  border-radius: 20px 20px 0 0;
+  text-align: center;
+}
+
+.whatsapp-modal-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.whatsapp-modal-content {
+  padding: 30px 25px 20px;
+  text-align: center;
+}
+
+.whatsapp-icon {
+  margin: 0 auto 20px;
+  display: flex;
+  justify-content: center;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.whatsapp-modal-content h4 {
+  margin: 0 0 15px;
+  font-size: 1.4rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.whatsapp-modal-content p {
+  margin: 0 0 20px;
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.whatsapp-benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 25px;
+  text-align: left;
+}
+
+.whatsapp-benefits li {
+  padding: 8px 0;
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.4;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.whatsapp-benefits li:last-child {
+  border-bottom: none;
+}
+
+.whatsapp-modal-actions {
+  padding: 0 25px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.whatsapp-join-btn {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-join-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-join-btn:active {
+  transform: translateY(0);
+}
+
+.whatsapp-skip-btn {
+  background: #f8f9fa;
+  color: #666;
+  border: 1px solid #e9ecef;
+  padding: 12px 25px;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.whatsapp-skip-btn:hover {
+  background: #e9ecef;
+  color: #495057;
+}
+
+/* Responsividade do modal */
+@media (max-width: 768px) {
+  .whatsapp-modal {
+    width: 95%;
+    max-width: 400px;
+  }
+  
+  .whatsapp-modal-header h3 {
+    font-size: 1.1rem;
+  }
+  
+  .whatsapp-modal-content {
+    padding: 25px 20px 15px;
+  }
+  
+  .whatsapp-modal-content h4 {
+    font-size: 1.2rem;
+  }
+  
+  .whatsapp-modal-actions {
+    padding: 0 20px 20px;
+  }
+  
+  .whatsapp-join-btn {
+    font-size: 1rem;
+    padding: 14px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .whatsapp-modal {
+    width: 95%;
+    border-radius: 16px;
+  }
+  
+  .whatsapp-modal-header {
+    border-radius: 16px 16px 0 0;
+    padding: 15px 20px;
+  }
+  
+  .whatsapp-modal-header h3 {
+    font-size: 1rem;
+  }
+  
+  .whatsapp-modal-content {
+    padding: 20px 15px 10px;
+  }
+  
+  .whatsapp-modal-content h4 {
+    font-size: 1.1rem;
+  }
+  
+  .whatsapp-benefits li {
+    font-size: 0.9rem;
+    padding: 6px 0;
+  }
+  
+  .whatsapp-modal-actions {
+    padding: 0 15px 15px;
+    gap: 10px;
+  }
+  
+  .whatsapp-join-btn {
+    font-size: 0.95rem;
+    padding: 12px 15px;
+  }
+  
+  .whatsapp-skip-btn {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ============================
+   BLACK FRIDAY PROMO SECTION
+   ============================ */
+
+.black-friday-promo-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #03045e 0%, #023e8a 50%, #0077b6 100%);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.promo-package {
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.promo-package h3 {
+  text-align: center;
+  color: #ffd93d;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.promo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.promo-item-name {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.promo-item-price-original {
+  color: #b0b0b0;
+  font-size: 1rem;
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.promo-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  margin-top: 8px;
+  border-top: 2px solid rgba(255, 107, 53, 0.3);
+}
+
+.promo-total span:first-child {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.promo-total-original {
+  color: #b0b0b0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: line-through;
+}
+
+.promo-final-price {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8800 100%);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  margin-top: 16px;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+}
+
+.promo-label {
+  display: block;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.promo-price {
+  display: block;
+  color: #ffffff;
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.promo-savings {
+  background: #ffd93d;
+  color: #03045e;
+  font-size: 0.95rem;
+  font-weight: 800;
+  padding: 12px 20px;
+  border-radius: 20px;
+  display: block;
+  margin-top: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.promo-benefits {
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 30px;
+}
+
+.promo-benefits h4 {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.promo-benefits ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.promo-benefits li {
+  color: #e0e0e0;
+  font-size: 1rem;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.promo-benefits li:last-child {
+  border-bottom: none;
+}
+
+.promo-button {
+  animation: pulse 2s infinite;
+  font-size: 1.2rem !important;
+  padding: 18px 30px !important;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+  }
+}
+
+.promo-disclaimer {
+  text-align: center;
+  color: #b0b0b0;
+  font-size: 0.9rem;
+  margin-top: 20px;
+}
+
+/* Responsividade da Promo Section */
+@media (max-width: 768px) {
+  .black-friday-promo-container {
+    padding: 30px 15px;
+    border-radius: 16px;
+  }
+
+  .promo-package {
+    padding: 20px;
+  }
+
+  .promo-package h3 {
+    font-size: 1.3rem;
+  }
+
+  .promo-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .promo-item-name {
+    font-size: 0.95rem;
+  }
+
+  .promo-price {
+    font-size: 2.5rem;
+  }
+
+  .promo-button {
+    font-size: 1rem !important;
+    padding: 16px 24px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .black-friday-promo-container {
+    padding: 20px 12px;
+    margin: 0 10px;
+  }
+
+  .promo-package {
+    padding: 16px;
+  }
+
+  .promo-package h3 {
+    font-size: 1.1rem;
+  }
+
+  .promo-item-name {
+    font-size: 0.9rem;
+  }
+
+  .promo-price {
+    font-size: 2.2rem;
+  }
+
+  .promo-benefits {
+    padding: 16px;
+  }
+
+  .promo-benefits h4 {
+    font-size: 1.1rem;
+  }
+
+  .promo-benefits li {
+    font-size: 0.9rem;
+  }
+
+  .promo-button {
+    font-size: 0.95rem !important;
+    padding: 14px 20px !important;
+  }
+}
+
+/* ============================
+   CONTADOR REGRESSIVO
+   ============================ */
+
+.promo-countdown {
+  background: linear-gradient(135deg, #023e8a 0%, #0077b6 100%);
+  border: 2px solid #ff6b35;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.countdown-title {
+  color: #ff6b35;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 60px;
+}
+
+.countdown-value {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8800 100%);
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 900;
+  padding: 10px 15px;
+  border-radius: 10px;
+  min-width: 50px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+}
+
+.countdown-label {
+  color: #b0b0b0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+.countdown-separator {
+  color: #ff6b35;
+  font-size: 2rem;
+  font-weight: 900;
+  margin-top: -15px;
+}
+
+/* ============================
+   ALERTA DE ESCASSEZ
+   ============================ */
+
+.promo-scarcity {
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  border-radius: 12px;
+  padding: 14px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  animation: scarcityPulse 1.5s infinite;
+}
+
+@keyframes scarcityPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 6px 25px rgba(220, 53, 69, 0.6);
+  }
+}
+
+.scarcity-icon {
+  font-size: 1.3rem;
+  animation: fireAnimation 0.5s infinite alternate;
+}
+
+@keyframes fireAnimation {
+  0% { transform: scale(1) rotate(-5deg); }
+  100% { transform: scale(1.1) rotate(5deg); }
+}
+
+.scarcity-text {
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.scarcity-text strong {
+  color: #ffd93d;
+  font-weight: 800;
+}
+
+/* ============================
+   GARANTIA DE 7 DIAS
+   ============================ */
+
+.promo-guarantee {
+  background: linear-gradient(135deg, rgba(40, 167, 69, 0.15) 0%, rgba(40, 167, 69, 0.05) 100%);
+  border: 2px solid rgba(40, 167, 69, 0.5);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.guarantee-icon {
+  font-size: 2.5rem;
+}
+
+.guarantee-content strong {
+  color: #0077b6;
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.guarantee-content p {
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ============================
+   MINI DEPOIMENTOS
+   ============================ */
+
+.promo-testimonials {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.promo-testimonial {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.promo-testimonial img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ff6b35;
+}
+
+.testimonial-text {
+  flex: 1;
+}
+
+.testimonial-text p {
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-style: italic;
+  margin: 0 0 6px 0;
+  line-height: 1.4;
+}
+
+.testimonial-text span {
+  color: #ff6b35;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* ============================
+   BOTÃO MOBILE MELHORADO
+   ============================ */
+
+.mobile-cta-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+.mobile-cta-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.mobile-cta-discount {
+  background: #dc3545;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+.mobile-cta-price {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mobile-cta-price .old-price {
+  color: #999;
+  font-size: 0.85rem;
+  text-decoration: line-through;
+}
+
+.mobile-cta-price .new-price {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.mobile-cta-content button {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8800 100%);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+  transition: all 0.3s ease;
+}
+
+.mobile-cta-content button:active {
+  transform: scale(0.98);
+}
+
+/* ============================
+   RESPONSIVIDADE NOVOS ELEMENTOS
+   ============================ */
+
+@media (max-width: 768px) {
+  .countdown-item {
+    min-width: 50px;
+  }
+  
+  .countdown-value {
+    font-size: 1.5rem;
+    padding: 8px 12px;
+    min-width: 42px;
+  }
+  
+  .countdown-separator {
+    font-size: 1.5rem;
+  }
+  
+  .promo-scarcity {
+    padding: 12px 16px;
+  }
+  
+  .scarcity-text {
+    font-size: 0.85rem;
+  }
+  
+  .promo-guarantee {
+    padding: 14px 16px;
+  }
+  
+  .guarantee-icon {
+    font-size: 2rem;
+  }
+  
+  .guarantee-content strong {
+    font-size: 1rem;
+  }
+  
+  .promo-testimonial {
+    padding: 12px;
+  }
+  
+  .promo-testimonial img {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .testimonial-text p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .promo-countdown {
+    padding: 16px;
+  }
+  
+  .countdown-title {
+    font-size: 0.8rem;
+  }
+  
+  .countdown-timer {
+    gap: 4px;
+  }
+  
+  .countdown-item {
+    min-width: 40px;
+  }
+  
+  .countdown-value {
+    font-size: 1.2rem;
+    padding: 6px 10px;
+    min-width: 35px;
+  }
+  
+  .countdown-label {
+    font-size: 0.65rem;
+  }
+  
+  .countdown-separator {
+    font-size: 1.2rem;
+    margin: 0 2px;
+  }
+  
+  .promo-scarcity {
+    flex-direction: row;
+    text-align: center;
+  }
+  
+  .scarcity-text {
+    font-size: 0.8rem;
+  }
+  
+  .promo-guarantee {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+  
+  .guarantee-icon {
+    font-size: 2.5rem;
+  }
+  
+  .promo-testimonial {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .testimonial-text {
+    text-align: center;
+  }
+  
+  .mobile-cta-content {
+    padding: 0 8px;
+  }
+  
+  .mobile-cta-content button {
+    padding: 12px 18px;
+    font-size: 0.85rem;
+  }
+}

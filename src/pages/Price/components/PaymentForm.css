@@ -1,0 +1,453 @@
+.payment-form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.payment-form-container {
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.payment-form-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6c757d;
+}
+
+.payment-form-close:hover {
+  color: #03045e;
+}
+
+.payment-form-container h2 {
+  color: #03045e;
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.payment-form-price {
+  font-size: 18px;
+  color: #03045e;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-group.half {
+  flex: 1;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #495057;
+  font-weight: 500;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #03045e;
+  box-shadow: 0 0 0 2px rgba(3, 4, 94, 0.1);
+}
+
+.payment-submit-button {
+  background-color: #03045e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 14px 20px;
+  font-size: 18px;
+  font-weight: 600;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.payment-submit-button:hover {
+  background-color: #0230a2;
+}
+
+.payment-submit-button:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+.payment-error {
+  color: #dc3545;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.payment-secure-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 25px;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.lock-icon {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.payment-success {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.checkmark {
+  color: white;
+  background-color: #28a745;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  margin: 0 auto 20px;
+}
+
+.payment-success h3 {
+  color: #03045e;
+  margin-bottom: 15px;
+}
+
+/* Estilos para o desenho do cartão */
+.credit-card-mockup {
+  background: linear-gradient(45deg, #a0a0a0, #d0d0d0);
+  border-radius: 15px;
+  padding: 20px;
+  width: 100%;
+  max-width: 350px;
+  margin: 20px auto 0;
+  color: #fff;
+  font-family: 'Consolas', monospace;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.card-chip {
+  width: 50px;
+  height: 35px;
+  background-color: #d0ad2d;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.card-logo {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.card-number {
+  font-size: 20px;
+  margin-bottom: 20px;
+  word-spacing: 5px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.card-holder-name {
+  text-transform: uppercase;
+}
+
+.card-expiry {
+  /* styles for expiry date */
+}
+
+/* Adicionar estilos para as bandeiras de cartão, se necessário */
+.card-brand-visa {
+  /* Estilos para o logo Visa */
+  content: 'VISA'; /* Exemplo: pode ser substituído por uma imagem de fundo */
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.card-brand-mastercard {
+  /* Estilos para o logo Mastercard */
+  content: 'MC'; /* Exemplo: pode ser substituído por uma imagem de fundo */
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.card-brand-amex {
+  /* Estilos para o logo Amex */
+  content: 'AMEX'; /* Exemplo: pode ser substituído por uma imagem de fundo */
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.payment-not-ready {
+  text-align: center;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  margin: 1rem 0;
+}
+
+.payment-not-ready h3 {
+  color: #ff6b35;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.payment-not-ready p {
+  color: #6c757d;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.payment-not-ready-button {
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
+}
+
+.payment-not-ready-button:hover {
+  background: linear-gradient(135deg, #22c55e, #16a085);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+}
+
+.payment-not-ready-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(37, 211, 102, 0.3);
+}
+
+.payment-not-ready-button::before {
+  content: "📱";
+  font-size: 18px;
+}
+
+/* Payment Provider Selection Styles */
+.payment-provider-selection {
+  text-align: center;
+  padding: 32px 0;
+}
+
+.payment-provider-selection h3 {
+  margin: 0 0 32px 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.payment-providers {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.payment-provider-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.payment-provider-btn:hover {
+  border-color: #cbd5e1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.payment-provider-btn.active {
+  border-color: #0f172a;
+  background: #f8fafc;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+}
+
+.provider-icon {
+  font-size: 32px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.payment-provider-btn.active .provider-icon {
+  background: #0f172a;
+  color: white;
+}
+
+.provider-info {
+  flex: 1;
+}
+
+.provider-info h4 {
+  margin: 0 0 4px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.provider-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.payment-continue-btn {
+  background: #0f172a;
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 250px;
+}
+
+.payment-continue-btn:hover {
+  background: #1e293b;
+  transform: translateY(-1px);
+}
+
+.payment-continue-btn:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Responsividade */
+@media (max-width: 576px) {
+  .payment-form-container {
+    padding: 20px;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .payment-provider-selection {
+    padding: 24px 0;
+  }
+  
+  .payment-provider-selection h3 {
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
+  
+  .payment-provider-btn {
+    padding: 16px;
+    gap: 12px;
+  }
+  
+  .provider-icon {
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .provider-info h4 {
+    font-size: 16px;
+  }
+  
+  .provider-info p {
+    font-size: 13px;
+  }
+  
+  .payment-continue-btn {
+    padding: 14px 24px;
+    font-size: 15px;
+    min-width: 200px;
+  }
+}

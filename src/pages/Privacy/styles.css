@@ -1,0 +1,159 @@
+.beasier-1-1-13 {
+  width: 59px;
+  height: 37px;
+  object-fit: cover;
+}
+.beasier-1-1-13,
+.beasier3 {
+  position: relative;
+}
+.frame-div {
+  position: absolute;
+  top: 27px;
+  left: 107px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 17px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #03045e;
+  font-family: Montserrat;
+}
+.estes-so-as,
+.poltica-de-privacidade1 {
+  position: absolute;
+  top: 139px;
+  left: 107px;
+  font-size: 51px;
+  display: inline-block;
+  width: 1706px;
+}
+.estes-so-as {
+  top: 408px;
+  font-size: 30px;
+}
+.o-site-beasier {
+  margin: 0;
+}
+.o-site-beasier-container,
+.quando-voc-visita {
+  position: absolute;
+  top: 237px;
+  left: 107px;
+  font-weight: 500;
+  display: inline-block;
+  width: 1706px;
+  height: 137px;
+}
+.quando-voc-visita {
+  top: 480px;
+  height: 114px;
+}
+.por-que-fazemos {
+  top: 628px;
+  font-size: 30px;
+}
+.nossa-maior-prioridade-container,
+.por-que-fazemos,
+.seus-direitos {
+  position: absolute;
+  left: 107px;
+  display: inline-block;
+  width: 1706px;
+}
+.nossa-maior-prioridade-container {
+  top: 700px;
+  font-weight: 500;
+  height: 216px;
+}
+.seus-direitos {
+  top: 950px;
+  font-size: 30px;
+}
+.o-direito-de {
+  margin-bottom: 0;
+}
+.o-direito-de-ser-informado-o {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  padding-left: 24px;
+}
+.se-voc-morar-container {
+  top: 1022px;
+  font-weight: 500;
+  height: 321px;
+}
+.links-para-outros,
+.nosso-site-pode-container,
+.se-voc-morar-container {
+  position: absolute;
+  left: 107px;
+  display: inline-block;
+  width: 1706px;
+}
+.links-para-outros {
+  top: 1377px;
+  font-size: 30px;
+}
+.nosso-site-pode-container {
+  top: 1449px;
+  font-weight: 500;
+  height: 68px;
+}
+.segurana-das-informaes {
+  top: 1551px;
+  font-size: 30px;
+}
+.declarao-legal,
+.ns-garantimos-que,
+.segurana-das-informaes {
+  position: absolute;
+  left: 107px;
+  display: inline-block;
+  width: 1706px;
+}
+.ns-garantimos-que {
+  top: 1623px;
+  font-weight: 500;
+  height: 68px;
+}
+.declarao-legal {
+  top: 1725px;
+  font-size: 30px;
+}
+.ns-vamos-divulgar-container {
+  top: 1797px;
+  font-weight: 500;
+  height: 68px;
+}
+.informaes-de-contato,
+.ns-vamos-divulgar-container,
+.se-voc-quiser-container {
+  position: absolute;
+  left: 107px;
+  display: inline-block;
+  width: 1706px;
+}
+.informaes-de-contato {
+  top: 1899px;
+  font-size: 30px;
+}
+.se-voc-quiser-container {
+  top: 1971px;
+  font-weight: 500;
+  height: 68px;
+}
+.desktop-4 {
+  width: 100%;
+  position: relative;
+  background-color: #fff;
+  height: 2115px;
+  overflow: hidden;
+  text-align: left;
+  font-size: 18px;
+  color: #000;
+  font-family: Mulish;
+}

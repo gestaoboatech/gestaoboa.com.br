@@ -1,0 +1,102 @@
+/* ...existing styles... */
+
+/* General responsive adjustments */
+.responsive-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Banner adjustments */
+.banner-content,
+.banner-images {
+    width: 50%;
+}
+
+@media screen and (max-width: 768px) {
+
+    .banner-content,
+    .banner-images {
+        width: 100%;
+        text-align: center;
+    }
+
+    .banner-images {
+        margin-top: 20px;
+    }
+}
+
+/* Adjust CTA section */
+.cta-plans {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.cta-content,
+.cta-image {
+    width: 50%;
+}
+
+@media screen and (max-width: 768px) {
+
+    .cta-content,
+    .cta-image {
+        width: 100%;
+        text-align: center;
+    }
+
+    .cta-image {
+        margin-top: 20px;
+    }
+}
+
+/* Update fonts and button styles for better visibility */
+.cta-button {
+    font-size: 1.2em;
+    padding: 15px 30px;
+}
+
+.cta-content h2 {
+    font-size: 2em;
+}
+
+.cta-content p {
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+/* Adjust Team section */
+.team .items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.team .member {
+    width: 22%;
+    margin: 1%;
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .team .member {
+        width: 45%;
+    }
+}
+
+/* Contact form adjustments */
+.contact .form {
+    width: 50%;
+}
+
+@media screen and (max-width: 768px) {
+    .contact .form {
+        width: 100%;
+        padding: 0 20px;
+    }
+}
+
+/* ...existing styles... */

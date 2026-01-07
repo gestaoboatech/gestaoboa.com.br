@@ -1,0 +1,838 @@
+.beasier-1-1-13 {
+  width: 59px;
+  height: 37px;
+  object-fit: cover;
+}
+
+.beasier-1-1-13,
+.beasier3 {
+  position: relative;
+}
+
+.frame-div {
+  position: absolute;
+  top: 27px;
+  left: 107px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 17px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #03045e;
+  font-family: Montserrat;
+}
+
+.estes-so-as,
+.poltica-de-privacidade1 {
+  position: absolute;
+  top: 139px;
+  left: 107px;
+  font-size: 51px;
+  display: inline-block;
+  width: 1706px;
+}
+
+.estes-so-as {
+  top: 408px;
+  font-size: 30px;
+}
+
+.o-site-beasier {
+  margin: 0;
+}
+
+.o-site-beasier-container,
+.quando-voc-visita {
+  position: absolute;
+  top: 237px;
+  left: 107px;
+  font-weight: 500;
+  display: inline-block;
+  width: 1706px;
+  height: 137px;
+}
+
+.quando-voc-visita {
+  top: 480px;
+  height: 114px;
+}
+
+.por-que-fazemos {
+  top: 628px;
+  font-size: 30px;
+}
+
+.nossa-maior-prioridade-container,
+.por-que-fazemos,
+.seus-direitos {
+  position: absolute;
+  left: 107px;
+  display: inline-block;
+  width: 1706px;
+}
+
+.nossa-maior-prioridade-container {
+  top: 700px;
+  font-weight: 500;
+  height: 216px;
+}
+
+.seus-direitos {
+  top: 950px;
+  font-size: 30px;
+}
+
+.o-direito-de {
+  margin-bottom: 0;
+}
+
+.o-direito-de-ser-informado-o {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  padding-left: 24px;
+}
+
+.se-voc-morar-container {
+  top: 1022px;
+  font-weight: 500;
+  height: 321px;
+}
+
+.links-para-outros,
+.nosso-site-pode-container,
+.se-voc-morar-container {
+  position: absolute;
+  left: 107px;
+  display: inline-block;
+  width: 1706px;
+}
+
+.links-para-outros {
+  top: 1377px;
+  font-size: 30px;
+}
+
+.nosso-site-pode-container {
+  top: 1449px;
+  font-weight: 500;
+  height: 68px;
+}
+
+.segurana-das-informaes {
+  top: 1551px;
+  font-size: 30px;
+}
+
+.declarao-legal,
+.ns-garantimos-que,
+.segurana-das-informaes {
+  position: absolute;
+  left: 107px;
+  display: inline-block;
+  width: 1706px;
+}
+
+.ns-garantimos-que {
+  top: 1623px;
+  font-weight: 500;
+  height: 68px;
+}
+
+.declarao-legal {
+  top: 1725px;
+  font-size: 30px;
+}
+
+.ns-vamos-divulgar-container {
+  top: 1797px;
+  font-weight: 500;
+  height: 68px;
+}
+
+.informaes-de-contato,
+.ns-vamos-divulgar-container,
+.se-voc-quiser-container {
+  position: absolute;
+  left: 107px;
+  display: inline-block;
+  width: 1706px;
+}
+
+.informaes-de-contato {
+  top: 1899px;
+  font-size: 30px;
+}
+
+.se-voc-quiser-container {
+  top: 1971px;
+  font-weight: 500;
+  height: 68px;
+}
+
+.desktop-4 {
+  width: 100%;
+  position: relative;
+  background-color: #fff;
+  height: 2115px;
+  overflow: hidden;
+  text-align: left;
+  font-size: 18px;
+  color: #000;
+  font-family: Mulish;
+}
+
+.plans {
+  padding: 40px 20px;
+  padding-top: 100px;
+  background-color: #f0f4f8;
+}
+
+.top-countdown-container {
+  position: relative;
+  background: linear-gradient(135deg, #0230a2, #03045e);
+  padding: 30px;
+  margin-bottom: 30px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  animation: pulse 2s infinite;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  animation: pulse 2s infinite;
+}
+
+.top-countdown-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+  pointer-events: none;
+}
+
+@keyframes shine {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  50% {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+  }
+  100% {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.top-countdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.top-countdown-number {
+  background: rgba(255, 255, 255, 0.95);
+  color: #03045e;
+  font-size: 48px;
+  font-weight: bold;
+  padding: 15px 30px;
+  border-radius: 12px;
+  min-width: 240px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: monospace;
+  letter-spacing: 2px;
+}
+
+.top-countdown span {
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.top-countdown-title {
+  color: #fff;
+}
+
+
+.top-countdown-text {
+  color: #fff;
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+  padding: 0 20px;
+}
+
+.top-countdown-button {
+  background-color: #FD1D1D;
+  color: white;
+  border: none;
+  padding: 15px 35px;
+  margin-top: 25px;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.top-countdown-button:hover {
+  background-color: #ff4d4d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.plans-title {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  color: #03045e;
+  margin-bottom: 30px;
+}
+
+.plan-type-selector {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.plan-type-button {
+  padding: 12px 20px;
+  background-color: #fff;
+  border: 2px solid #03045e;
+  border-radius: 8px;
+  margin: 5px;
+  color: #03045e;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  min-width: 120px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.plan-type-button span {
+  display: block;
+}
+
+.plan-type-discount {
+  font-size: 14px;
+  font-weight: 600;
+  color: #FD1D1D;
+  background-color: rgba(253, 29, 29, 0.1);
+  padding: 2px 8px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.plan-type-button.active .plan-type-discount {
+  color: #fff;
+  background-color: #FD1D1D;
+}
+
+.plan-type-button:hover .plan-type-discount {
+  background-color: rgba(253, 29, 29, 0.2);
+}
+
+.plan-type-button.active:hover .plan-type-discount {
+  background-color: #ff4d4d;
+}
+
+.plan-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.plan-card {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 30px;
+  width: 320px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.plan-discount-badge {
+  position: absolute;
+  top: 16px;
+  right: -28px;
+  background-color: #FD1D1D;
+  color: white;
+  padding: 6px 30px;
+  font-size: 14px;
+  font-weight: 600;
+  transform: rotate(45deg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.plan-popular-badge {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  color: #000;
+  padding: 4px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+  z-index: 10;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.plan-card h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #03045e;
+  margin-bottom: 8px;
+}
+
+.plan-card p {
+  font-size: 14px;
+  color: #6c757d;
+  margin-bottom: 10px;
+}
+
+.original-price {
+  font-size: 14px;
+  color: #6c757d;
+  text-decoration: line-through;
+  margin-right: 5px;
+  opacity: 0.7;
+  display: inline;
+}
+
+.discounted-price,
+.price {
+  font-size: 40px;
+  color: #03045e;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.discounted-price span,
+.price span {
+  font-size: 18px;
+  margin-left: 5px;
+}
+
+.monthly-price-large {
+  font-size: 48px;
+  color: #0230a2;
+  font-weight: 900;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+.monthly-price-large span {
+  font-size: 22px;
+  font-weight: 600;
+  margin-left: 3px;
+}
+
+.daily-price-small {
+  font-size: 16px;
+  color: #6c757d;
+  margin-bottom: 5px;
+  font-weight: 400;
+}
+
+/* Classes originais mantidas para compatibilidade */
+.daily-price {
+  font-size: 18px;
+  color: #6c757d;
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.monthly-price {
+  font-size: 16px;
+  color: #6c757d;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.price-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 25px;
+  position: relative;
+  background-color: rgba(3, 4, 94, 0.03);
+  border-radius: 10px;
+  padding: 20px 15px;
+}
+
+.price-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background-color: rgba(3, 4, 94, 0.1);
+}
+
+.price-tag-header {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.investment-label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #03045e;
+  margin-bottom: 5px;
+}
+
+.savings-badge {
+  position: absolute;
+  top: -10px;
+  right: -5px;
+  background-color: #FD1D1D;
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.sign-button {
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #03045e;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.sign-button:hover {
+  background-color: #0230a2;
+}
+
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.benefits-list li {
+  font-size: 16px;
+  color: #343a40;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.benefits-list li img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.not-included {
+  color: #adb5bd;
+  text-decoration: line-through;
+}
+
+.support-section {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.support-section p {
+  font-size: 20px;
+  color: #6c757d;
+}
+
+.support-button {
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #03045e;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+  width: 260px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.support-button:hover {
+  background-color: #0230a2;
+}
+
+.check-icon {
+  color: #28a745;
+  margin-right: 8px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.x-icon {
+  color: #dc3545;
+  margin-right: 8px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.benefit-module {
+  margin-bottom: 16px;
+}
+
+.module-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #03045e;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #e9ecef;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.module-icon {
+  font-size: 15px;
+}
+
+.benefit-module ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.benefit-module li {
+  padding: 5px 0;
+  font-size: 13px;
+  color: #495057;
+  line-height: 1.4;
+}
+
+.instagram-button {
+  border-radius: 8px;
+  padding: 12px;
+  background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.instagram-button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.countdown-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+}
+
+.countdown-banner {
+  background-color: #FD1D1D;
+  border-radius: 8px;
+  padding: 6px 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 130px;
+}
+
+.countdown-text {
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 1px;
+}
+
+.countdown-days {
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.countdown-subtext {
+  color: #fff;
+  font-size: 10px;
+  margin-top: 1px;
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+  .plan-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .plan-card {
+    width: 90%;
+  }
+
+  .top-countdown-number {
+    font-size: 36px;
+    min-width: 200px;
+    padding: 12px 20px;
+  }
+
+  .top-countdown-title {
+    font-size: 24px;
+    color: #fff;
+  }
+
+  .top-countdown-text {
+    font-size: 16px;
+    color: #fff;
+  }
+
+  .top-countdown-button {
+    padding: 12px 25px;
+    font-size: 16px;
+  }
+}
+
+.comparison-section {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #f8f9ff 0%, #e6f0ff 100%);
+  margin-top: 2rem;
+}
+
+.comparison-section h2 {
+  text-align: center;
+  color: #1a237e;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.comparison-table {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 1.2rem;
+  text-align: center;
+  border-bottom: 1px solid #e0e0ff;
+}
+
+.comparison-table th {
+  background: #1a237e;
+  color: white;
+  font-weight: 600;
+}
+
+.comparison-table th:first-child {
+  text-align: left;
+  padding-left: 2rem;
+}
+
+.comparison-table td:first-child {
+  text-align: left;
+  padding-left: 2rem;
+  font-weight: 500;
+}
+
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+.comparison-table .gestao-boa-col {
+  background-color: rgba(25, 118, 210, 0.05);
+}
+
+.comparison-table .check-icon {
+  color: #4caf50;
+  font-size: 1.2rem;
+}
+
+.comparison-table .x-icon {
+  color: #f44336;
+  font-size: 1.2rem;
+}
+
+.price-row {
+  background-color: #f8f9ff;
+  font-weight: 600;
+}
+
+.price-row td {
+  padding: 1.5rem 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .comparison-table {
+    font-size: 0.9rem;
+  }
+  
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.8rem;
+  }
+  
+  .comparison-section {
+    padding: 2rem 1rem;
+  }
+  
+  .comparison-section h2 {
+    font-size: 2rem;
+  }
+}
+
+.comparison-section .container {
+  overflow-x: auto;
+  padding: 1rem;
+  margin: -1rem;
+}
