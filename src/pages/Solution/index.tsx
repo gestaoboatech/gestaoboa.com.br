@@ -43,19 +43,19 @@ const Solution = () => {
     // Função para animações de scroll reveal
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      rootMargin: "0px 0px -50px 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
+          entry.target.classList.add("revealed");
         }
       });
     }, observerOptions);
 
     // Observa todos os elementos com classe reveal-element
-    const revealElements = document.querySelectorAll('.reveal-element');
+    const revealElements = document.querySelectorAll(".reveal-element");
     revealElements.forEach((el) => observer.observe(el));
 
     // Executa quando a página carrega
@@ -337,13 +337,12 @@ const Solution = () => {
       <Header />
       <Content>
         <section className="hero">
-          <h1>
-            Melhor App de Agendamentos e Gestão Financeira
-          </h1>
+          <h1>Melhor App de Agendamentos e Gestão Financeira</h1>
           <p>
             Descubra o app que facilita seus agendamentos online e gestão
-            financeira. Organize sua agenda, crie seu link personalizado de agendamentos, controle seu caixa e
-            faça seu negócio crescer com o melhor sistema de gestão!
+            financeira. Organize sua agenda, crie seu link personalizado de
+            agendamentos, controle seu caixa e faça seu negócio crescer com o
+            melhor sistema de gestão!
           </p>
         </section>
 
@@ -351,32 +350,45 @@ const Solution = () => {
           <div className="benefits-container">
             <h2>Por que escolher a Gestão Boa?</h2>
             <p className="subtitle">
-              Descubra os diferenciais que fazem da Gestão Boa a melhor escolha para seu negócio
+              Descubra os diferenciais que fazem da Gestão Boa a melhor escolha
+              para seu negócio
             </p>
-            
+
             <div className="benefits-list">
               <div className="benefit-card reveal-element">
                 <div className="benefit-icon">⚡</div>
                 <h3>Setup em 5 Minutos</h3>
-                <p>Configure seu sistema completo em apenas alguns cliques. Sem complicações, sem demora.</p>
+                <p>
+                  Configure seu sistema completo em apenas alguns cliques. Sem
+                  complicações, sem demora.
+                </p>
               </div>
-              
+
               <div className="benefit-card reveal-element">
                 <div className="benefit-icon">📱</div>
                 <h3>Apps Nativos</h3>
-                <p>Aplicativos para iOS e Android + versão web. Gerencie de qualquer lugar, a qualquer hora.</p>
+                <p>
+                  Aplicativos para iOS e Android + versão web. Gerencie de
+                  qualquer lugar, a qualquer hora.
+                </p>
               </div>
-              
+
               <div className="benefit-card reveal-element">
                 <div className="benefit-icon">🔗</div>
                 <h3>Link Personalizado</h3>
-                <p>Seu próprio link de agendamentos para compartilhar em redes sociais e cartão digital.</p>
+                <p>
+                  Seu próprio link de agendamentos para compartilhar em redes
+                  sociais e cartão digital.
+                </p>
               </div>
-              
+
               <div className="benefit-card reveal-element">
                 <div className="benefit-icon">📊</div>
                 <h3>Relatórios Inteligentes</h3>
-                <p>Dashboards e análises automáticas para tomar as melhores decisões do seu negócio.</p>
+                <p>
+                  Dashboards e análises automáticas para tomar as melhores
+                  decisões do seu negócio.
+                </p>
               </div>
             </div>
           </div>
@@ -417,46 +429,62 @@ const Solution = () => {
             </div>
           </div>
 
-          <div id="link-agendamentos" className="feature-item reverse reveal-element modern-hover">
+          <div
+            id="link-agendamentos"
+            className="feature-item reverse reveal-element modern-hover"
+          >
             <div className="video-container">
-              <video
-                controls
-                preload="metadata"
-              >
+              <video controls preload="metadata">
                 <source src="/agenda online.mp4" type="video/mp4" />
-                Seu navegador não suporta vídeos. 
+                Seu navegador não suporta vídeos.
               </video>
             </div>
             <div className="feature-content">
               <h2>Link Personalizado de Agendamentos</h2>
-              <p>Permita que seus clientes agendem 24/7 através de um link personalizado:</p>
+              <p>
+                Permita que seus clientes agendem 24/7 através de um link
+                personalizado:
+              </p>
               <ul>
                 <li>
-                  <strong>Link personalizado exclusivo</strong> - Ex: agendamento.gestaoboa.com.br/seunegocio
+                  <strong>Link personalizado exclusivo</strong> - Ex:
+                  agendamento.gestaoboa.com.br/seunegocio
                 </li>
                 <li>
-                  <strong>Agendamento 24 horas por dia</strong> - Clientes agendam mesmo quando você está dormindo
+                  <strong>Agendamento 24 horas por dia</strong> - Clientes
+                  agendam mesmo quando você está dormindo
                 </li>
                 <li>
-                  <strong>Reduz ligações desnecessárias</strong> - Menos interrupções no seu dia a dia
+                  <strong>Reduz ligações desnecessárias</strong> - Menos
+                  interrupções no seu dia a dia
                 </li>
                 <li>
-                  <strong>Confirmação automática por WhatsApp</strong> - Cliente recebe confirmação na hora
+                  <strong>Confirmação automática por WhatsApp</strong> - Cliente
+                  recebe confirmação na hora
                 </li>
                 <li>
-                  <strong>Integração total com sua agenda</strong> - Sincroniza automaticamente com seu calendário
+                  <strong>Integração total com sua agenda</strong> - Sincroniza
+                  automaticamente com seu calendário
                 </li>
                 <li>
-                  <strong>Compartilhe em qualquer lugar</strong> - Instagram, Facebook, cartão de visita digital
+                  <strong>Compartilhe em qualquer lugar</strong> - Instagram,
+                  Facebook, cartão de visita digital
                 </li>
               </ul>
               <div className="feature-highlight">
-                <p>💡 <strong>Dica:</strong> Coloque seu link personalizado na bio do Instagram e no status do WhatsApp para receber agendamentos automáticos!</p>
+                <p>
+                  💡 <strong>Dica:</strong> Coloque seu link personalizado na
+                  bio do Instagram e no status do WhatsApp para receber
+                  agendamentos automáticos!
+                </p>
               </div>
             </div>
           </div>
 
-          <div id="financeiro" className="feature-item reverse reveal-element modern-hover">
+          <div
+            id="financeiro"
+            className="feature-item reverse reveal-element modern-hover"
+          >
             <img
               src="/Caixa.png"
               alt="App para Gestão Financeira - Dashboard completo de controle de caixa, vendas e despesas empresariais"
@@ -490,7 +518,10 @@ const Solution = () => {
             </div>
           </div>
 
-          <div id="clientes" className="feature-item reveal-element modern-hover">
+          <div
+            id="clientes"
+            className="feature-item reveal-element modern-hover"
+          >
             <img
               src="/Clientes.jpeg"
               alt="CRM Gestão de Clientes - Sistema de cadastro e relacionamento com histórico completo"
@@ -520,7 +551,10 @@ const Solution = () => {
             </div>
           </div>
 
-          <div id="produtos" className="feature-item reverse reveal-element modern-hover">
+          <div
+            id="produtos"
+            className="feature-item reverse reveal-element modern-hover"
+          >
             <img
               src="/produtos.jpeg"
               alt="Gestão de Produtos e Estoque - Controle de inventário em tempo real com relatórios"
@@ -550,7 +584,10 @@ const Solution = () => {
             </div>
           </div>
 
-          <div id="analytics" className="feature-item reveal-element modern-hover">
+          <div
+            id="analytics"
+            className="feature-item reveal-element modern-hover"
+          >
             <img
               src="/comissões.jpeg"
               alt="Analytics e Relatórios Empresariais - Dashboard com métricas e análises de desempenho"
@@ -579,6 +616,50 @@ const Solution = () => {
               </ul>
             </div>
           </div>
+
+          <div
+            id="lembretes-whatsapp"
+            className="feature-item reverse reveal-element modern-hover"
+          >
+            <img
+              src="/alerta.png"
+              alt="Automação de Lembretes WhatsApp - Notificações automáticas para funcionários e clientes"
+              className="animate-float"
+            />
+            <div className="feature-content">
+              <h2>Automação de Lembretes WhatsApp</h2>
+              <p>Reduza faltas e mantenha todos informados automaticamente:</p>
+              <ul>
+                <li>
+                  <strong>Notificação para funcionários</strong> - Aviso
+                  automático quando um cliente agenda pelo site
+                </li>
+                <li>
+                  <strong>Lembrete 1 dia antes</strong> - Cliente recebe
+                  lembrete automático um dia antes do agendamento
+                </li>
+                <li>
+                  <strong>Confirmação instantânea</strong> - Cliente recebe
+                  confirmação do agendamento na hora
+                </li>
+                <li>
+                  <strong>Redução de faltas</strong> - Diminua no-shows com
+                  lembretes automáticos
+                </li>
+                <li>
+                  <strong>Zero trabalho manual</strong> - Tudo funciona
+                  automaticamente enquanto você trabalha
+                </li>
+              </ul>
+              <div className="feature-highlight">
+                <p>
+                  💬 <strong>Dica:</strong> Os lembretes são enviados
+                  automaticamente por WhatsApp, sem precisar de nenhuma ação
+                  sua!
+                </p>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section className="cta reveal-element">
@@ -594,7 +675,10 @@ const Solution = () => {
             <a href="/preco" className="primary-button shine-effect">
               Testar App Grátis
             </a>
-            <a href="https://wa.me/5553999461550" className="secondary-button shine-effect">
+            <a
+              href="https://wa.me/5553999461550"
+              className="secondary-button shine-effect"
+            >
               Falar com Especialista
             </a>
           </div>
@@ -673,7 +757,14 @@ const Solution = () => {
                 Como funciona o link personalizado de agendamentos?
               </summary>
               <p>
-                O link personalizado permite que seus clientes agendem diretamente através de um endereço exclusivo (ex: agendamento.gestaoboa.com.br/seunegocio). Você pode compartilhar este link no Instagram, WhatsApp Status, cartão de visita digital ou qualquer lugar. Os clientes podem agendar 24 horas por dia e recebem confirmação automática por WhatsApp. O agendamento sincroniza automaticamente com sua agenda no sistema.
+                O link personalizado permite que seus clientes agendem
+                diretamente através de um endereço exclusivo (ex:
+                agendamento.gestaoboa.com.br/seunegocio). Você pode compartilhar
+                este link no Instagram, WhatsApp Status, cartão de visita
+                digital ou qualquer lugar. Os clientes podem agendar 24 horas
+                por dia e recebem confirmação automática por WhatsApp. O
+                agendamento sincroniza automaticamente com sua agenda no
+                sistema.
               </p>
             </details>
 

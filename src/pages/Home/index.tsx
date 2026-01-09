@@ -16,7 +16,15 @@ import { FB_PIXEL } from "../../utils/pixel";
 
 import { Helmet } from "react-helmet-async";
 import ReactPlayer from "react-player";
-import { Banner, Contact, Container, FAQ, Grid, Segments, Solutions } from "./styles";
+import {
+  Banner,
+  Contact,
+  Container,
+  FAQ,
+  Grid,
+  Segments,
+  Solutions,
+} from "./styles";
 
 // Import the carousel styles
 import "./performance.css";
@@ -24,14 +32,14 @@ import "./performance.css";
 const Home: FunctionComponent = () => {
   const formRef = useRef<FormHandles>(null);
   const viewedSections = useRef(new Set<string>());
-  
+
   // Estado do carrossel
   const [currentSegmentIndex, setCurrentSegmentIndex] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(1);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  console.log(isAutoPlaying)
-  
+  console.log(isAutoPlaying);
+
   // Atualizar itens por página baseado no tamanho da tela
   useEffect(() => {
     const updateItemsPerPage = () => {
@@ -45,49 +53,72 @@ const Home: FunctionComponent = () => {
     };
 
     updateItemsPerPage();
-    window.addEventListener('resize', updateItemsPerPage);
-    return () => window.removeEventListener('resize', updateItemsPerPage);
+    window.addEventListener("resize", updateItemsPerPage);
+    return () => window.removeEventListener("resize", updateItemsPerPage);
   }, []);
-
 
   // Dados dos segmentos
   const segments = [
     {
-      image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&h=300&fit=crop&crop=center",
+      image:
+        "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&h=300&fit=crop&crop=center",
       alt: "Barbearia",
       title: "Barbearia",
-      description: "Você vai liberar tempo na sua rotina para vender mais com um sistema para agendamentos para barbearia, gerenciamento de equipe, controle de estoque, lembretes antes do agendamento para fidelizar os seus clientes e app para barbeiros.",
-      features: ["Controle de agenda online", "App para profissionais", "Lembrete para clientes no whatsApp"],
+      description:
+        "Você vai liberar tempo na sua rotina para vender mais com um sistema para agendamentos para barbearia, gerenciamento de equipe, controle de estoque, lembretes antes do agendamento para fidelizar os seus clientes e app para barbeiros.",
+      features: [
+        "Controle de agenda online",
+        "App para profissionais",
+        "Lembrete para clientes no whatsApp",
+      ],
       link: "/barbearia",
-      linkText: "Soluções para barbearias"
+      linkText: "Soluções para barbearias",
     },
     {
-      image: "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=300&fit=crop&crop=center",
+      image:
+        "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=300&fit=crop&crop=center",
       alt: "Salão de beleza",
       title: "Salão de beleza",
-      description: "Seja qual for o tamanho do seu salão de beleza, tenha total controle dos agendamentos, gerencie seus profissionais, fidelize seus clientes e ganhe tempo automatizando a sua gestão.",
-      features: ["Controle de agenda online", "Cálculo e pagamento de comissões", "Fluxo de caixa"],
+      description:
+        "Seja qual for o tamanho do seu salão de beleza, tenha total controle dos agendamentos, gerencie seus profissionais, fidelize seus clientes e ganhe tempo automatizando a sua gestão.",
+      features: [
+        "Controle de agenda online",
+        "Cálculo e pagamento de comissões",
+        "Fluxo de caixa",
+      ],
       link: "/salao-estetica",
-      linkText: "Soluções para salões de beleza"
+      linkText: "Soluções para salões de beleza",
     },
     {
-      image: "https://images.unsplash.com/photo-1616391182219-e080b4d1043a?w=400&h=300&fit=crop&crop=center",
+      image:
+        "https://images.unsplash.com/photo-1616391182219-e080b4d1043a?w=400&h=300&fit=crop&crop=center",
       alt: "Clínica de Estética",
       title: "Clínica de Estética",
-      description: "Faça a gestão dos seus profissionais e atraia mais clientes para a sua clínica de estética com ferramentas de comunicação e marketing exclusivas, criação de pacotes.",
-      features: ["Gestão de pacotes", "Histórico de clientes", "Controle de estoque"],
+      description:
+        "Faça a gestão dos seus profissionais e atraia mais clientes para a sua clínica de estética com ferramentas de comunicação e marketing exclusivas, criação de pacotes.",
+      features: [
+        "Gestão de pacotes",
+        "Histórico de clientes",
+        "Controle de estoque",
+      ],
       link: "/salao-estetica",
-      linkText: "Soluções para clínicas de estética"
+      linkText: "Soluções para clínicas de estética",
     },
     {
-      image: "https://images.unsplash.com/photo-1559599101-f09722fb4948?w=400&h=300&fit=crop&crop=center",
+      image:
+        "https://images.unsplash.com/photo-1559599101-f09722fb4948?w=400&h=300&fit=crop&crop=center",
       alt: "Profissionais Autônomos",
       title: "Profissionais Autônomos",
-      description: "Organize sua agenda, fidelize clientes e profissionalize seu atendimento com ferramentas especializadas para profissionais autônomos da área de beleza e bem-estar.",
-      features: ["Agenda personalizada", "Gestão financeira", "Marketing digital"],
+      description:
+        "Organize sua agenda, fidelize clientes e profissionalize seu atendimento com ferramentas especializadas para profissionais autônomos da área de beleza e bem-estar.",
+      features: [
+        "Agenda personalizada",
+        "Gestão financeira",
+        "Marketing digital",
+      ],
       link: "/solution",
-      linkText: "barbearia"
-    }
+      linkText: "barbearia",
+    },
   ];
 
   // Funções do carrossel
@@ -119,7 +150,10 @@ const Home: FunctionComponent = () => {
 
   // Função para obter os itens visíveis
   const getVisibleSegments = () => {
-    const endIndex = Math.min(currentSegmentIndex + itemsPerPage, segments.length);
+    const endIndex = Math.min(
+      currentSegmentIndex + itemsPerPage,
+      segments.length
+    );
     return segments.slice(currentSegmentIndex, endIndex);
   };
 
@@ -421,11 +455,21 @@ const Home: FunctionComponent = () => {
               <p className="metrics-subtitle">
                 Empresas já transformaram sua gestão com a Gestão Boa
               </p>
-              
+
               <div className="metrics-grid">
                 <div className="metric-card">
                   <div className="metric-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="28"
+                      height="28"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#0077b6"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                       <circle cx="9" cy="7" r="4"></circle>
                       <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
@@ -434,38 +478,79 @@ const Home: FunctionComponent = () => {
                   </div>
                   <div className="metric-value">+100</div>
                   <div className="metric-label">Profissionais cadastrados</div>
-                  <div className="metric-description">Confiam na nossa plataforma</div>
+                  <div className="metric-description">
+                    Confiam na nossa plataforma
+                  </div>
                 </div>
 
                 <div className="metric-card">
                   <div className="metric-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="28"
+                      height="28"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#0077b6"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <rect
+                        x="3"
+                        y="4"
+                        width="18"
+                        height="18"
+                        rx="2"
+                        ry="2"
+                      ></rect>
                       <line x1="16" y1="2" x2="16" y2="6"></line>
                       <line x1="8" y1="2" x2="8" y2="6"></line>
                       <line x1="3" y1="10" x2="21" y2="10"></line>
                     </svg>
                   </div>
-                  <div className="metric-value">+8.000</div>
+                  <div className="metric-value">+12.000</div>
                   <div className="metric-label">Agendamentos</div>
-                  <div className="metric-description">Realizados com sucesso</div>
+                  <div className="metric-description">
+                    Realizados com sucesso
+                  </div>
                 </div>
 
                 <div className="metric-card">
                   <div className="metric-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="28"
+                      height="28"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#0077b6"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <line x1="12" y1="1" x2="12" y2="23"></line>
                       <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                     </svg>
                   </div>
-                  <div className="metric-value">+R$ 800 mil</div>
+                  <div className="metric-value">+R$ 1.000.000</div>
                   <div className="metric-label">Gerenciados</div>
                   <div className="metric-description">Através do app</div>
                 </div>
 
                 <div className="metric-card">
                   <div className="metric-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="28"
+                      height="28"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#0077b6"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                     </svg>
                   </div>
@@ -478,12 +563,31 @@ const Home: FunctionComponent = () => {
 
             {/* Benefícios / Soluções */}
             <div className="benefits-section">
-              <h2 className="benefits-title">Como a Gestão Boa pode turbinar o seu negócio?</h2>
+              <h2 className="benefits-title">
+                Como a Gestão Boa pode turbinar o seu negócio?
+              </h2>
               <div className="benefits">
                 <div className="benefit">
                   <div className="benefit-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#0077b6"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <rect
+                        x="3"
+                        y="4"
+                        width="18"
+                        height="18"
+                        rx="2"
+                        ry="2"
+                      ></rect>
                       <line x1="16" y1="2" x2="16" y2="6"></line>
                       <line x1="8" y1="2" x2="8" y2="6"></line>
                       <line x1="3" y1="10" x2="21" y2="10"></line>
@@ -492,15 +596,28 @@ const Home: FunctionComponent = () => {
                   <div className="benefit-content">
                     <h3 className="benefit-title">Agenda Simplificada</h3>
                     <p className="benefit-description">
-                      Mantenha seus compromissos sempre à mão. Sistema intuitivo de agendamento com notificações automáticas.
+                      Mantenha seus compromissos sempre à mão. Sistema intuitivo
+                      de agendamento com notificações automáticas.
                     </p>
-                    <a href="/solucao#agenda" className="benefit-link">Saiba mais →</a>
+                    <a href="/solucao#agenda" className="benefit-link">
+                      Saiba mais →
+                    </a>
                   </div>
                 </div>
 
                 <div className="benefit">
                   <div className="benefit-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#0077b6"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
                       <line x1="3" y1="6" x2="21" y2="6"></line>
                       <path d="M16 10a4 4 0 0 1-8 0"></path>
@@ -509,15 +626,28 @@ const Home: FunctionComponent = () => {
                   <div className="benefit-content">
                     <h3 className="benefit-title">Gerenciamento de Produtos</h3>
                     <p className="benefit-description">
-                      Controle completo do estoque com análise detalhada de vendas e giro de produtos.
+                      Controle completo do estoque com análise detalhada de
+                      vendas e giro de produtos.
                     </p>
-                    <a href="/solucao#produtos" className="benefit-link">Saiba mais →</a>
+                    <a href="/solucao#produtos" className="benefit-link">
+                      Saiba mais →
+                    </a>
                   </div>
                 </div>
 
                 <div className="benefit">
                   <div className="benefit-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#0077b6"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <line x1="12" y1="1" x2="12" y2="23"></line>
                       <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                     </svg>
@@ -525,15 +655,28 @@ const Home: FunctionComponent = () => {
                   <div className="benefit-content">
                     <h3 className="benefit-title">Controle Financeiro</h3>
                     <p className="benefit-description">
-                      Gestão completa de entradas e saídas com relatórios detalhados por método de pagamento.
+                      Gestão completa de entradas e saídas com relatórios
+                      detalhados por método de pagamento.
                     </p>
-                    <a href="/solucao#financeiro" className="benefit-link">Saiba mais →</a>
+                    <a href="/solucao#financeiro" className="benefit-link">
+                      Saiba mais →
+                    </a>
                   </div>
                 </div>
 
                 <div className="benefit">
                   <div className="benefit-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#0077b6"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <line x1="18" y1="20" x2="18" y2="10"></line>
                       <line x1="12" y1="20" x2="12" y2="4"></line>
                       <line x1="6" y1="20" x2="6" y2="14"></line>
@@ -542,30 +685,56 @@ const Home: FunctionComponent = () => {
                   <div className="benefit-content">
                     <h3 className="benefit-title">Análises Detalhadas</h3>
                     <p className="benefit-description">
-                      Dashboard completo com métricas em tempo real para decisões baseadas em dados.
+                      Dashboard completo com métricas em tempo real para
+                      decisões baseadas em dados.
                     </p>
-                    <a href="/solucao#analytics" className="benefit-link">Saiba mais →</a>
+                    <a href="/solucao#analytics" className="benefit-link">
+                      Saiba mais →
+                    </a>
                   </div>
                 </div>
 
                 <div className="benefit">
                   <div className="benefit-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#0077b6"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                     </svg>
                   </div>
                   <div className="benefit-content">
                     <h3 className="benefit-title">Fidelização de Clientes</h3>
                     <p className="benefit-description">
-                      Automatize mensagens personalizadas e construa relacionamentos duradouros.
+                      Automatize mensagens personalizadas e construa
+                      relacionamentos duradouros.
                     </p>
-                    <a href="/solucao#clientes" className="benefit-link">Saiba mais →</a>
+                    <a href="/solucao#clientes" className="benefit-link">
+                      Saiba mais →
+                    </a>
                   </div>
                 </div>
 
                 <div className="benefit">
                   <div className="benefit-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#0077b6"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                       <circle cx="9" cy="7" r="4"></circle>
                       <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
@@ -575,9 +744,105 @@ const Home: FunctionComponent = () => {
                   <div className="benefit-content">
                     <h3 className="benefit-title">Gestão de Comissões</h3>
                     <p className="benefit-description">
-                      Calcule automaticamente comissões de equipe com total transparência e precisão.
+                      Calcule automaticamente comissões de equipe com total
+                      transparência e precisão.
                     </p>
-                    <a href="/solucao#comissoes" className="benefit-link">Saiba mais →</a>
+                    <a href="/solucao#comissoes" className="benefit-link">
+                      Saiba mais →
+                    </a>
+                  </div>
+                </div>
+
+                <div className="benefit">
+                  <div className="benefit-icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#0077b6"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                    </svg>
+                  </div>
+                  <div className="benefit-content">
+                    <h3 className="benefit-title">Lembretes WhatsApp</h3>
+                    <p className="benefit-description">
+                      Funcionário avisado quando cliente agenda pelo site.
+                      Cliente lembrado 1 dia antes do corte.
+                    </p>
+                    <a
+                      href="/solucao#lembretes-whatsapp"
+                      className="benefit-link"
+                    >
+                      Saiba mais →
+                    </a>
+                  </div>
+                </div>
+
+                <div className="benefit">
+                  <div className="benefit-icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#0077b6"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                    </svg>
+                  </div>
+                  <div className="benefit-content">
+                    <h3 className="benefit-title">Link Personalizado</h3>
+                    <p className="benefit-description">
+                      Seu link exclusivo para clientes agendarem 24h.
+                      Compartilhe no Instagram e WhatsApp.
+                    </p>
+                    <a
+                      href="/solucao#link-agendamentos"
+                      className="benefit-link"
+                    >
+                      Saiba mais →
+                    </a>
+                  </div>
+                </div>
+
+                <div className="benefit">
+                  <div className="benefit-icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#0077b6"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
+                      <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
+                      <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path>
+                    </svg>
+                  </div>
+                  <div className="benefit-content">
+                    <h3 className="benefit-title">Gestão de Assinaturas</h3>
+                    <p className="benefit-description">
+                      Controle de mensalidades e pacotes com cobrança recorrente
+                      e acompanhamento de uso.
+                    </p>
+                    <a href="/solucao#clientes" className="benefit-link">
+                      Saiba mais →
+                    </a>
                   </div>
                 </div>
               </div>
@@ -643,9 +908,12 @@ const Home: FunctionComponent = () => {
 
               {/* Outros depoimentos em grid fixo */}
               <div className="testimonials-grid">
-                
                 {/* Depoimento Janaina */}
-                <div className="testimonial-card-new" itemScope itemType="https://schema.org/Review">
+                <div
+                  className="testimonial-card-new"
+                  itemScope
+                  itemType="https://schema.org/Review"
+                >
                   <div className="testimonial-quote">"</div>
                   <div className="testimonial-header">
                     <img
@@ -656,13 +924,17 @@ const Home: FunctionComponent = () => {
                       loading="lazy"
                     />
                     <div className="testimonial-info">
-                      <h4 itemProp="author" itemScope itemType="https://schema.org/Person">
+                      <h4
+                        itemProp="author"
+                        itemScope
+                        itemType="https://schema.org/Person"
+                      >
                         <span itemProp="name">Janaina Christello</span>
                       </h4>
                       <p itemProp="jobTitle">Psicóloga</p>
                     </div>
                   </div>
-                  
+
                   <div className="testimonial-rating">
                     <span className="star">★</span>
                     <span className="star">★</span>
@@ -670,23 +942,37 @@ const Home: FunctionComponent = () => {
                     <span className="star">★</span>
                     <span className="star">★</span>
                   </div>
-                  
+
                   <h3 className="testimonial-title" itemProp="name">
                     Ficou mais fácil organizar minhas finanças
                   </h3>
-                  
+
                   <p className="testimonial-text" itemProp="reviewBody">
-                    O aplicativo ajudou muito a organizar os meus recebimentos e entender quais são os lucros e despesas de forma muito clara e objetiva. Além de conseguir abranger vários objetivos em um só APP como organizar agendamentos que antes usava o Google agenda e também organizar os recebimentos que antes usava o Excel.
+                    O aplicativo ajudou muito a organizar os meus recebimentos e
+                    entender quais são os lucros e despesas de forma muito clara
+                    e objetiva. Além de conseguir abranger vários objetivos em
+                    um só APP como organizar agendamentos que antes usava o
+                    Google agenda e também organizar os recebimentos que antes
+                    usava o Excel.
                   </p>
-                  
-                  <div itemProp="reviewRating" itemScope itemType="https://schema.org/Rating" className="hidden-rating">
+
+                  <div
+                    itemProp="reviewRating"
+                    itemScope
+                    itemType="https://schema.org/Rating"
+                    className="hidden-rating"
+                  >
                     <meta itemProp="ratingValue" content="5" />
                     <meta itemProp="bestRating" content="5" />
                   </div>
                 </div>
 
                 {/* Depoimento Pedro Cirilo */}
-                <div className="testimonial-card-new" itemScope itemType="https://schema.org/Review">
+                <div
+                  className="testimonial-card-new"
+                  itemScope
+                  itemType="https://schema.org/Review"
+                >
                   <div className="testimonial-quote">"</div>
                   <div className="testimonial-header">
                     <img
@@ -698,17 +984,22 @@ const Home: FunctionComponent = () => {
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
                         target.onerror = null;
-                        target.src = "https://placehold.co/64x64/007BFF/FFFFFF?text=PC";
+                        target.src =
+                          "https://placehold.co/64x64/007BFF/FFFFFF?text=PC";
                       }}
                     />
                     <div className="testimonial-info">
-                      <h4 itemProp="author" itemScope itemType="https://schema.org/Person">
+                      <h4
+                        itemProp="author"
+                        itemScope
+                        itemType="https://schema.org/Person"
+                      >
                         <span itemProp="name">Pedro Cirilo</span>
                       </h4>
                       <p itemProp="jobTitle">Designer</p>
                     </div>
                   </div>
-                  
+
                   <div className="testimonial-rating">
                     <span className="star">★</span>
                     <span className="star">★</span>
@@ -716,23 +1007,35 @@ const Home: FunctionComponent = () => {
                     <span className="star">★</span>
                     <span className="star">★</span>
                   </div>
-                  
+
                   <h3 className="testimonial-title" itemProp="name">
                     Grandes parceiros
                   </h3>
-                  
+
                   <p className="testimonial-text" itemProp="reviewBody">
-                    A equipe é extremamente profissional. Entendem muito bem as demandas e estão sempre atualizados. Já trabalhei com eles na construção de outras plataformas e sites e foram impecáveis! Tenho como grandes parceiros!
+                    A equipe é extremamente profissional. Entendem muito bem as
+                    demandas e estão sempre atualizados. Já trabalhei com eles
+                    na construção de outras plataformas e sites e foram
+                    impecáveis! Tenho como grandes parceiros!
                   </p>
-                  
-                  <div itemProp="reviewRating" itemScope itemType="https://schema.org/Rating" className="hidden-rating">
+
+                  <div
+                    itemProp="reviewRating"
+                    itemScope
+                    itemType="https://schema.org/Rating"
+                    className="hidden-rating"
+                  >
                     <meta itemProp="ratingValue" content="5" />
                     <meta itemProp="bestRating" content="5" />
                   </div>
                 </div>
 
                 {/* Depoimento Pedro Arthur */}
-                <div className="testimonial-card-new" itemScope itemType="https://schema.org/Review">
+                <div
+                  className="testimonial-card-new"
+                  itemScope
+                  itemType="https://schema.org/Review"
+                >
                   <div className="testimonial-quote">"</div>
                   <div className="testimonial-header">
                     <img
@@ -744,17 +1047,24 @@ const Home: FunctionComponent = () => {
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
                         target.onerror = null;
-                        target.src = "https://placehold.co/64x64/007BFF/FFFFFF?text=PA";
+                        target.src =
+                          "https://placehold.co/64x64/007BFF/FFFFFF?text=PA";
                       }}
                     />
                     <div className="testimonial-info">
-                      <h4 itemProp="author" itemScope itemType="https://schema.org/Person">
+                      <h4
+                        itemProp="author"
+                        itemScope
+                        itemType="https://schema.org/Person"
+                      >
                         <span itemProp="name">Pedro Arthur</span>
                       </h4>
-                      <p itemProp="jobTitle">Proprietário da Prime Barbershop</p>
+                      <p itemProp="jobTitle">
+                        Proprietário da Prime Barbershop
+                      </p>
                     </div>
                   </div>
-                  
+
                   <div className="testimonial-rating">
                     <span className="star">★</span>
                     <span className="star">★</span>
@@ -762,21 +1072,30 @@ const Home: FunctionComponent = () => {
                     <span className="star">★</span>
                     <span className="star">★</span>
                   </div>
-                  
+
                   <h3 className="testimonial-title" itemProp="name">
                     Controle total do negócio
                   </h3>
-                  
+
                   <p className="testimonial-text" itemProp="reviewBody">
-                    O app da gestão boa vem me ajudando muito desde o primeiro dia, consigo saber com exatidão quantos clientes eu tenho e atendo, faturamento, venda de produtos, etc. Comecei a ter controle não só dos cortes, mas das vendas dos produtos e dos custos. A atenção do suporte também é um ponto importante de citar.
+                    O app da gestão boa vem me ajudando muito desde o primeiro
+                    dia, consigo saber com exatidão quantos clientes eu tenho e
+                    atendo, faturamento, venda de produtos, etc. Comecei a ter
+                    controle não só dos cortes, mas das vendas dos produtos e
+                    dos custos. A atenção do suporte também é um ponto
+                    importante de citar.
                   </p>
-                  
-                  <div itemProp="reviewRating" itemScope itemType="https://schema.org/Rating" className="hidden-rating">
+
+                  <div
+                    itemProp="reviewRating"
+                    itemScope
+                    itemType="https://schema.org/Rating"
+                    className="hidden-rating"
+                  >
                     <meta itemProp="ratingValue" content="5" />
                     <meta itemProp="bestRating" content="5" />
                   </div>
                 </div>
-
               </div>
             </div>
             <div className="tutorial" id="demonstration">
@@ -882,34 +1201,34 @@ const Home: FunctionComponent = () => {
           <Segments id="segments">
             <h2 className="section-title">Segmentos que Atendemos</h2>
             <p className="section-subtitle">
-              Oferecemos soluções especializadas para diferentes tipos de negócios de beleza e bem-estar
+              Oferecemos soluções especializadas para diferentes tipos de
+              negócios de beleza e bem-estar
             </p>
-            
-            <div 
-              className="carousel-container"
-            >
+
+            <div className="carousel-container">
               {/* Botão anterior */}
-              <button 
-                className="carousel-btn carousel-btn-prev" 
+              <button
+                className="carousel-btn carousel-btn-prev"
                 onClick={prevSegment}
                 aria-label="Segmento anterior"
               >
                 ‹
               </button>
-              
+
               {/* Container dos cards visíveis */}
               <div className="carousel-track">
                 {getVisibleSegments().map((segment, index) => (
-                  <div key={currentSegmentIndex + index} className="carousel-card">
-                    <img 
+                  <div
+                    key={currentSegmentIndex + index}
+                    className="carousel-card"
+                  >
+                    <img
                       src={segment.image}
                       alt={segment.alt}
                       className="segment-image"
                     />
                     <h3 className="segment-title">{segment.title}</h3>
-                    <p className="segment-description">
-                      {segment.description}
-                    </p>
+                    <p className="segment-description">{segment.description}</p>
                     <ul className="segment-features">
                       {segment.features.map((feature, featureIndex) => (
                         <li key={featureIndex}>{feature}</li>
@@ -921,29 +1240,36 @@ const Home: FunctionComponent = () => {
                   </div>
                 ))}
               </div>
-              
+
               {/* Botão próximo */}
-              <button 
-                className="carousel-btn carousel-btn-next" 
+              <button
+                className="carousel-btn carousel-btn-next"
                 onClick={handleNextSegment}
                 aria-label="Próximo segmento"
               >
                 ›
               </button>
             </div>
-            
+
             {/* Indicadores de posição */}
             <div className="carousel-indicators">
-              {Array.from({ length: Math.ceil(segments.length / itemsPerPage) }, (_, pageIndex) => (
-                <button
-                  key={pageIndex}
-                  className={`carousel-indicator ${Math.floor(currentSegmentIndex / itemsPerPage) === pageIndex ? 'active' : ''}`}
-                  onClick={() => goToSegment(pageIndex * itemsPerPage)}
-                  aria-label={`Ir para página ${pageIndex + 1}`}
-                />
-              ))}
+              {Array.from(
+                { length: Math.ceil(segments.length / itemsPerPage) },
+                (_, pageIndex) => (
+                  <button
+                    key={pageIndex}
+                    className={`carousel-indicator ${
+                      Math.floor(currentSegmentIndex / itemsPerPage) ===
+                      pageIndex
+                        ? "active"
+                        : ""
+                    }`}
+                    onClick={() => goToSegment(pageIndex * itemsPerPage)}
+                    aria-label={`Ir para página ${pageIndex + 1}`}
+                  />
+                )
+              )}
             </div>
-
           </Segments>
 
           {/* FAQ Section */}
