@@ -12,26 +12,29 @@ import "./styles.css";
 
 type PlanType = "basico" | "crescimento" | "empresarial" | "black-friday";
 
-const PLAN_CONFIG: Record<PlanType, { 
-  name: string; 
-  price: string; 
-  originalPrice?: string;
-  paymentLink: string;
-  discount?: string;
-}> = {
-  "basico": {
+const PLAN_CONFIG: Record<
+  PlanType,
+  {
+    name: string;
+    price: string;
+    originalPrice?: string;
+    paymentLink: string;
+    discount?: string;
+  }
+> = {
+  basico: {
     name: "Básico",
     price: "R$ 49,90/mês",
     paymentLink: "https://www.asaas.com/c/basico",
   },
-  "crescimento": {
+  crescimento: {
     name: "Crescimento",
-    price: "R$ 99,90/mês",
+    price: "R$ 68,32/mês",
     paymentLink: "https://www.asaas.com/c/crescimento",
   },
-  "empresarial": {
+  empresarial: {
     name: "Empresarial",
-    price: "R$ 199,90/mês",
+    price: "R$ 99,90/mês",
     paymentLink: "https://www.asaas.com/c/empresarial",
   },
   "black-friday": {
@@ -77,8 +80,11 @@ const CriarConta: React.FC = () => {
 
   // Company form states
   const [companyName, setCompanyName] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<EnterpriseBranch | null>(null);
-  const [selectedScale, setSelectedScale] = useState<typeof SCALE_OPTIONS[0] | null>(null);
+  const [selectedCategory, setSelectedCategory] =
+    useState<EnterpriseBranch | null>(null);
+  const [selectedScale, setSelectedScale] = useState<
+    (typeof SCALE_OPTIONS)[0] | null
+  >(null);
   const [categories, setCategories] = useState<EnterpriseBranch[]>([]);
 
   useEffect(() => {
@@ -223,7 +229,7 @@ const CriarConta: React.FC = () => {
       setError("Você precisa aceitar os termos de uso para continuar.");
       return;
     }
-    
+
     setLoading(true);
 
     try {
@@ -258,7 +264,7 @@ const CriarConta: React.FC = () => {
       setCurrentStep(2);
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "Erro ao processar o registro"
+        err instanceof Error ? err.message : "Erro ao processar o registro",
       );
       console.error("Erro no registro do usuário:", err);
     } finally {
@@ -372,14 +378,18 @@ const CriarConta: React.FC = () => {
       <div className="signup-steps">
         {steps.map((step, index) => (
           <React.Fragment key={step.number}>
-            <div className={`signup-step ${currentStep > step.number ? "completed" : currentStep === step.number ? "active" : ""}`}>
+            <div
+              className={`signup-step ${currentStep > step.number ? "completed" : currentStep === step.number ? "active" : ""}`}
+            >
               <div className="step-circle">
                 {currentStep > step.number ? "✓" : step.number}
               </div>
               <span className="step-label">{step.label}</span>
             </div>
             {index < steps.length - 1 && (
-              <div className={`step-connector ${currentStep > step.number ? "completed" : ""}`} />
+              <div
+                className={`step-connector ${currentStep > step.number ? "completed" : ""}`}
+              />
             )}
           </React.Fragment>
         ))}
@@ -389,19 +399,23 @@ const CriarConta: React.FC = () => {
 
   const renderCompanySubSteps = () => {
     const subSteps = ["Nome", "Categoria", "Porte"];
-    
+
     return (
       <div className="company-substeps">
         {subSteps.map((label, index) => (
           <React.Fragment key={index}>
-            <div className={`substep ${companyStep > index ? "completed" : companyStep === index ? "active" : ""}`}>
+            <div
+              className={`substep ${companyStep > index ? "completed" : companyStep === index ? "active" : ""}`}
+            >
               <div className="substep-circle">
                 {companyStep > index ? "✓" : index + 1}
               </div>
               <span className="substep-label">{label}</span>
             </div>
             {index < subSteps.length - 1 && (
-              <div className={`substep-connector ${companyStep > index ? "completed" : ""}`} />
+              <div
+                className={`substep-connector ${companyStep > index ? "completed" : ""}`}
+              />
             )}
           </React.Fragment>
         ))}
@@ -416,7 +430,9 @@ const CriarConta: React.FC = () => {
           <div className="company-form-step">
             <div className="step-icon">🏢</div>
             <h3>Nome da Empresa</h3>
-            <p className="step-description">Qual é o nome da sua empresa ou estabelecimento?</p>
+            <p className="step-description">
+              Qual é o nome da sua empresa ou estabelecimento?
+            </p>
             <div className="input-wrapper">
               <input
                 type="text"
@@ -435,7 +451,9 @@ const CriarConta: React.FC = () => {
           <div className="company-form-step">
             <div className="step-icon">📂</div>
             <h3>Categoria</h3>
-            <p className="step-description">Selecione a categoria que melhor descreve sua empresa</p>
+            <p className="step-description">
+              Selecione a categoria que melhor descreve sua empresa
+            </p>
             <div className="options-grid">
               {categories.map((category) => (
                 <div
@@ -464,7 +482,9 @@ const CriarConta: React.FC = () => {
                   onClick={() => setSelectedScale(scale)}
                 >
                   <span className="option-name">{scale.name}</span>
-                  <span className="option-description">{scale.description}</span>
+                  <span className="option-description">
+                    {scale.description}
+                  </span>
                 </div>
               ))}
             </div>
@@ -485,11 +505,15 @@ const CriarConta: React.FC = () => {
             <img src="/beasier-1-1-1@2x.png" alt="Gestão Boa" />
           </a>
           <div className="plan-badge">
-            {planConfig.discount && <span className="discount-badge">{planConfig.discount}</span>}
+            {planConfig.discount && (
+              <span className="discount-badge">{planConfig.discount}</span>
+            )}
             <span className="plan-name">Plano {planConfig.name}</span>
             <span className="plan-price">
               {planConfig.originalPrice && (
-                <span className="original-price">{planConfig.originalPrice}</span>
+                <span className="original-price">
+                  {planConfig.originalPrice}
+                </span>
               )}
               {planConfig.price}
             </span>
@@ -504,18 +528,22 @@ const CriarConta: React.FC = () => {
           <div className="signup-info">
             <h1>
               {plan === "black-friday" ? (
-                <>🔥 Aproveite a <span className="highlight">Black Friday</span></>
+                <>
+                  🔥 Aproveite a <span className="highlight">Black Friday</span>
+                </>
               ) : (
-                <>Comece sua jornada com o <span className="highlight">Gestão Boa</span></>
+                <>
+                  Comece sua jornada com o{" "}
+                  <span className="highlight">Gestão Boa</span>
+                </>
               )}
             </h1>
             <p className="info-description">
-              {plan === "black-friday" 
+              {plan === "black-friday"
                 ? "Garanta acesso completo ao sistema por apenas R$ 9,90 e transforme a gestão do seu negócio!"
-                : "Simplifique a gestão do seu negócio com nossa plataforma completa e intuitiva."
-              }
+                : "Simplifique a gestão do seu negócio com nossa plataforma completa e intuitiva."}
             </p>
-            
+
             <div className="benefits-list">
               <div className="benefit-item">
                 <span className="benefit-icon">✓</span>
@@ -574,7 +602,9 @@ const CriarConta: React.FC = () => {
                             : "none",
                         }}
                       >
-                        {!formData.photo && <span className="avatar-placeholder">+</span>}
+                        {!formData.photo && (
+                          <span className="avatar-placeholder">+</span>
+                        )}
                       </div>
                       <input
                         type="file"
@@ -689,11 +719,19 @@ const CriarConta: React.FC = () => {
                       />
                       <label htmlFor="terms">
                         Li e concordo com os{" "}
-                        <a href="/terms" target="_blank" rel="noopener noreferrer">
+                        <a
+                          href="/terms"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           Termos de Uso
                         </a>{" "}
                         e{" "}
-                        <a href="/privacy" target="_blank" rel="noopener noreferrer">
+                        <a
+                          href="/privacy"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           Política de Privacidade
                         </a>
                       </label>
@@ -701,7 +739,11 @@ const CriarConta: React.FC = () => {
 
                     {error && <div className="error-message">{error}</div>}
 
-                    <button type="submit" className="submit-btn" disabled={loading}>
+                    <button
+                      type="submit"
+                      className="submit-btn"
+                      disabled={loading}
+                    >
                       {loading ? (
                         <span className="loading-spinner"></span>
                       ) : (
@@ -746,7 +788,10 @@ const CriarConta: React.FC = () => {
 
                   <div className="info-box">
                     <span className="info-icon">ℹ️</span>
-                    <p>Você pode continuar mesmo sem confirmar o email, mas recomendamos confirmar para maior segurança.</p>
+                    <p>
+                      Você pode continuar mesmo sem confirmar o email, mas
+                      recomendamos confirmar para maior segurança.
+                    </p>
                   </div>
                 </div>
               )}
@@ -755,7 +800,7 @@ const CriarConta: React.FC = () => {
               {currentStep === 3 && userToken && (
                 <div className="company-step">
                   {renderCompanySubSteps()}
-                  
+
                   {renderCompanyStepContent()}
 
                   {error && <div className="error-message">{error}</div>}
@@ -797,7 +842,8 @@ const CriarConta: React.FC = () => {
             </div>
 
             <p className="login-link">
-              Já tem uma conta? <a href="https://app.gestaoboa.com.br">Fazer login</a>
+              Já tem uma conta?{" "}
+              <a href="https://app.gestaoboa.com.br">Fazer login</a>
             </p>
           </div>
         </div>

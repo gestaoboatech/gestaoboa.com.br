@@ -1,10 +1,12 @@
 import { Container } from "./styles.ts"
+import { CSSProperties } from "react"
 
 type props = {
     text: string,
-    method: Function,
-    type: "focused" | "unfocused",
+    method: () => void,
+    type: "focused" | "unfocused" | "clean",
     width?: string | number | null,
+    style?: CSSProperties,
 }
 
 export default function Button ({
@@ -12,9 +14,10 @@ export default function Button ({
     method,
     type="focused",
     width=null,
+    style,
 }: props) {
     return (
-        <Container width={width} type={type} onClick={() => method()}>
+        <Container width={width} type={type} onClick={() => method()} style={style}>
             {text}
         </Container>
     )

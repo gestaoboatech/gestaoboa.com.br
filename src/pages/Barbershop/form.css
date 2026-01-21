@@ -8,7 +8,498 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Black Friday Subtitle */
+/* ============================
+   HERO BARBERSHOP STYLES
+   ============================ */
+
+.hero-barbershop {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+  border-radius: 24px;
+  padding: 60px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-barbershop::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(52, 152, 219, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(255, 107, 53, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #3498db;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 4px;
+}
+
+.hero-barbershop .hero-main-title {
+  color: #ffffff;
+  text-align: center;
+  font-size: 3.5rem;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.hero-barbershop .hero-main-title span {
+  color: #3498db;
+  display: block;
+}
+
+.hero-benefits {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+.hero-benefits span {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-disclaimer {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  margin-top: 16px;
+}
+
+.cta-disclaimer {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin-top: 16px;
+}
+
+/* ============================
+   IDENTIFY SECTION
+   ============================ */
+
+.identify-section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.identify-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #03045e;
+  margin-bottom: 16px;
+}
+
+.identify-subtitle {
+  font-size: 1.1rem;
+  color: #7f8c8d;
+  margin-bottom: 40px;
+}
+
+.section-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.problem-badge {
+  background: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+}
+
+.solution-badge {
+  background: rgba(46, 204, 113, 0.1);
+  color: #27ae60;
+}
+
+.without-system {
+  border-left: 4px solid #e74c3c !important;
+}
+
+.with-system {
+  border-left: 4px solid #27ae60 !important;
+}
+
+.result-box {
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.result-bad {
+  background: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+}
+
+.result-good {
+  background: rgba(46, 204, 113, 0.1);
+  color: #27ae60;
+}
+
+/* ============================
+   QUOTE SECTION
+   ============================ */
+
+.quote-section {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.quote-text {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #03045e;
+  font-style: italic;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.quote-text::before,
+.quote-text::after {
+  content: '"';
+  color: #3498db;
+  font-size: 2.5rem;
+}
+
+/* ============================
+   TESTIMONIALS GRID
+   ============================ */
+
+.testimonials-subtitle {
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testimonial-highlight {
+  position: relative;
+}
+
+.testimonial-badge {
+  position: absolute;
+  top: -12px;
+  left: 24px;
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* ============================
+   FEATURES SECTION
+   ============================ */
+
+.feature-badge {
+  display: inline-block;
+  background: rgba(52, 152, 219, 0.1);
+  color: #3498db;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.feature-subtitle {
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+  margin-top: -20px;
+}
+
+/* ============================
+   QUICK SETUP SECTION
+   ============================ */
+
+.quick-setup-section {
+  background: linear-gradient(135deg, #03045e 0%, #0077b6 100%);
+  border-radius: 24px;
+  padding: 60px 40px;
+  margin: 40px 0;
+  text-align: center;
+}
+
+.setup-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.setup-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.setup-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 40px;
+}
+
+.setup-items {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.setup-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 16px 24px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.setup-icon {
+  font-size: 1.5rem;
+}
+
+.setup-text {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* ============================
+   FINAL CTA SECTION
+   ============================ */
+
+.final-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.final-stat img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ffffff;
+  margin-left: -10px;
+}
+
+.final-stat:first-child img {
+  margin-left: 0;
+}
+
+.final-stat-text {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  margin-left: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 20px;
+}
+
+/* ============================
+   MOBILE CTA UPDATED
+   ============================ */
+
+.mobile-cta-highlight {
+  color: #3498db;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.mobile-cta-text {
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.mobile-cta-content button {
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%) !important;
+}
+
+/* ============================
+   RESPONSIVE STYLES
+   ============================ */
+
+@media (max-width: 768px) {
+  .hero-barbershop {
+    padding: 40px 20px;
+    border-radius: 16px;
+  }
+  
+  .hero-stats {
+    gap: 16px;
+  }
+  
+  .stat-item {
+    padding: 12px 16px;
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+  
+  .hero-barbershop .hero-main-title {
+    font-size: 2.2rem;
+  }
+  
+  .hero-benefits {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .hero-benefits span {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+  }
+  
+  .identify-title {
+    font-size: 1.8rem;
+  }
+  
+  .quote-text {
+    font-size: 1.3rem;
+  }
+  
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    padding: 0 16px;
+  }
+  
+  .quick-setup-section {
+    padding: 40px 20px;
+    margin: 20px 16px;
+    border-radius: 16px;
+  }
+  
+  .setup-title {
+    font-size: 1.8rem;
+  }
+  
+  .setup-items {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .setup-item {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-barbershop {
+    padding: 30px 16px;
+  }
+  
+  .hero-stats {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .stat-item {
+    width: 100%;
+  }
+  
+  .hero-barbershop .hero-main-title {
+    font-size: 1.8rem;
+  }
+  
+  .identify-section {
+    padding: 40px 16px;
+  }
+  
+  .identify-title {
+    font-size: 1.5rem;
+  }
+  
+  .quote-text {
+    font-size: 1.1rem;
+  }
+  
+  .quick-setup-section {
+    padding: 30px 16px;
+    margin: 16px 8px;
+  }
+  
+  .setup-title {
+    font-size: 1.5rem;
+  }
+  
+  .testimonial-badge {
+    font-size: 0.7rem;
+    padding: 4px 12px;
+  }
+}
+
+/* Black Friday Subtitle - Removido/Atualizado */
 .black-friday-subtitle {
   text-align: center;
   margin-bottom: 30px;
