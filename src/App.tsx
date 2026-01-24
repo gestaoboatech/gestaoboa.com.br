@@ -11,6 +11,7 @@ import Solution from "./pages/Solution";
 import Terms from "./pages/Terms";
 import BlackFriday from "./pages/BlackFriday";
 import CriarConta from "./pages/CriarConta";
+import BotGestor from "./pages/BotGestor";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/anuncio-gestaoboa" element={<AnuncioGestaoBoa />} />
         <Route path="/black-friday" element={<BlackFriday/>} />
         <Route path="/criar-conta" element={<CriarConta />} />
+        <Route path="/botgestor" element={<BotGestor />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

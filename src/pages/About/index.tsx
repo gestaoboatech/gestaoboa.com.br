@@ -314,6 +314,12 @@ const About = () => {
                 Acelerada no 5° ciclo do startup in lab Fecormécio-RS (2024)
               </div>
             </div>
+            <div className="award-pair">
+              <div className="award-number">3°</div>
+              <div className="award-text">
+                Selecionada para o Tecnopuc Garage POA (2025)
+              </div>
+            </div>
           </div>
         </section>
 
@@ -387,6 +393,23 @@ const About = () => {
                   energia para que nossos clientes possam focar no que realmente
                   importa: fazer seu negócio prosperar e crescer com
                   tranquilidade. 🚀
+                </p>
+              </div>
+            </div>
+
+            <div className="timeline-item fade-in">
+              <div className="timeline-icon">
+                <i className="fas fa-brain"></i>
+              </div>
+              <div className="timeline-content">
+                <h3>Tecnopuc Garage 2025</h3>
+                <p>
+                  Em 2025, fomos selecionados para o Tecnopuc Garage, o processo
+                  de ideação de negócios do Tecnopuc em Porto Alegre. Uma
+                  oportunidade única de refinar nossa visão estratégica e 
+                  conectar com o ecossistema de inovação da PUCRS, fortalecendo
+                  ainda mais nossa capacidade de transformar a gestão de
+                  pequenos negócios no Brasil.
                 </p>
               </div>
             </div>

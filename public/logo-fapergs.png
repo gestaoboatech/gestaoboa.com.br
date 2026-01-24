@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+    <html lang="pt">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                                        <meta name="description" content=" ">
+                                    
+                            
+                            
+            <meta name="matriz:google_public_key" content="AIzaSyBUZQGQloKuGc2nAODVebrDGVkmQDv7vlQ" />
+                            <meta name="matriz:google_maps_key" content="AIzaSyCFxb1A8ByYl99gTIgrYr4FsESM3oW0gDA" />
+                        <title>P&aacute;gina n&atilde;o encontrada - FAPERGS - Funda&ccedil;&atilde;o de Amparo &agrave; pesquisa do Estado do RS</title>
+            <link rel="icon" href="/themes/modelo-institucional2/ico/favicon.ico" type="image/x-icon" />
+
+            
+                
+            
+            
+                
+            
+
+            
+                <link rel="stylesheet" href="/themes/modelo-institucional2/css/bootstrap-matriz.min.css?2.1.5.155.0+7" media="all" />
+<link rel="stylesheet" href="/themes/modelo-institucional2/css/bootstrap-override.css?2.1.5.155.0+7" media="all" />
+<link rel="stylesheet" href="/themes/modelo-institucional2/css/master.css?2.1.5.155.0+7" media="all" />
+<link rel="alternate stylesheet" href="/themes/modelo-institucional2/css/contraste.css?2.1.5.155.0+7" media="all" title="contraste" />
+<style>a[data-action="enable-alternate-style"], a[data-action="disable-alternate-style"] {display: none}</style><link rel="stylesheet" href="/matriz_common/versions/2.1.5/css/font-awesome.min.css?2.1.5.155.0+7" media="all" />
+<link rel="stylesheet" href="/matriz_common/versions/2.1.5/css/bootstrap-select.min.css?2.1.5.155.0+7" media="all" />
+<link rel="stylesheet" href="/matriz_common/versions/2.1.5/css/bootstrap-datepicker.min.css?2.1.5.155.0+7" media="all" />
+<link rel="stylesheet" href="/matriz_common/versions/2.1.5/css/jquery.pnotify.default.css?2.1.5.155.0+7" media="all" />
+<link rel="stylesheet" href="/matriz_common/versions/2.1.5/css/blueimp-gallery.2111.min.css?2.1.5.155.0+7" media="all" />
+<link rel="stylesheet" href="/matriz_common/versions/2.1.5/css/owl.carousel.css?2.1.5.155.0+7" media="all" />
+<link rel="stylesheet" href="/matriz_common/versions/2.1.5/css/owl.theme.css?2.1.5.155.0+7" media="all" />
+<link rel="stylesheet" href="/matriz_common/versions/2.1.5/css/owl.transitions.css?2.1.5.155.0+7" media="all" />
+<link rel="stylesheet" href="/matriz_common/versions/2.1.5/css/ui.totop.css?2.1.5.155.0+7" media="all" />
+<link rel="stylesheet" href="/matriz_common/versions/2.1.5/css/pgwslideshow.min.css?2.1.5.155.0+7" media="all" />
+<link rel="stylesheet" href="/themes/modelo-institucional2/css/print.css?2.1.5.155.0+7" media="print" />
+
+            
+            <script>
+                isconsentimentoativo =  true ;
+            </script>
+            
+        </head>
+        <body id="bodyPrincipal">
+                        <div class="cabecalhoImpressao" id="printlogo">            
+                <img src="/themes/modelo-institucional2/images/logos/logo.png" alt="FAPERGS - Funda&ccedil;&atilde;o de Amparo &agrave; pesquisa do Estado do RS">
+            </div>
+            <div class="cabecalhoImpressao" id="printBrasao">
+                <img src="/themes/modelo-institucional2/images/logos/brasao_RS.png" alt="Governo do Estado do Rio Grande do Sul">
+            </div>
+            <input id="matriz_global_siteID" type="hidden" value="835" />
+            <input id="matriz_global_themeUri" type="hidden" value="/themes/modelo-institucional2" />
+            
+                
+<div class="wrapper__cabecalho__funcionalidades">
+    <div class="container">
+        <a href="https://sict.rs.gov.br/" class="secretaria-vinculada">Secretaria de Inova&ccedil;&atilde;o, Ci&ecirc;ncia e Tecnologia</a>
+    <style>
+        a.secretaria-vinculada.secretaria-contraste-on {
+            background-image: url("/matriz_common/images/logos/simbolo_RS_contraste.png");
+        }
+    </style>        <div class="cabecalho__funcionalidades">
+            <ul class="cabecalho__funcionalidades__acessibilidade list-inline hidden-xs hidden-sm">                                    
+                <li><a accesskey="1" title="Ir para o conte&uacute;do" href="#conteudoInicio">Conte&uacute;do [1]</a> </li>
+                <li><a accesskey="2" title="Ir para o menu" href="#menuInicio">Menu [2]</a> </li>
+                <li><a accesskey="3" title="Ir para a busca" href="#buscageralTextBox">Busca [3]</a> </li>
+                <li><a href="/acessibilidade"><i class="fa fa-wheelchair"></i> Acessibilidade</a> </li>
+            </ul>
+            <ul class="cabecalho__funcionalidades__links-extras list-inline">
+                <li class="hidden-xs"><a data-action="enable-alternate-style" href="javascript:void(0);" 
+                               title="Alto contraste"><i class="fa fa-adjust fa-flip-horizontal"></i> Contraste</a>
+                            <a data-action="disable-alternate-style" href="javascript:void(0);"
+                               title="Contraste normal"><i class="fa fa-adjust"></i> Contraste</a>
+                </li>
+                <li class="hidden-xs"><a href="/fale-conosco"><i class="fa fa-envelope"></i> Fale conosco</a> </li>
+                <li class="hidden-xs"><a href="/mapa-do-site"><i class="fa fa-sitemap"></i> Mapa do site</a> </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<header id="cabecalho" class="cabecalho">    
+    <div class="container">
+        <a class="cabecalho__logo" href="https://fapergs.rs.gov.br" title="Ir para a página inicial"><h1 class="text-hide">FAPERGS - Funda&ccedil;&atilde;o de Amparo &agrave; pesquisa do Estado do RS</h1></a>
+        <div id="menu-parent" class="cabecalho__menu-parent">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menuPrincipal"> <span class="sr-only">Alterna a navega&ccedil;&atilde;o</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
+            <button type="button" class="navbar-toggle busca-toggle visible-xs visible-sm" data-toggle="collapse" data-target="#frmBuscaGeral"><span class="sr-only">Abrir a busca</span><span class="glyphicon glyphicon-search"></span></button>
+            <div class="redes-sociais-g hidden-xs">
+                                    
+                    <section class="box redes-sociais">
+        <h2 class="box__titulo">
+            Redes sociais        </h2>
+        <p class="box__descricao"></p>
+        <ul class="redes-sociais__lista-redes">
+                            <li>
+                    <a href="https://www.facebook.com/Fapergs" target="_blank">
+                                                    <img src="/upload/arquivos/201906/26101354-redesocial-facebook-colorido.png" alt="Curta a nossa p&aacute;gina no Facebook" />
+                                            </a>
+                </li>
+                            <li>
+                    <a href="http://www.twitter.com/fapergs" target="_blank">
+                                                    <img src="/upload/arquivos/202312/20155345-redesocial-x-fundo-preto.png" alt="Siga-nos no Twitter" />
+                                            </a>
+                </li>
+                            <li>
+                    <a href="https://www.youtube.com/c/canalfapergs" target="_blank">
+                                                    <img src="/upload/arquivos/201906/26101303-redesocial-youtube-colorido.png" alt="Inscreva-se em nosso canal no YouTube" />
+                                            </a>
+                </li>
+                            <li>
+                    <a href="https://instagram.com/fapergs/" target="_blank">
+                                                    <img src="/upload/arquivos/201906/26101333-redesocial-instagram-colorido.png" alt="Instagram: FAPERGS" />
+                                            </a>
+                </li>
+                    </ul>
+    </section>                            </div>
+            <form id="frmBuscaGeral" method="get" action="/busca" class="collapse" role="search">
+                <div class="input-group">
+                    <input aria-label="Buscar" type="text" class="form-control" placeholder="Buscar" id="buscageralTextBox" name="palavraschave" required />                    
+                                        <input name="periodoini" type="hidden" value="26/07/2023">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span><span class="sr-only">Buscar</span> </button>
+                    </span>
+                </div>                
+            </form>
+        </div>
+    </div>
+</header>
+            
+            
+                <nav id="menuPrincipal" class="navbar navbar-default collapse">
+    <div class="container">
+<!--
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menuPrincipalCollapse"> <span class="sr-only">Alterna a navega&ccedil;&atilde;o</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        </div>
+-->
+        <div class="navbar-collapse" id="menuPrincipalCollapse">
+            <a class="sr-only" id="menuInicio">In&iacute;cio do menu</a>
+            <div class="redes-sociais-xs visible-xs">
+                                    
+                    <section class="box redes-sociais">
+        <h2 class="box__titulo">
+            Redes sociais        </h2>
+        <p class="box__descricao"></p>
+        <ul class="redes-sociais__lista-redes">
+                            <li>
+                    <a href="https://www.facebook.com/Fapergs" target="_blank">
+                                                    <img src="/upload/arquivos/201906/26101354-redesocial-facebook-colorido.png" alt="Curta a nossa p&aacute;gina no Facebook" />
+                                            </a>
+                </li>
+                            <li>
+                    <a href="http://www.twitter.com/fapergs" target="_blank">
+                                                    <img src="/upload/arquivos/202312/20155345-redesocial-x-fundo-preto.png" alt="Siga-nos no Twitter" />
+                                            </a>
+                </li>
+                            <li>
+                    <a href="https://www.youtube.com/c/canalfapergs" target="_blank">
+                                                    <img src="/upload/arquivos/201906/26101303-redesocial-youtube-colorido.png" alt="Inscreva-se em nosso canal no YouTube" />
+                                            </a>
+                </li>
+                            <li>
+                    <a href="https://instagram.com/fapergs/" target="_blank">
+                                                    <img src="/upload/arquivos/201906/26101333-redesocial-instagram-colorido.png" alt="Instagram: FAPERGS" />
+                                            </a>
+                </li>
+                    </ul>
+    </section>                            </div>
+            <ul class="nav navbar-nav">      
+                <li >
+                    <a href="/inicial"
+                       target=_self
+                       >
+                        Inicial
+                    </a>
+                </li>
+                                                            <li class="dropdown ">
+                            <a class="dropdown-toggle" data-toggle="dropdown"
+                                href="javascript:void(0);">
+                                Institucional <span class="caret"></span>
+                            </a>                                                    
+                            <ul class="dropdown-menu" role="menu">
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/comissao-de-equidade-diversidade-e-inclusao" >
+                                            Comiss&atilde;o de EDI
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/equipe" >
+                                            Equipe
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/galeria-de-dirigentes" >
+                                            Galeria de Dirigentes
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/historico" >
+                                            Hist&oacute;rico
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/identidade-visual" >
+                                            Identidade Visual
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/missao-visao-e-valores" >
+                                            Miss&atilde;o, Vis&atilde;o e Valores
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/selecao-2025" >
+                                            Processo Seletivo 2025
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/protecao-de-dados-pessoais" >
+                                            Prote&ccedil;&atilde;o de Dados Pessoais
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/quem-somos" >
+                                            Quem somos
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/transparencia-ativa" >
+                                            Transpar&ecirc;ncia Ativa
+                                        </a>
+                                    </li>
+                                                            </ul>
+                        </li>                            
+                                                                                <li class="dropdown ">
+                            <a class="dropdown-toggle" data-toggle="dropdown"
+                                href="javascript:void(0);">
+                                Chamadas e Editais <span class="caret"></span>
+                            </a>                                                    
+                            <ul class="dropdown-menu" role="menu">
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/abertos" >
+                                            Abertos
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/em-julgamento" >
+                                            Em Julgamento
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/encerrados" >
+                                            Encerrados
+                                        </a>
+                                    </li>
+                                                            </ul>
+                        </li>                            
+                                                                                <li class="dropdown ">
+                            <a class="dropdown-toggle" data-toggle="dropdown"
+                                href="javascript:void(0);">
+                                Valores de Bolsas e Di&aacute;rias <span class="caret"></span>
+                            </a>                                                    
+                            <ul class="dropdown-menu" role="menu">
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/valores-de-bolsas" >
+                                            Valores de Bolsas
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/valores-de-diarias" >
+                                            Valores de Di&aacute;rias
+                                        </a>
+                                    </li>
+                                                            </ul>
+                        </li>                            
+                                                                                <li class="dropdown ">
+                            <a class="dropdown-toggle" data-toggle="dropdown"
+                                href="javascript:void(0);">
+                                Legisla&ccedil;&atilde;o <span class="caret"></span>
+                            </a>                                                    
+                            <ul class="dropdown-menu" role="menu">
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/legislacao-estadual" >
+                                            Legisla&ccedil;&atilde;o Estadual
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/legislacao-institucional" >
+                                            Legisla&ccedil;&atilde;o Institucional
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/normas-comites-de-assessoramento" >
+                                            Normas Comit&ecirc;s de Assessoramento
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/resolucoes" >
+                                            Resolu&ccedil;&otilde;es Diversas
+                                        </a>
+                                    </li>
+                                                            </ul>
+                        </li>                            
+                                                                                <li class="dropdown ">
+                            <a class="dropdown-toggle" data-toggle="dropdown"
+                                href="javascript:void(0);">
+                                Manuais, Guias e Documentos <span class="caret"></span>
+                            </a>                                                    
+                            <ul class="dropdown-menu" role="menu">
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/eixos-estrategicos" >
+                                            Eixos Estrat&eacute;gicos
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_blank
+                                           href="/guia-de-boas-praticas-cientificas-e-integridade-academica" >
+                                            Guia de Boas Pr&aacute;ticas
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/prestacao-de-contas" >
+                                            Presta&ccedil;&atilde;o de Contas
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/readequacoes-em-projetos" >
+                                            Readequa&ccedil;&otilde;es em Projetos
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/regulamentos" >
+                                            Regulamentos
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/relatorio-tecnico" >
+                                            Relat&oacute;rio T&eacute;cnico
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/representantes-legais" >
+                                            Representantes Legais
+                                        </a>
+                                    </li>
+                                                            </ul>
+                        </li>                            
+                                                                                <li class="dropdown ">
+                            <a class="dropdown-toggle" data-toggle="dropdown"
+                                href="javascript:void(0);">
+                                Comunica&ccedil;&atilde;o <span class="caret"></span>
+                            </a>                                                    
+                            <ul class="dropdown-menu" role="menu">
+                                                                    <li >
+                                        <a 
+                                           target=_blank
+                                           href="/aviso-de-privacidade-para-usuarios-externos" >
+                                            Aviso de Privacidade LGPD
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/avisos" >
+                                            Avisos
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/denuncia-cipa" >
+                                            Den&uacute;ncia de Ass&eacute;dio
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/60anos" >
+                                            FAPERGS 60 Anos
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/fale-conosco" >
+                                            Fale conosco
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_blank
+                                           href="/intranet" >
+                                            Intranet
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/links-uteis" >
+                                            Links &Uacute;teis
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/noticias" >
+                                            Not&iacute;cias
+                                        </a>
+                                    </li>
+                                                                    <li >
+                                        <a 
+                                           target=_self
+                                           href="/resultados-e-indicadores" >
+                                            Resultados e Indicadores
+                                        </a>
+                                    </li>
+                                                            </ul>
+                        </li>                            
+                                               
+            </ul>
+            <div class="cabecalho__funcionalidades__links-extras visible-xs clearfix">
+                <ul>
+                    <li><a data-action="enable-alternate-style" href="javascript:void(0);" title="Alto contraste"><i class="fa fa-adjust fa-flip-horizontal"></i> Contraste</a>
+                                    <a data-action="disable-alternate-style" href="javascript:void(0);" title="Contraste normal"><i class="fa fa-adjust"></i> Contraste</a></li>
+                    <li><a href="/fale-conosco"><i class="fa fa-envelope"></i> Fale conosco</a></li>
+                    <li><a href="/mapa-do-site"><i class="fa fa-sitemap"></i> Mapa do site</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<a class="sr-only" id="conteudoInicio">In&iacute;cio do conte&uacute;do</a>            
+            
+    <div class="wrapper__corpo">
+        <div class="container corpo">
+            <div class="row erro">
+                <div class="col-sm-10 col-sm-offset-1 col-md-7 col-md-offset-0 col-lg-6">
+                    <h1>P&aacute;gina n&atilde;o encontrada</h1>
+                    <p class="destaque">Ops! Algo saiu errado, a p&aacute;gina que voc&ecirc; procura possivelmente n&atilde;o existe ou n&atilde;o foi encontrada.</p>
+                    <p>Voc&ecirc; pode tentar novamente, verificando o endere&ccedil;o informado ou navegando atrav&eacute;s do menu acima.</p>
+                    <p>
+                        Se voc&ecirc; desejar, pode nos informar sobre o ocorrido atrav&eacute;s do 
+                        <a href="/fale-conosco">formul&aacute;rio de contato</a>.
+                        Caso seja necess&aacute;rio entraremos em contato o mais breve poss&iacute;vel.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+            
+                
+<div vw class="enabled vlibras" data-matriz-min-screen-width="992">
+<div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+    </div>
+</div><footer class="rodape">	
+    <div class="wrapper-rodape__body">
+        <div class="container">
+            <div class="row rodape__body">                
+                <div class="col-xs-12">
+                    <ul class="rodape__mapa-site">
+                                                    <li class="rodape__mapa-site__item ">
+                                <a class="rodape__mapa-site__item__titulo" href="/institucional" target=_self>
+                                    Institucional
+                                </a>
+                                                                    <ul>
+                                                                                    <li >
+                                                <a href="/comissao-de-equidade-diversidade-e-inclusao"
+                                                   target=_self>
+                                                    Comiss&atilde;o de EDI
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/equipe"
+                                                   target=_self>
+                                                    Equipe
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/galeria-de-dirigentes"
+                                                   target=_self>
+                                                    Galeria de Dirigentes
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/historico"
+                                                   target=_self>
+                                                    Hist&oacute;rico
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/identidade-visual"
+                                                   target=_self>
+                                                    Identidade Visual
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/missao-visao-e-valores"
+                                                   target=_self>
+                                                    Miss&atilde;o, Vis&atilde;o e Valores
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/selecao-2025"
+                                                   target=_self>
+                                                    Processo Seletivo 2025
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/protecao-de-dados-pessoais"
+                                                   target=_self>
+                                                    Prote&ccedil;&atilde;o de Dados Pessoais
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/quem-somos"
+                                                   target=_self>
+                                                    Quem somos
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/transparencia-ativa"
+                                                   target=_self>
+                                                    Transpar&ecirc;ncia Ativa
+                                                </a>
+                                            </li>
+                                                                            </ul>
+                                                            </li>
+                                                    <li class="rodape__mapa-site__item ">
+                                <a class="rodape__mapa-site__item__titulo" href="/chamadas-e-editais" target=_self>
+                                    Chamadas e Editais
+                                </a>
+                                                                    <ul>
+                                                                                    <li >
+                                                <a href="/abertos"
+                                                   target=_self>
+                                                    Abertos
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/em-julgamento"
+                                                   target=_self>
+                                                    Em Julgamento
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/encerrados"
+                                                   target=_self>
+                                                    Encerrados
+                                                </a>
+                                            </li>
+                                                                            </ul>
+                                                            </li>
+                                                    <li class="rodape__mapa-site__item ">
+                                <a class="rodape__mapa-site__item__titulo" href="/valores-de-bolsas-e-diarias" target=_self>
+                                    Valores de Bolsas e Di&aacute;rias
+                                </a>
+                                                                    <ul>
+                                                                                    <li >
+                                                <a href="/valores-de-bolsas"
+                                                   target=_self>
+                                                    Valores de Bolsas
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/valores-de-diarias"
+                                                   target=_self>
+                                                    Valores de Di&aacute;rias
+                                                </a>
+                                            </li>
+                                                                            </ul>
+                                                            </li>
+                                                    <li class="rodape__mapa-site__item ">
+                                <a class="rodape__mapa-site__item__titulo" href="/legislacao" target=_self>
+                                    Legisla&ccedil;&atilde;o
+                                </a>
+                                                                    <ul>
+                                                                                    <li >
+                                                <a href="/legislacao-estadual"
+                                                   target=_self>
+                                                    Legisla&ccedil;&atilde;o Estadual
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/legislacao-institucional"
+                                                   target=_self>
+                                                    Legisla&ccedil;&atilde;o Institucional
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/normas-comites-de-assessoramento"
+                                                   target=_self>
+                                                    Normas Comit&ecirc;s de Assessoramento
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/resolucoes"
+                                                   target=_self>
+                                                    Resolu&ccedil;&otilde;es Diversas
+                                                </a>
+                                            </li>
+                                                                            </ul>
+                                                            </li>
+                                                    <li class="rodape__mapa-site__item ">
+                                <a class="rodape__mapa-site__item__titulo" href="/manuais-guias-e-documentos" target=_self>
+                                    Manuais, Guias e Documentos
+                                </a>
+                                                                    <ul>
+                                                                                    <li >
+                                                <a href="/eixos-estrategicos"
+                                                   target=_self>
+                                                    Eixos Estrat&eacute;gicos
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/guia-de-boas-praticas-cientificas-e-integridade-academica"
+                                                   target=_blank>
+                                                    Guia de Boas Pr&aacute;ticas
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/prestacao-de-contas"
+                                                   target=_self>
+                                                    Presta&ccedil;&atilde;o de Contas
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/readequacoes-em-projetos"
+                                                   target=_self>
+                                                    Readequa&ccedil;&otilde;es em Projetos
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/regulamentos"
+                                                   target=_self>
+                                                    Regulamentos
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/relatorio-tecnico"
+                                                   target=_self>
+                                                    Relat&oacute;rio T&eacute;cnico
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/representantes-legais"
+                                                   target=_self>
+                                                    Representantes Legais
+                                                </a>
+                                            </li>
+                                                                            </ul>
+                                                            </li>
+                                                    <li class="rodape__mapa-site__item ">
+                                <a class="rodape__mapa-site__item__titulo" href="/comunicacao" target=_self>
+                                    Comunica&ccedil;&atilde;o
+                                </a>
+                                                                    <ul>
+                                                                                    <li >
+                                                <a href="/aviso-de-privacidade-para-usuarios-externos"
+                                                   target=_blank>
+                                                    Aviso de Privacidade LGPD
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/avisos"
+                                                   target=_self>
+                                                    Avisos
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/denuncia-cipa"
+                                                   target=_self>
+                                                    Den&uacute;ncia de Ass&eacute;dio
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/60anos"
+                                                   target=_self>
+                                                    FAPERGS 60 Anos
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/fale-conosco"
+                                                   target=_self>
+                                                    Fale conosco
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/intranet"
+                                                   target=_blank>
+                                                    Intranet
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/links-uteis"
+                                                   target=_self>
+                                                    Links &Uacute;teis
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/noticias"
+                                                   target=_self>
+                                                    Not&iacute;cias
+                                                </a>
+                                            </li>
+                                                                                    <li >
+                                                <a href="/resultados-e-indicadores"
+                                                   target=_self>
+                                                    Resultados e Indicadores
+                                                </a>
+                                            </li>
+                                                                            </ul>
+                                                            </li>
+                                            
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper-rodape__expediente">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 rodape__expediente">
+                    <div class="rodape__expediente__endereco">
+                                                                        <address>
+                                <div class="rodape__expediente__instituicao">FAPERGS - Funda&ccedil;&atilde;o de Amparo &agrave; pesquisa do Estado do RS</div>
+                                                                                                    Av. Borges de Medeiros, 261 - Centro Hist&oacute;rico<br/>
+                                                                                                                                        2&ordm; andar<br/>
+                                                                                                                                        Porto Alegre - 
+                                                                                                                                        RS -
+                                                                                                    <div class="rodape__expediente__link-mapa">
+                                                                            <a href="https://www.google.com.br/maps/place/Av.+Borges+de+Medeiros%2C+261+-+Centro+Hist%C3%B3rico%2C+2%C2%BA+andar+-+Porto+Alegre+-+RS/@-30.0287314,-51.228275199999985" target="_blank">
+                                            <span class="glyphicon glyphicon-map-marker"></span> mapa
+                                        </a>
+                                                                    </div>
+                                <br />
+                                                                    90020-021<br/>
+                                                                                                                Fone:
+                <a href="tel:51-3221-4922">(51) 3221-4922</a>
+    <br/>
+            CNPJ:
+                93.017.663/0001-08
+    <br/>
+                            </address>
+                                                                </div>
+                    <div class="selo-governo">
+	<a target="_self" href="http://www.estado.rs.gov.br/">
+		<img src="/matriz_common/images/logos/marca_governo_RS.png" alt="Governo do Estado do Rio Grande do Sul. O futuro nos une." class="selo-governo--padrao">
+		<img src="/matriz_common/images/logos/marca_governo_RS_contraste.png" alt="Governo do Estado do Rio Grande do Sul. O futuro nos une." class="selo-governo--contraste">
+	</a>
+</div>                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper-rodape__creditos">
+        <div class="container">
+            <div class="row rodape__creditos">
+                <div class="col-xs-12">
+                    <div class="rodape__creditos__body">
+                        <ul>
+                            <li class="rodape__creditos__body__credito"> <a title="Visite o site da PROCERGS" target="_blank" href="http://www.procergs.rs.gov.br/">Desenvolvido pela PROCERGS</a>
+                            </li>                                    
+                            <li class="rodape__creditos__body__termos"> <a title="Leia os termos de uso" href="/termos-de-uso">Termos de Uso</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="dynamicTop6974396493ae5" class="containerDynamicTop" data-easing="easeOutQuart" data-speed="800"></div>
+</footer>            
+            <div class="rodapeImpressao">FAPERGS - Funda&ccedil;&atilde;o de Amparo &agrave; pesquisa do Estado do RS</div>
+            <div id="galeria-lightbox" class="galeria-lightbox blueimp-gallery blueimp-gallery-controls mfp-bg mfp-with-zoom mfp-img-mobile mfp-ready">
+    <div class="slides"></div>
+    <div class="title imagem-detalhe">
+        <div class="imagem-detalhe__legenda">
+            <span class="imagem-detalhe__titulo"></span><br>
+            <span class="imagem-detalhe__credito"></span>
+        </div>
+        <div class="imagem-detalhe__link">
+                        	<a href="#">Ver detalhes</a>
+                    </div>
+    </div>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>                        <script>
+        (function(i, s, o, g, r, a, m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)}, i[r].l = 1 * new Date(); a = s.createElement(o),m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-18808088-6', 'auto');
+        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+    </script>                <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1GBTF740B0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){window.dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1GBTF740B0', { 'anonymize_ip': true });
+    </script>                
+                <div id="matriz2-cookie-confirmation" class="matriz2-cookie-notification-position-bottom hidden" data-nosnippet="">
+    <div id="matriz2-cookie-confirmation-inner">
+        <div id="matriz2-cookie-policy-wording">
+            Utilizamos cookies necessários para o pleno funcionamento do nosso site, para aprimorar e
+            personalizar sua experiência durante a navegação, bem como outros cookies adicionais. Ao
+            clicar em "Aceitar Todos", você terá acesso a todas as funcionalidades da página e nos
+            ajudará a desenvolver um site cada vez melhor. Você pode encontrar mais informações sobre
+            quais cookies estamos utilizando no nosso <a href="/aviso-de-cookies">Aviso de Cookies</a>.
+        </div>
+        <p id="matriz2-cookie-disclaimer"><!-- Mensagem de disclaimer aqui (pode ser um aviso sobre o que pode acontecer ao bloquear) --></p>
+        <div id="matriz2-cookie-confirmation-buttons-area">
+            <a href="javascript:void(0);" id="matriz2-cookie-confirmation-button" class="btn btn-success">ACEITAR TODOS</a>
+            <a href="javascript:void(0);" id="matriz2-cookie-confirmation-basic-button" class="btn btn-success">ACEITAR NECESSÁRIOS</a>
+        </div>
+    </div>
+</div>                <link rel="stylesheet" href="/matriz_common/versions/2.1.5/components/lgpd-popup/lgpd-popup.css?2.1.5.155.0+7" media="all" />
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/jquery/jquery-3.6.1.min.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/js/barraGoverno.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/themes/frontend/js/stylesheet.selector.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/jquery/jquery.mask.154.min.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/jquery/jquery.validate.1131.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/jquery/jquery.validate.1131.additional-methods.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/jquery/jquery.easing.13.min.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/jquery/jquery.ui.totop.12.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/bootstrap/bootstrap.320.min.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/bootstrap/bootstrap-select.163.min.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/bootstrap/bootstrapValidator.052.min.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/bootstrap/bootstrapValidator.pt_BR.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/bootstrap/bootstrap-datepicker.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/bootstrap/bootstrap-datepicker.pt-BR.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/bootstrap/bootstrap-maxlength.min.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/bootstrap/bootstrap-hover-dropdown.2011.min.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/jquery/jquery.pnotify.120.min.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/jplayer/jquery.jplayer.min.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/froogaloop.master.min.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/sugar.141.min.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/blueimp-gallery.2141.min.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/procergs/matriz.global.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/procergs/matriz.lgpd.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/procergs/matriz.common.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/procergs/matriz.global.box.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/procergs/matriz.global.ui.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/procergs/matriz.utils.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/procergs/matriz.ui.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/procergs/matriz.externalapis.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/procergs/jquery.matrizPagedList.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/procergs/jquery.matrizCalendarioEventos.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/procergs/matriz.utils.media.fallback.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/procergs/matriz.utils.media.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/moment.min.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/owl.carousel.133.min.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/moxie/js/moxie.min.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/js/pgwslideshow.min.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/themes/frontend/js/matriz.global.theme.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/themes/frontend/js/master.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/themes/frontend/js/conteudo.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/themes/modelo-institucional2/js/master.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="https://vlibras.gov.br/app/vlibras-plugin.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/components/vlibras/vlibras.js?2.1.5.155.0+7"></script>
+<script type="text/javascript" src="/matriz_common/versions/2.1.5/components/lgpd-popup/lgpd-popup.js?2.1.5.155.0+7"></script>
+<script>matriz.utils.internationalization.dictionary = {};$(function () {matriz.ui.init.all();});</script>
+            
+        </body>
+    </html>

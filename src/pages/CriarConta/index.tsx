@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import {
   loginUser,
@@ -10,38 +10,59 @@ import {
 } from "../../services/userApi";
 import "./styles.css";
 
+// Google Ads Conversion Tracking
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void;
+  }
+}
+
+function gtag_report_conversion(url?: string) {
+  const callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location.href = url;
+    }
+  };
+  
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'conversion', {
+      'send_to': 'AW-17761069351/6u6iCL3zj8gbEKfSkZVC',
+      'event_callback': callback
+    });
+  }
+  
+  return false;
+}
+
 type PlanType = "basico" | "crescimento" | "empresarial" | "black-friday";
 
-const PLAN_CONFIG: Record<
-  PlanType,
-  {
-    name: string;
-    price: string;
-    originalPrice?: string;
-    paymentLink: string;
-    discount?: string;
-  }
-> = {
-  basico: {
+const PLAN_CONFIG: Record<PlanType, { 
+  name: string; 
+  price: string; 
+  originalPrice?: string;
+  paymentLink: string;
+  discount?: string;
+}> = {
+  "basico": {
     name: "Básico",
     price: "R$ 49,90/mês",
-    paymentLink: "https://www.asaas.com/c/basico",
+    paymentLink: "https://www.app.gestaoboa.com.br",
   },
-  crescimento: {
+  "crescimento": {
     name: "Crescimento",
-    price: "R$ 68,32/mês",
-    paymentLink: "https://www.asaas.com/c/crescimento",
+    price: "R$ 89,90/mês",
+    paymentLink: "https://www.app.gestaoboa.com.br",
   },
-  empresarial: {
+  "empresarial": {
     name: "Empresarial",
-    price: "R$ 99,90/mês",
-    paymentLink: "https://www.asaas.com/c/empresarial",
+    price: "R$ 98,72/mês",
+    paymentLink: "https://www.app.gestaoboa.com.br",
   },
   "black-friday": {
     name: "Black Friday",
     price: "R$ 9,90",
     originalPrice: "R$ 535,00",
-    paymentLink: "https://www.asaas.com/c/djam9ndwkf1l3lsi",
+    paymentLink: "https://www.app.gestaoboa.com.br",
     discount: "98% OFF",
   },
 };
@@ -64,11 +85,8 @@ const CriarConta: React.FC = () => {
   const [companyStep, setCompanyStep] = useState(0);
   const [userToken, setUserToken] = useState<string | null>(null);
   const [formData, setFormData] = useState({
-    photo: "",
     name: "",
     surname: "",
-    document: "",
-    birthday: "",
     phone: "",
     email: "",
     password: "",
@@ -76,15 +94,11 @@ const CriarConta: React.FC = () => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const photoInputRef = useRef<HTMLInputElement>(null);
 
   // Company form states
   const [companyName, setCompanyName] = useState("");
-  const [selectedCategory, setSelectedCategory] =
-    useState<EnterpriseBranch | null>(null);
-  const [selectedScale, setSelectedScale] = useState<
-    (typeof SCALE_OPTIONS)[0] | null
-  >(null);
+  const [selectedCategory, setSelectedCategory] = useState<EnterpriseBranch | null>(null);
+  const [selectedScale, setSelectedScale] = useState<typeof SCALE_OPTIONS[0] | null>(null);
   const [categories, setCategories] = useState<EnterpriseBranch[]>([]);
 
   useEffect(() => {
@@ -101,39 +115,6 @@ const CriarConta: React.FC = () => {
       fetchCategories();
     }
   }, [currentStep]);
-
-  const formatCPF = (value: string) => {
-    const cleaned = value.replace(/\D/g, "");
-    if (cleaned.length <= 11) {
-      let formatted = cleaned;
-      if (cleaned.length > 3) {
-        formatted = `${cleaned.slice(0, 3)}.${cleaned.slice(3)}`;
-      }
-      if (cleaned.length > 6) {
-        formatted = `${formatted.slice(0, 7)}.${formatted.slice(7)}`;
-      }
-      if (cleaned.length > 9) {
-        formatted = `${formatted.slice(0, 11)}-${formatted.slice(11)}`;
-      }
-      return formatted;
-    }
-    return value;
-  };
-
-  const formatBirthday = (value: string) => {
-    const cleaned = value.replace(/\D/g, "");
-    if (cleaned.length <= 8) {
-      let formatted = cleaned;
-      if (cleaned.length > 2) {
-        formatted = `${cleaned.slice(0, 2)}/${cleaned.slice(2)}`;
-      }
-      if (cleaned.length > 4) {
-        formatted = `${formatted.slice(0, 5)}/${formatted.slice(5)}`;
-      }
-      return formatted;
-    }
-    return value;
-  };
 
   const formatPhone = (value: string) => {
     const cleaned = value.replace(/\D/g, "");
@@ -161,41 +142,11 @@ const CriarConta: React.FC = () => {
     }
 
     let formattedValue = value;
-    if (name === "document") {
-      formattedValue = formatCPF(value);
-    } else if (name === "birthday") {
-      formattedValue = formatBirthday(value);
-    } else if (name === "phone") {
+    if (name === "phone") {
       formattedValue = formatPhone(value);
     }
 
     setFormData((prev) => ({ ...prev, [name]: formattedValue }));
-  };
-
-  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    if (!file.type.startsWith("image/")) {
-      setError("Por favor, selecione uma imagem válida.");
-      return;
-    }
-
-    if (file.size > 5 * 1024 * 1024) {
-      setError("A imagem deve ter no máximo 5MB.");
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      if (event.target?.result) {
-        setFormData((prev) => ({
-          ...prev,
-          photo: event.target!.result as string,
-        }));
-      }
-    };
-    reader.readAsDataURL(file);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -207,11 +158,8 @@ const CriarConta: React.FC = () => {
       return;
     }
 
-    if (
-      !formData.document.replace(/\D/g, "") ||
-      formData.document.replace(/\D/g, "").length !== 11
-    ) {
-      setError("Por favor, insira um CPF válido.");
+    if (!formData.phone.replace(/\D/g, "") || formData.phone.replace(/\D/g, "").length < 10) {
+      setError("Por favor, insira um telefone válido.");
       return;
     }
 
@@ -229,23 +177,17 @@ const CriarConta: React.FC = () => {
       setError("Você precisa aceitar os termos de uso para continuar.");
       return;
     }
-
+    
     setLoading(true);
 
     try {
-      const birthdayParts = formData.birthday.split("/");
-      const formattedBirthday =
-        birthdayParts.length === 3
-          ? `${birthdayParts[2]}-${birthdayParts[1]}-${birthdayParts[0]}T17:28:17.213Z`
-          : formData.birthday;
-
       const userData = {
         name: formData.name,
         surname: formData.surname,
-        document: formData.document.replace(/\D/g, ""),
+        document: "",
         email: formData.email,
         password: formData.password,
-        birthday: formattedBirthday,
+        birthday: "",
         phone: formData.phone.replace(/\D/g, ""),
         gender: "",
         cep: "",
@@ -264,7 +206,7 @@ const CriarConta: React.FC = () => {
       setCurrentStep(2);
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "Erro ao processar o registro",
+        err instanceof Error ? err.message : "Erro ao processar o registro"
       );
       console.error("Erro no registro do usuário:", err);
     } finally {
@@ -357,6 +299,9 @@ const CriarConta: React.FC = () => {
         throw new Error(result.error.message ?? "Erro ao criar empresa");
       }
 
+      // Trigger Google Ads conversion event
+      gtag_report_conversion();
+      
       window.open(planConfig.paymentLink, "_blank");
       navigate("/");
     } catch (err) {
@@ -378,18 +323,14 @@ const CriarConta: React.FC = () => {
       <div className="signup-steps">
         {steps.map((step, index) => (
           <React.Fragment key={step.number}>
-            <div
-              className={`signup-step ${currentStep > step.number ? "completed" : currentStep === step.number ? "active" : ""}`}
-            >
+            <div className={`signup-step ${currentStep > step.number ? "completed" : currentStep === step.number ? "active" : ""}`}>
               <div className="step-circle">
                 {currentStep > step.number ? "✓" : step.number}
               </div>
               <span className="step-label">{step.label}</span>
             </div>
             {index < steps.length - 1 && (
-              <div
-                className={`step-connector ${currentStep > step.number ? "completed" : ""}`}
-              />
+              <div className={`step-connector ${currentStep > step.number ? "completed" : ""}`} />
             )}
           </React.Fragment>
         ))}
@@ -399,23 +340,19 @@ const CriarConta: React.FC = () => {
 
   const renderCompanySubSteps = () => {
     const subSteps = ["Nome", "Categoria", "Porte"];
-
+    
     return (
       <div className="company-substeps">
         {subSteps.map((label, index) => (
           <React.Fragment key={index}>
-            <div
-              className={`substep ${companyStep > index ? "completed" : companyStep === index ? "active" : ""}`}
-            >
+            <div className={`substep ${companyStep > index ? "completed" : companyStep === index ? "active" : ""}`}>
               <div className="substep-circle">
                 {companyStep > index ? "✓" : index + 1}
               </div>
               <span className="substep-label">{label}</span>
             </div>
             {index < subSteps.length - 1 && (
-              <div
-                className={`substep-connector ${companyStep > index ? "completed" : ""}`}
-              />
+              <div className={`substep-connector ${companyStep > index ? "completed" : ""}`} />
             )}
           </React.Fragment>
         ))}
@@ -430,9 +367,7 @@ const CriarConta: React.FC = () => {
           <div className="company-form-step">
             <div className="step-icon">🏢</div>
             <h3>Nome da Empresa</h3>
-            <p className="step-description">
-              Qual é o nome da sua empresa ou estabelecimento?
-            </p>
+            <p className="step-description">Qual é o nome da sua empresa ou estabelecimento?</p>
             <div className="input-wrapper">
               <input
                 type="text"
@@ -451,9 +386,7 @@ const CriarConta: React.FC = () => {
           <div className="company-form-step">
             <div className="step-icon">📂</div>
             <h3>Categoria</h3>
-            <p className="step-description">
-              Selecione a categoria que melhor descreve sua empresa
-            </p>
+            <p className="step-description">Selecione a categoria que melhor descreve sua empresa</p>
             <div className="options-grid">
               {categories.map((category) => (
                 <div
@@ -482,9 +415,7 @@ const CriarConta: React.FC = () => {
                   onClick={() => setSelectedScale(scale)}
                 >
                   <span className="option-name">{scale.name}</span>
-                  <span className="option-description">
-                    {scale.description}
-                  </span>
+                  <span className="option-description">{scale.description}</span>
                 </div>
               ))}
             </div>
@@ -505,15 +436,11 @@ const CriarConta: React.FC = () => {
             <img src="/beasier-1-1-1@2x.png" alt="Gestão Boa" />
           </a>
           <div className="plan-badge">
-            {planConfig.discount && (
-              <span className="discount-badge">{planConfig.discount}</span>
-            )}
+            {planConfig.discount && <span className="discount-badge">{planConfig.discount}</span>}
             <span className="plan-name">Plano {planConfig.name}</span>
             <span className="plan-price">
               {planConfig.originalPrice && (
-                <span className="original-price">
-                  {planConfig.originalPrice}
-                </span>
+                <span className="original-price">{planConfig.originalPrice}</span>
               )}
               {planConfig.price}
             </span>
@@ -528,22 +455,18 @@ const CriarConta: React.FC = () => {
           <div className="signup-info">
             <h1>
               {plan === "black-friday" ? (
-                <>
-                  🔥 Aproveite a <span className="highlight">Black Friday</span>
-                </>
+                <>🔥 Aproveite a <span className="highlight">Black Friday</span></>
               ) : (
-                <>
-                  Comece sua jornada com o{" "}
-                  <span className="highlight">Gestão Boa</span>
-                </>
+                <>Comece sua jornada com o <span className="highlight">Gestão Boa</span></>
               )}
             </h1>
             <p className="info-description">
-              {plan === "black-friday"
+              {plan === "black-friday" 
                 ? "Garanta acesso completo ao sistema por apenas R$ 9,90 e transforme a gestão do seu negócio!"
-                : "Simplifique a gestão do seu negócio com nossa plataforma completa e intuitiva."}
+                : "Simplifique a gestão do seu negócio com nossa plataforma completa e intuitiva."
+              }
             </p>
-
+            
             <div className="benefits-list">
               <div className="benefit-item">
                 <span className="benefit-icon">✓</span>
@@ -592,30 +515,6 @@ const CriarConta: React.FC = () => {
                   </div>
 
                   <form onSubmit={handleSubmit} className="signup-form">
-                    <div className="avatar-section">
-                      <div
-                        className="avatar-upload"
-                        onClick={() => photoInputRef.current?.click()}
-                        style={{
-                          backgroundImage: formData.photo
-                            ? `url(${formData.photo})`
-                            : "none",
-                        }}
-                      >
-                        {!formData.photo && (
-                          <span className="avatar-placeholder">+</span>
-                        )}
-                      </div>
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handlePhotoChange}
-                        ref={photoInputRef}
-                        hidden
-                      />
-                      <span className="avatar-label">Adicionar foto</span>
-                    </div>
-
                     <div className="form-row">
                       <div className="form-group">
                         <label htmlFor="name">Nome *</label>
@@ -644,42 +543,16 @@ const CriarConta: React.FC = () => {
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="document">CPF *</label>
+                      <label htmlFor="phone">Telefone *</label>
                       <input
                         type="text"
-                        id="document"
-                        name="document"
-                        value={formData.document}
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
                         onChange={handleChange}
-                        placeholder="000.000.000-00"
+                        placeholder="(00) 00000-0000"
                         required
                       />
-                    </div>
-
-                    <div className="form-row">
-                      <div className="form-group">
-                        <label htmlFor="birthday">Data de Nascimento</label>
-                        <input
-                          type="text"
-                          id="birthday"
-                          name="birthday"
-                          value={formData.birthday}
-                          onChange={handleChange}
-                          placeholder="DD/MM/AAAA"
-                        />
-                      </div>
-                      <div className="form-group">
-                        <label htmlFor="phone">Telefone *</label>
-                        <input
-                          type="text"
-                          id="phone"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          placeholder="(00) 00000-0000"
-                          required
-                        />
-                      </div>
                     </div>
 
                     <div className="form-group">
@@ -719,19 +592,11 @@ const CriarConta: React.FC = () => {
                       />
                       <label htmlFor="terms">
                         Li e concordo com os{" "}
-                        <a
-                          href="/terms"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
+                        <a href="/terms" target="_blank" rel="noopener noreferrer">
                           Termos de Uso
                         </a>{" "}
                         e{" "}
-                        <a
-                          href="/privacy"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
+                        <a href="/privacy" target="_blank" rel="noopener noreferrer">
                           Política de Privacidade
                         </a>
                       </label>
@@ -739,11 +604,7 @@ const CriarConta: React.FC = () => {
 
                     {error && <div className="error-message">{error}</div>}
 
-                    <button
-                      type="submit"
-                      className="submit-btn"
-                      disabled={loading}
-                    >
+                    <button type="submit" className="submit-btn" disabled={loading}>
                       {loading ? (
                         <span className="loading-spinner"></span>
                       ) : (
@@ -788,10 +649,7 @@ const CriarConta: React.FC = () => {
 
                   <div className="info-box">
                     <span className="info-icon">ℹ️</span>
-                    <p>
-                      Você pode continuar mesmo sem confirmar o email, mas
-                      recomendamos confirmar para maior segurança.
-                    </p>
+                    <p>Você pode continuar mesmo sem confirmar o email, mas recomendamos confirmar para maior segurança.</p>
                   </div>
                 </div>
               )}
@@ -800,7 +658,7 @@ const CriarConta: React.FC = () => {
               {currentStep === 3 && userToken && (
                 <div className="company-step">
                   {renderCompanySubSteps()}
-
+                  
                   {renderCompanyStepContent()}
 
                   {error && <div className="error-message">{error}</div>}
@@ -842,8 +700,7 @@ const CriarConta: React.FC = () => {
             </div>
 
             <p className="login-link">
-              Já tem uma conta?{" "}
-              <a href="https://app.gestaoboa.com.br">Fazer login</a>
+              Já tem uma conta? <a href="https://app.gestaoboa.com.br">Fazer login</a>
             </p>
           </div>
         </div>

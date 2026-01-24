@@ -1158,7 +1158,7 @@ const Home: FunctionComponent = () => {
               <div className="player">
                 <ReactPlayer
                   className="buying"
-                  url="/demonstracao.mp4"
+                  url="/video app.mp4"
                   width="fit-content"
                   height="85vh"
                   controls={true}
