@@ -18,10 +18,20 @@ import { Helmet } from "react-helmet-async";
 import ReactPlayer from "react-player";
 import {
   Banner,
-  Contact,
+  ContactContainer,
+  ContactInfo,
+  ContactTitle,
+  ContactSocial,
+  ContactFormColumn,
+  ContactFormBox,
+  FormGroup,
+  FormInputWrapper,
+  FormLabel,
+  FormButtonWrapper,
   Container,
   FAQ,
   Grid,
+  InstagramSection,
   Segments,
   Solutions,
 } from "./styles";
@@ -1352,13 +1362,44 @@ const Home: FunctionComponent = () => {
             </div>
           </FAQ>
 
-          <Contact id="contact">
-            {/* */}
-            <div className="info">
-              <div className="title">
-                Entre em contato e acelere seu crescimento!
+          <InstagramSection>
+            <div className="instagram-content">
+              <div className="instagram-icon">
+                <img
+                  src="/instagram-1@2x.png"
+                  alt="Instagram da Gestão Boa"
+                  loading="lazy"
+                />
               </div>
-              <div className="links">
+              <div className="instagram-text">
+                <h2>Siga nosso Instagram</h2>
+                <p>
+                  No nosso Instagram, compartilhamos conteúdos exclusivos sobre <strong>educação e gestão</strong> para ajudar você a alcançar o sucesso no seu negócio. Dicas essenciais de gerenciamento, estratégias de crescimento, organização financeira e muito mais para transformar a sua empresa!
+                </p>
+                <a 
+                  href="https://www.instagram.com/gestaoboa/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="instagram-button"
+                >
+                  <img
+                    src="/instagram-1@2x.png"
+                    alt=""
+                    width="24"
+                    height="24"
+                  />
+                  @gestaoboa
+                </a>
+              </div>
+            </div>
+          </InstagramSection>
+
+          <ContactContainer id="contact">
+            <ContactInfo>
+              <ContactTitle>
+                Entre em contato e acelere seu crescimento!
+              </ContactTitle>
+              <ContactSocial>
                 <a href="https://www.instagram.com/gestaoboa/">
                   <img
                     src="/instagram-1@2x.png"
@@ -1369,58 +1410,62 @@ const Home: FunctionComponent = () => {
                   />
                   @gestaoboa
                 </a>
-              </div>
-            </div>
+              </ContactSocial>
+            </ContactInfo>
 
-            <div className="space"></div>
-
-            <div className="form">
-              <Form
-                ref={formRef}
-                onSubmit={handleSubmit}
-                placeholder={undefined}
-                onPointerEnterCapture={undefined}
-                onPointerLeaveCapture={undefined}
-              >
-                <div className="input-wrapper double">
-                  <div className="label">Nome completo</div>
-                  <CustomInput width="100%" name="name" placeholder="Nome" />
-                </div>
-                <div className="input-wrapper">
-                  <div className="label">Email</div>
-                  <CustomInput
-                    width="98%"
-                    name="email"
-                    placeholder="seumelhoremail@mail.com"
-                  />
-                </div>
-                <div className="input-wrapper">
-                  <div className="label">Telefone</div>
-                  <CustomInput
-                    width="98%"
-                    name="phone"
-                    placeholder="(00) 00000-0000"
-                  />
-                </div>
-                <div className="textarea">
-                  <div className="label">Mensagem</div>
-                  <CustomTextarea
-                    width="100%"
-                    name="message"
-                    placeholder="Olá, tudo bem?"
-                  />
-                </div>
-              </Form>
-              <div className="button">
-                <Button
-                  width={"100%"}
-                  text="Enviar"
-                  method={() => formRef.current?.submitForm()}
-                  type="focused"
-                />
-              </div>
-            </div>
-          </Contact>
+            <ContactFormColumn>
+              <ContactFormBox>
+                <Form
+                  ref={formRef}
+                  onSubmit={handleSubmit}
+                  placeholder={undefined}
+                  onPointerEnterCapture={undefined}
+                  onPointerLeaveCapture={undefined}
+                  style={{ display: "flex", flexDirection: "column", gap: "24px", width: "100%" }}
+                >
+                  <FormGroup>
+                    <FormInputWrapper>
+                      <FormLabel>Nome completo</FormLabel>
+                      <CustomInput width="100%" name="name" placeholder="Nome" />
+                    </FormInputWrapper>
+                    <FormInputWrapper>
+                      <FormLabel>Telefone</FormLabel>
+                      <CustomInput
+                        width="100%"
+                        name="phone"
+                        placeholder="(00) 00000-0000"
+                      />
+                    </FormInputWrapper>
+                  </FormGroup>
+                  <FormInputWrapper>
+                    <FormLabel>Email</FormLabel>
+                    <CustomInput
+                      width="100%"
+                      name="email"
+                      placeholder="seumelhoremail@mail.com"
+                    />
+                  </FormInputWrapper>
+                  <FormInputWrapper>
+                    <FormLabel>Mensagem</FormLabel>
+                    <CustomTextarea
+                      width="100%"
+                      name="message"
+                      placeholder="Olá, tudo bem?"
+                    />
+                  </FormInputWrapper>
+                  
+                  <FormButtonWrapper>
+                    <Button
+                      width={"100%"}
+                      text="Enviar"
+                      method={() => formRef.current?.submitForm()}
+                      type="focused"
+                    />
+                  </FormButtonWrapper>
+                </Form>
+              </ContactFormBox>
+            </ContactFormColumn>
+          </ContactContainer>
 
           <Footer />
         </Grid>

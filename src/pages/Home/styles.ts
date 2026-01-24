@@ -1308,174 +1308,135 @@ export const Team = styled.div`
   }
 `;
 
-export const Contact = styled.div`
-  display: grid;
-  padding: 100px;
-  padding-left: 100px;
-  padding-right: 100px;
-  padding-bottom: 100px;
+// Contact Section Redesign
+export const ContactContainer = styled.section`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 100px 5%;
+  max-width: 1400px;
   grid-column: span 12;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  position: relative;
+  margin: 0 auto;
+  gap: 80px;
+  width: 100%;
 
-  .info,
-  .form {
-    display: flex;
+  @media (max-width: 1024px) {
+    padding: 80px 40px;
     flex-direction: column;
-    grid-column: span 5;
+    align-items: center;
+    gap: 60px;
   }
 
-  .space {
-    grid-column: span 2;
+  @media (max-width: 768px) {
+    padding: 60px 20px;
+    gap: 40px;
   }
+`;
 
-  .info {
-    display: flex;
-    gap: 81px;
-    flex-direction: column;
+export const ContactInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  flex: 1;
+  max-width: 600px;
+
+  @media (max-width: 1024px) {
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
   }
+`;
 
-  .info .title {
-    font-weight: bold;
-    font-size: 72px;
+export const ContactTitle = styled.h2`
+  font-weight: 800;
+  font-size: 56px;
+  line-height: 1.1;
+  color: #03045e;
+  margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: 36px;
   }
+`;
 
-  .info .links {
-    display: flex;
-    flex-direction: column;
-    font-weight: bold;
-    font-size: 26px;
-    gap: 26px;
-  }
+export const ContactSocial = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 
-  .info .links a {
+  a {
     display: flex;
     align-items: center;
-    gap: 18px;
-    color: #000;
+    gap: 16px;
+    color: #0077b6;
     width: fit-content;
+    font-weight: 600;
+    font-size: 24px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: #03045e;
+      transform: translateX(5px);
+    }
   }
 
-  .profits {
-    position: absolute;
-    left: 100px;
-    bottom: -5px;
+  @media (max-width: 768px) {
+    a {
+      font-size: 20px;
+    }
   }
+`;
 
-  .profits img {
-    width: 500px;
+export const ContactFormColumn = styled.div`
+  flex: 1;
+  max-width: 600px;
+  width: 100%;
+`;
+
+export const ContactFormBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background-color: #03045e;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(3, 4, 94, 0.15);
+
+  @media (max-width: 768px) {
+    padding: 30px 20px;
   }
+`;
 
-  .form,
-  .form form .input,
-  .form form .textarea {
-    display: flex;
+export const FormGroup = styled.div`
+  display: flex;
+  gap: 20px;
+
+  @media (max-width: 768px) {
     flex-direction: column;
+    gap: 24px;
   }
+`;
 
-  .form {
-    grid-column: span 5;
-    align-items: end;
-    gap: 30px;
-  }
+export const FormInputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+`;
 
-  .form form {
-    display: grid;
-    width: 703px;
-    grid-template-columns: 1fr 1fr;
-    gap: 26px;
-    background-color: #03045e;
-    border-radius: 10px;
-    padding: 40px;
-  }
+export const FormLabel = styled.span`
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  margin-left: 4px;
+`;
 
-  .input-wrapper,
-  .textarea {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .label {
-    color: #fff;
-    font-weight: bold;
-  }
-
-  .double,
-  .textarea {
-    grid-column: span 2;
-  }
-
-  textarea {
-    font-family: "Mulish";
-  }
-
-  .form .button {
-    width: 169px;
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  @media (max-width: 1370px) {
-    .info {
-      grid-column: span 7;
-    }
-
-    .form form {
-      display: flex;
-      flex-direction: column;
-      width: 80%;
-      padding: 30px;
-    }
-
-    .space {
-      display: none;
-    }
-  }
-
-  @media (max-width: 800px) {
-    flex-direction: column;
-    display: flex;
-    padding: 41px;
-    gap: 30px;
-
-    .space,
-    .profits {
-      display: none;
-    }
-
-    .info {
-      gap: 30px;
-    }
-
-    .info .title {
-      font-size: 36px;
-    }
-
-    .info .links {
-      font-size: 18px;
-    }
-
-    .info .links img {
-      width: 27px;
-    }
-
-    .form {
-      justify-content: center;
-      align-items: center;
-    }
-
-    .form form {
-      display: flex;
-      flex-direction: column;
-      width: 80%;
-      padding: 10%;
-    }
-
-    .form .button {
-      width: 100%;
-    }
-  }
+export const FormButtonWrapper = styled.div`
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end; /* Align button to the right for a cleaner look, or center if preferred. Going with full width typically or end. */
 `;
 
 export const FAQ = styled.section`
@@ -1844,6 +1805,124 @@ export const Segments = styled.section`
 
     .segment-features li {
       font-size: 0.75rem;
+    }
+  }
+`;
+
+export const InstagramSection = styled.section`
+  grid-column: span 12;
+  padding: 60px 40px;
+  margin: 40px;
+  background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+  }
+
+  .instagram-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .instagram-icon {
+    flex-shrink: 0;
+    
+    img {
+      width: 100px;
+      height: 100px;
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  .instagram-text {
+    color: white;
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      opacity: 0.95;
+
+      strong {
+        font-weight: 700;
+      }
+    }
+  }
+
+  .instagram-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    color: #833ab4;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    img {
+      filter: none;
+    }
+
+    &:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 40px 24px;
+    margin: 20px 16px;
+
+    .instagram-content {
+      flex-direction: column;
+      text-align: center;
+      gap: 24px;
+    }
+
+    .instagram-icon img {
+      width: 70px;
+      height: 70px;
+    }
+
+    .instagram-text {
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    .instagram-button {
+      padding: 12px 24px;
+      font-size: 1rem;
     }
   }
 `;
