@@ -658,12 +658,23 @@ const About = () => {
 
               <div className="team-member-card">
                 <img
-                  src="/Fernando.jpeg"
-                  alt="Fernando Glaeser - Desenvolvedor Backend da Gestão Boa, especialista em desenvolvimento de APIs"
+                  src="/marcelo.png"
+                  alt="Marcelo - Comercial da Gestão Boa, especialista em vendas e relacionamento com clientes"
                 />
                 <div className="member-info">
-                  <h3 className="member-name">Fernando Glaeser</h3>
-                  <span className="member-role">Desenvolvedor backend</span>
+                  <h3 className="member-name">Marcelo</h3>
+                  <span className="member-role">Comercial</span>
+                </div>
+              </div>
+
+              <div className="team-member-card">
+                <img
+                  src="/evelyn.jpeg"
+                  alt="Evelyn - Desenvolvedora Full Stack da Gestão Boa, especialista em desenvolvimento web"
+                />
+                <div className="member-info">
+                  <h3 className="member-name">Evelyn</h3>
+                  <span className="member-role">Desenvolvimento Full Stack</span>
                 </div>
               </div>
             </div>
