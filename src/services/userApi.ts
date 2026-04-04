@@ -81,6 +81,51 @@ export async function loginUser(email: string, password: string) {
   }
 }
 
+export async function loginUserWithPhone(phone: string, password: string) {
+  try {
+    console.log("Tentando fazer login com telefone:", phone);
+    const response = await axios.post(`${BASE_URL}/auth/`, {
+      phone: phone.replace(/\D/g, ""),
+      password: password,
+    });
+    console.log("Resposta do login:", response.data);
+
+    return response.data;
+  } catch (error: unknown) {
+    const axiosError = error as any;
+    console.log(
+      "Erro no login:",
+      axiosError.response?.data ?? axiosError.message
+    );
+    return { error: axiosError.response?.data ?? axiosError.message };
+  }
+}
+
+export async function verifyPhoneCode(phone: string, code: string) {
+  try {
+    const response = await axios.post(`${BASE_URL}/auth/verify-phone`, {
+      phone: phone.replace(/\D/g, ""),
+      code,
+    });
+    return response.data;
+  } catch (error: unknown) {
+    const axiosError = error as any;
+    return { error: axiosError.response?.data ?? axiosError.message };
+  }
+}
+
+export async function resendPhoneCode(phone: string) {
+  try {
+    const response = await axios.post(`${BASE_URL}/auth/resend-code`, {
+      phone: phone.replace(/\D/g, ""),
+    });
+    return response.data;
+  } catch (error: unknown) {
+    const axiosError = error as any;
+    return { error: axiosError.response?.data ?? axiosError.message };
+  }
+}
+
 export async function resendEmail(email: string) {
   try {
     const response = await axios.post(`${BASE_URL}/auth/resend/activation`, {

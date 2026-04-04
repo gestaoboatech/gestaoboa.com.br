@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import {
-  loginUser,
+  loginUserWithPhone,
   registerUser,
-  resendEmail,
+  verifyPhoneCode,
+  resendPhoneCode,
   createCompany,
   EnterpriseBranch,
   getEnterpriseBranches,
@@ -88,10 +89,11 @@ const CriarConta: React.FC = () => {
     name: "",
     surname: "",
     phone: "",
-    email: "",
+    email: "", // Mantido como opcional no estado para compatibilidade com o backend se necessário, mas removido do form
     password: "",
     terms: false,
   });
+  const [verificationCode, setVerificationCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -163,11 +165,6 @@ const CriarConta: React.FC = () => {
       return;
     }
 
-    if (!formData.email.includes("@") || !formData.email.includes(".")) {
-      setError("Por favor, insira um email válido.");
-      return;
-    }
-
     if (!formData.password || formData.password.length < 6) {
       setError("A senha deve ter pelo menos 6 caracteres.");
       return;
@@ -185,7 +182,7 @@ const CriarConta: React.FC = () => {
         name: formData.name,
         surname: formData.surname,
         document: "",
-        email: formData.email,
+        email: "", // Removido o email obrigatório
         password: formData.password,
         birthday: "",
         phone: formData.phone.replace(/\D/g, ""),
@@ -195,7 +192,7 @@ const CriarConta: React.FC = () => {
         address_number: "",
         city: "",
         district: "",
-        send_email: true,
+        send_email: false,
       };
 
       const result = await registerUser(userData);
@@ -214,20 +211,44 @@ const CriarConta: React.FC = () => {
     }
   };
 
-  const handleResendEmail = async () => {
+  const handleResendCode = async () => {
     setLoading(true);
     setError(null);
 
     try {
-      const result = await resendEmail(formData.email);
+      const result = await resendPhoneCode(formData.phone);
       if (result.error) {
-        throw new Error(result.error.message ?? "Erro ao reenviar o email");
+        throw new Error(result.error.message ?? "Erro ao reenviar o código");
       }
 
-      alert("Email reenviado com sucesso!");
+      alert("Código reenviado com sucesso!");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Erro ao reenviar o email");
-      console.error("Erro ao reenviar o email:", err);
+      setError(err instanceof Error ? err.message : "Erro ao reenviar o código");
+      console.error("Erro ao reenviar o código:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleVerifyCode = async () => {
+    if (verificationCode.length < 4) {
+      setError("Por favor, insira o código de 4 dígitos.");
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const result = await verifyPhoneCode(formData.phone, verificationCode);
+      if (result.error) {
+        throw new Error(result.error.message ?? "Código inválido");
+      }
+
+      handleCreateCompany();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Erro ao verificar código");
+      console.error("Erro na verificação:", err);
     } finally {
       setLoading(false);
     }
@@ -238,7 +259,7 @@ const CriarConta: React.FC = () => {
     setError(null);
 
     try {
-      const loginResult = await loginUser(formData.email, formData.password);
+      const loginResult = await loginUserWithPhone(formData.phone, formData.password);
       if (loginResult.error) {
         throw new Error(loginResult.error.message ?? "Erro ao fazer login");
       }
@@ -315,7 +336,7 @@ const CriarConta: React.FC = () => {
   const renderStepIndicator = () => {
     const steps = [
       { number: 1, label: "Criar conta" },
-      { number: 2, label: "Confirmar email" },
+      { number: 2, label: "Verificar celular" },
       { number: 3, label: "Criar empresa" },
     ];
 
@@ -543,7 +564,7 @@ const CriarConta: React.FC = () => {
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="phone">Telefone *</label>
+                      <label htmlFor="phone">Telefone / Celular *</label>
                       <input
                         type="text"
                         id="phone"
@@ -551,19 +572,6 @@ const CriarConta: React.FC = () => {
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder="(00) 00000-0000"
-                        required
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="email">Email *</label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="seu@email.com"
                         required
                       />
                     </div>
@@ -615,33 +623,42 @@ const CriarConta: React.FC = () => {
                 </>
               )}
 
-              {/* Step 2: Email Confirmation */}
+              {/* Step 2: Phone Verification */}
               {currentStep === 2 && (
                 <div className="confirmation-step">
-                  <div className="confirmation-icon">✉️</div>
-                  <h2>Confirme seu Email</h2>
+                  <div className="confirmation-icon">📱</div>
+                  <h2>Verifique seu Celular</h2>
                   <p>
-                    Enviamos um link de confirmação para{" "}
-                    <strong>{formData.email}</strong>
+                    Enviamos um SMS com o código para{" "}
+                    <strong>{formData.phone}</strong>
                   </p>
-                  <p className="helper-text">
-                    Verifique sua caixa de entrada e pasta de spam
-                  </p>
+                  
+                  <div className="code-input-wrapper">
+                    <input
+                      type="text"
+                      maxLength={4}
+                      value={verificationCode}
+                      onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, ""))}
+                      placeholder="0000"
+                      className="code-input"
+                      autoFocus
+                    />
+                  </div>
 
                   <div className="confirmation-actions">
                     <button
                       className="secondary-btn"
-                      onClick={handleResendEmail}
+                      onClick={handleResendCode}
                       disabled={loading}
                     >
-                      {loading ? "Enviando..." : "Reenviar Email"}
+                      {loading ? "Reenviando..." : "Reenviar Código"}
                     </button>
                     <button
                       className="primary-btn"
-                      onClick={handleCreateCompany}
-                      disabled={loading}
+                      onClick={handleVerifyCode}
+                      disabled={loading || verificationCode.length < 4}
                     >
-                      {loading ? "Processando..." : "Continuar →"}
+                      {loading ? "Verificando..." : "Verificar e Continuar →"}
                     </button>
                   </div>
 
@@ -649,7 +666,7 @@ const CriarConta: React.FC = () => {
 
                   <div className="info-box">
                     <span className="info-icon">ℹ️</span>
-                    <p>Você pode continuar mesmo sem confirmar o email, mas recomendamos confirmar para maior segurança.</p>
+                    <p>O código foi enviado via SMS. Caso não receba, verifique se o número informado está correto.</p>
                   </div>
                 </div>
               )}
