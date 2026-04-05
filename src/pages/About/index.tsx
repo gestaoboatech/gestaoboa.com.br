@@ -139,7 +139,7 @@ const About = () => {
                 jobTitle: "CTO e Cofundador"
               }
             ],
-            award: "1º lugar na pré-incubação da FURG",
+            award: ["1º lugar na pré-incubação da FURG", "3º lugar no Startup Day Pelotas 2026"],
             alumniOf: "IFRS",
             url: "https://gestaoboa.com.br/sobre",
             sameAs: [
@@ -320,6 +320,12 @@ const About = () => {
                 Selecionada para o Tecnopuc Garage POA (2025)
               </div>
             </div>
+            <div className="award-pair">
+              <div className="award-number">3°</div>
+              <div className="award-text">
+                Colocada no Startup Day em Pelotas (2026)
+              </div>
+            </div>
           </div>
         </section>
 
@@ -410,6 +416,22 @@ const About = () => {
                   conectar com o ecossistema de inovação da PUCRS, fortalecendo
                   ainda mais nossa capacidade de transformar a gestão de
                   pequenos negócios no Brasil.
+                </p>
+              </div>
+            </div>
+
+            <div className="timeline-item fade-in">
+              <div className="timeline-icon">
+                <i className="fas fa-medal"></i>
+              </div>
+              <div className="timeline-content">
+                <h3>3° Lugar no Startup Day Pelotas 2026</h3>
+                <p>
+                  Em 2026, conquistamos o 3° lugar no Startup Day em Pelotas,
+                  competindo entre diversas startups inovadoras da região.
+                  Esse reconhecimento reforça a solidez do nosso modelo de
+                  negócio e a relevância da Gestão Boa no ecossistema de
+                  empreendedorismo e inovação do sul do Brasil.
                 </p>
               </div>
             </div>
