@@ -354,7 +354,7 @@ const Home: FunctionComponent = () => {
 
           {/* Schema.org structured data - Otimizado */}
           <script type="application/ld+json">
-            {`{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Gestão Boa","description":"Sistema de Gestão completo com agendamentos, controle financeiro, CRM, estoque e comissões","url":"https://gestaoboa.com.br","applicationCategory":"BusinessApplication","offers":{"@type":"Offer","price":"49.90","priceCurrency":"BRL"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"500"},"review":[{"@type":"Review","author":{"@type":"Person","name":"Pedro Cirilo","jobTitle":"Designer","image":"https://gestaoboa.com.br/pedroCirilo.png"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"A equipe é extremamente profissional. Entendem muito bem as demandas e estão sempre atualizados. Já trabalhei com eles na construção de outras plataformas e sites e foram impecáveis! Tenho como grandes parceiros!"},{"@type":"Review","author":{"@type":"Person","name":"Pedro Arthur","jobTitle":"Proprietário da Prime Barbershop","image":"https://gestaoboa.com.br/PedroArthur.jpg"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"O app da gestão boa vem me ajudando muito desde o primeiro dia, consigo saber com exatidão quantos clientes eu tenho e atendo, faturamento, venda de produtos, etc."},{"@type":"Review","author":{"@type":"Person","name":"Janaina Christello","jobTitle":"Psicóloga","image":"https://gestaoboa.com.br/WhatsApp Image 2024-07-05 at 10.01.10.jpeg"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"O aplicativo ajudou muito a organizar os meus recebimentos e entender quais são os lucros e despesas de forma muito clara e objetiva."}]}`}
+            {`{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Gestão Boa","description":"Sistema de Gestão completo com agendamentos, controle financeiro, CRM, estoque e comissões","url":"https://gestaoboa.com.br","applicationCategory":"BusinessApplication","offers":{"@type":"Offer","price":"49.90","priceCurrency":"BRL"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"500"},"review":[{"@type":"Review","author":{"@type":"Person","name":"Pedro Cirilo","jobTitle":"Designer","image":"https://gestaoboa.com.br/pedroCirilo.png"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"A equipe é extremamente profissional. Entendem muito bem as demandas e estão sempre atualizados. Já trabalhei com eles na construção de outras plataformas e sites e foram impecáveis! Tenho como grandes parceiros!"},{"@type":"Review","author":{"@type":"Person","name":"Pedro Arthur","jobTitle":"Proprietário da Prime Barbershop","image":"https://gestaoboa.com.br/PedroArthur.jpg"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"O app da gestão boa vem me ajudando muito desde o primeiro dia, consigo saber com exatidão quantos clientes eu tenho e atendo, faturamento, venda de produtos, etc."},{"@type":"Review","author":{"@type":"Person","name":"Gustavo Fonseca","jobTitle":"Barbeiro"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Fora de série, fora de série mesmo! Eu te chamo, tu me responde. Tinha muito receio, pois já contratei outros serviços e não tinha esse retorno pra tirar minhas dúvidas. Tu responde, tira minhas dúvidas, não faz corpo mole, e me mostra tudo certinho. Cara, tá show de bola!"}]}`}
           </script>
         </Helmet>
         <Grid>
@@ -918,7 +918,7 @@ const Home: FunctionComponent = () => {
 
               {/* Outros depoimentos em grid fixo */}
               <div className="testimonials-grid">
-                {/* Depoimento Janaina */}
+                {/* Depoimento Gustavo Fonseca */}
                 <div
                   className="testimonial-card-new"
                   itemScope
@@ -927,8 +927,8 @@ const Home: FunctionComponent = () => {
                   <div className="testimonial-quote">"</div>
                   <div className="testimonial-header">
                     <img
-                      src="/WhatsApp Image 2024-07-05 at 10.01.10.jpeg"
-                      alt="Janaina Christello"
+                      src="/gustavo.png"
+                      alt="Gustavo Fonseca"
                       className="testimonial-avatar"
                       itemProp="image"
                       loading="lazy"
@@ -939,9 +939,9 @@ const Home: FunctionComponent = () => {
                         itemScope
                         itemType="https://schema.org/Person"
                       >
-                        <span itemProp="name">Janaina Christello</span>
+                        <span itemProp="name">Gustavo Fonseca</span>
                       </h4>
-                      <p itemProp="jobTitle">Psicóloga</p>
+                      <p itemProp="jobTitle">Barbeiro</p>
                     </div>
                   </div>
 
@@ -954,16 +954,17 @@ const Home: FunctionComponent = () => {
                   </div>
 
                   <h3 className="testimonial-title" itemProp="name">
-                    Ficou mais fácil organizar minhas finanças
+                    Fora de série!
                   </h3>
 
                   <p className="testimonial-text" itemProp="reviewBody">
-                    O aplicativo ajudou muito a organizar os meus recebimentos e
-                    entender quais são os lucros e despesas de forma muito clara
-                    e objetiva. Além de conseguir abranger vários objetivos em
-                    um só APP como organizar agendamentos que antes usava o
-                    Google agenda e também organizar os recebimentos que antes
-                    usava o Excel.
+                    Fora de série, fora de série mesmo! Eu te chamo, tu me
+                    responde. Tinha muito receio, pois já contratei outros
+                    serviços e não tinha esse retorno pra tirar minhas dúvidas.
+                    Poderia ser um sistema funcional, mas quando eu tinha
+                    dúvidas, eles não supriam. Tu responde, tira minhas dúvidas,
+                    não faz corpo mole, e me mostra tudo certinho. Cara, tá show
+                    de bola!
                   </p>
 
                   <div

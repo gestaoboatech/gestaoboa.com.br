@@ -783,13 +783,16 @@ const About = () => {
             <div className="testimonial fade-in">
               <div className="quote-mark">"</div>
               <p className="testimonial-text2">
-                “Agora consigo me organizar e entender quais são os lucros e
-                despesas de forma muito clara e objetiva. Antes usava o Google
-                Agenda e o Excel. Mas hoje utilizo tudo em um só App.”!
+                "Fora de série, fora de série mesmo! Eu te chamo, tu me responde.
+                Tinha muito receio, pois já contratei outros serviços e não tinha
+                esse retorno pra tirar minhas dúvidas. Poderia ser um sistema
+                funcional, mas quando eu tinha dúvidas, eles não supriam. Tu
+                responde, tira minhas dúvidas, não faz corpo mole, e me mostra
+                tudo certinho. Cara, tá show de bola!"
               </p>
               <div className="testimonial-author">
-                <p className="author-name">Janaína Christello</p>
-                <p className="author-business">Psicóloga</p>
+                <p className="author-name">Gustavo Fonseca</p>
+                <p className="author-business">Cliente Gestão Boa</p>
               </div>
             </div>
 
