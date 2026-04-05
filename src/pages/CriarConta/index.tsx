@@ -636,10 +636,10 @@ const CriarConta: React.FC = () => {
                   <div className="code-input-wrapper">
                     <input
                       type="text"
-                      maxLength={4}
+                      maxLength={6} // Updated to 6 digits
                       value={verificationCode}
                       onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, ""))}
-                      placeholder="0000"
+                      placeholder="000000" // Updated placeholder to reflect 6 digits
                       className="code-input"
                       autoFocus
                     />
