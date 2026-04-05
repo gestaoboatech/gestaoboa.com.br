@@ -20,26 +20,26 @@ declare global {
 
 function gtag_report_conversion(url?: string) {
   const callback = function () {
-    if (typeof(url) != 'undefined') {
+    if (typeof (url) != 'undefined') {
       window.location.href = url;
     }
   };
-  
+
   if (typeof window.gtag === 'function') {
     window.gtag('event', 'conversion', {
       'send_to': 'AW-17761069351/6u6iCL3zj8gbEKfSkZVC',
       'event_callback': callback
     });
   }
-  
+
   return false;
 }
 
 type PlanType = "basico" | "crescimento" | "empresarial" | "black-friday";
 
-const PLAN_CONFIG: Record<PlanType, { 
-  name: string; 
-  price: string; 
+const PLAN_CONFIG: Record<PlanType, {
+  name: string;
+  price: string;
   originalPrice?: string;
   paymentLink: string;
   discount?: string;
@@ -89,7 +89,6 @@ const CriarConta: React.FC = () => {
     name: "",
     surname: "",
     phone: "",
-    email: "", // Mantido como opcional no estado para compatibilidade com o backend se necessário, mas removido do form
     password: "",
     terms: false,
   });
@@ -123,9 +122,8 @@ const CriarConta: React.FC = () => {
     if (cleaned.length <= 11) {
       let formatted = cleaned;
       if (cleaned.length > 0) {
-        formatted = `(${cleaned.slice(0, 2)})${
-          cleaned.length > 2 ? " " + cleaned.slice(2) : ""
-        }`;
+        formatted = `(${cleaned.slice(0, 2)})${cleaned.length > 2 ? " " + cleaned.slice(2) : ""
+          }`;
       }
       if (cleaned.length > 7) {
         formatted = `${formatted.slice(0, 10)}-${formatted.slice(10)}`;
@@ -174,7 +172,7 @@ const CriarConta: React.FC = () => {
       setError("Você precisa aceitar os termos de uso para continuar.");
       return;
     }
-    
+
     setLoading(true);
 
     try {
@@ -182,7 +180,6 @@ const CriarConta: React.FC = () => {
         name: formData.name,
         surname: formData.surname,
         document: "",
-        email: "", // Removido o email obrigatório
         password: formData.password,
         birthday: "",
         phone: formData.phone.replace(/\D/g, ""),
@@ -322,7 +319,7 @@ const CriarConta: React.FC = () => {
 
       // Trigger Google Ads conversion event
       gtag_report_conversion();
-      
+
       window.open(planConfig.paymentLink, "_blank");
       navigate("/");
     } catch (err) {
@@ -361,7 +358,7 @@ const CriarConta: React.FC = () => {
 
   const renderCompanySubSteps = () => {
     const subSteps = ["Nome", "Categoria", "Porte"];
-    
+
     return (
       <div className="company-substeps">
         {subSteps.map((label, index) => (
@@ -482,12 +479,12 @@ const CriarConta: React.FC = () => {
               )}
             </h1>
             <p className="info-description">
-              {plan === "black-friday" 
+              {plan === "black-friday"
                 ? "Garanta acesso completo ao sistema por apenas R$ 9,90 e transforme a gestão do seu negócio!"
                 : "Simplifique a gestão do seu negócio com nossa plataforma completa e intuitiva."
               }
             </p>
-            
+
             <div className="benefits-list">
               <div className="benefit-item">
                 <span className="benefit-icon">✓</span>
@@ -632,7 +629,7 @@ const CriarConta: React.FC = () => {
                     Enviamos um SMS com o código para{" "}
                     <strong>{formData.phone}</strong>
                   </p>
-                  
+
                   <div className="code-input-wrapper">
                     <input
                       type="text"
@@ -675,7 +672,7 @@ const CriarConta: React.FC = () => {
               {currentStep === 3 && userToken && (
                 <div className="company-step">
                   {renderCompanySubSteps()}
-                  
+
                   {renderCompanyStepContent()}
 
                   {error && <div className="error-message">{error}</div>}

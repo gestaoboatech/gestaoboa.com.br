@@ -9,7 +9,6 @@ export interface UserRegistrationData {
   name: string;
   surname: string;
   document: string;
-  email: string;
   password: string;
   birthday: string;
   phone: string;
@@ -27,7 +26,6 @@ export async function registerUser(user: UserRegistrationData) {
   formData.append("name", user.name);
   formData.append("surname", user.surname);
   formData.append("document", user.document);
-  formData.append("email", user.email);
   formData.append("password", user.password);
   formData.append("birthday", user.birthday);
   formData.append("phone", user.phone);
@@ -167,7 +165,7 @@ export async function getEnterpriseBranches(): Promise<EnterpriseBranch[]> {
 interface CreateCompanyData {
   name: string;
   id_scale: number;
-  branches: Array< number >;
+  branches: Array<number>;
   image: string;
 }
 
