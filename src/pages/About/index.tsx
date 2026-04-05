@@ -299,35 +299,7 @@ const About = () => {
           </div>
         </section>
 
-        {/* Awards Section */}
-        <section className="awards-section">
-          <div className="awards-container">
-            <div className="award-pair">
-              <div className="award-number">1°</div>
-              <div className="award-text">
-                Colocada na pré-incubação de Rio Grande (2023)
-              </div>
-            </div>
-            <div className="award-pair">
-              <div className="award-number">2°</div>
-              <div className="award-text">
-                Acelerada no 5° ciclo do startup in lab Fecormécio-RS (2024)
-              </div>
-            </div>
-            <div className="award-pair">
-              <div className="award-number">3°</div>
-              <div className="award-text">
-                Selecionada para o Tecnopuc Garage POA (2025)
-              </div>
-            </div>
-            <div className="award-pair">
-              <div className="award-number">3°</div>
-              <div className="award-text">
-                Colocada no Startup Day em Pelotas (2026)
-              </div>
-            </div>
-          </div>
-        </section>
+
 
         {/* Updated History Section */}
         <section className="content-section history-section">
