@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import { Helmet } from "react-helmet-async";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
-import { Container, Content } from "./styles";
+import { Container, Main, ContentCard, LastUpdated } from "./styles";
 
 const Terms: FunctionComponent = () => {
   return (
@@ -17,8 +17,10 @@ const Terms: FunctionComponent = () => {
         <link rel="canonical" href="/terms" />
       </Helmet>
       <Header />
-      <Content>
-        <h1>Termos e Condições de Uso</h1>
+      <Main>
+        <ContentCard>
+          <h1>Termos e Condições de Uso</h1>
+          <LastUpdated>Última atualização: 21 de Dezembro de 2024</LastUpdated>
 
         <div className="seja-bem-vindo-ao-container">
           <h2>
@@ -775,8 +777,8 @@ const Terms: FunctionComponent = () => {
             administrativo da EMPRESA licenciada.
           </p>
           <p>Rio Grande/RS, atualizado em 21/12/2024.</p>
-        </div>
-      </Content>
+        </ContentCard>
+      </Main>
       <Footer />
     </Container>
   );
