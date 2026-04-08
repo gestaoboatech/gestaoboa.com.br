@@ -22,7 +22,6 @@ const Terms: FunctionComponent = () => {
           <h1>Termos e Condições de Uso</h1>
           <LastUpdated>Última atualização: 21 de Dezembro de 2024</LastUpdated>
 
-        <div className="seja-bem-vindo-ao-container">
           <h2>
             Contrato de Licenciamento e condições gerais de uso do sistema
             "Gestão Boa"
