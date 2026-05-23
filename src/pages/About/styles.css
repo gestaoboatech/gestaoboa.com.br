@@ -264,16 +264,16 @@ section {
   margin: 0.08em 0.1em 0 0;
 }
 
-.manifesto-body .manifesto-signature {
-  margin-top: 40px;
-  padding-top: 28px;
+.manifesto-signature {
+  margin-top: 32px;
+  padding-top: 24px;
   border-top: 1px solid var(--border);
   font-size: 15px;
   color: var(--gray);
   line-height: 1.7;
 }
 
-.manifesto-body .manifesto-signature strong {
+.manifesto-signature strong {
   color: var(--dark);
   display: block;
   font-size: 16px;
@@ -286,6 +286,11 @@ section {
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin-top: 48px;
+}
+
+.manifesto-sidebar .values-strip {
+  grid-template-columns: 1fr;
+  margin-top: 32px;
 }
 
 .value-card {
@@ -926,6 +931,10 @@ section {
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
   }
+
+  .manifesto-sidebar .values-strip {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
@@ -939,7 +948,8 @@ section {
     padding-bottom: 80px;
   }
 
-  .values-strip {
+  .values-strip,
+  .manifesto-sidebar .values-strip {
     grid-template-columns: 1fr;
   }
 

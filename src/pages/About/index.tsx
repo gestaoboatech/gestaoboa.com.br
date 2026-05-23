@@ -303,23 +303,7 @@ const About = () => {
                 </p>
                 <cite>Gestão Boa</cite>
               </div>
-            </div>
-            <div className="manifesto-body">
-              <p>
-                Acreditamos que todo empreendedor brasileiro merece ter o controle total de sua empresa nas mãos.
-                Nascida a partir de uma necessidade real observada nas salas do IFRS, a Gestão Boa desenvolve soluções focadas na simplicidade,
-                na automação inteligente de processos e na facilidade de uso cotidiano.
-              </p>
-              <p>
-                Trabalhamos incansavelmente para que você não precise gastar horas com planilhas difíceis ou cadernos que se perdem.
-                Nossa estrutura aderente à inovação ágil nos permite evoluir de forma constante, absorvendo feedbacks direto do mercado
-                e entregando novas ferramentas semanalmente.
-              </p>
-              <p>
-                Na Gestão Boa, nossa estrutura organizacional adhocrática elimina barreiras hierárquicas, permitindo que ideias inovadoras surjam de qualquer lugar.
-                Desde nosso CEO até cada desenvolvedor, trabalhamos lado a lado porque entendemos que as grandes soluções vêm da escuta ativa
-                e da colaboração sem limites.
-              </p>
+
               <div className="manifesto-signature">
                 <strong>Equipe Gestão Boa</strong>
                 <span>Inovação no controle de micro e pequenos negócios</span>
@@ -342,6 +326,23 @@ const About = () => {
                   <p>Democratizamos a tecnologia de gestão para que todos possam crescer.</p>
                 </div>
               </div>
+            </div>
+            <div className="manifesto-body">
+              <p>
+                Acreditamos que todo empreendedor brasileiro merece ter o controle total de sua empresa nas mãos.
+                Nascida a partir de uma necessidade real observada nas salas do IFRS, a Gestão Boa desenvolve soluções focadas na simplicidade,
+                na automação inteligente de processos e na facilidade de uso cotidiano.
+              </p>
+              <p>
+                Trabalhamos incansavelmente para que você não precise gastar horas com planilhas difíceis ou cadernos que se perdem.
+                Nossa estrutura aderente à inovação ágil nos permite evoluir de forma constante, absorvendo feedbacks direto do mercado
+                e entregando novas ferramentas semanalmente.
+              </p>
+              <p>
+                Na Gestão Boa, nossa estrutura organizacional adhocrática elimina barreiras hierárquicas, permitindo que ideias inovadoras surjam de qualquer lugar.
+                Desde nosso CEO até cada desenvolvedor, trabalhamos lado a lado porque entendemos que as grandes soluções vêm da escuta ativa
+                e da colaboração sem limites.
+              </p>
             </div>
           </div>
         </section>
