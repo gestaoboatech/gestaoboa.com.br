@@ -529,7 +529,7 @@ const Home: FunctionComponent = () => {
                       <line x1="3" y1="10" x2="21" y2="10"></line>
                     </svg>
                   </div>
-                  <div className="metric-value">+12.000</div>
+                  <div className="metric-value">+22.000</div>
                   <div className="metric-label">Agendamentos</div>
                   <div className="metric-description">
                     Realizados com sucesso
@@ -553,7 +553,7 @@ const Home: FunctionComponent = () => {
                       <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                     </svg>
                   </div>
-                  <div className="metric-value">+R$ 1.000.000</div>
+                  <div className="metric-value">+R$ 2.000.000</div>
                   <div className="metric-label">Gerenciados</div>
                   <div className="metric-description">Através do app</div>
                 </div>
@@ -956,7 +956,7 @@ const Home: FunctionComponent = () => {
                     um suporte parceiro que realmente resolve as coisas é essencial para a gestão do meu negócio!
                   </div>
                   <div className="person">
-                    - Lucas Martins, Proprietário do Studio Martins
+                    - Lucas Cunha, Proprietário do Autêntica Barbearia
                   </div>
                 </div>
               </div>
