@@ -6,17 +6,15 @@ export const Container = styled.div<{ isMenuOpen?: boolean }>`
     justify-content: space-between;
     align-items: center;
     grid-column: span 12;
-    padding: 12px;
-    padding-left: 5%;
-	padding-right: 5%;
+    padding: 8px 5%;
     position: fixed;
     z-index: 200;
     background-color: #ffff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     top: 0;
     left: 0;
     right: 0;
-    min-height: 70px;
+    min-height: 54px;
 
     &::after {
         content: '';
@@ -37,43 +35,43 @@ export const Container = styled.div<{ isMenuOpen?: boolean }>`
         .pricing {
             color: #03045E;
             font-weight: bold;
-            padding: 8px 16px;
-            border-radius: 6px;
+            padding: 6px 12px;
+            border-radius: 4px;
             background: #90e0ef;
             transition: all 0.3s ease;
 
             &:hover {
                 background: #caf0f8;
-                transform: translateY(-2px);
+                transform: translateY(-1px);
             }
         }
     }
 
     @media (max-width: 1030px) {
         width: 100%;
-        padding: 12px 20px;
+        padding: 8px 20px;
         justify-content: space-between;
         align-items: center;
         position: fixed;
         top: 0;
         left: 0;
         right: 10;
-        min-height: 60px;
+        min-height: 48px;
     }
 
     @media (max-width: 800px){
-        padding: 10px 15px;
-        min-height: 55px;
+        padding: 6px 15px;
+        min-height: 46px;
     }
 
     @media (max-width: 750px){
-        padding: 8px 15px;
-        min-height: 50px;
+        padding: 6px 15px;
+        min-height: 44px;
     }
 
     @media (max-width: 480px) {
-        padding: 6px 10px;
-        min-height: 45px;
+        padding: 4px 10px;
+        min-height: 40px;
     }
 
     @media (max-width: 768px) {
@@ -90,7 +88,7 @@ export const Container = styled.div<{ isMenuOpen?: boolean }>`
 export const Logo = styled.div`
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 10px;
     font-family: "Montserrat";
     cursor: pointer;
     
@@ -100,51 +98,52 @@ export const Logo = styled.div`
     }
     
     @media (max-width: 480px) {
-        gap: 12px;
+        gap: 8px;
         flex: 1;
     }
 `
 
 export const LogoImg = styled.img`
-    width: 79.73px;
+    width: 48px;
 
     @media (max-width: 1030px){
-        width: 60px;
+        width: 40px;
     }
 
     @media (max-width: 800px){
-        width: 50px;
+        width: 36px;
     }
     
     @media (max-width: 480px) {
-        width: 45px;
+        width: 32px;
     }
 `
 
 export const Title = styled.div`
-    font-size: 32px;
+    font-size: 22px;
+    font-weight: 700;
     color: #03045E;
 
     @media (max-width: 1030px){
-        font-size: 28px;
+        font-size: 19px;
     }
 
     @media (max-width: 800px){
-        font-size: 26px;
+        font-size: 18px;
     }
     
     @media (max-width: 480px) {
-        font-size: 22px;
+        font-size: 16px;
     }
     
     @media (max-width: 360px) {
-        font-size: 20px;
+        font-size: 15px;
     }
 `
 
 export const Links = styled.div`
     display: flex;
-    gap: 30px;
+    gap: 20px;
     color: #03045E;
     transition: all ease 0.5s;
     border-bottom: 1px solid transparent;
@@ -163,6 +162,14 @@ export const LinkItem = styled.a`
     cursor: pointer;
     text-decoration: none;
     color: #03045E !important;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: #0077b6 !important;
+    }
 `
 
 export const TestNow = styled.div`
@@ -178,8 +185,8 @@ export const MenuButton = styled.button<{ isOpen: boolean }>`
     display: none;
     flex-direction: column;
     justify-content: space-around;
-    width: 32px;
-    height: 24px;
+    width: 24px;
+    height: 18px;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -188,8 +195,8 @@ export const MenuButton = styled.button<{ isOpen: boolean }>`
     align-items: center;
 
     span {
-        width: 32px;
-        height: 3px;
+        width: 24px;
+        height: 2px;
         background: #03045E;
         border-radius: 10px;
         transition: all 0.3s linear;
@@ -216,12 +223,12 @@ export const MenuButton = styled.button<{ isOpen: boolean }>`
     }
     
     @media (max-width: 480px) {
-        width: 28px;
-        height: 20px;
+        width: 22px;
+        height: 16px;
         
         span {
-            width: 28px;
-            height: 2.5px;
+            width: 22px;
+            height: 2px;
         }
     }
 `;

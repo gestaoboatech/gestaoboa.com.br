@@ -261,16 +261,18 @@ const About = () => {
       </Helmet>
       <Header />
       <div className="about-page">
-        {/* Enhanced Hero Section */}
+        {/* Redesigned Hero Section */}
         <section className="hero-section">
           <div className="hero-content">
-            <span className="pre-title">Conheça a Gestão Boa</span>
+            <span className="page-tag">
+              <span className="dot"></span>
+              Sobre Nós
+            </span>
             <h1 className="hero-title">
-              Tecnologia que <span className="highlight">transforma</span>{" "}
-              sonhos em negócios de sucesso
+              Tecnologia que <span className="highlight">transforma</span> sonhos em negócios de sucesso
             </h1>
             <p className="hero-subtitle">
-              Ajudando empreendedores brasileiros a organizarem seus negócios.
+              Ajudando empreendedores brasileiros a organizarem seus negócios e prosperarem com tranquilidade.
             </p>
             <div className="hero-buttons">
               <button
@@ -286,125 +288,156 @@ const About = () => {
               </button>
             </div>
           </div>
-          <div className="hero-pattern"></div>
         </section>
 
-        {/* Mission Statement */}
-        <section className="mission-statement">
-          <div className="container">
-            <p className="mission-text">
-              "Nossa missão é democratizar o acesso à tecnologia de gestão,
-              tornando simples o que antes era complexo."
-            </p>
+        {/* Manifesto Section */}
+        <section className="manifesto-section">
+          <div className="container manifesto-layout">
+            <div className="manifesto-sidebar">
+              <span className="section-label">Manifesto</span>
+              <h2 className="section-title">Nossa Essência</h2>
+              <div className="manifesto-quote">
+                <p>
+                  "Nossa missão é democratizar o acesso à tecnologia de gestão,
+                  tornando simples o que antes era complexo."
+                </p>
+                <cite>Gestão Boa</cite>
+              </div>
+            </div>
+            <div className="manifesto-body">
+              <p>
+                Acreditamos que todo empreendedor brasileiro merece ter o controle total de sua empresa nas mãos.
+                Nascida a partir de uma necessidade real observada nas salas do IFRS, a Gestão Boa desenvolve soluções focadas na simplicidade,
+                na automação inteligente de processos e na facilidade de uso cotidiano.
+              </p>
+              <p>
+                Trabalhamos incansavelmente para que você não precise gastar horas com planilhas difíceis ou cadernos que se perdem.
+                Nossa estrutura aderente à inovação ágil nos permite evoluir de forma constante, absorvendo feedbacks direto do mercado
+                e entregando novas ferramentas semanalmente.
+              </p>
+              <p>
+                Na Gestão Boa, nossa estrutura organizacional adhocrática elimina barreiras hierárquicas, permitindo que ideias inovadoras surjam de qualquer lugar.
+                Desde nosso CEO até cada desenvolvedor, trabalhamos lado a lado porque entendemos que as grandes soluções vêm da escuta ativa
+                e da colaboração sem limites.
+              </p>
+              <div className="manifesto-signature">
+                <strong>Equipe Gestão Boa</strong>
+                <span>Inovação no controle de micro e pequenos negócios</span>
+              </div>
+
+              <div className="values-strip">
+                <div className="value-card">
+                  <div className="vc-icon">💡</div>
+                  <h4>Inovação Constante</h4>
+                  <p>Buscamos sempre as melhores soluções para os desafios dos nossos clientes.</p>
+                </div>
+                <div className="value-card">
+                  <div className="vc-icon">🤝</div>
+                  <h4>Colaboração Sem Barreiras</h4>
+                  <p>Acreditamos no poder da criatividade coletiva sem hierarquias limitantes.</p>
+                </div>
+                <div className="value-card">
+                  <div className="vc-icon">🚀</div>
+                  <h4>Excelência Acessível</h4>
+                  <p>Democratizamos a tecnologia de gestão para que todos possam crescer.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
+        {/* History (Timeline) Section */}
+        <section className="history-section">
+          <div className="container historia-layout">
+            <div>
+              <span className="section-label">Nossa Jornada</span>
+              <h2 className="section-title">De uma ideia nas salas do IFRS para um sistema de sucesso</h2>
+              
+              <div className="timeline">
+                <div className="tl-item fade-in">
+                  <div className="tl-dot"></div>
+                  <span className="tl-year">2023 - A ORIGEM</span>
+                  <h4>A Descoberta</h4>
+                  <p>
+                    Identificamos uma necessidade urgente entre empreendedores: sistemas de gestão acessíveis e intuitivos.
+                    Entre planilhas confusas e cadernos de anotações, vimos a oportunidade de transformar a realidade de pequenos negócios com tecnologia descomplicada.
+                  </p>
+                </div>
 
+                <div className="tl-item fade-in">
+                  <div className="tl-dot"></div>
+                  <span className="tl-year">2024 - A VALIDAÇÃO</span>
+                  <h4>Reconhecimento Acadêmico e Prático</h4>
+                  <p>
+                    Conquistamos o 1º lugar na pré-incubação da FURG, um momento decisivo que confirmou nosso potencial.
+                    Este reconhecimento nos deu a confiança para seguir em frente com determinação e propósito ainda maiores.
+                  </p>
+                </div>
 
-        {/* Updated History Section */}
-        <section className="content-section history-section">
-          <div className="section-header">
-            <span className="section-badge">Nossa Jornada</span>
-            <h2>De uma ideia nas salas do IFRS para um sistema de sucesso</h2>
-            <p className="section-subtitle">
-              Uma trajetória de inovação e superação
-            </p>
-          </div>
+                <div className="tl-item fade-in">
+                  <div className="tl-dot"></div>
+                  <span className="tl-year">2024 - O CRESCIMENTO</span>
+                  <h4>Startup in Lab</h4>
+                  <p>
+                    No 5º ciclo do Startup in Lab da Fecomércio-RS, absorvemos conhecimentos que impulsionaram nossa evolução.
+                    Culminamos no Demoday em Porto Alegre, apresentando ao mercado como a Gestão Boa está revolucionando a administração de negócios no setor de beleza e estética.
+                  </p>
+                </div>
 
-          <div className="timeline">
-            <div className="timeline-item fade-in">
-              <div className="timeline-icon">
-                <i className="fas fa-lightbulb"></i>
-              </div>
-              <div className="timeline-content">
-                <h3>A Descoberta</h3>
-                <p>
-                  Identificamos uma necessidade urgente entre empreendedores:
-                  sistemas de gestão acessíveis e intuitivos. Entre planilhas
-                  confusas e cadernos de anotações, vimos a oportunidade de
-                  transformar a realidade de pequenos negócios com tecnologia
-                  descomplicada.
-                </p>
+                <div className="tl-item fade-in">
+                  <div className="tl-dot"></div>
+                  <span className="tl-year">2025 - CONEXÃO & INOVAÇÃO</span>
+                  <h4>Tecnopuc Garage</h4>
+                  <p>
+                    Fomos selecionados para o Tecnopuc Garage, o prestigiado processo de ideação de negócios do Tecnopuc em Porto Alegre.
+                    Uma oportunidade única de refinar nossa visão estratégica e conectar com o ecossistema de inovação da PUCRS, fortalecendo nossa capacidade de transformar a gestão de pequenos negócios no Brasil.
+                  </p>
+                </div>
+
+                <div className="tl-item fade-in">
+                  <div className="tl-dot"></div>
+                  <span className="tl-year">2026 - CONSOLIDAÇÃO</span>
+                  <h4>Destaque Regional no Startup Day Pelotas</h4>
+                  <p>
+                    Conquistamos o 3° lugar no Startup Day em Pelotas, competindo entre diversas startups inovadoras da região.
+                    Esse reconhecimento reforça a solidez do nosso modelo de negócio e a relevância da Gestão Boa no ecossistema de empreendedorismo e inovação do sul do Brasil.
+                  </p>
+                </div>
+
+                <div className="tl-item fade-in">
+                  <div className="tl-dot"></div>
+                  <span className="tl-year">PRESENTE E FUTURO</span>
+                  <h4>Parceiros da sua Evolução</h4>
+                  <p>
+                    Hoje somos parceiros estratégicos de milhares de empreendedores. Nossa plataforma não apenas organiza negócios,
+                    mas liberta tempo e energia para que nossos clientes possam focar no que realmente importa: fazer seu negócio prosperar e crescer com tranquilidade. 🚀
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="timeline-item fade-in">
-              <div className="timeline-icon">
-                <i className="fas fa-trophy"></i>
+            <div className="historia-sidebar">
+              <div className="team-stats-card-inner">
+                <div className="ts-item">
+                  <strong>1º</strong>
+                  <span>Lugar na Pré-Incubação FURG</span>
+                </div>
+                <div className="ts-item">
+                  <strong>3º</strong>
+                  <span>Lugar no Startup Day Pelotas</span>
+                </div>
+                <div className="ts-item full-width">
+                  <strong>2025</strong>
+                  <span>Ideação Tecnopuc Garage (PUCRS)</span>
+                </div>
               </div>
-              <div className="timeline-content">
-                <h3>A Validação</h3>
-                <p>
-                  Conquistamos o 1º lugar na pré-incubação da FURG, um momento
-                  decisivo que confirmou nosso potencial. Este reconhecimento
-                  nos deu a confiança para seguir em frente com determinação e
-                  propósito ainda maiores.
-                </p>
-              </div>
-            </div>
-
-            <div className="timeline-item fade-in">
-              <div className="timeline-icon">
-                <i className="fas fa-rocket"></i>
-              </div>
-              <div className="timeline-content">
-                <h3>O Crescimento</h3>
-                <p>
-                  No 5º ciclo do Startup in Lab da fercomércio-RS, absorvemos
-                  conhecimentos que impulsionaram nossa evolução. Culminando no
-                  Demoday em Porto Alegre, onde apresentamos ao mercado como a
-                  Gestão Boa está revolucionando a administração de negócios no
-                  setor de beleza e estética.
-                </p>
-              </div>
-            </div>
-
-            <div className="timeline-item fade-in">
-              <div className="timeline-icon">
-                <i className="fas fa-chart-line"></i>
-              </div>
-              <div className="timeline-content">
-                <h3>O Presente</h3>
-                <p>
-                  Hoje somos parceiros estratégicos de empreendedores. Nossa
-                  plataforma não apenas organiza negócios, mas liberta tempo e
-                  energia para que nossos clientes possam focar no que realmente
-                  importa: fazer seu negócio prosperar e crescer com
-                  tranquilidade. 🚀
-                </p>
-              </div>
-            </div>
-
-            <div className="timeline-item fade-in">
-              <div className="timeline-icon">
-                <i className="fas fa-brain"></i>
-              </div>
-              <div className="timeline-content">
-                <h3>Tecnopuc Garage 2025</h3>
-                <p>
-                  Em 2025, fomos selecionados para o Tecnopuc Garage, o processo
-                  de ideação de negócios do Tecnopuc em Porto Alegre. Uma
-                  oportunidade única de refinar nossa visão estratégica e 
-                  conectar com o ecossistema de inovação da PUCRS, fortalecendo
-                  ainda mais nossa capacidade de transformar a gestão de
-                  pequenos negócios no Brasil.
-                </p>
-              </div>
-            </div>
-
-            <div className="timeline-item fade-in">
-              <div className="timeline-icon">
-                <i className="fas fa-medal"></i>
-              </div>
-              <div className="timeline-content">
-                <h3>3° Lugar no Startup Day Pelotas 2026</h3>
-                <p>
-                  Em 2026, conquistamos o 3° lugar no Startup Day em Pelotas,
-                  competindo entre diversas startups inovadoras da região.
-                  Esse reconhecimento reforça a solidez do nosso modelo de
-                  negócio e a relevância da Gestão Boa no ecossistema de
-                  empreendedorismo e inovação do sul do Brasil.
-                </p>
+              
+              <div className="team-photo-frame">
+                <img
+                  src="/south_summit.jpg"
+                  alt="Gestão Boa no South Summit"
+                />
+                <div className="team-photo-overlay"></div>
               </div>
             </div>
           </div>
@@ -434,56 +467,41 @@ const About = () => {
                   src="/time.png"
                   alt="Equipe da Gestão Boa - Fundadores Sílvio, Karine e Victor desenvolvendo sistema de gestão"
                   className="team-image"
-                  useMap="#founders-map"
                 />
                 <div
                   className={`founder-overlay victor ${
                     hoveredFounder === "victor" ? "active" : ""
                   }`}
-                ></div>
-                <div
-                  className={`founder-overlay karine ${
-                    hoveredFounder === "karine" ? "active" : ""
-                  }`}
-                ></div>
-                <div
-                  className={`founder-overlay silvio ${
-                    hoveredFounder === "silvio" ? "active" : ""
-                  }`}
-                ></div>
-              </div>
-              <map name="founders-map">
-                <area
-                  shape="rect"
-                  coords="0,0,180,400"
-                  alt="Victor"
                   onMouseEnter={() => {
                     setActiveFounder("victor");
                     setHoveredFounder("victor");
                   }}
                   onMouseLeave={() => setHoveredFounder("")}
-                />
-                <area
-                  shape="rect"
-                  coords="181,0,350,400"
-                  alt="Karine"
+                  onClick={() => setActiveFounder("victor")}
+                ></div>
+                <div
+                  className={`founder-overlay karine ${
+                    hoveredFounder === "karine" ? "active" : ""
+                  }`}
                   onMouseEnter={() => {
                     setActiveFounder("karine");
                     setHoveredFounder("karine");
                   }}
                   onMouseLeave={() => setHoveredFounder("")}
-                />
-                <area
-                  shape="rect"
-                  coords="351,0,550,400"
-                  alt="Sílvio"
+                  onClick={() => setActiveFounder("karine")}
+                ></div>
+                <div
+                  className={`founder-overlay silvio ${
+                    hoveredFounder === "silvio" ? "active" : ""
+                  }`}
                   onMouseEnter={() => {
                     setActiveFounder("silvio");
                     setHoveredFounder("silvio");
                   }}
                   onMouseLeave={() => setHoveredFounder("")}
-                />
-              </map>
+                  onClick={() => setActiveFounder("silvio")}
+                ></div>
+              </div>
 
               <div className="founder-indicators">
                 <div
@@ -584,139 +602,133 @@ const About = () => {
         </section>
 
         {/* Team Members Scroll Section */}
-        <section className="content-section team-members-section">
-          <div className="section-header">
-            <span className="section-badge">Nossa Equipe</span>
-            <h2>Equipe de alta performance</h2>
+        <section className="team-members-section">
+          <div className="container">
+            <span className="section-label">Nossa Equipe</span>
+            <h2 className="section-title">Equipe de alta performance</h2>
             <p className="section-subtitle">
               Conheça os talentos que fazem a Gestão Boa acontecer todos os dias
             </p>
-          </div>
 
-          <div className="team-scroll-container fade-in">
-            <div className="team-scroll-track">
-              <div className="team-member-card">
-                <img
-                  src="/bruno.png"
-                  alt="Bruno Nascimento - Tech Lead da Gestão Boa, especialista em desenvolvimento de software"
-                />
-                <div className="member-info">
-                  <h3 className="member-name">Bruno Nascimento</h3>
-                  <span className="member-role">Tech Lead</span>
+            <div className="team-scroll-container fade-in">
+              <div className="team-scroll-track">
+                <div className="team-member-card">
+                  <img
+                    src="/bruno.png"
+                    alt="Bruno Nascimento - Tech Lead da Gestão Boa, especialista em desenvolvimento de software"
+                  />
+                  <div className="member-info">
+                    <h3 className="member-name">Bruno Nascimento</h3>
+                    <span className="member-role">Tech Lead</span>
+                  </div>
                 </div>
-              </div>
 
-              <div className="team-member-card">
-                <img
-                  src="/Bruno W.jpg"
-                  alt="Bruno Wellar - Desenvolvedor Mobile da Gestão Boa, especialista em aplicativos móveis"
-                />
-                <div className="member-info">
-                  <h3 className="member-name">Bruno Wellar</h3>
-                  <span className="member-role">Desenvolvedor Mobile</span>
+                <div className="team-member-card">
+                  <img
+                    src="/Bruno W.jpg"
+                    alt="Bruno Wellar - Desenvolvedor Mobile da Gestão Boa, especialista em aplicativos móveis"
+                  />
+                  <div className="member-info">
+                    <h3 className="member-name">Bruno Wellar</h3>
+                    <span className="member-role">Desenvolvedor Mobile</span>
+                  </div>
                 </div>
-              </div>
 
-              <div className="team-member-card">
-                <img
-                  src="/kaiane.jpeg"
-                  alt="Kaiane Bittencourt - Gestora de Marketing da Gestão Boa, especialista em marketing digital"
-                />
-                <div className="member-info">
-                  <h3 className="member-name">Kaiane Bittencourt</h3>
-                  <span className="member-role">Gestora de Marketing</span>
+                <div className="team-member-card">
+                  <img
+                    src="/kaiane.jpeg"
+                    alt="Kaiane Bittencourt - Gestora de Marketing da Gestão Boa, especialista em marketing digital"
+                  />
+                  <div className="member-info">
+                    <h3 className="member-name">Kaiane Bittencourt</h3>
+                    <span className="member-role">Gestora de Marketing</span>
+                  </div>
                 </div>
-              </div>
 
-              <div className="team-member-card">
-                <img
-                  src="/eduardo.jpg"
-                  alt="Eduardo Gonçalves - Desenvolvedor Mobile da Gestão Boa, especialista em desenvolvimento iOS e Android"
-                />
-                <div className="member-info">
-                  <h3 className="member-name">Eduardo Gonçalves</h3>
-                  <span className="member-role">Desenvolvedor Mobile</span>
+                <div className="team-member-card">
+                  <img
+                    src="/eduardo.jpg"
+                    alt="Eduardo Gonçalves - Desenvolvedor Mobile da Gestão Boa, especialista em desenvolvimento iOS e Android"
+                  />
+                  <div className="member-info">
+                    <h3 className="member-name">Eduardo Gonçalves</h3>
+                    <span className="member-role">Desenvolvedor Mobile</span>
+                  </div>
                 </div>
-              </div>
 
-              <div className="team-member-card">
-                <img
-                  src="/Py.jpg"
-                  alt="Gustavo Py - Desenvolvedor Backend da Gestão Boa, especialista em arquitetura de sistemas"
-                />
-                <div className="member-info">
-                  <h3 className="member-name">Gustavo Py</h3>
-                  <span className="member-role">Desenvolvedor Backend</span>
+                <div className="team-member-card">
+                  <img
+                    src="/Py.jpg"
+                    alt="Gustavo Py - Desenvolvedor Backend da Gestão Boa, especialista em arquitetura de sistemas"
+                  />
+                  <div className="member-info">
+                    <h3 className="member-name">Gustavo Py</h3>
+                    <span className="member-role">Desenvolvedor Backend</span>
+                  </div>
                 </div>
-              </div>
 
-              <div className="team-member-card">
-                <img
-                  src="/marcelo.png"
-                  alt="Marcelo - Comercial da Gestão Boa, especialista em vendas e relacionamento com clientes"
-                />
-                <div className="member-info">
-                  <h3 className="member-name">Marcelo</h3>
-                  <span className="member-role">Comercial</span>
+                <div className="team-member-card">
+                  <img
+                    src="/marcelo.png"
+                    alt="Marcelo - Comercial da Gestão Boa, especialista em vendas e relacionamento com clientes"
+                  />
+                  <div className="member-info">
+                    <h3 className="member-name">Marcelo</h3>
+                    <span className="member-role">Comercial</span>
+                  </div>
                 </div>
-              </div>
 
-              <div className="team-member-card">
-                <img
-                  src="/evelyn.jpeg"
-                  alt="Evelyn - Desenvolvedora Full Stack da Gestão Boa, especialista em desenvolvimento web"
-                />
-                <div className="member-info">
-                  <h3 className="member-name">Evelyn</h3>
-                  <span className="member-role">Desenvolvimento Full Stack</span>
+                <div className="team-member-card">
+                  <img
+                    src="/evelyn.jpeg"
+                    alt="Evelyn - Desenvolvedora Full Stack da Gestão Boa, especialista em desenvolvimento web"
+                  />
+                  <div className="member-info">
+                    <h3 className="member-name">Evelyn</h3>
+                    <span className="member-role">Desenvolvimento Full Stack</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Updated Culture Section */}
-        <section className="content-section culture-section">
-          <div className="section-header">
-            <span className="section-badge">Nossa Essência</span>
-            <h2>Cultivando inovação em cada interação</h2>
-            <p className="section-subtitle">
-              Os valores que nos guiam todos os dias
-            </p>
-          </div>
+        {/* Testimonials Section */}
+        <section className="testimonials-section">
+          <div className="container">
+            <span className="section-label">Depoimentos</span>
+            <h2 className="section-title">O que dizem nossos clientes</h2>
 
-          <div className="culture-content fade-in">
-            <div className="culture-values">
-              <div className="value-item">
-                <span className="value-icon">💡</span>
-                <h4>Inovação Constante</h4>
-                <p>
-                  Buscamos sempre as melhores soluções para os desafios dos
-                  nossos clientes
+            <div className="testimonials-container">
+              <div className="testimonial fade-in">
+                <div className="quote-mark">"</div>
+                <p className="testimonial-text2">
+                  "Fora de série, fora de série mesmo! Eu te chamo, tu me responde.
+                  Tinha muito receio, pois já contratei outros serviços e não tinha
+                  esse retorno pra tirar minhas dúvidas. Poderia ser um sistema
+                  funcional, mas quando eu tinha dúvidas, eles não supriam. Tu
+                  responde, tira minhas dúvidas, não faz corpo mole, e me mostra
+                  tudo certinho. Cara, tá show de bola!"
                 </p>
+                <div className="testimonial-author">
+                  <p className="author-name">Gustavo Fonseca</p>
+                  <p className="author-business">Cliente Gestão Boa</p>
+                </div>
               </div>
-              <div className="value-item">
-                <span className="value-icon">🤝</span>
-                <h4>Colaboração Sem Barreiras</h4>
-                <p>
-                  Acreditamos no poder da criatividade coletiva sem hierarquias
-                  limitantes
+
+              <div className="testimonial fade-in">
+                <div className="quote-mark">"</div>
+                <p className="testimonial-text2">
+                  “Muito fácil de operar, fiquei feliz com uma coisa que eu não
+                  sabia o barbeiro consegue lançar no caixa a comanda pelo celular
+                  dele muito prático”
                 </p>
-              </div>
-              <div className="value-item">
-                <span className="value-icon">🚀</span>
-                <h4>Excelência Acessível</h4>
-                <p>Democratizamos a tecnologia para que todos possam crescer</p>
+                <div className="testimonial-author">
+                  <p className="author-name">Leandro Figueiredo</p>
+                  <p className="author-business">Barbearia Duque - Pelotas RS</p>
+                </div>
               </div>
             </div>
-
-            <p>
-              Na Gestão Boa, nossa estrutura organizacional adhocrática elimina
-              barreiras hierárquicas, permitindo que ideias inovadoras surjam de
-              qualquer lugar. Desde nosso CEO até cada desenvolvedor,
-              trabalhamos lado a lado porque entendemos que grandes soluções
-              podem vir de qualquer pessoa.
-            </p>
           </div>
         </section>
 
@@ -727,7 +739,7 @@ const About = () => {
           <h2>Pronto para transformar seu negócio?</h2>
           <p>
             Junte-se aos milhares de empreendedores que já descobriram como a
-            gestão eficiente pode impulsionar resultados
+            gestão eficiente pode impulsionar resultados.
           </p>
           <div className="cta-buttons">
             <button
@@ -741,45 +753,6 @@ const About = () => {
             <button className="cta-button secondary" onClick={handleDemoClick}>
               Falar com especialista
             </button>
-          </div>
-        </section>
-
-        {/* Testimonials Section - New */}
-        <section className="content-section testimonials-section">
-          <div className="section-header">
-            <span className="section-badge">Depoimentos</span>
-            <h2>O que dizem nossos clientes</h2>
-          </div>
-
-          <div className="testimonials-container">
-            <div className="testimonial fade-in">
-              <div className="quote-mark">"</div>
-              <p className="testimonial-text2">
-                "Fora de série, fora de série mesmo! Eu te chamo, tu me responde.
-                Tinha muito receio, pois já contratei outros serviços e não tinha
-                esse retorno pra tirar minhas dúvidas. Poderia ser um sistema
-                funcional, mas quando eu tinha dúvidas, eles não supriam. Tu
-                responde, tira minhas dúvidas, não faz corpo mole, e me mostra
-                tudo certinho. Cara, tá show de bola!"
-              </p>
-              <div className="testimonial-author">
-                <p className="author-name">Gustavo Fonseca</p>
-                <p className="author-business">Cliente Gestão Boa</p>
-              </div>
-            </div>
-
-            <div className="testimonial fade-in">
-              <div className="quote-mark">"</div>
-              <p className="testimonial-text2">
-                “Muito fácil de operar, fiquei feliz com uma coisa que eu não
-                sabia o barbeiro consegue lançar no caixa a comanda pelo celular
-                dele muito prático”
-              </p>
-              <div className="testimonial-author">
-                <p className="author-name">Leandro Figueiredo</p>
-                <p className="author-business">Barbearia Duque - Pelotas RS</p>
-              </div>
-            </div>
           </div>
         </section>
       </div>

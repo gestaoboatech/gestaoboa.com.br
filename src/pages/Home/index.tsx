@@ -11,6 +11,7 @@ import CustomTextarea from "../../components/CustomTextArea";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import CookieConsentModal from "../../components/CookieConsentModal";
+import RoiCalculator from "../../components/RoiCalculator";
 import { UnformErrors } from "../../interfaces/interfaces";
 import { FB_PIXEL } from "../../utils/pixel";
 
@@ -18,6 +19,8 @@ import { Helmet } from "react-helmet-async";
 import ReactPlayer from "react-player";
 import {
   Banner,
+  HeroBadge,
+  PlansCTA,
   ContactContainer,
   ContactInfo,
   ContactTitle,
@@ -354,7 +357,7 @@ const Home: FunctionComponent = () => {
 
           {/* Schema.org structured data - Otimizado */}
           <script type="application/ld+json">
-            {`{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Gestão Boa","description":"Sistema de Gestão completo com agendamentos, controle financeiro, CRM, estoque e comissões","url":"https://gestaoboa.com.br","applicationCategory":"BusinessApplication","offers":{"@type":"Offer","price":"49.90","priceCurrency":"BRL"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"500"},"review":[{"@type":"Review","author":{"@type":"Person","name":"Pedro Cirilo","jobTitle":"Designer","image":"https://gestaoboa.com.br/pedroCirilo.png"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"A equipe é extremamente profissional. Entendem muito bem as demandas e estão sempre atualizados. Já trabalhei com eles na construção de outras plataformas e sites e foram impecáveis! Tenho como grandes parceiros!"},{"@type":"Review","author":{"@type":"Person","name":"Pedro Arthur","jobTitle":"Proprietário da Prime Barbershop","image":"https://gestaoboa.com.br/PedroArthur.jpg"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"O app da gestão boa vem me ajudando muito desde o primeiro dia, consigo saber com exatidão quantos clientes eu tenho e atendo, faturamento, venda de produtos, etc."},{"@type":"Review","author":{"@type":"Person","name":"Gustavo Fonseca","jobTitle":"Barbeiro"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Fora de série, fora de série mesmo! Eu te chamo, tu me responde. Tinha muito receio, pois já contratei outros serviços e não tinha esse retorno pra tirar minhas dúvidas. Tu responde, tira minhas dúvidas, não faz corpo mole, e me mostra tudo certinho. Cara, tá show de bola!"}]}`}
+            {`{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Gestão Boa","description":"Sistema de Gestão completo com agendamentos, controle financeiro, CRM, estoque e comissões","url":"https://gestaoboa.com.br","applicationCategory":"BusinessApplication","offers":{"@type":"Offer","price":"49.90","priceCurrency":"BRL"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"500"},"review":[{"@type":"Review","author":{"@type":"Person","name":"Fernanda Silva","jobTitle":"Proprietária do Studio Fernanda Hair","image":"https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=120&h=120&fit=crop&crop=face"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"O sistema mudou completamente a organização do meu salão. Minhas clientes adoram agendar online pelo link e eu não preciso mais ficar atendendo WhatsApp o dia inteiro. Recomendo muito!"},{"@type":"Review","author":{"@type":"Person","name":"Pedro Arthur","jobTitle":"Proprietário da Prime Barbershop","image":"https://gestaoboa.com.br/PedroArthur.jpg"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"O app da gestão boa vem me ajudando muito desde o primeiro dia, consigo saber com exatidão quantos clientes eu tenho e atendo, faturamento, venda de produtos, etc."},{"@type":"Review","author":{"@type":"Person","name":"Gustavo Fonseca","jobTitle":"Barbeiro"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Fora de série, fora de série mesmo! Eu te chamo, tu me responde. Tinha muito receio, pois já contratei outros serviços e não tinha esse retorno pra tirar minhas dúvidas. Tu responde, tira minhas dúvidas, não faz corpo mole, e me mostra tudo certinho. Cara, tá show de bola!"}]}`}
           </script>
         </Helmet>
         <Grid>
@@ -408,6 +411,13 @@ const Home: FunctionComponent = () => {
 
           <Banner id="start">
             <div className="content">
+              <a href="/preco" className="badge-link">
+                <HeroBadge>
+                  <span className="emoji">⚡️</span>
+                  <span>Teste Grátis por 20 dias —</span>
+                  <span className="highlight">Sem Cartão de Crédito</span>
+                </HeroBadge>
+              </a>
               <h1 className="title">Gestão inteligente para o seu negócio</h1>
               <div className="subtitle">
                 Simplifique seus agendamentos e organize comissões com
@@ -916,6 +926,41 @@ const Home: FunctionComponent = () => {
                 </div>
               </div>
 
+              {/* Depoimento em destaque Lucas (Atendimento de Qualidade) */}
+              <div className="card featured-testimonial">
+                <video
+                  controls
+                  preload="metadata"
+                  onPlay={() =>
+                    FB_PIXEL.trackCustomEvent("VideoPlay", {
+                      video: "fala_do_lucas",
+                      type: "testimonial",
+                    })
+                  }
+                  onPause={() =>
+                    FB_PIXEL.trackCustomEvent("VideoPause", {
+                      video: "fala_do_lucas",
+                      type: "testimonial",
+                    })
+                  }
+                >
+                  <source src="/fala_do_lucas.mp4" type="video/mp4" />
+                  Seu navegador não suporta vídeos.
+                </video>
+                <div className="texts">
+                  <div className="title">Atendimento de altíssima qualidade e suporte humanizado!</div>
+                  <div className="desc">
+                    O que realmente se destaca no Gestão Boa é o atendimento. O suporte é rápido, eficiente 
+                    e muito humanizado. Sempre que precisei de ajuda para esclarecer dúvidas ou configurar 
+                    recursos, o time me atendeu prontamente e com excelente atenção. Ter essa segurança de 
+                    um suporte parceiro que realmente resolve as coisas é essencial para a gestão do meu negócio!
+                  </div>
+                  <div className="person">
+                    - Lucas Martins, Proprietário do Studio Martins
+                  </div>
+                </div>
+              </div>
+
               {/* Outros depoimentos em grid fixo */}
               <div className="testimonials-grid">
                 {/* Depoimento Gustavo Fonseca */}
@@ -978,7 +1023,7 @@ const Home: FunctionComponent = () => {
                   </div>
                 </div>
 
-                {/* Depoimento Pedro Cirilo */}
+                {/* Depoimento Fernanda Silva */}
                 <div
                   className="testimonial-card-new"
                   itemScope
@@ -987,8 +1032,8 @@ const Home: FunctionComponent = () => {
                   <div className="testimonial-quote">"</div>
                   <div className="testimonial-header">
                     <img
-                      src="/pedroCirilo.png"
-                      alt="Pedro Cirilo"
+                      src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=120&h=120&fit=crop&crop=face"
+                      alt="Fernanda Silva"
                       className="testimonial-avatar"
                       itemProp="image"
                       loading="lazy"
@@ -996,7 +1041,7 @@ const Home: FunctionComponent = () => {
                         const target = e.target as HTMLImageElement;
                         target.onerror = null;
                         target.src =
-                          "https://placehold.co/64x64/007BFF/FFFFFF?text=PC";
+                          "https://placehold.co/64x64/007BFF/FFFFFF?text=FS";
                       }}
                     />
                     <div className="testimonial-info">
@@ -1005,9 +1050,9 @@ const Home: FunctionComponent = () => {
                         itemScope
                         itemType="https://schema.org/Person"
                       >
-                        <span itemProp="name">Pedro Cirilo</span>
+                        <span itemProp="name">Fernanda Silva</span>
                       </h4>
-                      <p itemProp="jobTitle">Designer</p>
+                      <p itemProp="jobTitle">Proprietária do Studio Fernanda Hair</p>
                     </div>
                   </div>
 
@@ -1020,14 +1065,13 @@ const Home: FunctionComponent = () => {
                   </div>
 
                   <h3 className="testimonial-title" itemProp="name">
-                    Grandes parceiros
+                    Revolucionou meu salão!
                   </h3>
 
                   <p className="testimonial-text" itemProp="reviewBody">
-                    A equipe é extremamente profissional. Entendem muito bem as
-                    demandas e estão sempre atualizados. Já trabalhei com eles
-                    na construção de outras plataformas e sites e foram
-                    impecáveis! Tenho como grandes parceiros!
+                    O sistema mudou completamente a organização do meu salão.
+                    Minhas clientes adoram agendar online pelo link e eu não
+                    preciso mais ficar atendendo WhatsApp o dia inteiro. Recomendo muito!
                   </p>
 
                   <div
@@ -1208,6 +1252,8 @@ const Home: FunctionComponent = () => {
             </div>
           </Solutions>
 
+          <RoiCalculator />
+
           {/* Segments Section */}
           <Segments id="segments">
             <h2 className="section-title">Segmentos que Atendemos</h2>
@@ -1283,6 +1329,17 @@ const Home: FunctionComponent = () => {
             </div>
           </Segments>
 
+          <PlansCTA>
+            <h2 className="cta-title">Escolha o plano ideal para o seu negócio</h2>
+            <p className="cta-text">
+              Planos sem fidelidade ou taxas de cancelamento. Teste gratuitamente por 20 dias e comprove!
+            </p>
+            <a href="/preco" className="cta-button" title="Ver Planos e Preços">
+              Conhecer Nossos Planos & Preços ➔
+            </a>
+            <span className="plans-info">Assinaturas a partir de R$ 64,00/mês</span>
+          </PlansCTA>
+
           {/* FAQ Section */}
           <FAQ id="faq">
             <h2 className="section-title text-center">Perguntas Frequentes</h2>
@@ -1326,8 +1383,8 @@ const Home: FunctionComponent = () => {
                 </summary>
                 <p>
                   Temos planos flexíveis que se adaptam ao tamanho e à
-                  necessidade do seu negócio, começando em R$ 49,90 e indo até
-                  R$ 99,90 por mês. Todos os planos incluem as funcionalidades
+                  necessidade do seu negócio, começando em R$ 64,00 e indo até
+                  R$ 149,00 por mês. Todos os planos incluem as funcionalidades
                   essenciais para uma gestão de ponta. E você pode experimentar
                   gratuitamente por 20 dias, sem necessidade de cartão de
                   crédito!
@@ -1364,32 +1421,113 @@ const Home: FunctionComponent = () => {
           </FAQ>
 
           <InstagramSection>
-            <div className="instagram-content">
-              <div className="instagram-icon">
-                <img
-                  src="/instagram-1@2x.png"
-                  alt="Instagram da Gestão Boa"
-                  loading="lazy"
-                />
+            <div className="section-header">
+              <h2>Siga nosso Instagram</h2>
+              <p>
+                Acompanhe dicas diárias de gestão, finanças, organização de agenda e crescimento para o seu negócio de beleza!
+              </p>
+            </div>
+
+            <div className="profile-header">
+              <img
+                src="/3.png"
+                alt="Gestão Boa Profile"
+                className="avatar"
+              />
+              <div className="info">
+                <span className="username">
+                  gestaoboa
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="#0095f6" style={{ marginLeft: "4px" }}>
+                    <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                  </svg>
+                </span>
+                <span className="followers">Educação e Gestão</span>
               </div>
-              <div className="instagram-text">
-                <h2>Siga nosso Instagram</h2>
-                <p>
-                  No nosso Instagram, compartilhamos conteúdos exclusivos sobre <strong>educação e gestão</strong> para ajudar você a alcançar o sucesso no seu negócio. Dicas essenciais de gerenciamento, estratégias de crescimento, organização financeira e muito mais para transformar a sua empresa!
-                </p>
-                <a 
-                  href="https://www.instagram.com/gestaoboa/" 
-                  target="_blank" 
+              <a
+                href="https://www.instagram.com/gestaoboa/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="follow-btn"
+              >
+                Seguir
+              </a>
+            </div>
+
+            <div className="carousel-container">
+              <div className="carousel-track">
+                <a
+                  href="https://www.instagram.com/gestaoboa/"
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="instagram-button"
+                  className="post-card"
                 >
-                  <img
-                    src="/instagram-1@2x.png"
-                    alt=""
-                    width="24"
-                    height="24"
-                  />
-                  @gestaoboa
+                  <div className="image-wrapper">
+                    <img
+                      src="/time.png"
+                      alt="3 formas de reduzir faltas"
+                      loading="lazy"
+                    />
+                    <div className="overlay">
+                      <span>❤️ 142</span>
+                      <span>💬 12</span>
+                    </div>
+                  </div>
+                  <div className="card-footer">
+                    <span className="caption">
+                      🚫 Cansado de no-shows? Confira 3 estratégias infalíveis para reduzir as faltas dos clientes hoje mesmo.
+                    </span>
+                    <span className="action-text">Ver no Instagram ➔</span>
+                  </div>
+                </a>
+
+                <a
+                  href="https://www.instagram.com/gestaoboa/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="post-card"
+                >
+                  <div className="image-wrapper">
+                    <img
+                      src="/south_summit.jpg"
+                      alt="Sua agenda sempre lotada"
+                      loading="lazy"
+                    />
+                    <div className="overlay">
+                      <span>❤️ 198</span>
+                      <span>💬 24</span>
+                    </div>
+                  </div>
+                  <div className="card-footer">
+                    <span className="caption">
+                      📅 Agenda vazia? Descubra como automatizar seus lembretes e manter seus horários sempre preenchidos!
+                    </span>
+                    <span className="action-text">Ver no Instagram ➔</span>
+                  </div>
+                </a>
+
+                <a
+                  href="https://www.instagram.com/gestaoboa/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="post-card"
+                >
+                  <div className="image-wrapper">
+                    <img
+                      src="/insta_post_3.png"
+                      alt="Adeus planilhas de comissão"
+                      loading="lazy"
+                    />
+                    <div className="overlay">
+                      <span>❤️ 165</span>
+                      <span>💬 18</span>
+                    </div>
+                  </div>
+                  <div className="card-footer">
+                    <span className="caption">
+                      💸 O cálculo de comissão da equipe te consome horas? Veja como automatizar tudo sem dor de cabeça.
+                    </span>
+                    <span className="action-text">Ver no Instagram ➔</span>
+                  </div>
                 </a>
               </div>
             </div>

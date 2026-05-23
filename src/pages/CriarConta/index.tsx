@@ -35,7 +35,7 @@ function gtag_report_conversion(url?: string) {
   return false;
 }
 
-type PlanType = "basico" | "crescimento" | "empresarial" | "black-friday";
+type PlanType = "basico" | "crescimento" | "empresarial" | "ilimitado" | "black-friday";
 
 const PLAN_CONFIG: Record<PlanType, {
   name: string;
@@ -46,17 +46,22 @@ const PLAN_CONFIG: Record<PlanType, {
 }> = {
   "basico": {
     name: "Básico",
-    price: "R$ 49,90/mês",
+    price: "R$ 64,00/mês",
     paymentLink: "https://www.app.gestaoboa.com.br",
   },
   "crescimento": {
     name: "Crescimento",
-    price: "R$ 89,90/mês",
+    price: "R$ 89,00/mês",
     paymentLink: "https://www.app.gestaoboa.com.br",
   },
   "empresarial": {
     name: "Empresarial",
-    price: "R$ 98,72/mês",
+    price: "R$ 129,00/mês",
+    paymentLink: "https://www.app.gestaoboa.com.br",
+  },
+  "ilimitado": {
+    name: "Ilimitado",
+    price: "R$ 149,00/mês",
     paymentLink: "https://www.app.gestaoboa.com.br",
   },
   "black-friday": {

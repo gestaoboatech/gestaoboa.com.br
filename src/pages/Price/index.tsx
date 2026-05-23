@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Footer from "../../components/Footer";
@@ -7,6 +7,7 @@ import { Container } from "../Terms/styles";
 import PaymentForm from "./components/PaymentForm";
 import PriceTag from "./components/PriceTag";
 import UserRegistrationForm from "./components/UserRegistrationForm";
+import RoiCalculator from "../../components/RoiCalculator";
 import "./styles.css";
 
 type PlanType = "Anual" | "Semestral" | "Mensal";
@@ -39,39 +40,86 @@ const Price = () => {
 
   // Price data
   const monthlyPrices = {
-    Basico: 64.90,
-    Standard: 89.90,
-    Premium: 129.90,
+    Basico: 64.00,
+    Standard: 89.00,
+    Premium: 129.00,
+    Ilimitado: 149.00,
   };
 
-  const prices = {
-    Anual: {
-      Basico: { original: { vista: monthlyPrices.Basico * 12, parcelas: "64,90" } },
-      Standard: { original: { vista: monthlyPrices.Standard * 12, parcelas: "89,90" } },
-      Premium: { original: { vista: monthlyPrices.Premium * 12, parcelas: "129,90" } },
+  const getPriceData = (key: keyof typeof monthlyPrices) => {
+    const base = monthlyPrices[key];
+    const discounted = calculateDiscountedPrice(base, planType);
+    const daily = (planType === "Mensal" ? base : discounted) / 30;
+    const monthlyStr = (planType === "Mensal" ? base : discounted).toFixed(2).replace(".", ",");
+    const originalStr = base.toFixed(2).replace(".", ",");
+    return {
+      daily,
+      monthlyStr,
+      originalStr,
+    };
+  };
+
+  const featureGroups = [
+    {
+      name: "Clientes e Agenda",
+      features: [
+        { name: "Agenda Online Inteligente", basico: true, crescimento: true, empresarial: true, ilimitado: true },
+        { name: "Lembretes Automáticos via WhatsApp", basico: true, crescimento: true, empresarial: true, ilimitado: true },
+        { name: "CRM com Histórico de Clientes", basico: true, crescimento: true, empresarial: true, ilimitado: true },
+      ],
     },
-    Semestral: {
-      Basico: { original: { vista: monthlyPrices.Basico * 6, parcelas: "64,90" } },
-      Standard: { original: { vista: monthlyPrices.Standard * 6, parcelas: "89,90" } },
-      Premium: { original: { vista: monthlyPrices.Premium * 6, parcelas: "129,90" } },
+    {
+      name: "Financeiro e Comissões",
+      features: [
+        { name: "Fluxo de Caixa Simplificado", basico: true, crescimento: true, empresarial: true, ilimitado: true },
+        { name: "Controle de Receitas e Despesas", basico: true, crescimento: true, empresarial: true, ilimitado: true },
+        { name: "Cálculo Automático de Comissões", basico: false, crescimento: true, empresarial: true, ilimitado: true },
+      ],
     },
-    Mensal: {
-      Basico: { original: monthlyPrices.Basico, parcelas: "64,90" },
-      Standard: { original: monthlyPrices.Standard, parcelas: "89,90" },
-      Premium: { original: monthlyPrices.Premium, parcelas: "129,90" },
+    {
+      name: "Estoque e Produtos",
+      features: [
+        { name: "Gestão Completa de Estoque", basico: true, crescimento: true, empresarial: true, ilimitado: true },
+        { name: "Controle de Produtos e Serviços", basico: true, crescimento: true, empresarial: true, ilimitado: true },
+      ],
     },
+    {
+      name: "Equipe e Limites",
+      features: [
+        { name: "Gestão de Equipe e Desempenho", basico: false, crescimento: true, empresarial: true, ilimitado: true },
+        { name: "Profissionais (Usuários)", basico: "1 Usuário", crescimento: "Até 3 Usuários", empresarial: "Até 10 Usuários", ilimitado: "Ilimitados" },
+      ],
+    },
+    {
+      name: "Relatórios e Suporte",
+      features: [
+        { name: "Relatórios de Desempenho", basico: true, crescimento: true, empresarial: true, ilimitado: true },
+        { name: "Suporte via WhatsApp", basico: true, crescimento: true, empresarial: true, ilimitado: true },
+      ],
+    },
+  ];
+
+  const renderFeatureVal = (val: boolean | string) => {
+    if (typeof val === "string") {
+      return <span className="pricing-table-text-val">{val}</span>;
+    }
+    return val ? (
+      <span className="pricing-table-check" aria-label="Sim">✔</span>
+    ) : (
+      <span className="pricing-table-x" aria-label="Não">✖</span>
+    );
   };
 
   return (
     <Container>
       <Helmet>
         <title>
-          Planos e Preços Gestão Boa - Sistema de Gestão a partir de R$ 49,90 |
+          Planos e Preços Gestão Boa - Sistema de Gestão a partir de R$ 64,00 |
           Teste Grátis
         </title>
         <meta
           name="description"
-          content="Planos de sistema de gestão da Gestão Boa a partir de R$ 49,90/mês. Teste grátis por 20 dias! Link de agendemento online, finanças, estoque e muito mais. Compare preços e funcionalidades."
+          content="Planos de sistema de gestão da Gestão Boa a partir de R$ 64,00/mês. Teste grátis por 20 dias! Link de agendemento online, finanças, estoque e muito mais. Compare preços e funcionalidades."
         />
         <meta
           name="keywords"
@@ -85,11 +133,11 @@ const Price = () => {
         <meta property="og:type" content="website" />
         <meta
           property="og:title"
-          content="Planos e Preços Gestão Boa - Sistema de Gestão a partir de R$ 49,90"
+          content="Planos e Preços Gestão Boa - Sistema de Gestão a partir de R$ 64,00"
         />
         <meta
           property="og:description"
-          content="Planos de sistema de gestão da Gestão Boa a partir de R$ 49,90/mês. Teste grátis por 20 dias! Link de agendemento online, finanças, estoque e muito mais."
+          content="Planos de sistema de gestão da Gestão Boa a partir de R$ 64,00/mês. Teste grátis por 20 dias! Link de agendemento online, finanças, estoque e muito mais."
         />
         <meta property="og:url" content="https://gestaoboa.com.br/preco" />
         <meta property="og:site_name" content="Gestão Boa" />
@@ -109,11 +157,11 @@ const Price = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Planos e Preços Gestão Boa - Sistema de Gestão a partir de R$ 49,90"
+          content="Planos e Preços Gestão Boa - Sistema de Gestão a partir de R$ 64,00"
         />
         <meta
           name="twitter:description"
-          content="Planos de sistema de gestão da Gestão Boa a partir de R$ 49,90/mês. Teste grátis por 20 dias!"
+          content="Planos de sistema de gestão da Gestão Boa a partir de R$ 64,00/mês. Teste grátis por 20 dias!"
         />
         <meta
           name="twitter:image"
@@ -147,7 +195,7 @@ const Price = () => {
                 "@type": "Offer",
                 name: "Plano Básico",
                 description: "Perfeito para quem está começando",
-                price: "49.90",
+                price: "64.00",
                 priceCurrency: "BRL",
                 priceValidUntil: "2025-12-31",
                 availability: "https://schema.org/InStock",
@@ -184,7 +232,7 @@ const Price = () => {
                 "@type": "Offer",
                 name: "Plano Crescimento",
                 description: "Para pequenos negócios",
-                price: "68.90",
+                price: "89.00",
                 priceCurrency: "BRL",
                 priceValidUntil: "2025-12-31",
                 availability: "https://schema.org/InStock",
@@ -199,7 +247,22 @@ const Price = () => {
                 "@type": "Offer",
                 name: "Plano Empresarial",
                 description: "Perfeito para quem já tem funcionários",
-                price: "99.90",
+                price: "129.00",
+                priceCurrency: "BRL",
+                priceValidUntil: "2025-12-31",
+                availability: "https://schema.org/InStock",
+                category: "Software",
+                eligibleDuration: {
+                  "@type": "QuantitativeValue",
+                  value: 1,
+                  unitCode: "MON",
+                },
+              },
+              {
+                "@type": "Offer",
+                name: "Plano Ilimitado",
+                description: "Para negócios em plena expansão",
+                price: "149.00",
                 priceCurrency: "BRL",
                 priceValidUntil: "2025-12-31",
                 availability: "https://schema.org/InStock",
@@ -248,27 +311,33 @@ const Price = () => {
               "Sistema completo de gestão com Link de agendemento online, finanças, estoque e muito mais",
             offers: {
               "@type": "AggregateOffer",
-              lowPrice: "49.90",
-              highPrice: "99.90",
+              lowPrice: "64.00",
+              highPrice: "149.00",
               priceCurrency: "BRL",
-              offerCount: "3",
+              offerCount: "4",
               offers: [
                 {
                   "@type": "Offer",
                   name: "Básico",
-                  price: "49.90",
+                  price: "64.00",
                   priceCurrency: "BRL",
                 },
                 {
                   "@type": "Offer",
                   name: "Crescimento",
-                  price: "68.90",
+                  price: "89.00",
                   priceCurrency: "BRL",
                 },
                 {
                   "@type": "Offer",
                   name: "Empresarial",
-                  price: "99.90",
+                  price: "129.00",
+                  priceCurrency: "BRL",
+                },
+                {
+                  "@type": "Offer",
+                  name: "Ilimitado",
+                  price: "149.00",
                   priceCurrency: "BRL",
                 },
               ],
@@ -292,7 +361,7 @@ const Price = () => {
                 name: "Qual é o valor dos planos da Gestão Boa?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Nossos planos começam em R$ 49,90/mês (plano Básico). Temos o plano Crescimento por R$ 68,90/mês e o plano Empresarial por R$ 99,90/mês. Todos os planos incluem teste grátis por 20 dias.",
+                  text: "Nossos planos começam em R$ 64,00/mês (plano Básico). Temos o plano Crescimento por R$ 89,00/mês, o plano Empresarial por R$ 129,00/mês e o plano Ilimitado por R$ 149,00/mês. Todos os planos incluem teste grátis por 20 dias.",
                 },
               },
               {
@@ -364,445 +433,117 @@ const Price = () => {
             </button>
           ))}
         </div>{" "}
-        <div className="plan-cards">
-          {" "}
-          {/* Plano Básico */}
-          <div className="plan-card">
-            {(planType === "Anual" || planType === "Semestral") && (
-              <div className="plan-discount-badge">
-                {planType === "Anual" ? "24% OFF" : "15% OFF"}
-              </div>
-            )}
-            <h2>Plano Básico</h2>
-            <p>Perfeito para quem está começando</p>{" "}
-            <PriceTag
-              dailyPrice={
-                planType === "Mensal"
-                  ? parseFloat(
-                      prices.Mensal.Basico.parcelas.replace(",", ".")
-                    ) / 30
-                  : calculateDiscountedPrice(
-                      prices.Mensal.Basico.original,
-                      planType
-                    ) / 30
-              }
-              monthlyPrice={
-                planType === "Mensal"
-                  ? prices.Mensal.Basico.parcelas
-                  : calculateDiscountedPrice(
-                      prices.Mensal.Basico.original,
-                      planType
-                    )
-                      .toFixed(2)
-                      .replace(".", ",")
-              }
-              originalPrice={
-                planType !== "Mensal"
-                  ? prices.Mensal.Basico.parcelas
-                  : undefined
-              }
-              showDiscount={planType !== "Mensal"}
-            />{" "}
-            <button
-              className="sign-button"
-              onClick={() => {
-                navigate('/criar-conta?plano=basico');
-              }}
-            >
-              TESTE GRATIS POR 20 DIAS!
-            </button>{" "}
-            <div className="benefits-list">
-              {/* Módulo: Clientes e Agenda */}
-              <div className="benefit-module">
-                <div className="module-title">
-                  <span className="module-icon">📅</span>
-                  Clientes e Agenda
-                </div>
-                <ul>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Agenda Online Inteligente
-                  </li>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Lembretes Automáticos via WhatsApp
-                  </li>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    CRM com Histórico de Clientes
-                  </li>
-                </ul>
-              </div>
+        <div className="pricing-table-container">
+          <table className="pricing-table">
+            <thead>
+              <tr>
+                <th className="pricing-table-first-col">Recursos do Sistema</th>
+                
+                {/* Plano Básico */}
+                <th className="pricing-table-plan-col">
+                  <div className="pricing-table-header-content">
+                    <h3>Básico</h3>
+                    <span className="pricing-table-user-limit">1 Usuário</span>
+                    <PriceTag
+                      dailyPrice={getPriceData("Basico").daily}
+                      monthlyPrice={getPriceData("Basico").monthlyStr}
+                      originalPrice={getPriceData("Basico").originalStr}
+                      showDiscount={planType !== "Mensal"}
+                    />
+                    <button
+                      className="sign-button"
+                      onClick={() => navigate("/criar-conta?plano=basico")}
+                    >
+                      TESTE GRÁTIS!
+                    </button>
+                  </div>
+                </th>
 
-              {/* Módulo: Financeiro */}
-              <div className="benefit-module">
-                <div className="module-title">
-                  <span className="module-icon">💰</span>
-                  Financeiro
-                </div>
-                <ul>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Fluxo de Caixa Simplificado
-                  </li>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Controle de Receitas e Despesas
-                  </li>
-                  <li>
-                    <span className="x-icon">✖</span>
-                    Cálculo Automático de Comissões
-                  </li>
-                </ul>
-              </div>
+                {/* Plano Crescimento */}
+                <th className="pricing-table-plan-col popular">
+                  <div className="pricing-table-popular-badge">⭐ Mais Popular</div>
+                  <div className="pricing-table-header-content">
+                    <h3>Crescimento</h3>
+                    <span className="pricing-table-user-limit">Até 3 Usuários</span>
+                    <PriceTag
+                      dailyPrice={getPriceData("Standard").daily}
+                      monthlyPrice={getPriceData("Standard").monthlyStr}
+                      originalPrice={getPriceData("Standard").originalStr}
+                      showDiscount={planType !== "Mensal"}
+                    />
+                    <button
+                      className="sign-button"
+                      onClick={() => navigate("/criar-conta?plano=crescimento")}
+                    >
+                      TESTE GRÁTIS!
+                    </button>
+                  </div>
+                </th>
 
-              {/* Módulo: Estoque e Produtos */}
-              <div className="benefit-module">
-                <div className="module-title">
-                  <span className="module-icon">📦</span>
-                  Estoque e Produtos
-                </div>
-                <ul>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Gestão Completa de Estoque
-                  </li>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Controle de Produtos e Serviços
-                  </li>
-                </ul>
-              </div>
+                {/* Plano Empresarial */}
+                <th className="pricing-table-plan-col">
+                  <div className="pricing-table-header-content">
+                    <h3>Empresarial</h3>
+                    <span className="pricing-table-user-limit">Até 10 Usuários</span>
+                    <PriceTag
+                      dailyPrice={getPriceData("Premium").daily}
+                      monthlyPrice={getPriceData("Premium").monthlyStr}
+                      originalPrice={getPriceData("Premium").originalStr}
+                      showDiscount={planType !== "Mensal"}
+                    />
+                    <button
+                      className="sign-button"
+                      onClick={() => navigate("/criar-conta?plano=empresarial")}
+                    >
+                      TESTE GRÁTIS!
+                    </button>
+                  </div>
+                </th>
 
-              {/* Módulo: Equipe */}
-              <div className="benefit-module">
-                <div className="module-title">
-                  <span className="module-icon">👥</span>
-                  Equipe e Colaboradores
-                </div>
-                <ul>
-                  <li>
-                    <span className="x-icon">✖</span>
-                    Gestão de Equipe e Desempenho
-                  </li>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    1 Usuário
-                  </li>
-                </ul>
-              </div>
-
-              {/* Módulo: Relatórios e Suporte */}
-              <div className="benefit-module">
-                <div className="module-title">
-                  <span className="module-icon">📊</span>
-                  Relatórios e Suporte
-                </div>
-                <ul>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Relatórios de Desempenho
-                  </li>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Suporte via WhatsApp
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>{" "}
-          {/* Plano Standard */}
-          <div className="plan-card">
-            <div className="plan-popular-badge">⭐ Mais Popular</div>
-            {(planType === "Anual" || planType === "Semestral") && (
-              <div className="plan-discount-badge">
-                {planType === "Anual" ? "24% OFF" : "15% OFF"}
-              </div>
-            )}
-            <h2>Plano Crescimento</h2>
-            <p>Para pequenos negócios</p>{" "}
-            <PriceTag
-              dailyPrice={
-                planType === "Mensal"
-                  ? parseFloat(
-                      prices.Mensal.Standard.parcelas.replace(",", ".")
-                    ) / 30
-                  : calculateDiscountedPrice(
-                      prices.Mensal.Standard.original,
-                      planType
-                    ) / 30
-              }
-              monthlyPrice={
-                planType === "Mensal"
-                  ? prices.Mensal.Standard.parcelas
-                  : calculateDiscountedPrice(
-                      prices.Mensal.Standard.original,
-                      planType
-                    )
-                      .toFixed(2)
-                      .replace(".", ",")
-              }
-              originalPrice={
-                planType !== "Mensal"
-                  ? prices.Mensal.Standard.parcelas
-                  : undefined
-              }
-              showDiscount={planType !== "Mensal"}
-            />{" "}
-            <button
-              className="sign-button"
-              onClick={() => {
-                navigate('/criar-conta?plano=crescimento');
-              }}
-            >
-              TESTE GRATIS POR 20 DIAS!
-            </button>{" "}
-            <div className="benefits-list">
-              {/* Módulo: Clientes e Agenda */}
-              <div className="benefit-module">
-                <div className="module-title">
-                  <span className="module-icon">📅</span>
-                  Clientes e Agenda
-                </div>
-                <ul>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Agenda Online Inteligente
-                  </li>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Lembretes Automáticos via WhatsApp
-                  </li>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    CRM com Histórico de Clientes
-                  </li>
-                </ul>
-              </div>
-
-              {/* Módulo: Financeiro */}
-              <div className="benefit-module">
-                <div className="module-title">
-                  <span className="module-icon">💰</span>
-                  Financeiro e Equipe
-                </div>
-                <ul>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Fluxo de Caixa Simplificado
-                  </li>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Controle de Receitas e Despesas
-                  </li>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Cálculo Automático de Comissões
-                  </li>
-                </ul>
-              </div>
-
-              {/* Módulo: Estoque e Produtos */}
-              <div className="benefit-module">
-                <div className="module-title">
-                  <span className="module-icon">📦</span>
-                  Estoque e Produtos
-                </div>
-                <ul>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Gestão Completa de Estoque
-                  </li>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Controle de Produtos e Serviços
-                  </li>
-                </ul>
-              </div>
-
-              {/* Módulo: Equipe */}
-              <div className="benefit-module">
-                <div className="module-title">
-                  <span className="module-icon">👥</span>
-                  Equipe e Colaboradores
-                </div>
-                <ul>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Gestão de Equipe e Desempenho
-                  </li>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Até 3 Usuários
-                  </li>
-                </ul>
-              </div>
-
-              {/* Módulo: Relatórios e Suporte */}
-              <div className="benefit-module">
-                <div className="module-title">
-                  <span className="module-icon">📊</span>
-                  Relatórios e Suporte
-                </div>
-                <ul>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Relatórios de Desempenho
-                  </li>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Suporte via WhatsApp
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>{" "}
-          {/* Plano Premium */}
-          <div className="plan-card">
-            {(planType === "Anual" || planType === "Semestral") && (
-              <div className="plan-discount-badge">
-                {planType === "Anual" ? "24% OFF" : "15% OFF"}
-              </div>
-            )}
-            <h2>Plano Empresarial</h2>
-            <p>Perfeito para quem já tem funcionários</p>{" "}
-            <PriceTag
-              dailyPrice={
-                planType === "Mensal"
-                  ? parseFloat(
-                      prices.Mensal.Premium.parcelas.replace(",", ".")
-                    ) / 30
-                  : calculateDiscountedPrice(
-                      prices.Mensal.Premium.original,
-                      planType
-                    ) / 30
-              }
-              monthlyPrice={
-                planType === "Mensal"
-                  ? prices.Mensal.Premium.parcelas
-                  : calculateDiscountedPrice(
-                      prices.Mensal.Premium.original,
-                      planType
-                    )
-                      .toFixed(2)
-                      .replace(".", ",")
-              }
-              originalPrice={
-                planType !== "Mensal"
-                  ? prices.Mensal.Premium.parcelas
-                  : undefined
-              }
-              showDiscount={planType !== "Mensal"}
-            />{" "}
-            <button
-              className="sign-button"
-              onClick={() => {
-                navigate('/criar-conta?plano=empresarial');
-              }}
-            >
-              TESTE GRATIS POR 20 DIAS!
-            </button>{" "}
-            <div className="benefits-list">
-              {/* Módulo: Clientes e Agenda */}
-              <div className="benefit-module">
-                <div className="module-title">
-                  <span className="module-icon">📅</span>
-                  Clientes e Agenda
-                </div>
-                <ul>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Agenda Online Inteligente
-                  </li>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Lembretes Automáticos via WhatsApp
-                  </li>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    CRM com Histórico de Clientes
-                  </li>
-                </ul>
-              </div>
-
-              {/* Módulo: Financeiro */}
-              <div className="benefit-module">
-                <div className="module-title">
-                  <span className="module-icon">💰</span>
-                  Financeiro e Equipe
-                </div>
-                <ul>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Fluxo de Caixa Simplificado
-                  </li>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Controle de Receitas e Despesas
-                  </li>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Cálculo Automático de Comissões
-                  </li>
-                </ul>
-              </div>
-
-              {/* Módulo: Estoque e Produtos */}
-              <div className="benefit-module">
-                <div className="module-title">
-                  <span className="module-icon">📦</span>
-                  Estoque e Produtos
-                </div>
-                <ul>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Gestão Completa de Estoque
-                  </li>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Controle de Produtos e Serviços
-                  </li>
-                </ul>
-              </div>
-
-              {/* Módulo: Equipe */}
-              <div className="benefit-module">
-                <div className="module-title">
-                  <span className="module-icon">👥</span>
-                  Equipe e Colaboradores
-                </div>
-                <ul>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Gestão de Equipe e Desempenho
-                  </li>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Usuários Ilimitados
-                  </li>
-                </ul>
-              </div>
-
-              {/* Módulo: Relatórios e Suporte */}
-              <div className="benefit-module">
-                <div className="module-title">
-                  <span className="module-icon">📊</span>
-                  Relatórios e Suporte
-                </div>
-                <ul>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Relatórios de Desempenho
-                  </li>
-                  <li>
-                    <span className="check-icon">✔</span>
-                    Suporte via WhatsApp
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+                {/* Plano Ilimitado */}
+                <th className="pricing-table-plan-col">
+                  <div className="pricing-table-header-content">
+                    <h3>Ilimitado</h3>
+                    <span className="pricing-table-user-limit">Ilimitados</span>
+                    <PriceTag
+                      dailyPrice={getPriceData("Ilimitado").daily}
+                      monthlyPrice={getPriceData("Ilimitado").monthlyStr}
+                      originalPrice={getPriceData("Ilimitado").originalStr}
+                      showDiscount={planType !== "Mensal"}
+                    />
+                    <button
+                      className="sign-button"
+                      onClick={() => navigate("/criar-conta?plano=ilimitado")}
+                    >
+                      TESTE GRÁTIS!
+                    </button>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {featureGroups.map((group, groupIdx) => (
+                <React.Fragment key={groupIdx}>
+                  <tr className="pricing-table-group-header">
+                    <td colSpan={5}>{group.name}</td>
+                  </tr>
+                  {group.features.map((feature, featureIdx) => (
+                    <tr key={featureIdx} className="pricing-table-feature-row">
+                      <td className="pricing-table-feature-name">{feature.name}</td>
+                      <td>{renderFeatureVal(feature.basico)}</td>
+                      <td className="pricing-table-popular-col popular-col">
+                        {renderFeatureVal(feature.crescimento)}
+                      </td>
+                      <td>{renderFeatureVal(feature.empresarial)}</td>
+                      <td>{renderFeatureVal(feature.ilimitado)}</td>
+                    </tr>
+                  ))}
+                </React.Fragment>
+              ))}
+            </tbody>
+          </table>
         </div>
+        <RoiCalculator />
         <div className="support-section">
           <h2>Ainda tem dúvidas sobre os preços?</h2>
           <p>Fale com nosso atendimento especializado</p>

@@ -154,6 +154,12 @@ export default function Header() {
             text="TESTAR AGORA"
             method={() => {}}
             type="focused"
+            style={{
+              paddingTop: "10px",
+              paddingBottom: "10px",
+              fontSize: "0.9rem",
+              borderRadius: "8px",
+            }}
           />
         </ButtonLink>
       </MobileLinks>{" "}
@@ -166,10 +172,16 @@ export default function Header() {
           }
         >
           <Button
-            width="200px"
+            width="140px"
             text="TESTAR GRÁTIS"
             method={() => {}}
             type="focused"
+            style={{
+              paddingTop: "8px",
+              paddingBottom: "8px",
+              fontSize: "0.8rem",
+              borderRadius: "6px",
+            }}
           />
         </ButtonLink>
       </TestNow>

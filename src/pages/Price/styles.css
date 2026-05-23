@@ -836,3 +836,225 @@
   padding: 1rem;
   margin: -1rem;
 }
+
+/* Pricing Table CSS - Delicate & Compact */
+.pricing-table-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  overflow-x: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(3, 4, 94, 0.04);
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pricing-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 950px;
+}
+
+.pricing-table th,
+.pricing-table td {
+  padding: 0.85rem 0.6rem;
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 1px solid #edf2f7;
+  font-size: 0.85rem;
+}
+
+.pricing-table th {
+  background: #ffffff;
+  border-bottom: 2px solid #cbd5e1;
+}
+
+.pricing-table td.pricing-table-feature-name,
+.pricing-table th.pricing-table-first-col {
+  text-align: left;
+  padding-left: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  width: 28%;
+}
+
+.pricing-table td.pricing-table-feature-name {
+  font-weight: 500;
+  color: #475569;
+  font-size: 0.85rem;
+}
+
+.pricing-table th.pricing-table-plan-col {
+  width: 18%;
+  padding-top: 1.75rem;
+  padding-bottom: 1rem;
+  position: relative;
+}
+
+.pricing-table-popular-col {
+  background-color: rgba(0, 119, 182, 0.01);
+}
+
+.pricing-table th.pricing-table-plan-col.popular {
+  background-color: #f8fafc;
+  border-left: 1px solid rgba(0, 119, 182, 0.12);
+  border-right: 1px solid rgba(0, 119, 182, 0.12);
+}
+
+.pricing-table td.popular-col {
+  border-left: 1px solid rgba(0, 119, 182, 0.08);
+  border-right: 1px solid rgba(0, 119, 182, 0.08);
+}
+
+.pricing-table-popular-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
+  color: white;
+  padding: 4px 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.pricing-table-header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.pricing-table-header-content h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #03045e;
+  margin: 0;
+}
+
+.pricing-table-user-limit {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 600;
+  background: #f1f5f9;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.pricing-table-group-header {
+  background-color: #f8fafc;
+}
+
+.pricing-table-group-header td {
+  text-align: left;
+  padding: 8px 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background-color: #f1f5f9;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.pricing-table-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background-color: #d1fae5;
+  color: #059669;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+.pricing-table-x {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background-color: #fee2e2;
+  color: #dc2626;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+.pricing-table-text-val {
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 0.8rem;
+}
+
+.pricing-table tr.pricing-table-feature-row:hover td {
+  background-color: #f8fafc;
+}
+
+.pricing-table tr.pricing-table-feature-row:hover td.popular-col {
+  background-color: #f1f5f9;
+}
+
+/* Overriding PriceTag inside the table to make the pricing text clean and delicate */
+.pricing-table .price-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+
+.pricing-table .monthly-price-large {
+  font-size: 1.65rem; /* ~26px instead of 48px */
+  color: #0230a2;
+  font-weight: 900;
+  margin-bottom: 0px;
+  line-height: 1.1;
+}
+
+.pricing-table .monthly-price-large span {
+  font-size: 0.85rem; /* ~13px instead of 22px */
+  color: #64748b;
+  font-weight: 500;
+}
+
+.pricing-table .monthly-price-large .original-price {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #94a3b8;
+  text-decoration: line-through;
+  display: block; /* Stacks the "De R$ XX,XX" cleanly on a separate line */
+  margin-bottom: 1px;
+}
+
+.pricing-table .daily-price-small {
+  font-size: 0.7rem; /* ~11px instead of 16px */
+  color: #64748b;
+  margin-bottom: 0;
+  font-weight: 400;
+}
+
+.pricing-table .sign-button {
+  width: 90%;
+  padding: 8px 12px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  border-radius: 6px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  background-color: #03045e;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.pricing-table .sign-button:hover {
+  background-color: #0230a2;
+}
