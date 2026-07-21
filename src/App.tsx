@@ -12,6 +12,7 @@ import Terms from "./pages/Terms";
 import BlackFriday from "./pages/BlackFriday";
 import CriarConta from "./pages/CriarConta";
 import BotGestor from "./pages/BotGestor";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/botgestor" element={<BotGestor />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <WhatsAppButton />
     </BrowserRouter>
   );
 }

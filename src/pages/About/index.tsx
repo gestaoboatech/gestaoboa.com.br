@@ -325,6 +325,11 @@ const About = () => {
                   <h4>Excelência Acessível</h4>
                   <p>Democratizamos a tecnologia de gestão para que todos possam crescer.</p>
                 </div>
+                <div className="value-card">
+                  <div className="vc-icon">🎨</div>
+                  <h4>Identidade Personalizada</h4>
+                  <p>Acesse o sistema para customizar seu link de agendamento com as cores, imagens e logo da sua marca, criando um app exclusivo para o cliente.</p>
+                </div>
               </div>
             </div>
             <div className="manifesto-body">
@@ -342,6 +347,11 @@ const About = () => {
                 Na Gestão Boa, nossa estrutura organizacional adhocrática elimina barreiras hierárquicas, permitindo que ideias inovadoras surjam de qualquer lugar.
                 Desde nosso CEO até cada desenvolvedor, trabalhamos lado a lado porque entendemos que as grandes soluções vêm da escuta ativa
                 e da colaboração sem limites.
+              </p>
+              <p>
+                Como parte dessa evolução contínua, oferecemos a possibilidade de personalizar completamente o seu link de agendamento online.
+                Acessando o sistema, é possível customizar o visual do agendamento com imagens de capa, cores da sua marca e a logo do seu estabelecimento,
+                garantindo que seus clientes agendem através de um aplicativo de agendamento personalizado que carrega a identidade única do seu negócio.
               </p>
             </div>
           </div>
