@@ -1,0 +1,1157 @@
+/* ==========================================================================
+   SINCA RS & GESTÃO BOA PARTNERSHIP LANDING PAGE - CLEAN BLUE/WHITE DESIGN
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --sinca-primary: #03045e;
+  --sinca-primary-dark: #02033b;
+  --sinca-blue: #0077b6;
+  --sinca-blue-light: #00b4d8;
+  --sinca-blue-subtle: #e0f2fe;
+  --sinca-accent-emerald: #10b981;
+  --sinca-accent-emerald-light: #ecfdf5;
+  --sinca-accent-amber: #f59e0b;
+  --sinca-bg-page: #f8fafc;
+  --sinca-bg-white: #ffffff;
+  --sinca-text-main: #0f172a;
+  --sinca-text-muted: #475569;
+  --sinca-text-light: #64748b;
+  --sinca-border: #e2e8f0;
+  --sinca-shadow-sm: 0 2px 8px rgba(3, 4, 94, 0.04);
+  --sinca-shadow-md: 0 10px 30px rgba(3, 4, 94, 0.08);
+  --sinca-shadow-lg: 0 20px 45px rgba(3, 4, 94, 0.12);
+  --sinca-shadow-glow: 0 12px 36px rgba(0, 119, 182, 0.2);
+  --sinca-radius-sm: 10px;
+  --sinca-radius-md: 16px;
+  --sinca-radius-lg: 24px;
+}
+
+.sinca-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--sinca-bg-page);
+  color: var(--sinca-text-main);
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+  padding-top: 54px; /* fixed header offset */
+}
+
+.sinca-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   SHARED HEADERS & BADGES
+   ========================================================================== */
+.sinca-section {
+  padding: 80px 0;
+  position: relative;
+}
+
+.sinca-section-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 52px;
+}
+
+.sinca-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(0, 119, 182, 0.08);
+  border: 1px solid rgba(0, 119, 182, 0.25);
+  border-radius: 9999px;
+  color: var(--sinca-blue);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  margin-bottom: 20px;
+}
+
+.sinca-section-tag {
+  display: inline-block;
+  padding: 4px 14px;
+  background: var(--sinca-blue-subtle);
+  color: var(--sinca-blue);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 9999px;
+  margin-bottom: 16px;
+}
+
+.sinca-section-title {
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--sinca-primary);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
+}
+
+.sinca-section-subtitle {
+  font-size: 17px;
+  color: var(--sinca-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ==========================================================================
+   1. HERO SECTION (Clean White & Blue Co-Branding)
+   ========================================================================== */
+.sinca-hero {
+  position: relative;
+  background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 60%, #f8fafc 100%);
+  padding: 70px 0 50px;
+  border-bottom: 1px solid var(--sinca-border);
+  overflow: hidden;
+  text-align: center;
+}
+
+.sinca-hero::before {
+  content: '';
+  position: absolute;
+  top: -160px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 500px;
+  background: radial-gradient(ellipse at center, rgba(0, 180, 216, 0.12) 0%, rgba(3, 4, 94, 0.02) 70%, transparent 100%);
+  pointer-events: none;
+}
+
+.sinca-hero-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.sinca-logo-img {
+  height: 64px;
+  max-width: 180px;
+  object-fit: contain;
+}
+
+.sinca-logo-plus {
+  font-size: 28px;
+  font-weight: 300;
+  color: #94a3b8;
+}
+
+.sinca-hero-title {
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--sinca-primary);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  max-width: 880px;
+  margin: 0 auto 20px;
+}
+
+.sinca-gradient-text {
+  background: linear-gradient(135deg, #0077b6 0%, #00b4d8 60%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sinca-hero-subtitle {
+  font-size: 18px;
+  color: var(--sinca-text-muted);
+  line-height: 1.65;
+  max-width: 720px;
+  margin: 0 auto 36px;
+}
+
+.sinca-hero-subtitle strong {
+  color: var(--sinca-primary);
+}
+
+.sinca-hero-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.sinca-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #0077b6 0%, #03045e 100%);
+  color: #ffffff;
+  padding: 16px 32px;
+  border-radius: var(--sinca-radius-sm);
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--sinca-shadow-glow);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.sinca-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(0, 119, 182, 0.35);
+  background: linear-gradient(135deg, #0284c7 0%, #03045e 100%);
+}
+
+.sinca-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #ffffff;
+  color: var(--sinca-primary);
+  padding: 16px 26px;
+  border-radius: var(--sinca-radius-sm);
+  font-size: 16px;
+  font-weight: 700;
+  border: 1.5px solid var(--sinca-border);
+  cursor: pointer;
+  box-shadow: var(--sinca-shadow-sm);
+  transition: all 0.25s ease;
+}
+
+.sinca-btn-secondary:hover {
+  background: #f8fafc;
+  border-color: var(--sinca-blue);
+  color: var(--sinca-blue);
+  transform: translateY(-1px);
+}
+
+.sinca-hero-trial-note {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sinca-text-light);
+  margin-bottom: 40px;
+}
+
+/* ==========================================================================
+   2. STATS & AUTHORITY STRIP
+   ========================================================================== */
+.sinca-stats-strip {
+  background: #ffffff;
+  border-top: 1px solid var(--sinca-border);
+  border-bottom: 1px solid var(--sinca-border);
+  padding: 32px 0;
+  box-shadow: var(--sinca-shadow-sm);
+}
+
+.sinca-stats-grid {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.sinca-stat-item {
+  text-align: center;
+  flex: 1;
+  min-width: 180px;
+}
+
+.sinca-stat-num {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--sinca-blue);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.sinca-stat-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--sinca-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sinca-stat-divider {
+  width: 1px;
+  height: 44px;
+  background: var(--sinca-border);
+}
+
+/* ==========================================================================
+   3. SEGMENTOS ATENDIDOS PELO SINCA RS (COM FOTOS REAIS)
+   ========================================================================== */
+.sinca-niches-section {
+  background: #f8fafc;
+}
+
+.sinca-niches-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.sinca-niche-card {
+  background: #ffffff;
+  border: 1px solid var(--sinca-border);
+  border-radius: var(--sinca-radius-md);
+  padding: 28px;
+  box-shadow: var(--sinca-shadow-sm);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.sinca-niche-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sinca-shadow-md);
+  border-color: rgba(0, 119, 182, 0.3);
+}
+
+.sinca-niche-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.sinca-niche-img-box {
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 4px 14px rgba(3, 4, 94, 0.12);
+  background: var(--sinca-blue-subtle);
+}
+
+.sinca-niche-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.sinca-niche-card:hover .sinca-niche-thumb {
+  transform: scale(1.08);
+}
+
+.sinca-niche-header h4 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--sinca-primary);
+  margin: 0 0 4px;
+}
+
+.sinca-niche-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--sinca-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sinca-niche-pain {
+  font-size: 14px;
+  color: var(--sinca-text-muted);
+  line-height: 1.55;
+  margin: 0 0 16px;
+  background: #f1f5f9;
+  padding: 12px 14px;
+  border-radius: 10px;
+}
+
+.sinca-niche-pain strong {
+  color: var(--sinca-primary);
+}
+
+.sinca-niche-list {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 13px;
+  color: var(--sinca-text-muted);
+  line-height: 1.6;
+}
+
+.sinca-niche-list li {
+  margin-bottom: 6px;
+}
+
+.sinca-niche-cta-card {
+  background: linear-gradient(135deg, #03045e 0%, #0077b6 100%);
+  color: #ffffff;
+  border: none;
+  justify-content: center;
+  text-align: center;
+}
+
+.sinca-niche-cta-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.sinca-niche-cta-card h4 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+}
+
+.sinca-niche-cta-card p {
+  font-size: 14px;
+  color: #e0f2fe;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.sinca-niche-cta-card .sinca-btn-primary {
+  background: #ffffff;
+  color: var(--sinca-primary);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.sinca-niche-cta-card .sinca-btn-primary:hover {
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+/* ==========================================================================
+   4. ESSENTIALS GRID (Clean 6 Pillars)
+   ========================================================================== */
+.sinca-essentials-section {
+  background: #ffffff;
+}
+
+.sinca-essentials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.sinca-essential-card {
+  background: #ffffff;
+  border: 1px solid var(--sinca-border);
+  border-radius: var(--sinca-radius-md);
+  padding: 32px 26px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.sinca-essential-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 24px;
+  right: 24px;
+  height: 3px;
+  background: linear-gradient(90deg, #0077b6, #10b981);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 4px;
+}
+
+.sinca-essential-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0, 119, 182, 0.3);
+  box-shadow: var(--sinca-shadow-md);
+}
+
+.sinca-essential-card:hover::before {
+  opacity: 1;
+}
+
+.sinca-essential-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--sinca-blue-subtle);
+  color: var(--sinca-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.sinca-essential-card h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--sinca-primary);
+  margin: 0 0 10px;
+}
+
+.sinca-essential-card p {
+  font-size: 14px;
+  color: var(--sinca-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ==========================================================================
+   5. SHOWCASE SECTION (Real Screens & Clean WhatsApp Mockup)
+   ========================================================================== */
+.sinca-showcase-section {
+  background: #f8fafc;
+}
+
+.sinca-showcase-container {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.sinca-showcase-card {
+  background: #ffffff;
+  border: 1px solid var(--sinca-border);
+  border-radius: var(--sinca-radius-lg);
+  padding: 44px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  box-shadow: var(--sinca-shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.sinca-showcase-card:hover {
+  box-shadow: var(--sinca-shadow-md);
+  border-color: rgba(0, 119, 182, 0.3);
+}
+
+.sinca-showcase-reverse {
+  grid-template-columns: 1fr 1fr;
+}
+
+.sinca-showcase-reverse .sinca-showcase-media {
+  order: 2;
+}
+
+.sinca-showcase-reverse .sinca-showcase-content {
+  order: 1;
+}
+
+.sinca-showcase-media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sinca-showcase-media img {
+  max-width: 100%;
+  width: 380px;
+  height: auto;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(3, 4, 94, 0.1);
+  border: 1px solid var(--sinca-border);
+}
+
+.sinca-showcase-media .video-wrapper {
+  max-width: 320px;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(3, 4, 94, 0.15);
+  border: 2px solid #ffffff;
+}
+
+.sinca-showcase-media video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.sinca-showcase-content {
+  text-align: left;
+}
+
+.sinca-showcase-content h3 {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--sinca-primary);
+  margin: 0 0 12px;
+  line-height: 1.3;
+}
+
+.sinca-showcase-content p {
+  font-size: 15px;
+  color: var(--sinca-text-muted);
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
+
+.sinca-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sinca-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--sinca-text-muted);
+  line-height: 1.5;
+}
+
+.sinca-check-icon {
+  color: var(--sinca-accent-emerald);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.sinca-tip-box {
+  background: #f0fdf4;
+  border-left: 4px solid #10b981;
+  padding: 12px 16px;
+  border-radius: 0 10px 10px 0;
+  font-size: 13px;
+  color: #166534;
+  line-height: 1.5;
+}
+
+/* WhatsApp Mockup Clean Style */
+.sinca-wa-mockup {
+  width: 100%;
+  max-width: 360px;
+  background: #efeae2;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(3, 4, 94, 0.12);
+  border: 1.5px solid #d1d7db;
+}
+
+.sinca-wa-header {
+  background: #008069;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+}
+
+.sinca-wa-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #008069;
+  font-weight: 800;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sinca-wa-title strong {
+  display: block;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.sinca-wa-title span {
+  font-size: 11px;
+  color: #d1fae5;
+}
+
+.sinca-wa-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sinca-wa-bubble {
+  background: #ffffff;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  color: #111b21;
+  line-height: 1.45;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  max-width: 90%;
+  position: relative;
+}
+
+.sinca-wa-bubble-outgoing {
+  background: #d9fdd3;
+  align-self: flex-end;
+}
+
+.sinca-wa-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #e0f2fe;
+  color: #0369a1;
+  margin-bottom: 6px;
+}
+
+.sinca-wa-time {
+  font-size: 10px;
+  color: #667781;
+  text-align: right;
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   6. PRICING SECTION WITH SINCA RS DISCOUNT
+   ========================================================================== */
+.sinca-pricing-section {
+  background: #ffffff;
+}
+
+.sinca-period-selector {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+
+.sinca-period-btn {
+  background: #ffffff;
+  border: 1.5px solid var(--sinca-border);
+  border-radius: 14px;
+  padding: 12px 24px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.25s ease;
+}
+
+.sinca-period-btn span {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--sinca-primary);
+}
+
+.sinca-period-btn:hover {
+  border-color: var(--sinca-blue);
+  transform: translateY(-2px);
+}
+
+.sinca-period-active {
+  background: var(--sinca-blue-subtle);
+  border-color: var(--sinca-blue);
+  box-shadow: 0 4px 14px rgba(0, 119, 182, 0.15);
+}
+
+.sinca-period-active span {
+  color: var(--sinca-blue);
+}
+
+.sinca-discount-tag {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: #10b981;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.sinca-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.sinca-plan-card {
+  background: #ffffff;
+  border: 1.5px solid var(--sinca-border);
+  border-radius: var(--sinca-radius-lg);
+  padding: 36px 24px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--sinca-shadow-sm);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.sinca-plan-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--sinca-shadow-lg);
+  border-color: var(--sinca-blue);
+}
+
+.sinca-plan-featured {
+  border-color: var(--sinca-blue);
+  box-shadow: var(--sinca-shadow-md);
+  background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
+  transform: scale(1.02);
+}
+
+.sinca-plan-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #0077b6, #03045e);
+  color: white;
+  padding: 4px 14px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.sinca-plan-name {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--sinca-primary);
+  margin: 0 0 6px;
+}
+
+.sinca-plan-limit {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--sinca-blue);
+  background: var(--sinca-blue-subtle);
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.sinca-price-box {
+  margin-bottom: 24px;
+}
+
+.sinca-original-price {
+  font-size: 13px;
+  color: var(--sinca-text-light);
+  text-decoration: line-through;
+  margin-bottom: 2px;
+}
+
+.sinca-main-price {
+  font-size: 38px;
+  font-weight: 900;
+  color: var(--sinca-primary);
+  line-height: 1;
+  display: flex;
+  align-items: baseline;
+  letter-spacing: -0.02em;
+}
+
+.sinca-currency {
+  font-size: 18px;
+  font-weight: 700;
+  margin-right: 4px;
+  color: var(--sinca-blue);
+}
+
+.sinca-period {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sinca-text-light);
+  margin-left: 4px;
+}
+
+.sinca-daily-price {
+  font-size: 12px;
+  color: var(--sinca-accent-emerald);
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+.sinca-plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.sinca-plan-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--sinca-text-muted);
+  line-height: 1.45;
+}
+
+.sinca-plan-btn {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: var(--sinca-radius-sm);
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  border: 1.5px solid var(--sinca-border);
+  background: #ffffff;
+  color: var(--sinca-primary);
+  transition: all 0.25s ease;
+}
+
+.sinca-plan-btn:hover {
+  background: var(--sinca-blue-subtle);
+  border-color: var(--sinca-blue);
+  color: var(--sinca-blue);
+}
+
+.sinca-plan-btn-featured {
+  background: linear-gradient(135deg, #0077b6 0%, #03045e 100%);
+  color: #ffffff;
+  border: none;
+  box-shadow: var(--sinca-shadow-glow);
+}
+
+.sinca-plan-btn-featured:hover {
+  background: linear-gradient(135deg, #0284c7 0%, #03045e 100%);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   7. FAQ ACCORDION (Interactive Clean Style)
+   ========================================================================== */
+.sinca-faq-section {
+  background: #f8fafc;
+}
+
+.sinca-faq-container {
+  max-width: 840px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sinca-faq-item {
+  background: #ffffff;
+  border: 1px solid var(--sinca-border);
+  border-radius: var(--sinca-radius-sm);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sinca-faq-item:hover {
+  border-color: rgba(0, 119, 182, 0.4);
+}
+
+.sinca-faq-open {
+  border-color: var(--sinca-blue);
+  box-shadow: var(--sinca-shadow-sm);
+}
+
+.sinca-faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  user-select: none;
+}
+
+.sinca-faq-q-text {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--sinca-primary);
+  line-height: 1.4;
+}
+
+.sinca-faq-chevron {
+  color: var(--sinca-blue);
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+
+.sinca-chevron-rotated {
+  transform: rotate(180deg);
+}
+
+.sinca-faq-answer {
+  padding: 0 24px 24px;
+  font-size: 15px;
+  color: var(--sinca-text-muted);
+  line-height: 1.65;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 16px;
+}
+
+/* ==========================================================================
+   8. FINAL CTA BANNER
+   ========================================================================== */
+.sinca-final-cta {
+  background: linear-gradient(135deg, #03045e 0%, #0077b6 100%);
+  color: #ffffff;
+  padding: 80px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.sinca-final-cta::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 300px;
+  background: radial-gradient(ellipse, rgba(0, 180, 216, 0.3) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.sinca-cta-content {
+  max-width: 740px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.sinca-cta-content h2 {
+  font-size: 38px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.25;
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
+}
+
+.sinca-cta-content p {
+  font-size: 18px;
+  color: #e0f2fe;
+  line-height: 1.6;
+  margin: 0 0 36px;
+}
+
+.sinca-btn-cta-large {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #ffffff;
+  color: var(--sinca-primary);
+  font-size: 17px;
+  font-weight: 800;
+  padding: 18px 36px;
+  border-radius: var(--sinca-radius-sm);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+.sinca-btn-cta-large:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
+  background: #f8fafc;
+  color: var(--sinca-blue);
+}
+
+/* ==========================================================================
+   RESPONSIVENESS
+   ========================================================================== */
+@media (max-width: 1200px) {
+  .sinca-pricing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .sinca-hero-title {
+    font-size: 40px;
+  }
+  .sinca-niches-grid,
+  .sinca-essentials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .sinca-showcase-card,
+  .sinca-showcase-reverse {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 32px;
+  }
+  .sinca-showcase-reverse .sinca-showcase-media {
+    order: 1;
+  }
+  .sinca-showcase-reverse .sinca-showcase-content {
+    order: 2;
+  }
+  .sinca-showcase-content {
+    text-align: left;
+  }
+}
+
+@media (max-width: 768px) {
+  .sinca-hero-title {
+    font-size: 32px;
+  }
+  .sinca-section-title {
+    font-size: 28px;
+  }
+  .sinca-niches-grid,
+  .sinca-essentials-grid {
+    grid-template-columns: 1fr;
+  }
+  .sinca-pricing-grid {
+    grid-template-columns: 1fr;
+  }
+  .sinca-plan-featured {
+    transform: none;
+  }
+  .sinca-stat-divider {
+    display: none;
+  }
+  .sinca-stats-grid {
+    gap: 28px;
+  }
+  .sinca-showcase-card {
+    padding: 28px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sinca-hero {
+    padding: 50px 0 40px;
+  }
+  .sinca-hero-title {
+    font-size: 28px;
+  }
+  .sinca-hero-subtitle {
+    font-size: 15px;
+  }
+  .sinca-btn-primary,
+  .sinca-btn-secondary,
+  .sinca-btn-cta-large {
+    width: 100%;
+  }
+  .sinca-period-selector {
+    flex-direction: column;
+    width: 100%;
+  }
+  .sinca-period-btn {
+    width: 100%;
+  }
+}
