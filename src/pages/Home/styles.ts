@@ -1150,6 +1150,8 @@ export const Solutions = styled.div`
   .player {
     display: flex;
     justify-content: center;
+    align-items: center;
+    width: 100%;
   }
 
   @media (max-width: 1780px) {
@@ -2906,6 +2908,70 @@ export const WABubble = styled.div<{ $outgoing?: boolean }>`
       width: 14px;
       height: 14px;
       color: #53bdeb;
+    }
+  }
+`;
+
+// Video / App Demo Phone Mockup Container (semelhante a salao-estetica)
+export const VideoContainer = styled.div`
+  max-width: 280px;
+  width: 100%;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 10px 8px 12px;
+  border-radius: 36px;
+  border: 1px solid rgba(0, 119, 182, 0.35);
+  box-shadow: 
+    0 25px 50px -12px rgba(3, 4, 94, 0.18),
+    0 0 0 4px #f8fafc,
+    0 0 0 6px rgba(0, 119, 182, 0.2);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+      0 35px 65px -15px rgba(3, 4, 94, 0.25),
+      0 0 0 4px #f8fafc,
+      0 0 0 6px rgba(0, 119, 182, 0.28);
+  }
+
+  .phone-notch {
+    width: 65px;
+    height: 10px;
+    background: #0f172a;
+    border-radius: 10px;
+    margin: 0 auto 10px;
+    flex-shrink: 0;
+  }
+
+  video {
+    width: 100%;
+    max-height: 520px;
+    height: auto;
+    display: block;
+    border-radius: 24px;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 240px;
+    padding: 8px 6px 10px;
+    border-radius: 30px;
+
+    .phone-notch {
+      width: 50px;
+      height: 8px;
+      margin-bottom: 8px;
+    }
+
+    video {
+      max-height: 440px;
+      border-radius: 20px;
     }
   }
 `;

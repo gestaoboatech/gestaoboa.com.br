@@ -16,7 +16,6 @@ import { UnformErrors } from "../../interfaces/interfaces";
 import { FB_PIXEL } from "../../utils/pixel";
 
 import { Helmet } from "react-helmet-async";
-import ReactPlayer from "react-player";
 import {
   Banner,
   HeroBadge,
@@ -37,6 +36,7 @@ import {
   InstagramSection,
   Segments,
   Solutions,
+  VideoContainer,
   WhatsAppSection,
   WhatsAppContent,
   WhatsAppBadge,
@@ -1500,43 +1500,57 @@ const Home: FunctionComponent = () => {
                 </div>
               </div>{" "}
               <div className="player">
-                <ReactPlayer
-                  className="buying"
-                  url="/video app.mp4"
-                  width="fit-content"
-                  height="85vh"
-                  controls={true}
-                  loop={true}
-                  playing={true}
-                  muted
-                  onStart={() =>
-                    FB_PIXEL.trackCustomEvent("DemoVideoStart", {
-                      video: "demonstracao",
-                      section: "demonstration",
-                    })
-                  }
-                  onPlay={() =>
-                    FB_PIXEL.trackCustomEvent("DemoVideoPlay", {
-                      video: "demonstracao",
-                      section: "demonstration",
-                    })
-                  }
-                  onPause={() =>
-                    FB_PIXEL.trackCustomEvent("DemoVideoPause", {
-                      video: "demonstracao",
-                      section: "demonstration",
-                    })
-                  }
-                  onProgress={(state) => {
-                    const progress = Math.floor(state.played * 100);
-                    if (progress === 25 || progress === 50 || progress === 75) {
-                      FB_PIXEL.trackCustomEvent("DemoVideoProgress", {
+                <VideoContainer>
+                  <div className="phone-notch" />
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    onClick={(e) => {
+                      const video = e.currentTarget;
+                      if (video.paused) {
+                        video.play();
+                      } else {
+                        video.pause();
+                      }
+                    }}
+                    style={{ cursor: "pointer" }}
+                    title="Clique para pausar ou reproduzir"
+                    onPlay={() =>
+                      FB_PIXEL.trackCustomEvent("DemoVideoPlay", {
                         video: "demonstracao",
-                        progress: `${progress}%`,
-                      });
+                        section: "demonstration",
+                      })
                     }
-                  }}
-                />
+                    onPause={() =>
+                      FB_PIXEL.trackCustomEvent("DemoVideoPause", {
+                        video: "demonstracao",
+                        section: "demonstration",
+                      })
+                    }
+                    onTimeUpdate={(e) => {
+                      const video = e.currentTarget;
+                      if (!video.duration) return;
+                      const progress = Math.floor(
+                        (video.currentTime / video.duration) * 100
+                      );
+                      if (
+                        progress === 25 ||
+                        progress === 50 ||
+                        progress === 75
+                      ) {
+                        FB_PIXEL.trackCustomEvent("DemoVideoProgress", {
+                          video: "demonstracao",
+                          progress: `${progress}%`,
+                        });
+                      }
+                    }}
+                  >
+                    <source src="/video app.mp4" type="video/mp4" />
+                    Seu navegador não suporta vídeos.
+                  </video>
+                </VideoContainer>
               </div>
             </div>
           </Solutions>
