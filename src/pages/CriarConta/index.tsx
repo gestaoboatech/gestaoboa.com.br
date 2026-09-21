@@ -52,7 +52,7 @@ const AppleIcon: React.FC<{ width?: string | number; height?: string | number }>
   </svg>
 );
 
-type PlanType = "basico" | "crescimento" | "empresarial" | "ilimitado" | "black-friday";
+type PlanType = "basico" | "crescimento" | "empresarial" | "ilimitado";
 
 const PLAN_CONFIG: Record<PlanType, {
   name: string;
@@ -81,13 +81,6 @@ const PLAN_CONFIG: Record<PlanType, {
     price: "R$ 159,90/mês",
     paymentLink: "https://www.app.gestaoboa.com.br",
   },
-  "black-friday": {
-    name: "Black Friday",
-    price: "R$ 9,90",
-    originalPrice: "R$ 535,00",
-    paymentLink: "https://www.app.gestaoboa.com.br",
-    discount: "98% OFF",
-  },
 };
 
 const SCALE_OPTIONS = [
@@ -102,8 +95,23 @@ const CriarConta: React.FC = () => {
   const navigate = useNavigate();
   const planParam = searchParams.get("plano") as PlanType | null;
   const cupomParam = searchParams.get("cupom") || searchParams.get("desconto");
+  const eventoParam = searchParams.get("evento") || searchParams.get("parceria") || searchParams.get("origem");
+
+  const isSupremacy =
+    cupomParam?.toUpperCase() === "SUPREMACY10" ||
+    cupomParam?.toUpperCase() === "SUPREMACY" ||
+    eventoParam?.toLowerCase() === "supremacy" ||
+    searchParams.has("supremacy") ||
+    searchParams.has("supremacy10");
+
   const plan = planParam && PLAN_CONFIG[planParam] ? planParam : null;
-  const planConfig = plan ? PLAN_CONFIG[plan] : null;
+  const basePlanConfig = plan ? PLAN_CONFIG[plan] : null;
+  const planConfig = basePlanConfig
+    ? {
+        ...basePlanConfig,
+        discount: isSupremacy ? "10% OFF" : basePlanConfig.discount,
+      }
+    : null;
 
   const [currentStep, setCurrentStep] = useState(1);
   const [companyStep, setCompanyStep] = useState(0);
@@ -123,7 +131,10 @@ const CriarConta: React.FC = () => {
 
   // Company form states
   const [companyName, setCompanyName] = useState("");
-  const [discountCode, setDiscountCode] = useState(cupomParam ? cupomParam.toUpperCase() : "");
+  const initialDiscountCode = isSupremacy
+    ? "SUPREMACY10"
+    : cupomParam ? cupomParam.toUpperCase() : "";
+  const [discountCode, setDiscountCode] = useState(initialDiscountCode);
   const [selectedCategory, setSelectedCategory] = useState<EnterpriseBranch | null>(null);
   const [selectedScale, setSelectedScale] = useState<typeof SCALE_OPTIONS[0] | null>(null);
   const [categories, setCategories] = useState<EnterpriseBranch[]>([]);
@@ -468,6 +479,11 @@ const CriarConta: React.FC = () => {
                 className="company-input"
               />
             </div>
+            {isSupremacy && discountCode.toUpperCase() === "SUPREMACY10" && (
+              <p className="supremacy-applied-helper">
+                ✓ Cupom SUPREMACY10 do Evento Supremacy aplicado (10% OFF)!
+              </p>
+            )}
           </div>
         );
 
@@ -536,6 +552,12 @@ const CriarConta: React.FC = () => {
               <AppleIcon width={16} height={16} />
               <span>Baixar no iOS</span>
             </a>
+            {isSupremacy && !planConfig && (
+              <div className="supremacy-header-badge">
+                <span className="supremacy-badge-icon">🏆</span>
+                <span>Evento Supremacy • 10% OFF</span>
+              </div>
+            )}
             {planConfig && (
               <div className="plan-badge">
                 {planConfig.discount && <span className="discount-badge">{planConfig.discount}</span>}
@@ -557,19 +579,47 @@ const CriarConta: React.FC = () => {
         <div className="signup-container">
           {/* Left Side - Info */}
           <div className="signup-info">
-            <h1>
-              {plan === "black-friday" ? (
-                <>🔥 Aproveite a <span className="highlight">Black Friday</span></>
-              ) : (
-                <>Comece sua jornada com o <span className="highlight">Gestão Boa</span></>
-              )}
-            </h1>
-            <p className="info-description">
-              {plan === "black-friday"
-                ? "Garanta acesso completo ao sistema por apenas R$ 9,90 e transforme a gestão do seu negócio!"
-                : "Simplifique a gestão do seu negócio com nossa plataforma completa e intuitiva."
-              }
-            </p>
+            {isSupremacy ? (
+              <>
+                <div className="supremacy-welcome-badge">
+                  <span>🏆</span> Evento Supremacy
+                </div>
+                <h1>
+                  Bem-vindo ao Gestão Boa, participante do{" "}
+                  <span className="highlight">Evento Supremacy</span>!
+                </h1>
+                <p className="info-description">
+                  Preparamos uma condição exclusiva para você: aproveite{" "}
+                  <strong>10% OFF em todos os planos</strong> com o cupom{" "}
+                  <span className="cupom-highlight">SUPREMACY10</span>. Otimize sua agenda, finanças e clientes em um só lugar.
+                </p>
+
+                <div className="supremacy-promo-card">
+                  <div className="supremacy-tag">
+                    <span>⭐ BENEFÍCIO EXCLUSIVO</span>
+                  </div>
+                  <div className="supremacy-content">
+                    <div className="supremacy-discount-header">
+                      <span className="supremacy-discount-num">10% OFF</span>
+                      <span className="supremacy-discount-txt">em todos os planos</span>
+                    </div>
+                    <div className="supremacy-coupon-box">
+                      <span>Cupom do evento:</span>
+                      <strong>SUPREMACY10</strong>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <h1>
+                  Comece sua jornada com o <span className="highlight">Gestão Boa</span>
+                </h1>
+                <p className="info-description">
+                  Simplifique a gestão do seu negócio com nossa plataforma completa e intuitiva.
+                </p>
+              </>
+            )}
 
             <div className="benefits-list">
               <div className="benefit-item">
@@ -593,16 +643,6 @@ const CriarConta: React.FC = () => {
                 <span>Suporte Dedicado</span>
               </div>
             </div>
-
-            {plan === "black-friday" && (
-              <div className="guarantee-box">
-                <span className="guarantee-icon">🛡️</span>
-                <div>
-                  <strong>Garantia de 7 dias</strong>
-                  <p>Se não gostar, devolvemos 100% do seu dinheiro</p>
-                </div>
-              </div>
-            )}
 
             <div className="app-download-box">
               <div className="app-download-info">
@@ -637,6 +677,16 @@ const CriarConta: React.FC = () => {
                     <h2>Criar sua conta</h2>
                     <p>Preencha seus dados para começar</p>
                   </div>
+
+                  {isSupremacy && (
+                    <div className="supremacy-step-alert">
+                      <span className="supremacy-step-alert-icon">🎁</span>
+                      <div>
+                        <strong>Desconto de 10% do Evento Supremacy garantido!</strong>
+                        <div>Cupom <strong>SUPREMACY10</strong> aplicado para todos os planos.</div>
+                      </div>
+                    </div>
+                  )}
 
                   <form onSubmit={handleSubmit} className="signup-form" noValidate>
                     <div className="form-row">
