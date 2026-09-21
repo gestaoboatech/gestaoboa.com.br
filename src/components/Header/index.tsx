@@ -35,6 +35,28 @@ export default function Header() {
     closeMenu();
   };
 
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    to: string,
+    sectionName: string
+  ) => {
+    e.preventDefault();
+    trackNavigation(sectionName);
+    closeMenu();
+
+    if (to.startsWith("/#")) {
+      const hash = to.substring(1);
+      if (window.location.pathname === "/") {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+          return;
+        }
+      }
+    }
+    navigate(to);
+  };
+
   return (
     <Container
       isMenuOpen={isMenuOpen}
@@ -48,7 +70,7 @@ export default function Header() {
       }}
     >
       <Logo onClick={() => navigate("/")}>
-        <LogoImg src="/beasier-1-1-1@2x.png" alt="logo beasier" />
+        <LogoImg src="/beasier-1-1-1@2x.png" alt="Logo Gestão Boa" width="36" height="36" />
         <Title>Gestão Boa</Title>
       </Logo>{" "}
       <Links>
@@ -56,7 +78,7 @@ export default function Header() {
           href="/#start"
           title="Ir para início"
           data-to-scrollspy-id="start"
-          onClick={() => trackNavigation("inicio")}
+          onClick={(e) => handleNavClick(e, "/#start", "inicio")}
         >
           INÍCIO
         </LinkItem>
@@ -64,7 +86,7 @@ export default function Header() {
           href="/solucao"
           title="Ver nossas soluções"
           data-to-scrollspy-id="solution"
-          onClick={() => trackNavigation("solucao")}
+          onClick={(e) => handleNavClick(e, "/solucao", "solucao")}
         >
           SOLUÇÃO
         </LinkItem>
@@ -72,18 +94,14 @@ export default function Header() {
           href="/preco"
           title="Ver nossos planos"
           className="pricing"
-          onClick={() => trackNavigation("Planos")}
+          onClick={(e) => handleNavClick(e, "/preco", "Planos")}
         >
           PLANOS
         </LinkItem>
         <LinkItem
           href="/influenciador"
           title="Seja um afiliado Gestão Boa"
-          onClick={(e) => {
-            e.preventDefault();
-            navigate("/influenciador");
-            trackNavigation("afiliado");
-          }}
+          onClick={(e) => handleNavClick(e, "/influenciador", "afiliado")}
         >
           SEJA UM AFILIADO
         </LinkItem>
@@ -91,7 +109,7 @@ export default function Header() {
           href="/sobre"
           title="Conheça nossa equipe"
           data-to-scrollspy-id="team"
-          onClick={() => trackNavigation("sobre")}
+          onClick={(e) => handleNavClick(e, "/sobre", "sobre")}
         >
           SOBRE NÓS
         </LinkItem>
@@ -99,7 +117,7 @@ export default function Header() {
           href="/#contact"
           title="Entre em contato"
           data-to-scrollspy-id="contact"
-          onClick={() => trackNavigation("contato")}
+          onClick={(e) => handleNavClick(e, "/#contact", "contato")}
         >
           CONTATO
         </LinkItem>
@@ -117,14 +135,14 @@ export default function Header() {
         <LinkItem
           href="/#start"
           title="Ir para início"
-          onClick={() => trackNavigation("inicio")}
+          onClick={(e) => handleNavClick(e, "/#start", "inicio")}
         >
           INÍCIO
         </LinkItem>
         <LinkItem
           href="/solucao"
           title="Ver nossas soluções"
-          onClick={() => trackNavigation("solucao")}
+          onClick={(e) => handleNavClick(e, "/solucao", "solucao")}
         >
           SOLUÇÃO
         </LinkItem>
@@ -132,32 +150,28 @@ export default function Header() {
           href="/preco"
           title="Ver nossos planos"
           className="pricing"
-          onClick={() => trackNavigation("Planos")}
+          onClick={(e) => handleNavClick(e, "/preco", "Planos")}
         >
           PLANOS
         </LinkItem>
         <LinkItem
           href="/influenciador"
           title="Seja um afiliado Gestão Boa"
-          onClick={(e) => {
-            e.preventDefault();
-            navigate("/influenciador");
-            trackNavigation("afiliado");
-          }}
+          onClick={(e) => handleNavClick(e, "/influenciador", "afiliado")}
         >
           SEJA UM AFILIADO
         </LinkItem>
         <LinkItem
           href="/sobre"
           title="Conheça nossa equipe"
-          onClick={() => trackNavigation("sobre")}
+          onClick={(e) => handleNavClick(e, "/sobre", "sobre")}
         >
           SOBRE NÓS
         </LinkItem>
         <LinkItem
           href="/#contact"
           title="Entre em contato"
-          onClick={() => trackNavigation("contato")}
+          onClick={(e) => handleNavClick(e, "/#contact", "contato")}
         >
           CONTATO
         </LinkItem>{" "}

@@ -33,7 +33,7 @@ const CookieConsentModal: React.FC = () => {
       <div className="cookie-consent-content">
         <p>
           Nós usamos cookies para melhorar sua experiência e para fins de marketing. Ao continuar, você concorda com o uso de cookies. Saiba mais em nossa{" "}
-          <Link to="/privacidade" className="cookie-privacy-link">
+          <Link to="/privacy" className="cookie-privacy-link">
             Política de Privacidade
           </Link>
           .

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface BreadcrumbItem {
   name: string;
@@ -45,14 +46,14 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, currentPage }) => {
       <nav aria-label="Breadcrumb" className="breadcrumbs">
         <ol>
           <li>
-            <a href="/" title="Voltar para página inicial">Home</a>
+            <Link to="/" title="Voltar para página inicial">Home</Link>
           </li>
           {items.map((item, index) => (
             <li key={index}>
               <span aria-hidden="true"> › </span>
-              <a href={item.url} title={`Ir para ${item.name}`}>
+              <Link to={item.url} title={`Ir para ${item.name}`}>
                 {item.name}
-              </a>
+              </Link>
             </li>
           ))}
           <li>

@@ -9,12 +9,22 @@ export const Container = styled.div`
     background-color: #03045E;
     color: #fff;
 
-    a { color: #fff; font-weight: bold; text-decoration: none; }
+    a { 
+        color: #fff; 
+        font-weight: 600; 
+        text-decoration: none; 
+        transition: color 0.2s ease, opacity 0.2s ease;
+
+        &:hover {
+            color: #90e0ef;
+            opacity: 0.95;
+        }
+    }
 
     .link, .link-mobile {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 10px;
         justify-content: center;
         font-size: 14px;
     }
@@ -25,18 +35,25 @@ export const Container = styled.div`
 
     .logo {
         display: flex;
-        flex-direction: column;
-        font-weight: bold;
-        font-size: 24px;
         justify-content: center;
         align-items: center;
     }
 
+    .logo-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-weight: bold;
+        font-size: 24px;
+        color: #fff;
+        text-decoration: none;
+    }
+
     .logo img {
         width: 50px;
-        height: auto;
+        height: 50px;
         object-fit: contain;
-        margin-bottom: -6px;
+        margin-bottom: 2px;
     }
 
     .copyright {

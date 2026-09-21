@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FB_PIXEL } from "../../utils/pixel";
 
@@ -63,6 +64,7 @@ const StickyButton = styled.a`
 `;
 
 export const StickyMobileCTA: React.FC = () => {
+  const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -83,14 +85,16 @@ export const StickyMobileCTA: React.FC = () => {
     <StickyContainer $visible={visible}>
       <StickyInfo>
         <span className="main-text">⚡ Gestão Boa</span>
-        <span className="sub-text">20 dias grátis • Sem cartão</span>
+        <span className="sub-text">10 dias grátis • Sem cartão</span>
       </StickyInfo>
       <StickyButton
-        href="/criar-conta?plano=crescimento"
-        onClick={() => {
+        href="/criar-conta"
+        onClick={(e) => {
+          e.preventDefault();
           FB_PIXEL.trackCustomEvent("StickyMobileCTAClick", {
             location: "mobile_bottom_bar",
           });
+          navigate("/criar-conta");
         }}
       >
         Testar Grátis ➔

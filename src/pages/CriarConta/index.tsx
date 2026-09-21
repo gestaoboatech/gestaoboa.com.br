@@ -102,8 +102,8 @@ const CriarConta: React.FC = () => {
   const navigate = useNavigate();
   const planParam = searchParams.get("plano") as PlanType | null;
   const cupomParam = searchParams.get("cupom") || searchParams.get("desconto");
-  const plan = planParam && PLAN_CONFIG[planParam] ? planParam : "black-friday";
-  const planConfig = PLAN_CONFIG[plan];
+  const plan = planParam && PLAN_CONFIG[planParam] ? planParam : null;
+  const planConfig = plan ? PLAN_CONFIG[plan] : null;
 
   const [currentStep, setCurrentStep] = useState(1);
   const [companyStep, setCompanyStep] = useState(0);
@@ -379,7 +379,11 @@ const CriarConta: React.FC = () => {
       // Trigger Google Ads conversion event
       gtag_report_conversion();
 
-      window.open(planConfig.paymentLink, "_blank");
+      if (planConfig) {
+        window.open(planConfig.paymentLink, "_blank");
+      } else {
+        window.open("https://app.gestaoboa.com.br", "_blank");
+      }
       navigate("/");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Erro ao criar empresa");
@@ -532,16 +536,18 @@ const CriarConta: React.FC = () => {
               <AppleIcon width={16} height={16} />
               <span>Baixar no iOS</span>
             </a>
-            <div className="plan-badge">
-              {planConfig.discount && <span className="discount-badge">{planConfig.discount}</span>}
-              <span className="plan-name">Plano {planConfig.name}</span>
-              <span className="plan-price">
-                {planConfig.originalPrice && (
-                  <span className="original-price">{planConfig.originalPrice}</span>
-                )}
-                {planConfig.price}
-              </span>
-            </div>
+            {planConfig && (
+              <div className="plan-badge">
+                {planConfig.discount && <span className="discount-badge">{planConfig.discount}</span>}
+                <span className="plan-name">Plano {planConfig.name}</span>
+                <span className="plan-price">
+                  {planConfig.originalPrice && (
+                    <span className="original-price">{planConfig.originalPrice}</span>
+                  )}
+                  {planConfig.price}
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </header>
@@ -818,7 +824,7 @@ const CriarConta: React.FC = () => {
                         {loading ? (
                           <span className="loading-spinner"></span>
                         ) : (
-                          <>Finalizar e Ir para Pagamento 🎉</>
+                          <>{planConfig ? "Finalizar e Ir para Pagamento 🎉" : "Finalizar Cadastro 🎉"}</>
                         )}
                       </button>
                     )}
