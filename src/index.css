@@ -1,10 +1,32 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+}
+
 body {
     margin: 0;
     padding: 0;
-    line-height: normal;
+    line-height: 1.5;
     font-family: "Mulish", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    color: #1e293b;
+    background-color: #ffffff;
+}
+
+::selection {
+    background-color: #0077b6;
+    color: #ffffff;
+}
+
+:focus-visible {
+    outline: 2px solid #0077b6;
+    outline-offset: 2px;
 }
 
 .active-scroll-spy {
@@ -16,8 +38,10 @@ body {
 img {
     max-width: 100%;
     height: auto;
+    display: block;
 }
 
 input, textarea, select {
     color-scheme: light;
+    font-family: inherit;
 }

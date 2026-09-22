@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import {
   loginUserWithPhone,
   registerUser,
@@ -8,6 +9,7 @@ import {
   createCompany,
   EnterpriseBranch,
   getEnterpriseBranches,
+  DEFAULT_ENTERPRISE_BRANCHES,
 } from "../../services/userApi";
 import "./styles.css";
 
@@ -124,10 +126,21 @@ const CriarConta: React.FC = () => {
     terms: false,
   });
   const [verificationCode, setVerificationCode] = useState("");
+  const [isCodeFocused, setIsCodeFocused] = useState(false);
+  const [caretIndex, setCaretIndex] = useState(0);
+  const codeInputRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [passwordError, setPasswordError] = useState(false);
   const [termsError, setTermsError] = useState(false);
+
+  useEffect(() => {
+    if (currentStep === 2) {
+      setTimeout(() => {
+        codeInputRef.current?.focus();
+      }, 100);
+    }
+  }, [currentStep]);
 
   // Company form states
   const [companyName, setCompanyName] = useState("");
@@ -137,13 +150,15 @@ const CriarConta: React.FC = () => {
   const [discountCode, setDiscountCode] = useState(initialDiscountCode);
   const [selectedCategory, setSelectedCategory] = useState<EnterpriseBranch | null>(null);
   const [selectedScale, setSelectedScale] = useState<typeof SCALE_OPTIONS[0] | null>(null);
-  const [categories, setCategories] = useState<EnterpriseBranch[]>([]);
+  const [categories, setCategories] = useState<EnterpriseBranch[]>(DEFAULT_ENTERPRISE_BRANCHES);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const fetchedCategories = await getEnterpriseBranches();
-        setCategories(fetchedCategories);
+        if (fetchedCategories && fetchedCategories.length > 0) {
+          setCategories(fetchedCategories);
+        }
       } catch (err) {
         console.error("Error fetching categories:", err);
       }
@@ -287,6 +302,9 @@ const CriarConta: React.FC = () => {
         throw new Error(result.error.message ?? "Erro ao reenviar o código");
       }
 
+      setVerificationCode("");
+      setCaretIndex(0);
+      codeInputRef.current?.focus();
       alert("Código reenviado com sucesso!");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Erro ao reenviar o código");
@@ -296,9 +314,10 @@ const CriarConta: React.FC = () => {
     }
   };
 
-  const handleVerifyCode = async () => {
-    if (verificationCode.length < 4) {
-      setError("Por favor, insira o código de 4 dígitos.");
+  const handleVerifyCode = async (codeToVerify?: string) => {
+    const code = codeToVerify || verificationCode;
+    if (code.length < 6) {
+      setError("Por favor, insira o código de 6 dígitos.");
       return;
     }
 
@@ -306,7 +325,7 @@ const CriarConta: React.FC = () => {
     setError(null);
 
     try {
-      const result = await verifyPhoneCode(formData.phone, verificationCode);
+      const result = await verifyPhoneCode(formData.phone, code);
       if (result.error) {
         throw new Error(result.error.message ?? "Código inválido");
       }
@@ -535,6 +554,14 @@ const CriarConta: React.FC = () => {
 
   return (
     <div className="signup-page">
+      <Helmet>
+        <title>Criar Conta | Teste Grátis de 10 Dias - Gestão Boa</title>
+        <meta
+          name="description"
+          content="Crie sua conta na Gestão Boa e experimente por 10 dias grátis sem cartão de crédito. Agendamento online, financeiro e controle total."
+        />
+        <link rel="canonical" href="https://gestaoboa.com.br/criar-conta" />
+      </Helmet>
       {/* Header */}
       <header className="signup-header">
         <div className="header-content">
@@ -796,24 +823,103 @@ const CriarConta: React.FC = () => {
                   <div className="confirmation-icon">📱</div>
                   <h2>Verifique seu Celular</h2>
                   <p>
-                    Enviamos um SMS com o código para{" "}
+                    Enviamos um SMS com o código de 6 dígitos para{" "}
                     <strong>{formData.phone}</strong>
                   </p>
 
-                  <div className="code-input-wrapper">
-                    <input
-                      type="text"
-                      maxLength={6} // Updated to 6 digits
-                      value={verificationCode}
-                      onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, ""))}
-                      placeholder="000000" // Updated placeholder to reflect 6 digits
-                      className="code-input"
-                      autoFocus
-                    />
+                  <div className="code-slots-wrapper">
+                    <div className="code-slots-field">
+                      <input
+                        ref={codeInputRef}
+                        type="text"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
+                        autoComplete="one-time-code"
+                        maxLength={6}
+                        value={verificationCode}
+                        onChange={(e) => {
+                          if (error) setError(null);
+                          const val = e.target.value.replace(/\D/g, "").slice(0, 6);
+                          setVerificationCode(val);
+                          setCaretIndex(val.length);
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" && verificationCode.length === 6) {
+                            e.preventDefault();
+                            handleVerifyCode();
+                          }
+                        }}
+                        onClick={(e) => {
+                          const input = e.currentTarget;
+                          const rect = input.getBoundingClientRect();
+                          const clickX = e.clientX - rect.left;
+                          const slotWidth = rect.width / 6;
+                          const clickedIndex = Math.min(Math.floor(clickX / slotWidth), 5);
+                          if (clickedIndex < verificationCode.length) {
+                            input.setSelectionRange(clickedIndex, clickedIndex + 1);
+                            setCaretIndex(clickedIndex);
+                          } else {
+                            const pos = verificationCode.length;
+                            input.setSelectionRange(pos, pos);
+                            setCaretIndex(pos);
+                          }
+                        }}
+                        onKeyUp={(e) => {
+                          const input = e.currentTarget;
+                          setCaretIndex(input.selectionStart ?? input.value.length);
+                        }}
+                        onSelect={(e) => {
+                          const input = e.currentTarget;
+                          setCaretIndex(input.selectionStart ?? input.value.length);
+                        }}
+                        onFocus={() => setIsCodeFocused(true)}
+                        onBlur={() => setIsCodeFocused(false)}
+                        className="code-hidden-input"
+                        autoFocus
+                        aria-label="Código de verificação de 6 dígitos"
+                      />
+
+                      <div className="code-slots-container">
+                        {[0, 1, 2, 3, 4, 5].map((index) => {
+                          const digit = verificationCode[index] || "";
+                          const isCurrent =
+                            isCodeFocused &&
+                            (caretIndex === index || (index === 5 && caretIndex >= 6));
+                          const isFilled = Boolean(digit);
+                          const hasError = Boolean(error);
+
+                          return (
+                            <div
+                              key={index}
+                              className={`code-slot ${isCurrent ? "focused" : ""} ${isFilled ? "filled" : ""} ${hasError ? "has-error" : ""}`}
+                            >
+                              <span className="code-slot-digit">{digit}</span>
+                              {isCurrent && !digit && <span className="code-slot-cursor" />}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {verificationCode.length > 0 && (
+                      <button
+                        type="button"
+                        className="code-clear-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setVerificationCode("");
+                          setCaretIndex(0);
+                          codeInputRef.current?.focus();
+                        }}
+                      >
+                        Limpar código
+                      </button>
+                    )}
                   </div>
 
                   <div className="confirmation-actions">
                     <button
+                      type="button"
                       className="secondary-btn"
                       onClick={handleResendCode}
                       disabled={loading}
@@ -821,9 +927,10 @@ const CriarConta: React.FC = () => {
                       {loading ? "Reenviando..." : "Reenviar Código"}
                     </button>
                     <button
+                      type="button"
                       className="primary-btn"
-                      onClick={handleVerifyCode}
-                      disabled={loading || verificationCode.length < 4}
+                      onClick={() => handleVerifyCode()}
+                      disabled={loading || verificationCode.length < 6}
                     >
                       {loading ? "Verificando..." : "Verificar e Continuar →"}
                     </button>
@@ -833,7 +940,7 @@ const CriarConta: React.FC = () => {
 
                   <div className="info-box">
                     <span className="info-icon">ℹ️</span>
-                    <p>O código foi enviado via SMS. Caso não receba, verifique se o número informado está correto.</p>
+                    <p>O código de 6 dígitos foi enviado via SMS. Caso não receba, verifique se o número informado está correto.</p>
                   </div>
                 </div>
               )}

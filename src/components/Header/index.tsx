@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FB_PIXEL } from "../../utils/pixel";
 import Button from "../Button";
 import {
@@ -17,6 +17,7 @@ import {
 
 export default function Header() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -77,6 +78,7 @@ export default function Header() {
         <LinkItem
           href="/#start"
           title="Ir para início"
+          $active={location.pathname === "/" && !location.hash}
           data-to-scrollspy-id="start"
           onClick={(e) => handleNavClick(e, "/#start", "inicio")}
         >
@@ -85,6 +87,7 @@ export default function Header() {
         <LinkItem
           href="/solucao"
           title="Ver nossas soluções"
+          $active={location.pathname === "/solucao"}
           data-to-scrollspy-id="solution"
           onClick={(e) => handleNavClick(e, "/solucao", "solucao")}
         >
@@ -93,6 +96,7 @@ export default function Header() {
         <LinkItem
           href="/preco"
           title="Ver nossos planos"
+          $active={location.pathname === "/preco"}
           className="pricing"
           onClick={(e) => handleNavClick(e, "/preco", "Planos")}
         >
@@ -101,6 +105,7 @@ export default function Header() {
         <LinkItem
           href="/influenciador"
           title="Seja um afiliado Gestão Boa"
+          $active={location.pathname === "/influenciador"}
           onClick={(e) => handleNavClick(e, "/influenciador", "afiliado")}
         >
           SEJA UM AFILIADO
@@ -108,6 +113,7 @@ export default function Header() {
         <LinkItem
           href="/sobre"
           title="Conheça nossa equipe"
+          $active={location.pathname === "/sobre"}
           data-to-scrollspy-id="team"
           onClick={(e) => handleNavClick(e, "/sobre", "sobre")}
         >
@@ -116,6 +122,7 @@ export default function Header() {
         <LinkItem
           href="/#contact"
           title="Entre em contato"
+          $active={location.hash === "#contact"}
           data-to-scrollspy-id="contact"
           onClick={(e) => handleNavClick(e, "/#contact", "contato")}
         >
@@ -126,6 +133,7 @@ export default function Header() {
         onClick={toggleMenu}
         isOpen={isMenuOpen}
         aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
+        aria-expanded={isMenuOpen}
       >
         <span></span>
         <span></span>
@@ -135,6 +143,7 @@ export default function Header() {
         <LinkItem
           href="/#start"
           title="Ir para início"
+          $active={location.pathname === "/" && !location.hash}
           onClick={(e) => handleNavClick(e, "/#start", "inicio")}
         >
           INÍCIO
@@ -142,6 +151,7 @@ export default function Header() {
         <LinkItem
           href="/solucao"
           title="Ver nossas soluções"
+          $active={location.pathname === "/solucao"}
           onClick={(e) => handleNavClick(e, "/solucao", "solucao")}
         >
           SOLUÇÃO
@@ -149,6 +159,7 @@ export default function Header() {
         <LinkItem
           href="/preco"
           title="Ver nossos planos"
+          $active={location.pathname === "/preco"}
           className="pricing"
           onClick={(e) => handleNavClick(e, "/preco", "Planos")}
         >
@@ -157,6 +168,7 @@ export default function Header() {
         <LinkItem
           href="/influenciador"
           title="Seja um afiliado Gestão Boa"
+          $active={location.pathname === "/influenciador"}
           onClick={(e) => handleNavClick(e, "/influenciador", "afiliado")}
         >
           SEJA UM AFILIADO
@@ -164,6 +176,7 @@ export default function Header() {
         <LinkItem
           href="/sobre"
           title="Conheça nossa equipe"
+          $active={location.pathname === "/sobre"}
           onClick={(e) => handleNavClick(e, "/sobre", "sobre")}
         >
           SOBRE NÓS
@@ -171,6 +184,7 @@ export default function Header() {
         <LinkItem
           href="/#contact"
           title="Entre em contato"
+          $active={location.hash === "#contact"}
           onClick={(e) => handleNavClick(e, "/#contact", "contato")}
         >
           CONTATO

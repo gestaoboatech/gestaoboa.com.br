@@ -9,12 +9,16 @@ export const Container = styled.div<{ isMenuOpen?: boolean }>`
     padding: 8px 5%;
     position: fixed;
     z-index: 200;
-    background-color: #ffff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
     top: 0;
     left: 0;
     right: 0;
     min-height: 54px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 
     &::after {
         content: '';
@@ -55,7 +59,7 @@ export const Container = styled.div<{ isMenuOpen?: boolean }>`
         position: fixed;
         top: 0;
         left: 0;
-        right: 10;
+        right: 0;
         min-height: 48px;
     }
 
@@ -143,32 +147,44 @@ export const Title = styled.div`
 
 export const Links = styled.div`
     display: flex;
+    align-items: center;
     gap: 20px;
     color: #03045E;
-    transition: all ease 0.5s;
-    border-bottom: 1px solid transparent;
-
-    :hover {
-        font-weight: bold;
-        border-bottom: 1px solid #03045E;
-    }
 
     @media (max-width: 1030px){
         display: none;
     }
 `
 
-export const LinkItem = styled.a`
+export const LinkItem = styled.a<{ $active?: boolean }>`
     cursor: pointer;
     text-decoration: none;
-    color: #03045E !important;
+    color: ${({ $active }) => ($active ? "#0077b6" : "#03045E")} !important;
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.5px;
+    padding: 6px 2px;
+    position: relative;
     transition: color 0.2s ease;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: ${({ $active }) => ($active ? "100%" : "0%")};
+        height: 2px;
+        background-color: #0077b6;
+        border-radius: 2px;
+        transition: width 0.25s ease;
+    }
 
     &:hover {
         color: #0077b6 !important;
+
+        &::after {
+            width: 100%;
+        }
     }
 `
 

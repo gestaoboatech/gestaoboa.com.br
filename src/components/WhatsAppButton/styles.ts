@@ -58,7 +58,7 @@ export const ButtonContainer = styled.div`
   animation-delay: 1s, 1.8s; // wait 1s before showing, then start floating
 
   @media (max-width: 768px) {
-    bottom: 16px;
+    bottom: 76px;
     right: 16px;
   }
 `;

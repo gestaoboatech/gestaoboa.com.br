@@ -3,6 +3,7 @@ import {
   createCompany,
   EnterpriseBranch,
   getEnterpriseBranches,
+  DEFAULT_ENTERPRISE_BRANCHES,
 } from "../../../services/userApi";
 import "./CompanyCreationForm.css";
 
@@ -33,15 +34,16 @@ const CompanyCreationForm: React.FC<CompanyCreationFormProps> = ({
   const [selectedScale, setSelectedScale] = useState<
     (typeof SCALE_OPTIONS)[0] | null
   >(null);
-  const [categories, setCategories] = useState<EnterpriseBranch[]>([]);
+  const [categories, setCategories] = useState<EnterpriseBranch[]>(DEFAULT_ENTERPRISE_BRANCHES);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const fetchedCategories = await getEnterpriseBranches();
-        setCategories(fetchedCategories);
+        if (fetchedCategories && fetchedCategories.length > 0) {
+          setCategories(fetchedCategories);
+        }
       } catch (err) {
-        setError("Erro ao carregar categorias");
         console.error("Error fetching categories:", err);
       }
     };

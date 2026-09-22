@@ -315,8 +315,29 @@
 .plan-type-selector {
   display: flex;
   justify-content: center;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   flex-wrap: wrap;
+}
+
+.pricing-trust-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 0 auto 36px auto;
+  padding: 8px 20px;
+  background: rgba(0, 119, 182, 0.06);
+  border: 1px solid rgba(0, 119, 182, 0.15);
+  border-radius: 9999px;
+  color: #03045e;
+  font-size: 0.88rem;
+  font-weight: 600;
+  max-width: fit-content;
+}
+
+.pricing-trust-banner .dot {
+  color: #94a3b8;
 }
 
 .plan-type-button {

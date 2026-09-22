@@ -1,5 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
+import { Helmet } from 'react-helmet-async'
+import { useNavigate } from 'react-router-dom'
 import { CheckIcon, PlayIcon, StarIcon } from '@heroicons/react/24/solid'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
+import { FB_PIXEL } from '../../utils/pixel'
 import SalesStyle from './sales'
 import GlassStyle from './glass'
 import AnimationsStyle from './animations'
@@ -68,6 +73,7 @@ const testimonials = [
 ]
 
 export default function Sales() {
+  const navigate = useNavigate()
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
   
   // Ref para os elementos que devem aparecer com scroll
@@ -79,7 +85,20 @@ export default function Sales() {
       revealRefs.current.push(el)
     }
   }
-    // Observer para animações no scroll
+
+  const handleCtaClick = () => {
+    FB_PIXEL.trackCustomEvent("SalesPageCTAClick", {
+      location: "sales_page",
+      timestamp: new Date().toISOString(),
+    });
+    navigate('/criar-conta');
+  };
+
+  const handleDemoClick = () => {
+    window.open("https://wa.me/5553999461550?text=Ol%C3%A1!%20Gostaria%20de%20ver%20uma%20demonstra%C3%A7%C3%A3o%20do%20Gest%C3%A3o%20Boa.", "_blank");
+  };
+
+  // Observer para animações no scroll
   useEffect(() => {
     const observerOptions = {
       root: null,
@@ -107,8 +126,21 @@ export default function Sales() {
       currentRefs.forEach(ref => observer.unobserve(ref))
     }
   }, [])
+
   return (
     <>
+      <Helmet>
+        <title>Transforme seu Negócio em uma Máquina de Vendas | Gestão Boa</title>
+        <meta
+          name="description"
+          content="O sistema de gestão mais completo e intuitivo do Brasil. Controle financeiro, agenda online, comissões automáticas e relatórios em tempo real. Teste grátis!"
+        />
+        <link rel="canonical" href="https://gestaoboa.com.br/vendas" />
+        <meta property="og:title" content="Transforme seu Negócio | Gestão Boa" />
+        <meta property="og:description" content="Controle financeiro, agenda online, comissões automáticas e relatórios em tempo real." />
+        <meta property="og:url" content="https://gestaoboa.com.br/vendas" />
+      </Helmet>
+      <Header />
       <SalesStyle />
       <GlassStyle />
       <AnimationsStyle />
@@ -130,14 +162,14 @@ export default function Sales() {
                 Máquina de Vendas
               </span>
             </h1>            <p className="text-xl md:text-2xl text-blue-100 mb-10 max-w-3xl mx-auto animate-slide-in-up delay-200">
-              O sistema de gestão mais completo do Brasil. Usado por mais de 50.000 empresários que já transformaram seus negócios.
+              O sistema de gestão mais completo do Brasil. Usado por milhares de profissionais que já transformaram seus negócios.
             </p>
             
             {/* Vídeo de Vendas */}
             <div className="max-w-4xl mx-auto mb-12 animate-slide-in-up delay-300">
               <div className="video-container">
                 {!isVideoPlaying ? (
-                  <div className="aspect-video flex items-center justify-center bg-gradient-to-br from-gray-900 to-black">
+                  <div className="aspect-video flex items-center justify-center bg-gradient-to-br from-gray-900 to-black relative">
                     <button
                       onClick={() => setIsVideoPlaying(true)}
                       className="video-play-button"
@@ -147,26 +179,26 @@ export default function Sales() {
                       <PlayIcon className="w-10 h-10 text-white ml-1" />
                     </button>
                     <div className="absolute bottom-6 left-6 text-white">
-                      <p className="text-sm md:text-base opacity-80">Veja como o GestãoBoa pode revolucionar seu negócio</p>
+                      <p className="text-sm md:text-base opacity-80">Veja como o Gestão Boa pode revolucionar seu negócio</p>
                     </div>
                   </div>
                 ) : (
-                  <iframe
-                    className="w-full aspect-video"
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
-                    title="GestãoBoa - Transforme seu negócio"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
+                  <video
+                    className="w-full aspect-video rounded-xl shadow-2xl"
+                    controls
+                    autoPlay
+                    playsInline
+                    src="/depoimentoLeandro.mp4"
+                  />
                 )}
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center animate-slide-in-up delay-400">
-              <button className="btn-primary hover-shine animate-pulse-glow">
+              <button onClick={handleCtaClick} className="btn-primary hover-shine animate-pulse-glow">
                 QUERO TRANSFORMAR MEU NEGÓCIO AGORA
               </button>
-              <button className="btn-secondary">
+              <button onClick={handleDemoClick} className="btn-secondary">
                 Ver Demonstração Gratuita
               </button>
             </div>
@@ -402,7 +434,7 @@ export default function Sales() {
             </div>
           </div>
 
-          <button className="btn-primary hover-shine animate-pulse-glow mb-8 fade-in-up delay-300" ref={addToRefs}>
+          <button onClick={handleCtaClick} className="btn-primary hover-shine animate-pulse-glow mb-8 fade-in-up delay-300" ref={addToRefs}>
             COMEÇAR MINHA TRANSFORMAÇÃO AGORA
           </button>
           
@@ -410,7 +442,9 @@ export default function Sales() {
             🔒 Seus dados estão seguros • 💳 Pagamento 100% seguro • ⚡ Ativação imediata
           </p>
         </div>
-      </section>    </div>
+      </section>
+      </div>
+      <Footer />
     </>
   )
 }

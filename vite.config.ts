@@ -10,8 +10,12 @@ export default defineConfig({
         manualChunks: {
           vendor: ["react", "react-dom", "react-router-dom"],
           styles: ["styled-components"],
+          icons: ["lucide-react", "@heroicons/react"],
+          analytics: ["posthog-js"],
+          stripe: ["@stripe/stripe-js", "@stripe/react-stripe-js"],
         },
       },
     },
+    chunkSizeWarningLimit: 600,
   },
 })

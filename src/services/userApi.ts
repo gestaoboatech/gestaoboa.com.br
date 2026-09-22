@@ -142,6 +142,29 @@ export interface EnterpriseBranch {
   name: string;
 }
 
+const ALLOWED_BRANCH_ORDER = [
+  "barbearia",
+  "cabeleireiro",
+  "salao de beleza",
+  "manicure e pedicure",
+  "outros",
+];
+
+const normalizeBranchName = (name: string) =>
+  name
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
+
+export const DEFAULT_ENTERPRISE_BRANCHES: EnterpriseBranch[] = [
+  { id: 9, name: "Barbearia" },
+  { id: 5, name: "Cabeleireiro" },
+  { id: 2, name: "Salão de beleza" },
+  { id: 3, name: "Manicure e pedicure" },
+  { id: 8, name: "Outros" },
+];
+
 export interface CompanyCreationData {
   name: string;
   scale: number;
@@ -152,13 +175,30 @@ export interface CompanyCreationData {
 export async function getEnterpriseBranches(): Promise<EnterpriseBranch[]> {
   try {
     const response = await axios.get(`${BASE_URL}/enterprises/branches`);
-    return response.data;
+    if (Array.isArray(response.data)) {
+      const filtered = response.data
+        .filter((branch: EnterpriseBranch) =>
+          ALLOWED_BRANCH_ORDER.includes(normalizeBranchName(branch.name || ""))
+        )
+        .sort((a: EnterpriseBranch, b: EnterpriseBranch) => {
+          const indexA = ALLOWED_BRANCH_ORDER.indexOf(
+            normalizeBranchName(a.name || "")
+          );
+          const indexB = ALLOWED_BRANCH_ORDER.indexOf(
+            normalizeBranchName(b.name || "")
+          );
+          return indexA - indexB;
+        });
+
+      if (filtered.length > 0) {
+        return filtered;
+      }
+    }
+    return DEFAULT_ENTERPRISE_BRANCHES;
   } catch (error: unknown) {
     const axiosError = error as any;
     console.log(axiosError.response?.data ?? axiosError);
-    throw new Error(
-      axiosError.response?.data?.message ?? "Erro ao carregar categorias"
-    );
+    return DEFAULT_ENTERPRISE_BRANCHES;
   }
 }
 

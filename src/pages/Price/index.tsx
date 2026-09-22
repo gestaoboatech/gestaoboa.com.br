@@ -410,11 +410,11 @@ const Price = () => {
           {[
             {
               type: "Anual",
-              discount: "Mais Vantajoso",
+              discount: "Economize até 20%",
             },
             {
               type: "Semestral",
-              discount: "Economia Semestral",
+              discount: "Economize até 15%",
             },
             { type: "Mensal" },
           ].map((plan) => (
@@ -433,7 +433,14 @@ const Price = () => {
               )}
             </button>
           ))}
-        </div>{" "}
+        </div>
+        <div className="pricing-trust-banner">
+          <span>🛡️ 10 dias de teste grátis</span>
+          <span className="dot">•</span>
+          <span>💳 Sem cartão de crédito</span>
+          <span className="dot">•</span>
+          <span>🔓 Cancele a qualquer momento</span>
+        </div>
         <div className="pricing-table-container">
           <table className="pricing-table">
             <thead>
