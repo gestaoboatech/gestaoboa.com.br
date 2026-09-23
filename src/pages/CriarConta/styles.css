@@ -30,11 +30,12 @@
 }
 
 .header-content {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .logo img {
@@ -130,6 +131,9 @@
 .signup-main {
   flex: 1;
   padding: 40px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .signup-container {
@@ -146,7 +150,9 @@
    ============================ */
 
 .signup-info {
-  padding: 40px 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .signup-info h1 {
@@ -233,6 +239,14 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  flex-wrap: wrap;
+}
+
+.app-download-badges {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .app-download-info strong {
@@ -297,6 +311,7 @@
 .signup-form-wrapper {
   width: 100%;
   max-width: 480px;
+  margin-left: auto;
 }
 
 /* Step Indicator */
@@ -1115,9 +1130,15 @@
 .signup-footer {
   background: linear-gradient(135deg, #03045e 0%, #0077b6 100%);
   padding: 20px 24px;
+}
+
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .signup-footer p {
@@ -1189,7 +1210,12 @@
   .app-download-box {
     flex-direction: column;
     text-align: center;
+    align-items: center;
     gap: 14px;
+  }
+
+  .app-download-badges {
+    justify-content: center;
   }
 
   .plan-badge {
@@ -1324,56 +1350,13 @@
    EVENTO SUPREMACY
    ============================ */
 
-.supremacy-header-badge {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 18px;
-  border-radius: 50px;
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(217, 119, 6, 0.35) 100%);
-  border: 1px solid rgba(245, 158, 11, 0.6);
-  color: #ffffff;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.3px;
-  box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
-  animation: glowPulse 3s infinite alternate;
-}
-
-.supremacy-welcome-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: linear-gradient(135deg, #b45309 0%, #d97706 100%);
-  color: #ffffff;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
-}
-
-.cupom-highlight {
-  background: #fef3c7;
-  color: #92400e;
-  font-family: monospace;
-  font-weight: 800;
-  padding: 2px 8px;
-  border-radius: 6px;
-  border: 1px dashed #d97706;
-  font-size: 1rem;
-}
-
 .supremacy-promo-card {
-  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-  border: 2px solid #f59e0b;
+  background: linear-gradient(135deg, #f0f7ff 0%, #e8f4fd 100%);
+  border: 2px solid #0077b6;
   border-radius: 16px;
   padding: 20px;
   margin-bottom: 28px;
-  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 119, 182, 0.12);
   position: relative;
   overflow: hidden;
 }
@@ -1382,11 +1365,11 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  background: linear-gradient(135deg, #03045e 0%, #0077b6 100%);
   color: #ffffff;
   padding: 4px 12px;
   border-radius: 20px;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -1395,8 +1378,10 @@
 
 .supremacy-content {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .supremacy-discount-header {
@@ -1409,7 +1394,7 @@
 .supremacy-discount-num {
   font-size: 2.2rem;
   font-weight: 900;
-  color: #b45309;
+  color: #0077b6;
   line-height: 1;
 }
 
@@ -1423,11 +1408,12 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(255, 255, 255, 0.95);
+  background: #ffffff;
   padding: 10px 16px;
   border-radius: 10px;
-  border: 1px dashed #d97706;
+  border: 1px dashed #0077b6;
   width: fit-content;
+  box-shadow: 0 2px 8px rgba(0, 119, 182, 0.08);
 }
 
 .supremacy-coupon-box span {
@@ -1437,26 +1423,9 @@
 
 .supremacy-coupon-box strong {
   font-size: 1.15rem;
-  color: #b45309;
+  color: #03045e;
   letter-spacing: 1.5px;
   font-family: monospace;
-}
-
-.supremacy-step-alert {
-  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-  border: 1px solid #fcd34d;
-  color: #92400e;
-  border-radius: 12px;
-  padding: 12px 16px;
-  font-size: 0.9rem;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.supremacy-step-alert-icon {
-  font-size: 1.4rem;
 }
 
 .supremacy-applied-helper {
@@ -1466,13 +1435,3 @@
   margin-top: 6px;
   margin-left: 4px;
 }
-
-@keyframes glowPulse {
-  0% {
-    box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
-  }
-  100% {
-    box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
-  }
-}
-

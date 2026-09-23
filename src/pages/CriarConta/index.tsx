@@ -38,6 +38,37 @@ function gtag_report_conversion(url?: string) {
 }
 
 const IOS_APP_URL = "https://apps.apple.com/br/app/gest%C3%A3o-boa/id6741593872";
+const ANDROID_APP_URL = "https://play.google.com/store/apps/details?id=com.beasier";
+
+const GooglePlayIcon: React.FC<{ width?: string | number; height?: string | number }> = ({
+  width = 18,
+  height = 18,
+}) => (
+  <svg
+    viewBox="0 0 512 512"
+    width={width}
+    height={height}
+    style={{ display: "inline-block", verticalAlign: "middle", flexShrink: 0 }}
+  >
+    <path
+      fill="#4285F4"
+      d="M47.7 24.3C45.3 26.9 44 31 44 36.3v439.4c0 5.3 1.3 9.4 3.7 12l1.4 1.3L273.8 264.3v-5.6L49.1 23l-1.4 1.3z"
+    />
+    <path
+      fill="#FBBC04"
+      d="M348.6 339.2l-74.8-74.9v-5.6l74.8-74.9 1.7 1 88.6 50.3c25.3 14.4 25.3 37.9 0 52.3l-88.6 50.8-1.7 1z"
+    />
+    <path
+      fill="#EA4335"
+      d="M350.3 338.2L273.8 261.7 47.7 487.8c8.3 8.8 22.1 9.9 37.7 1l264.9-150.6z"
+    />
+    <path
+      fill="#34A853"
+      d="M350.3 173.8L85.4 23.2C69.8 14.3 56 15.4 47.7 24.2l226.1 226.1 76.5-76.5z"
+    />
+  </svg>
+);
+
 
 const AppleIcon: React.FC<{ width?: string | number; height?: string | number }> = ({
   width = 18,
@@ -569,22 +600,6 @@ const CriarConta: React.FC = () => {
             <img src="/beasier-1-1-1@2x.png" alt="Gestão Boa" />
           </a>
           <div className="header-actions">
-            <a
-              href={IOS_APP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="app-store-header-btn"
-              title="Baixar app para iOS na App Store"
-            >
-              <AppleIcon width={16} height={16} />
-              <span>Baixar no iOS</span>
-            </a>
-            {isSupremacy && !planConfig && (
-              <div className="supremacy-header-badge">
-                <span className="supremacy-badge-icon">🏆</span>
-                <span>Evento Supremacy • 10% OFF</span>
-              </div>
-            )}
             {planConfig && (
               <div className="plan-badge">
                 {planConfig.discount && <span className="discount-badge">{planConfig.discount}</span>}
@@ -608,22 +623,17 @@ const CriarConta: React.FC = () => {
           <div className="signup-info">
             {isSupremacy ? (
               <>
-                <div className="supremacy-welcome-badge">
-                  <span>🏆</span> Evento Supremacy
-                </div>
                 <h1>
                   Bem-vindo ao Gestão Boa, participante do{" "}
                   <span className="highlight">Evento Supremacy</span>!
                 </h1>
                 <p className="info-description">
-                  Preparamos uma condição exclusiva para você: aproveite{" "}
-                  <strong>10% OFF em todos os planos</strong> com o cupom{" "}
-                  <span className="cupom-highlight">SUPREMACY10</span>. Otimize sua agenda, finanças e clientes em um só lugar.
+                  Otimize sua agenda, finanças e clientes em um só lugar com tecnologia de ponta.
                 </p>
 
                 <div className="supremacy-promo-card">
                   <div className="supremacy-tag">
-                    <span>⭐ BENEFÍCIO EXCLUSIVO</span>
+                    <span>🏆 BENEFÍCIO EXCLUSIVO</span>
                   </div>
                   <div className="supremacy-content">
                     <div className="supremacy-discount-header">
@@ -631,7 +641,7 @@ const CriarConta: React.FC = () => {
                       <span className="supremacy-discount-txt">em todos os planos</span>
                     </div>
                     <div className="supremacy-coupon-box">
-                      <span>Cupom do evento:</span>
+                      <span>Cupom aplicado:</span>
                       <strong>SUPREMACY10</strong>
                     </div>
                   </div>
@@ -673,22 +683,38 @@ const CriarConta: React.FC = () => {
 
             <div className="app-download-box">
               <div className="app-download-info">
-                <strong>Disponível para iPhone e iPad</strong>
-                <p>Baixe o aplicativo oficial na App Store</p>
+                <strong>Baixe nosso aplicativo</strong>
+                <p>Disponível para iOS e Android</p>
               </div>
-              <a
-                href={IOS_APP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="app-store-badge-btn"
-                title="Baixar na App Store"
-              >
-                <AppleIcon width={22} height={22} />
-                <div className="app-store-btn-labels">
-                  <span className="app-store-sub">Disponível na</span>
-                  <span className="app-store-main">App Store</span>
-                </div>
-              </a>
+              <div className="app-download-badges">
+                <a
+                  href={IOS_APP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="app-store-badge-btn"
+                  title="Baixar na App Store"
+                >
+                  <AppleIcon width={20} height={20} />
+                  <div className="app-store-btn-labels">
+                    <span className="app-store-sub">Disponível na</span>
+                    <span className="app-store-main">App Store</span>
+                  </div>
+                </a>
+
+                <a
+                  href={ANDROID_APP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="app-store-badge-btn play-store-badge-btn"
+                  title="Baixar no Google Play"
+                >
+                  <GooglePlayIcon width={20} height={20} />
+                  <div className="app-store-btn-labels">
+                    <span className="app-store-sub">Disponível no</span>
+                    <span className="app-store-main">Google Play</span>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
 
@@ -704,16 +730,6 @@ const CriarConta: React.FC = () => {
                     <h2>Criar sua conta</h2>
                     <p>Preencha seus dados para começar</p>
                   </div>
-
-                  {isSupremacy && (
-                    <div className="supremacy-step-alert">
-                      <span className="supremacy-step-alert-icon">🎁</span>
-                      <div>
-                        <strong>Desconto de 10% do Evento Supremacy garantido!</strong>
-                        <div>Cupom <strong>SUPREMACY10</strong> aplicado para todos os planos.</div>
-                      </div>
-                    </div>
-                  )}
 
                   <form onSubmit={handleSubmit} className="signup-form" noValidate>
                     <div className="form-row">
@@ -994,15 +1010,6 @@ const CriarConta: React.FC = () => {
               <p className="login-link">
                 Já tem uma conta? <a href="https://app.gestaoboa.com.br">Fazer login</a>
               </p>
-              <a
-                href={IOS_APP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ios-app-link"
-              >
-                <AppleIcon width={16} height={16} />
-                <span>Baixar o App no iOS</span>
-              </a>
             </div>
           </div>
         </div>
@@ -1010,10 +1017,12 @@ const CriarConta: React.FC = () => {
 
       {/* Footer */}
       <footer className="signup-footer">
-        <p>© 2025 Gestão Boa. Todos os direitos reservados.</p>
-        <div className="footer-links">
-          <a href="/terms">Termos de Uso</a>
-          <a href="/privacy">Privacidade</a>
+        <div className="footer-content">
+          <p>© 2025 Gestão Boa. Todos os direitos reservados.</p>
+          <div className="footer-links">
+            <a href="/terms">Termos de Uso</a>
+            <a href="/privacy">Privacidade</a>
+          </div>
         </div>
       </footer>
     </div>
