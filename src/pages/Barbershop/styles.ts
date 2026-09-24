@@ -139,9 +139,9 @@ export const AuthorityStrip = styled.div`
   gap: 3rem;
   padding: 2rem;
   background: rgba(255, 255, 255, 0.03);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(5px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
   width: 100%;
   margin-top: 3rem;
   z-index: 1;
@@ -154,22 +154,24 @@ export const AuthorityStrip = styled.div`
     color: #fff;
 
     strong {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #3b82f6;
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: #60a5fa;
+      letter-spacing: -0.01em;
     }
 
     span {
-      font-size: 0.875rem;
+      font-size: 0.85rem;
       color: #94a3b8;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
+      margin-top: 2px;
     }
   }
 
   @media (max-width: 768px) {
     gap: 1.5rem;
-    padding: 1.5rem;
+    padding: 1.5rem 1rem;
   }
 `;
 
@@ -398,21 +400,30 @@ export const PlanTypeButton = styled.button<{ $active: boolean }>`
   padding: 0.75rem 1.5rem;
   background-color: ${(props) => (props.$active ? "#3b82f6" : "#1e293b")};
   border: 2px solid ${(props) => (props.$active ? "#3b82f6" : "#334155")};
-  border-radius: 12px;
+  border-radius: 14px;
   color: #ffffff;
   cursor: pointer;
   font-size: 1rem;
   font-weight: 600;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   min-width: 130px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
+  box-shadow: ${(props) =>
+    props.$active
+      ? "0 6px 20px rgba(59, 130, 246, 0.4)"
+      : "0 2px 8px rgba(0, 0, 0, 0.2)"};
 
   &:hover {
     border-color: #60a5fa;
     transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+  }
+
+  &:active {
+    transform: scale(0.98);
   }
 `;
 
@@ -460,12 +471,14 @@ export const PlanCard = styled.div<{ $featured?: boolean }>`
   flex-direction: column;
   justify-content: space-between;
   transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease;
 
   &:hover {
     transform: translateY(-6px);
-    box-shadow: 0 20px 45px -10px rgba(59, 130, 246, 0.25);
+    border-color: rgba(59, 130, 246, 0.6);
+    box-shadow: 0 20px 45px -10px rgba(59, 130, 246, 0.3);
   }
 
   ${(props) =>
@@ -473,10 +486,18 @@ export const PlanCard = styled.div<{ $featured?: boolean }>`
     css`
       transform: scale(1.03);
       z-index: 2;
-      box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.3);
+      box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.35);
+
+      &:hover {
+        transform: scale(1.03) translateY(-6px);
+      }
 
       @media (max-width: 1200px) {
         transform: none;
+
+        &:hover {
+          transform: translateY(-6px);
+        }
       }
     `}
 
@@ -653,43 +674,7 @@ export const FinalCTASection = styled.div`
 `;
 
 export const MobileFixedCTAButton = styled.div`
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1rem;
-  background: #fff;
-  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  display: none;
-
-  @media (max-width: 768px) {
-    display: block;
-  }
-
-  button {
-    width: 100%;
-    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-    color: white;
-    padding: 1.25rem 2rem;
-    border: none;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
-
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
-    }
-
-    &:active {
-      transform: translateY(0);
-    }
-  }
+  display: none !important;
 `;
 
 // Legacy exports to prevent crashes if I miss any imports in index.tsx before I update it

@@ -6,6 +6,7 @@ import PostHogPageViewTracker from "./components/PostHogPageViewTracker";
 import ScrollToTop from "./components/ScrollToTop";
 import CookieConsentModal from "./components/CookieConsentModal";
 import RouteLoadingFallback from "./components/RouteLoadingFallback";
+import StickyMobileCTA from "./components/StickyMobileCTA";
 
 // Lazy-loaded routes for optimal initial bundle size
 const About = lazy(() => import("./pages/About"));
@@ -55,6 +56,7 @@ function App() {
         </Routes>
       </Suspense>
       <CookieConsentModal />
+      <StickyMobileCTA />
       <WhatsAppButton />
     </BrowserRouter>
   );

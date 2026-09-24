@@ -70,7 +70,6 @@ import {
   FAQContainer,
   FAQItem,
   FinalCTASection,
-  FloatingMobileCTA,
   WhatsAppSection,
   WhatsAppContent,
   WhatsAppBadge,
@@ -1143,11 +1142,6 @@ const SalaoEstetica: React.FC = () => {
           </div>
         </FinalCTASection>
       </Container>
-
-      {/* MOBILE STICKY BOTTOM BUTTON */}
-      <FloatingMobileCTA>
-        <button onClick={handleStartFree}>Experimentar 10 Dias Grátis</button>
-      </FloatingMobileCTA>
 
       <Footer />
     </PageWrapper>

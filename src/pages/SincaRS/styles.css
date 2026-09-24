@@ -2,7 +2,7 @@
    SINCA RS & GESTÃO BOA PARTNERSHIP LANDING PAGE - CLEAN BLUE/WHITE DESIGN
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+/* Fontes carregadas no index.html via preconnect */
 
 :root {
   --sinca-primary: #03045e;
@@ -800,9 +800,14 @@
 
 .sinca-plan-featured {
   border-color: var(--sinca-blue);
-  box-shadow: var(--sinca-shadow-md);
+  box-shadow: 0 14px 34px rgba(0, 119, 182, 0.16);
   background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
   transform: scale(1.02);
+}
+
+.sinca-plan-featured:hover {
+  transform: scale(1.02) translateY(-6px);
+  box-shadow: 0 22px 46px rgba(0, 119, 182, 0.22);
 }
 
 .sinca-plan-badge {
@@ -981,13 +986,32 @@
 
 .sinca-faq-chevron {
   color: var(--sinca-blue);
-  transition: transform 0.25s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
   flex-shrink: 0;
   margin-left: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(0, 119, 182, 0.08);
+}
+
+.sinca-faq-open .sinca-faq-chevron {
+  background: rgba(0, 119, 182, 0.16);
 }
 
 .sinca-chevron-rotated {
   transform: rotate(180deg);
+}
+
+.sinca-btn-primary:active,
+.sinca-btn-secondary:active,
+.sinca-plan-btn:active,
+.sinca-plan-btn-featured:active,
+.sinca-btn-cta-large:active {
+  transform: scale(0.98);
 }
 
 .sinca-faq-answer {
@@ -997,6 +1021,18 @@
   line-height: 1.65;
   border-top: 1px solid #f1f5f9;
   padding-top: 16px;
+  animation: sincaFadeIn 0.25s ease-out;
+}
+
+@keyframes sincaFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ==========================================================================
@@ -1121,6 +1157,9 @@
   .sinca-plan-featured {
     transform: none;
   }
+  .sinca-plan-featured:hover {
+    transform: translateY(-4px);
+  }
   .sinca-stat-divider {
     display: none;
   }
@@ -1150,6 +1189,14 @@
   .sinca-period-selector {
     flex-direction: column;
     width: 100%;
+  }
+  .sinca-hero-logos {
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+  .sinca-logo-img {
+    height: 48px;
+    max-width: 140px;
   }
   .sinca-period-btn {
     width: 100%;

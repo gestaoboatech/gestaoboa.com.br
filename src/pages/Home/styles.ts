@@ -223,13 +223,20 @@ export const Banner = styled.div`
       max-width: 900px;
       background: #0f172a;
       border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 30px 80px -15px rgba(3, 4, 94, 0.25), 0 0 0 1px rgba(15, 23, 42, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow:
+        0 30px 80px -15px rgba(3, 4, 94, 0.28),
+        0 0 0 1px rgba(255, 255, 255, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
       overflow: hidden;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
       &:hover {
-        box-shadow: 0 40px 100px -20px rgba(0, 180, 216, 0.3);
+        transform: translateY(-4px);
+        box-shadow:
+          0 40px 100px -20px rgba(0, 180, 216, 0.35),
+          0 0 0 1px rgba(255, 255, 255, 0.15),
+          inset 0 1px 0 rgba(255, 255, 255, 0.3);
       }
 
       .desktop-window-header {
@@ -311,8 +318,11 @@ export const Banner = styled.div`
       background: #090d16;
       border-radius: 36px;
       padding: 12px 8px 12px;
-      box-shadow: 0 30px 70px -10px rgba(0, 0, 0, 0.6), 0 10px 25px -5px rgba(3, 4, 94, 0.35);
-      border: 2px solid rgba(255, 255, 255, 0.14);
+      box-shadow:
+        0 30px 70px -10px rgba(0, 0, 0, 0.65),
+        0 10px 25px -5px rgba(3, 4, 94, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      border: 2.5px solid rgba(255, 255, 255, 0.18);
       animation: ${levitate} 6s ease-in-out infinite;
 
       .phone-top-speaker {
@@ -1861,29 +1871,40 @@ export const Segments = styled.section`
   }
 
   .carousel-btn {
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.28);
     color: white;
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    line-height: 1;
     cursor: pointer;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(8px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     z-index: 2;
     flex-shrink: 0;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.25);
-      transform: scale(1.1);
+      background: rgba(255, 255, 255, 0.28);
+      border-color: rgba(255, 255, 255, 0.45);
+      transform: scale(1.08);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     }
 
     &:active {
       transform: scale(0.95);
+    }
+
+    &:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: 2px;
     }
   }
 
@@ -2001,25 +2022,28 @@ export const Segments = styled.section`
   .carousel-indicators {
     display: flex;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.6rem;
     margin-top: 2rem;
   }
 
   .carousel-indicator {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
     border: none;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.35);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 0;
 
     &.active {
       background: white;
-      transform: scale(1.2);
+      width: 28px;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     }
 
-    &:hover {
+    &:hover:not(.active) {
       background: rgba(255, 255, 255, 0.7);
     }
   }

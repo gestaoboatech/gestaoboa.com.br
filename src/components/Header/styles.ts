@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div<{ isMenuOpen?: boolean }>`
+export const Container = styled.div<{ isMenuOpen?: boolean; $isScrolled?: boolean }>`
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -9,16 +9,16 @@ export const Container = styled.div<{ isMenuOpen?: boolean }>`
     padding: 8px 5%;
     position: fixed;
     z-index: 200;
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    background-color: ${({ $isScrolled }) => $isScrolled ? "rgba(255, 255, 255, 0.98)" : "rgba(255, 255, 255, 0.92)"};
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid ${({ $isScrolled }) => $isScrolled ? "rgba(203, 213, 225, 0.9)" : "rgba(226, 232, 240, 0.8)"};
+    box-shadow: ${({ $isScrolled }) => $isScrolled ? "0 4px 20px rgba(0, 0, 0, 0.07)" : "0 2px 10px rgba(0, 0, 0, 0.03)"};
     top: 0;
     left: 0;
     right: 0;
     min-height: 54px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    transition: background-color 0.25s ease, box-shadow 0.25s ease, border-bottom 0.25s ease;
 
     &::after {
         content: '';
@@ -260,19 +260,21 @@ export const MobileLinks = styled.div<{ isOpen: boolean }>`
     max-width: 300px;
     background: #fff;
     padding: 80px 20px 20px;
-    transition: right 0.3s ease-in-out;
+    transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 250;
-    box-shadow: ${({ isOpen }) => isOpen ? '-5px 0 15px rgba(0, 0, 0, 0.1)' : 'none'};
+    box-shadow: ${({ isOpen }) => isOpen ? '-8px 0 24px rgba(3, 4, 94, 0.12)' : 'none'};
 
     ${LinkItem} {
         padding: 15px 0;
-        font-size: 18px;
-        border-bottom: 1px solid #eee;
+        font-size: 17px;
+        border-bottom: 1px solid #f1f5f9;
         text-align: center;
-        transition: all 0.3s ease;
+        transition: all 0.2s ease;
 
         &:hover {
-            color: #90e0ef !important;
+            color: #0077b6 !important;
+            background: rgba(0, 119, 182, 0.04);
+            border-radius: 8px;
         }
 
         &.pricing {

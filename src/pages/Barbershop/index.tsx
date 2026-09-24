@@ -52,7 +52,6 @@ import {
   TestimonialCard,
   ReviewsSummary,
   FinalCTASection,
-  MobileFixedCTAButton,
   VideoSection,
   VideoWrapper,
   VideoTextContent,
@@ -825,10 +824,6 @@ const Barbershop: React.FC = () => {
               />
             </div>
           </FinalCTASection>
-
-          <MobileFixedCTAButton>
-            <button onClick={handleStartFree}>Começar Grátis Agora</button>
-          </MobileFixedCTAButton>
         </Content>
       </Container>
 

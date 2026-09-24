@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FB_PIXEL } from "../../utils/pixel";
 
@@ -12,10 +12,12 @@ const StickyContainer = styled.div<{ $visible: boolean }>`
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(12px);
-    border-top: 1px solid rgba(226, 232, 240, 0.9);
-    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-top: 1px solid rgba(226, 232, 240, 0.95);
+    padding: 10px 16px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom, 10px));
     align-items: center;
     justify-content: space-between;
     gap: 12px;
@@ -55,22 +57,38 @@ const StickyButton = styled.a`
   border-radius: 8px;
   text-decoration: none;
   white-space: nowrap;
-  box-shadow: 0 4px 10px rgba(0, 119, 182, 0.3);
-  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 119, 182, 0.28);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 119, 182, 0.36);
+    color: #ffffff;
+  }
 
   &:active {
     transform: scale(0.96);
   }
 `;
 
+const EXCLUDED_ROUTES = new Set([
+  "/criar-conta",
+  "/terms",
+  "/privacy",
+  "/privacidade",
+  "/regulamento-indicacao",
+  "/termos-indicacao",
+]);
+
 export const StickyMobileCTA: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Aparece após rolar 400px
-      if (window.scrollY > 400) {
+      // Aparece após rolar 350px
+      if (window.scrollY > 350) {
         setVisible(true);
       } else {
         setVisible(false);
@@ -80,6 +98,10 @@ export const StickyMobileCTA: React.FC = () => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  if (EXCLUDED_ROUTES.has(location.pathname)) {
+    return null;
+  }
 
   return (
     <StickyContainer $visible={visible}>
@@ -93,6 +115,7 @@ export const StickyMobileCTA: React.FC = () => {
           e.preventDefault();
           FB_PIXEL.trackCustomEvent("StickyMobileCTAClick", {
             location: "mobile_bottom_bar",
+            source_page: location.pathname,
           });
           navigate("/criar-conta");
         }}

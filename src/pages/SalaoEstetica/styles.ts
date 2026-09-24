@@ -177,12 +177,12 @@ export const HeroTitle = styled.h1`
     &::after {
       content: "";
       position: absolute;
-      bottom: 2px;
+      bottom: 0px;
       left: 0;
       width: 100%;
-      height: 3px;
-      background: rgba(212, 175, 55, 0.3);
-      border-radius: 2px;
+      height: 4px;
+      background: linear-gradient(90deg, #d4af37 0%, rgba(212, 175, 55, 0.25) 100%);
+      border-radius: 3px;
     }
   }
 
@@ -1186,11 +1186,16 @@ export const FAQItem = styled.details`
   border: 1px solid rgba(212, 175, 55, 0.3);
   border-radius: 16px;
   padding: 1.25rem 1.5rem;
-  transition: all 0.3s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    border-color: rgba(212, 175, 55, 0.6);
+    box-shadow: 0 4px 16px rgba(212, 175, 55, 0.08);
+  }
 
   &[open] {
     border-color: #d4af37;
-    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.1);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.12);
   }
 
   summary {
@@ -1203,6 +1208,12 @@ export const FAQItem = styled.details`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    user-select: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #1d56c0;
+    }
 
     &::-webkit-details-marker {
       display: none;
@@ -1210,15 +1221,25 @@ export const FAQItem = styled.details`
 
     &::after {
       content: "+";
-      font-size: 1.4rem;
-      font-weight: 400;
+      font-size: 1.35rem;
+      font-weight: 500;
       color: #d4af37;
-      transition: transform 0.3s ease;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(212, 175, 55, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-left: 12px;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
     }
   }
 
   &[open] summary::after {
     transform: rotate(45deg);
+    background: rgba(212, 175, 55, 0.24);
   }
 
   p {
@@ -1227,6 +1248,7 @@ export const FAQItem = styled.details`
     color: #526071;
     line-height: 1.65;
     margin: 1rem 0 0.25rem;
+    animation: ${fadeIn} 0.3s ease-out;
   }
 `;
 
