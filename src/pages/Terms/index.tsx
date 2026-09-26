@@ -8,13 +8,12 @@ const Terms: FunctionComponent = () => {
   return (
     <Container>
       <Helmet>
-        <title>Termos de Uso</title>
+        <title>Termos de Uso | Gestão Boa</title>
         <meta
           name="description"
-          content="Ao acessar este site, consideramos que você está de acordo com os
-					termos e condições abaixo."
+          content="Termos e condições gerais de uso e licenciamento do sistema Gestão Boa."
         />
-        <link rel="canonical" href="/terms" />
+        <link rel="canonical" href="https://gestaoboa.com.br/terms" />
       </Helmet>
       <Header />
       <Main>

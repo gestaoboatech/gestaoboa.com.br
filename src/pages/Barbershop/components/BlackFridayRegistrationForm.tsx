@@ -6,6 +6,7 @@ import {
   createCompany,
   EnterpriseBranch,
   getEnterpriseBranches,
+  DEFAULT_ENTERPRISE_BRANCHES,
 } from "../../../services/userApi";
 import "../../Price/components/UserRegistrationForm.css";
 import "../../Price/components/CompanyCreationForm.css";
@@ -48,13 +49,15 @@ const BlackFridayRegistrationForm: React.FC<BlackFridayRegistrationFormProps> = 
   const [companyName, setCompanyName] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<EnterpriseBranch | null>(null);
   const [selectedScale, setSelectedScale] = useState<typeof SCALE_OPTIONS[0] | null>(null);
-  const [categories, setCategories] = useState<EnterpriseBranch[]>([]);
+  const [categories, setCategories] = useState<EnterpriseBranch[]>(DEFAULT_ENTERPRISE_BRANCHES);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const fetchedCategories = await getEnterpriseBranches();
-        setCategories(fetchedCategories);
+        if (fetchedCategories && fetchedCategories.length > 0) {
+          setCategories(fetchedCategories);
+        }
       } catch (err) {
         console.error("Error fetching categories:", err);
       }

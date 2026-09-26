@@ -78,7 +78,7 @@ const Privacy: FunctionComponent = () => {
 			<Helmet>
 				<title>Política de Privacidade | Gestão Boa</title>
 				<meta name="description" content="Esta Política de Privacidade explica como coletamos, processamos e protegemos suas informações no Gestão Boa." />
-				<link rel="canonical" href="/privacy" />
+				<link rel="canonical" href="https://gestaoboa.com.br/privacy" />
 			</Helmet>
 			
 			<Header />

@@ -11,12 +11,10 @@ import CustomInput from "../../components/CustomInput";
 import CustomTextarea from "../../components/CustomTextArea";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
-import CookieConsentModal from "../../components/CookieConsentModal";
 import { UnformErrors } from "../../interfaces/interfaces";
 import { FB_PIXEL } from "../../utils/pixel";
 
 import { Helmet } from "react-helmet-async";
-import ReactPlayer from "react-player";
 import {
   Banner,
   HeroBadge,
@@ -37,6 +35,7 @@ import {
   InstagramSection,
   Segments,
   Solutions,
+  VideoContainer,
   WhatsAppSection,
   WhatsAppContent,
   WhatsAppBadge,
@@ -64,9 +63,6 @@ const Home: FunctionComponent = () => {
   // Estado do carrossel
   const [currentSegmentIndex, setCurrentSegmentIndex] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(1);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
-  console.log(isAutoPlaying);
 
   // Atualizar itens por página baseado no tamanho da tela
   useEffect(() => {
@@ -144,10 +140,18 @@ const Home: FunctionComponent = () => {
         "Gestão financeira",
         "Marketing digital",
       ],
-      link: "/solution",
-      linkText: "barbearia",
+      link: "/solucao",
+      linkText: "Conhecer Soluções",
     },
   ];
+
+  const handleSolucaoNavigation = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    hash: string
+  ) => {
+    e.preventDefault();
+    navigate(`/solucao${hash}`);
+  };
 
   // Funções do carrossel
   const nextSegment = () => {
@@ -158,7 +162,6 @@ const Home: FunctionComponent = () => {
   };
 
   const prevSegment = () => {
-    setIsAutoPlaying(false); // Pausa auto-play quando usuário navega manualmente
     setCurrentSegmentIndex((prevIndex) => {
       const maxIndex = segments.length - itemsPerPage;
       return prevIndex === 0 ? maxIndex : prevIndex - 1;
@@ -166,12 +169,10 @@ const Home: FunctionComponent = () => {
   };
 
   const handleNextSegment = () => {
-    setIsAutoPlaying(false); // Pausa auto-play quando usuário navega manualmente
     nextSegment();
   };
 
   const goToSegment = (index: number) => {
-    setIsAutoPlaying(false); // Pausa auto-play quando usuário navega manualmente
     const maxIndex = segments.length - itemsPerPage;
     setCurrentSegmentIndex(Math.min(index, maxIndex));
   };
@@ -467,6 +468,10 @@ const Home: FunctionComponent = () => {
                   className="button button-link"
                   href="/solucao"
                   title="SAIBA MAIS"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/solucao");
+                  }}
                 >
                   <Button
                     width="99%"
@@ -505,20 +510,19 @@ const Home: FunctionComponent = () => {
 
               {/* Moldura do Celular (App Mobile) */}
               <div className="mobile-app-mockup">
-                <div className="phone-notch">
-                  <span className="camera-lens" />
+                <div className="phone-top-speaker">
                   <span className="speaker-bar" />
+                  <span className="camera-lens" />
                 </div>
                 <div className="phone-screen">
                   <img
                     src="/app-dashboard.png"
                     alt="Gestão Boa App Mobile no Celular - Dashboard do Caixa e Vendas"
                     loading="eager"
-                    width="260"
-                    height="480"
+                    width="461"
+                    height="931"
                   />
                 </div>
-                <div className="phone-home-bar" />
               </div>
             </div>
           </Banner>
@@ -799,7 +803,7 @@ const Home: FunctionComponent = () => {
                 onClick={prevSegment}
                 aria-label="Segmento anterior"
               >
-                ‹
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
               </button>
 
               {/* Container dos cards visíveis */}
@@ -813,6 +817,8 @@ const Home: FunctionComponent = () => {
                       src={segment.image}
                       alt={segment.alt}
                       className="segment-image"
+                      loading="lazy"
+                      decoding="async"
                     />
                     <h3 className="segment-title">{segment.title}</h3>
                     <p className="segment-description">{segment.description}</p>
@@ -821,7 +827,14 @@ const Home: FunctionComponent = () => {
                         <li key={featureIndex}>{feature}</li>
                       ))}
                     </ul>
-                    <a href={segment.link} className="segment-link">
+                    <a
+                      href={segment.link}
+                      className="segment-link"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        navigate(segment.link);
+                      }}
+                    >
                       {segment.linkText}
                     </a>
                   </div>
@@ -834,7 +847,7 @@ const Home: FunctionComponent = () => {
                 onClick={handleNextSegment}
                 aria-label="Próximo segmento"
               >
-                ›
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
               </button>
             </div>
 
@@ -898,7 +911,11 @@ const Home: FunctionComponent = () => {
                       Mantenha seus compromissos sempre à mão. Sistema intuitivo
                       de agendamento com notificações automáticas.
                     </p>
-                    <a href="/solucao#agenda" className="benefit-link">
+                    <a
+                      href="/solucao#agenda"
+                      className="benefit-link"
+                      onClick={(e) => handleSolucaoNavigation(e, "#agenda")}
+                    >
                       Saiba mais →
                     </a>
                   </div>
@@ -928,7 +945,11 @@ const Home: FunctionComponent = () => {
                       Controle completo do estoque com análise detalhada de
                       vendas e giro de produtos.
                     </p>
-                    <a href="/solucao#produtos" className="benefit-link">
+                    <a
+                      href="/solucao#produtos"
+                      className="benefit-link"
+                      onClick={(e) => handleSolucaoNavigation(e, "#produtos")}
+                    >
                       Saiba mais →
                     </a>
                   </div>
@@ -957,7 +978,11 @@ const Home: FunctionComponent = () => {
                       Gestão completa de entradas e saídas com relatórios
                       detalhados por método de pagamento.
                     </p>
-                    <a href="/solucao#financeiro" className="benefit-link">
+                    <a
+                      href="/solucao#financeiro"
+                      className="benefit-link"
+                      onClick={(e) => handleSolucaoNavigation(e, "#financeiro")}
+                    >
                       Saiba mais →
                     </a>
                   </div>
@@ -987,7 +1012,11 @@ const Home: FunctionComponent = () => {
                       Dashboard completo com métricas em tempo real para
                       decisões baseadas em dados.
                     </p>
-                    <a href="/solucao#analytics" className="benefit-link">
+                    <a
+                      href="/solucao#analytics"
+                      className="benefit-link"
+                      onClick={(e) => handleSolucaoNavigation(e, "#analytics")}
+                    >
                       Saiba mais →
                     </a>
                   </div>
@@ -1015,7 +1044,11 @@ const Home: FunctionComponent = () => {
                       Automatize mensagens personalizadas e construa
                       relacionamentos duradouros.
                     </p>
-                    <a href="/solucao#clientes" className="benefit-link">
+                    <a
+                      href="/solucao#clientes"
+                      className="benefit-link"
+                      onClick={(e) => handleSolucaoNavigation(e, "#clientes")}
+                    >
                       Saiba mais →
                     </a>
                   </div>
@@ -1046,7 +1079,11 @@ const Home: FunctionComponent = () => {
                       Calcule automaticamente comissões de equipe com total
                       transparência e precisão.
                     </p>
-                    <a href="/solucao#comissoes" className="benefit-link">
+                    <a
+                      href="/solucao#comissoes"
+                      className="benefit-link"
+                      onClick={(e) => handleSolucaoNavigation(e, "#comissoes")}
+                    >
                       Saiba mais →
                     </a>
                   </div>
@@ -1078,6 +1115,11 @@ const Home: FunctionComponent = () => {
                     <a
                       href="#whatsapp-automacao"
                       className="benefit-link"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const el = document.getElementById("whatsapp-automacao");
+                        if (el) el.scrollIntoView({ behavior: "smooth" });
+                      }}
                     >
                       Saiba mais →
                     </a>
@@ -1110,6 +1152,7 @@ const Home: FunctionComponent = () => {
                     <a
                       href="/solucao#link-agendamentos"
                       className="benefit-link"
+                      onClick={(e) => handleSolucaoNavigation(e, "#link-agendamentos")}
                     >
                       Saiba mais →
                     </a>
@@ -1140,7 +1183,11 @@ const Home: FunctionComponent = () => {
                       Controle de mensalidades e pacotes com cobrança recorrente
                       e acompanhamento de uso.
                     </p>
-                    <a href="/solucao#clientes" className="benefit-link">
+                    <a
+                      href="/solucao#clientes"
+                      className="benefit-link"
+                      onClick={(e) => handleSolucaoNavigation(e, "#clientes")}
+                    >
                       Saiba mais →
                     </a>
                   </div>
@@ -1500,43 +1547,57 @@ const Home: FunctionComponent = () => {
                 </div>
               </div>{" "}
               <div className="player">
-                <ReactPlayer
-                  className="buying"
-                  url="/video app.mp4"
-                  width="fit-content"
-                  height="85vh"
-                  controls={true}
-                  loop={true}
-                  playing={true}
-                  muted
-                  onStart={() =>
-                    FB_PIXEL.trackCustomEvent("DemoVideoStart", {
-                      video: "demonstracao",
-                      section: "demonstration",
-                    })
-                  }
-                  onPlay={() =>
-                    FB_PIXEL.trackCustomEvent("DemoVideoPlay", {
-                      video: "demonstracao",
-                      section: "demonstration",
-                    })
-                  }
-                  onPause={() =>
-                    FB_PIXEL.trackCustomEvent("DemoVideoPause", {
-                      video: "demonstracao",
-                      section: "demonstration",
-                    })
-                  }
-                  onProgress={(state) => {
-                    const progress = Math.floor(state.played * 100);
-                    if (progress === 25 || progress === 50 || progress === 75) {
-                      FB_PIXEL.trackCustomEvent("DemoVideoProgress", {
+                <VideoContainer>
+                  <div className="phone-notch" />
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    onClick={(e) => {
+                      const video = e.currentTarget;
+                      if (video.paused) {
+                        video.play();
+                      } else {
+                        video.pause();
+                      }
+                    }}
+                    style={{ cursor: "pointer" }}
+                    title="Clique para pausar ou reproduzir"
+                    onPlay={() =>
+                      FB_PIXEL.trackCustomEvent("DemoVideoPlay", {
                         video: "demonstracao",
-                        progress: `${progress}%`,
-                      });
+                        section: "demonstration",
+                      })
                     }
-                  }}
-                />
+                    onPause={() =>
+                      FB_PIXEL.trackCustomEvent("DemoVideoPause", {
+                        video: "demonstracao",
+                        section: "demonstration",
+                      })
+                    }
+                    onTimeUpdate={(e) => {
+                      const video = e.currentTarget;
+                      if (!video.duration) return;
+                      const progress = Math.floor(
+                        (video.currentTime / video.duration) * 100
+                      );
+                      if (
+                        progress === 25 ||
+                        progress === 50 ||
+                        progress === 75
+                      ) {
+                        FB_PIXEL.trackCustomEvent("DemoVideoProgress", {
+                          video: "demonstracao",
+                          progress: `${progress}%`,
+                        });
+                      }
+                    }}
+                  >
+                    <source src="/video app.mp4" type="video/mp4" />
+                    Seu navegador não suporta vídeos.
+                  </video>
+                </VideoContainer>
               </div>
             </div>
           </Solutions>
@@ -1547,7 +1608,15 @@ const Home: FunctionComponent = () => {
             <p className="cta-text">
               Planos sem fidelidade ou taxas de cancelamento. Teste gratuitamente por 10 dias e comprove!
             </p>
-            <a href="/preco" className="cta-button" title="Ver Planos e Preços">
+            <a
+              href="/preco"
+              className="cta-button"
+              title="Ver Planos e Preços"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/preco");
+              }}
+            >
               Conhecer Nossos Planos & Preços ➔
             </a>
             <span className="plans-info">Assinaturas a partir de R$ 69,90/mês</span>
@@ -1838,7 +1907,6 @@ const Home: FunctionComponent = () => {
           <Footer />
         </Grid>
       </Container>
-      <CookieConsentModal />
     </ScrollSpy>
   );
 };

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import "./styles.css";
 
 // --- Constantes de Configuração ---
@@ -8,7 +9,7 @@ const TOTAL_DURATION = 76000;
 const LogoBenefitsScene = () => (
   <div id="anuncio-logo-benefits-section" className="anuncio-animation-section">
     <img
-      src="3.png"
+      src="/3.png"
       alt="Logo Gestão Boa"
       className="anuncio-logo-image"
       onError={(e) => {
@@ -180,6 +181,14 @@ export default function AnuncioGestaoBoa() {
 
   return (
     <div className={`anuncio-video-container ${isPlaying ? "is-playing" : ""}`}>
+      <Helmet>
+        <title>Gestão Boa | Revolucione sua Barbearia ou Salão</title>
+        <meta
+          name="description"
+          content="Decisões baseadas em dados, agenda organizada, controle de caixa e mais faturamento para o seu negócio."
+        />
+        <link rel="canonical" href="https://gestaoboa.com.br/anuncio-gestaoboa" />
+      </Helmet>
       <LogoBenefitsScene />
       <FeaturesScene />
       <StatsScene />

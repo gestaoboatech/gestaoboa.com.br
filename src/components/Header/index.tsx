@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FB_PIXEL } from "../../utils/pixel";
 import Button from "../Button";
 import {
@@ -17,7 +17,28 @@ import {
 
 export default function Header() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 15);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -35,9 +56,32 @@ export default function Header() {
     closeMenu();
   };
 
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    to: string,
+    sectionName: string
+  ) => {
+    e.preventDefault();
+    trackNavigation(sectionName);
+    closeMenu();
+
+    if (to.startsWith("/#")) {
+      const hash = to.substring(1);
+      if (window.location.pathname === "/") {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+          return;
+        }
+      }
+    }
+    navigate(to);
+  };
+
   return (
     <Container
       isMenuOpen={isMenuOpen}
+      $isScrolled={isScrolled}
       onClick={(e) => {
         if (
           e.target === e.currentTarget ||
@@ -48,58 +92,60 @@ export default function Header() {
       }}
     >
       <Logo onClick={() => navigate("/")}>
-        <LogoImg src="/beasier-1-1-1@2x.png" alt="logo beasier" />
+        <LogoImg src="/beasier-1-1-1@2x.png" alt="Logo Gestão Boa" width="36" height="36" />
         <Title>Gestão Boa</Title>
       </Logo>{" "}
       <Links>
         <LinkItem
           href="/#start"
           title="Ir para início"
+          $active={location.pathname === "/" && !location.hash}
           data-to-scrollspy-id="start"
-          onClick={() => trackNavigation("inicio")}
+          onClick={(e) => handleNavClick(e, "/#start", "inicio")}
         >
           INÍCIO
         </LinkItem>
         <LinkItem
           href="/solucao"
           title="Ver nossas soluções"
+          $active={location.pathname === "/solucao"}
           data-to-scrollspy-id="solution"
-          onClick={() => trackNavigation("solucao")}
+          onClick={(e) => handleNavClick(e, "/solucao", "solucao")}
         >
           SOLUÇÃO
         </LinkItem>
         <LinkItem
           href="/preco"
           title="Ver nossos planos"
+          $active={location.pathname === "/preco"}
           className="pricing"
-          onClick={() => trackNavigation("Planos")}
+          onClick={(e) => handleNavClick(e, "/preco", "Planos")}
         >
           PLANOS
         </LinkItem>
         <LinkItem
           href="/influenciador"
           title="Seja um afiliado Gestão Boa"
-          onClick={(e) => {
-            e.preventDefault();
-            navigate("/influenciador");
-            trackNavigation("afiliado");
-          }}
+          $active={location.pathname === "/influenciador"}
+          onClick={(e) => handleNavClick(e, "/influenciador", "afiliado")}
         >
           SEJA UM AFILIADO
         </LinkItem>
         <LinkItem
           href="/sobre"
           title="Conheça nossa equipe"
+          $active={location.pathname === "/sobre"}
           data-to-scrollspy-id="team"
-          onClick={() => trackNavigation("sobre")}
+          onClick={(e) => handleNavClick(e, "/sobre", "sobre")}
         >
           SOBRE NÓS
         </LinkItem>
         <LinkItem
           href="/#contact"
           title="Entre em contato"
+          $active={location.hash === "#contact"}
           data-to-scrollspy-id="contact"
-          onClick={() => trackNavigation("contato")}
+          onClick={(e) => handleNavClick(e, "/#contact", "contato")}
         >
           CONTATO
         </LinkItem>
@@ -108,6 +154,7 @@ export default function Header() {
         onClick={toggleMenu}
         isOpen={isMenuOpen}
         aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
+        aria-expanded={isMenuOpen}
       >
         <span></span>
         <span></span>
@@ -117,47 +164,49 @@ export default function Header() {
         <LinkItem
           href="/#start"
           title="Ir para início"
-          onClick={() => trackNavigation("inicio")}
+          $active={location.pathname === "/" && !location.hash}
+          onClick={(e) => handleNavClick(e, "/#start", "inicio")}
         >
           INÍCIO
         </LinkItem>
         <LinkItem
           href="/solucao"
           title="Ver nossas soluções"
-          onClick={() => trackNavigation("solucao")}
+          $active={location.pathname === "/solucao"}
+          onClick={(e) => handleNavClick(e, "/solucao", "solucao")}
         >
           SOLUÇÃO
         </LinkItem>
         <LinkItem
           href="/preco"
           title="Ver nossos planos"
+          $active={location.pathname === "/preco"}
           className="pricing"
-          onClick={() => trackNavigation("Planos")}
+          onClick={(e) => handleNavClick(e, "/preco", "Planos")}
         >
           PLANOS
         </LinkItem>
         <LinkItem
           href="/influenciador"
           title="Seja um afiliado Gestão Boa"
-          onClick={(e) => {
-            e.preventDefault();
-            navigate("/influenciador");
-            trackNavigation("afiliado");
-          }}
+          $active={location.pathname === "/influenciador"}
+          onClick={(e) => handleNavClick(e, "/influenciador", "afiliado")}
         >
           SEJA UM AFILIADO
         </LinkItem>
         <LinkItem
           href="/sobre"
           title="Conheça nossa equipe"
-          onClick={() => trackNavigation("sobre")}
+          $active={location.pathname === "/sobre"}
+          onClick={(e) => handleNavClick(e, "/sobre", "sobre")}
         >
           SOBRE NÓS
         </LinkItem>
         <LinkItem
           href="/#contact"
           title="Entre em contato"
-          onClick={() => trackNavigation("contato")}
+          $active={location.hash === "#contact"}
+          onClick={(e) => handleNavClick(e, "/#contact", "contato")}
         >
           CONTATO
         </LinkItem>{" "}

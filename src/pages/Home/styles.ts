@@ -223,13 +223,20 @@ export const Banner = styled.div`
       max-width: 900px;
       background: #0f172a;
       border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 30px 80px -15px rgba(3, 4, 94, 0.25), 0 0 0 1px rgba(15, 23, 42, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow:
+        0 30px 80px -15px rgba(3, 4, 94, 0.28),
+        0 0 0 1px rgba(255, 255, 255, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
       overflow: hidden;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
       &:hover {
-        box-shadow: 0 40px 100px -20px rgba(0, 180, 216, 0.3);
+        transform: translateY(-4px);
+        box-shadow:
+          0 40px 100px -20px rgba(0, 180, 216, 0.35),
+          0 0 0 1px rgba(255, 255, 255, 0.15),
+          inset 0 1px 0 rgba(255, 255, 255, 0.3);
       }
 
       .desktop-window-header {
@@ -308,84 +315,54 @@ export const Banner = styled.div`
       bottom: -20px;
       z-index: 10;
       width: 240px;
-      background: #0f172a;
-      border-radius: 38px;
-      padding: 22px 8px 14px;
-      box-shadow: 0 35px 80px rgba(0, 0, 0, 0.4), 0 0 0 2px rgba(255, 255, 255, 0.3) inset;
-      border: 3px solid #1e293b;
+      background: #090d16;
+      border-radius: 36px;
+      padding: 12px 8px 12px;
+      box-shadow:
+        0 30px 70px -10px rgba(0, 0, 0, 0.65),
+        0 10px 25px -5px rgba(3, 4, 94, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      border: 2.5px solid rgba(255, 255, 255, 0.18);
       animation: ${levitate} 6s ease-in-out infinite;
 
-      .phone-notch {
-        position: absolute;
-        top: 7px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 75px;
-        height: 12px;
-        background: #000000;
-        border-radius: 10px;
-        z-index: 20;
+      .phone-top-speaker {
         display: flex;
         align-items: center;
-        justify-content: space-around;
-        padding: 0 8px;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 7px;
+        height: 5px;
+
+        .speaker-bar {
+          width: 34px;
+          height: 3px;
+          border-radius: 3px;
+          background: #232d3d;
+        }
 
         .camera-lens {
           width: 5px;
           height: 5px;
           border-radius: 50%;
-          background: #1e293b;
-        }
-
-        .speaker-bar {
-          width: 24px;
-          height: 2px;
-          border-radius: 2px;
-          background: #1e293b;
+          background: #151d28;
+          border: 1px solid #283447;
         }
       }
 
       .phone-screen {
         width: 100%;
-        background: #ffffff;
-        border-radius: 24px;
+        background: #03045E;
+        border-radius: 26px;
         overflow: hidden;
+        line-height: 0;
 
         img {
           width: 100%;
           height: auto;
-          max-height: 440px;
-          object-fit: contain;
           display: block;
+          object-fit: cover;
+          border-radius: 26px;
         }
-      }
-
-      .phone-home-bar {
-        position: absolute;
-        bottom: 5px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90px;
-        height: 3px;
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 4px;
-        z-index: 20;
-      }
-
-      .phone-app-tag {
-        position: absolute;
-        top: -14px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #0077b6;
-        color: #ffffff;
-        font-size: 0.75rem;
-        font-weight: 800;
-        padding: 4px 14px;
-        border-radius: 50px;
-        box-shadow: 0 4px 15px rgba(0, 119, 182, 0.4);
-        white-space: nowrap;
-        z-index: 25;
       }
     }
   }
@@ -410,10 +387,10 @@ export const Banner = styled.div`
   }
 
   @media (max-width: 960px) {
-    padding: 120px 30px 40px;
+    padding: 120px 24px 40px;
 
     .content .title {
-      font-size: 38px;
+      font-size: 36px;
       max-width: 100%;
     }
 
@@ -428,20 +405,21 @@ export const Banner = styled.div`
 
       .desktop-web-mockup {
         width: 100%;
+        max-width: 650px;
       }
 
       .mobile-app-mockup {
         position: relative;
         right: auto;
         bottom: auto;
-        margin-top: -40px;
+        margin-top: -35px;
         width: 220px;
       }
     }
   }
 
   @media (max-width: 800px) {
-    padding: 110px 20px 30px;
+    padding: 105px 20px 30px;
 
     .content .title {
       font-size: 32px;
@@ -449,6 +427,10 @@ export const Banner = styled.div`
 
     .content .subtitle {
       font-size: 1rem;
+    }
+
+    .content .buttons .button {
+      width: 180px;
     }
 
     .dual-showcase-container {
@@ -465,14 +447,15 @@ export const Banner = styled.div`
   }
 
   @media (max-width: 600px) {
-    padding: 100px 16px 30px;
+    padding: 95px 16px 30px;
 
     .content {
       gap: 18px;
+      width: 100%;
     }
 
     .content .title {
-      font-size: 28px;
+      font-size: 26px;
       letter-spacing: -0.5px;
     }
 
@@ -482,6 +465,7 @@ export const Banner = styled.div`
 
     .content .buttons {
       flex-direction: column;
+      gap: 12px;
       width: 100%;
     }
 
@@ -491,7 +475,7 @@ export const Banner = styled.div`
     }
 
     .dual-showcase-container {
-      margin-top: 24px;
+      margin-top: 20px;
 
       .desktop-web-mockup {
         border-radius: 12px;
@@ -503,78 +487,19 @@ export const Banner = styled.div`
       }
 
       .mobile-app-mockup {
-        margin-top: -30px;
-        width: 190px;
-        border-radius: 28px;
+        margin-top: -25px;
+        width: 195px;
+        border-radius: 30px;
+        padding: 10px 7px 10px;
+
+        .phone-screen {
+          border-radius: 22px;
+
+          img {
+            border-radius: 22px;
+          }
+        }
       }
-    }
-  }
-
-    .content .buttons {
-      flex-direction: row;
-      justify-content: center;
-      gap: 15px;
-      max-width: 100%;
-    }
-
-    .content .buttons .button {
-      width: 200px;
-    }
-
-    /* Esconde a imagem do celular */
-    .images {
-      display: none;
-    }
-
-    .images .cellphone {
-      display: none;
-    }
-
-    .images .elipse {
-      display: none;
-    }
-  }
-
-  @media (max-width: 800px) {
-    padding: 100px 20px 40px 20px;
-
-    .content .title {
-      font-size: 36px;
-    }
-
-    .content .subtitle {
-      font-size: 17px;
-    }
-
-    .content .buttons .button {
-      width: 180px;
-    }
-  }
-
-  @media (max-width: 600px) {
-    padding: 100px 15px 40px 15px;
-
-    .content {
-      width: 100%;
-      gap: 20px;
-    }
-
-    .content .title {
-      font-size: 28px;
-    }
-
-    .content .subtitle {
-      font-size: 16px;
-    }
-
-    .content .buttons {
-      flex-direction: column;
-      gap: 12px;
-      width: 100%;
-    }
-
-    .content .buttons .button {
-      width: 100%;
     }
   }
 `;
@@ -1150,6 +1075,8 @@ export const Solutions = styled.div`
   .player {
     display: flex;
     justify-content: center;
+    align-items: center;
+    width: 100%;
   }
 
   @media (max-width: 1780px) {
@@ -1944,29 +1871,40 @@ export const Segments = styled.section`
   }
 
   .carousel-btn {
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.28);
     color: white;
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    line-height: 1;
     cursor: pointer;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(8px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     z-index: 2;
     flex-shrink: 0;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.25);
-      transform: scale(1.1);
+      background: rgba(255, 255, 255, 0.28);
+      border-color: rgba(255, 255, 255, 0.45);
+      transform: scale(1.08);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     }
 
     &:active {
       transform: scale(0.95);
+    }
+
+    &:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: 2px;
     }
   }
 
@@ -2084,25 +2022,28 @@ export const Segments = styled.section`
   .carousel-indicators {
     display: flex;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.6rem;
     margin-top: 2rem;
   }
 
   .carousel-indicator {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
     border: none;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.35);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 0;
 
     &.active {
       background: white;
-      transform: scale(1.2);
+      width: 28px;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     }
 
-    &:hover {
+    &:hover:not(.active) {
       background: rgba(255, 255, 255, 0.7);
     }
   }
@@ -2906,6 +2847,70 @@ export const WABubble = styled.div<{ $outgoing?: boolean }>`
       width: 14px;
       height: 14px;
       color: #53bdeb;
+    }
+  }
+`;
+
+// Video / App Demo Phone Mockup Container (semelhante a salao-estetica)
+export const VideoContainer = styled.div`
+  max-width: 280px;
+  width: 100%;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 10px 8px 12px;
+  border-radius: 36px;
+  border: 1px solid rgba(0, 119, 182, 0.35);
+  box-shadow: 
+    0 25px 50px -12px rgba(3, 4, 94, 0.18),
+    0 0 0 4px #f8fafc,
+    0 0 0 6px rgba(0, 119, 182, 0.2);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+      0 35px 65px -15px rgba(3, 4, 94, 0.25),
+      0 0 0 4px #f8fafc,
+      0 0 0 6px rgba(0, 119, 182, 0.28);
+  }
+
+  .phone-notch {
+    width: 65px;
+    height: 10px;
+    background: #0f172a;
+    border-radius: 10px;
+    margin: 0 auto 10px;
+    flex-shrink: 0;
+  }
+
+  video {
+    width: 100%;
+    max-height: 520px;
+    height: auto;
+    display: block;
+    border-radius: 24px;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 240px;
+    padding: 8px 6px 10px;
+    border-radius: 30px;
+
+    .phone-notch {
+      width: 50px;
+      height: 8px;
+      margin-bottom: 8px;
+    }
+
+    video {
+      max-height: 440px;
+      border-radius: 20px;
     }
   }
 `;

@@ -52,7 +52,6 @@ import {
   TestimonialCard,
   ReviewsSummary,
   FinalCTASection,
-  MobileFixedCTAButton,
   VideoSection,
   VideoWrapper,
   VideoTextContent,
@@ -93,13 +92,13 @@ const PLAN_PRICES: Record<
     ilimitado: 179.9,
   },
   Semestral: {
-    basico: 79.9,
+    basico: 69.9,
     crescimento: 89.9,
     empresarial: 119.9,
     ilimitado: 169.9,
   },
   Anual: {
-    basico: 69.9,
+    basico: 64.9,
     crescimento: 79.9,
     empresarial: 109.9,
     ilimitado: 159.9,
@@ -825,10 +824,6 @@ const Barbershop: React.FC = () => {
               />
             </div>
           </FinalCTASection>
-
-          <MobileFixedCTAButton>
-            <button onClick={handleStartFree}>Começar Grátis Agora</button>
-          </MobileFixedCTAButton>
         </Content>
       </Container>
 

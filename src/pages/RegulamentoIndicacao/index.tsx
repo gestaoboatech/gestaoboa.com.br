@@ -13,7 +13,7 @@ const RegulamentoIndicacao: FunctionComponent = () => {
           name="description"
           content="Regulamento oficial do Programa de Indicação do Gestão Boa. Conheça as regras, condições e benefícios."
         />
-        <link rel="canonical" href="/regulamento-indicacao" />
+        <link rel="canonical" href="https://gestaoboa.com.br/regulamento-indicacao" />
       </Helmet>
       <Header />
       <Main>

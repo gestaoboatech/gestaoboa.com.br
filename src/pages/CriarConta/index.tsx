@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import {
   loginUser,
   loginUserWithPhone,
@@ -9,6 +10,7 @@ import {
   createCompany,
   EnterpriseBranch,
   getEnterpriseBranches,
+  DEFAULT_ENTERPRISE_BRANCHES,
 } from "../../services/userApi";
 import "./styles.css";
 
@@ -37,6 +39,37 @@ function gtag_report_conversion(url?: string) {
 }
 
 const IOS_APP_URL = "https://apps.apple.com/br/app/gest%C3%A3o-boa/id6741593872";
+const ANDROID_APP_URL = "https://play.google.com/store/apps/details?id=com.beasier";
+
+const GooglePlayIcon: React.FC<{ width?: string | number; height?: string | number }> = ({
+  width = 18,
+  height = 18,
+}) => (
+  <svg
+    viewBox="0 0 512 512"
+    width={width}
+    height={height}
+    style={{ display: "inline-block", verticalAlign: "middle", flexShrink: 0 }}
+  >
+    <path
+      fill="#4285F4"
+      d="M47.7 24.3C45.3 26.9 44 31 44 36.3v439.4c0 5.3 1.3 9.4 3.7 12l1.4 1.3L273.8 264.3v-5.6L49.1 23l-1.4 1.3z"
+    />
+    <path
+      fill="#FBBC04"
+      d="M348.6 339.2l-74.8-74.9v-5.6l74.8-74.9 1.7 1 88.6 50.3c25.3 14.4 25.3 37.9 0 52.3l-88.6 50.8-1.7 1z"
+    />
+    <path
+      fill="#EA4335"
+      d="M350.3 338.2L273.8 261.7 47.7 487.8c8.3 8.8 22.1 9.9 37.7 1l264.9-150.6z"
+    />
+    <path
+      fill="#34A853"
+      d="M350.3 173.8L85.4 23.2C69.8 14.3 56 15.4 47.7 24.2l226.1 226.1 76.5-76.5z"
+    />
+  </svg>
+);
+
 
 const AppleIcon: React.FC<{ width?: string | number; height?: string | number }> = ({
   width = 18,
@@ -138,18 +171,26 @@ const CriarConta: React.FC = () => {
   const [searchParams] = useSearchParams();
   const planParam = searchParams.get("plano") as PlanType | null;
   const cupomParam = searchParams.get("cupom") || searchParams.get("desconto");
+  const navigate = useNavigate();
+  const eventoParam = searchParams.get("evento") || searchParams.get("parceria") || searchParams.get("origem");
   const planoParam = searchParams.get("plano");
   const parceriaParam = searchParams.get("parceria");
   const origemParam = searchParams.get("origem");
   const refParam = searchParams.get("ref");
 
   const isSupremacy10 =
-    (cupomParam?.toUpperCase() === "SUPREMACY10") ||
-    (planoParam?.toUpperCase() === "SUPREMACY10") ||
-    (parceriaParam?.toUpperCase() === "SUPREMACY10") ||
-    (origemParam?.toUpperCase() === "SUPREMACY10") ||
-    (refParam?.toUpperCase() === "SUPREMACY10") ||
+    cupomParam?.toUpperCase() === "SUPREMACY10" ||
+    cupomParam?.toUpperCase() === "SUPREMACY" ||
+    planoParam?.toUpperCase() === "SUPREMACY10" ||
+    parceriaParam?.toUpperCase() === "SUPREMACY10" ||
+    origemParam?.toUpperCase() === "SUPREMACY10" ||
+    eventoParam?.toLowerCase() === "supremacy" ||
+    searchParams.has("supremacy") ||
+    searchParams.has("supremacy10") ||
+    refParam?.toUpperCase() === "SUPREMACY10" ||
     window.location.pathname.toLowerCase().includes("supremacy");
+
+  const isSupremacy = isSupremacy10;
 
   const initialPlanKey: PlanType = isSupremacy10
     ? (planParam && PLAN_CONFIG[planParam] ? planParam : "supremacy10")
@@ -171,11 +212,22 @@ const CriarConta: React.FC = () => {
     terms: false,
   });
   const [verificationCode, setVerificationCode] = useState("");
+  const [isCodeFocused, setIsCodeFocused] = useState(false);
+  const [caretIndex, setCaretIndex] = useState(0);
+  const codeInputRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [termsError, setTermsError] = useState(false);
+
+  useEffect(() => {
+    if (currentStep === 2) {
+      setTimeout(() => {
+        codeInputRef.current?.focus();
+      }, 100);
+    }
+  }, [currentStep]);
 
   // Company form states
   const [companyName, setCompanyName] = useState("");
@@ -184,22 +236,24 @@ const CriarConta: React.FC = () => {
   );
   const [selectedCategory, setSelectedCategory] = useState<EnterpriseBranch | null>(null);
   const [selectedScale, setSelectedScale] = useState<typeof SCALE_OPTIONS[0] | null>(null);
-  const [categories, setCategories] = useState<EnterpriseBranch[]>([]);
+  const [categories, setCategories] = useState<EnterpriseBranch[]>(DEFAULT_ENTERPRISE_BRANCHES);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const fetchedCategories = await getEnterpriseBranches();
-        setCategories(fetchedCategories);
+        if (fetchedCategories && fetchedCategories.length > 0) {
+          setCategories(fetchedCategories);
 
-        if (isSupremacy10 && fetchedCategories.length > 0) {
-          const barbeariaCat = fetchedCategories.find((c) =>
-            c.name.toLowerCase().includes("barbearia")
-          );
-          if (barbeariaCat) {
-            setSelectedCategory(barbeariaCat);
-          } else {
-            setSelectedCategory(fetchedCategories[0]);
+          if (isSupremacy10) {
+            const barbeariaCat = fetchedCategories.find((c) =>
+              c.name.toLowerCase().includes("barbearia")
+            );
+            if (barbeariaCat) {
+              setSelectedCategory(barbeariaCat);
+            } else {
+              setSelectedCategory(fetchedCategories[0]);
+            }
           }
         }
       } catch (err) {
@@ -449,6 +503,9 @@ const CriarConta: React.FC = () => {
         throw new Error(result.error.message ?? "Erro ao reenviar o código");
       }
 
+      setVerificationCode("");
+      setCaretIndex(0);
+      codeInputRef.current?.focus();
       alert("Código reenviado com sucesso!");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Erro ao reenviar o código");
@@ -458,9 +515,10 @@ const CriarConta: React.FC = () => {
     }
   };
 
-  const handleVerifyCode = async () => {
-    if (verificationCode.length < 4) {
-      setError("Por favor, insira o código de 4 dígitos.");
+  const handleVerifyCode = async (codeToVerify?: string) => {
+    const code = codeToVerify || verificationCode;
+    if (code.length < 6) {
+      setError("Por favor, insira o código de 6 dígitos.");
       return;
     }
 
@@ -468,7 +526,7 @@ const CriarConta: React.FC = () => {
     setError(null);
 
     try {
-      const result = await verifyPhoneCode(formData.phone, verificationCode);
+      const result = await verifyPhoneCode(formData.phone, code);
       if (result.error) {
         throw new Error(result.error.message ?? "Código inválido");
       }
@@ -582,14 +640,19 @@ const CriarConta: React.FC = () => {
       // Trigger Google Ads conversion event
       gtag_report_conversion();
 
-      const createdEnterpriseId = (result as any)?.enterprise?.id || (result as any)?.id;
-      let finalPaymentLink = planConfig.paymentLink;
-      if (createdEnterpriseId) {
-        const separator = finalPaymentLink.includes("?") ? "&" : "?";
-        finalPaymentLink = `${finalPaymentLink}${separator}externalReference=${createdEnterpriseId}`;
-      }
+      if (planConfig?.paymentLink) {
+        const createdEnterpriseId = (result as any)?.enterprise?.id || (result as any)?.id;
+        let finalPaymentLink = planConfig.paymentLink;
+        if (createdEnterpriseId) {
+          const separator = finalPaymentLink.includes("?") ? "&" : "?";
+          finalPaymentLink = `${finalPaymentLink}${separator}externalReference=${createdEnterpriseId}`;
+        }
 
-      window.location.href = finalPaymentLink;
+        window.location.href = finalPaymentLink;
+      } else {
+        window.open("https://app.gestaoboa.com.br", "_blank");
+        navigate("/");
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Erro ao criar empresa");
       console.error("Error creating company:", err);
@@ -700,48 +763,53 @@ const CriarConta: React.FC = () => {
                 disabled={Boolean(isSupremacy10 || cupomParam)}
               />
             </div>
+            {isSupremacy && discountCode.toUpperCase() === "SUPREMACY10" && (
+              <p className="supremacy-applied-helper">
+                ✓ Cupom SUPREMACY10 do Evento Supremacy aplicado (10% OFF)!
+              </p>
+            )}
             <div style={{ marginTop: '24px' }}>
               <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#1e293b' }}>
                 Plano Desejado (com 10% de desconto):
               </label>
-                <div className="options-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '10px' }}>
-                  {(["basico", "crescimento", "empresarial", "ilimitado"] as PlanType[]).map((pKey) => {
-                    const conf = PLAN_CONFIG[pKey];
-                    const isSelected = selectedPlanKey === pKey;
-                    return (
-                      <div
-                        key={pKey}
-                        className={`option-card ${isSelected ? "selected" : ""}`}
-                        style={{
-                          padding: '12px 10px',
-                          textAlign: 'center',
-                          cursor: 'pointer',
-                          border: isSelected ? '2px solid #0077b6' : '1px solid #cbd5e1',
-                          borderRadius: '10px',
-                          background: isSelected ? '#f0f9ff' : '#ffffff',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          gap: '4px'
-                        }}
-                        onClick={() => setSelectedPlanKey(pKey)}
-                      >
-                        <span style={{ fontWeight: 700, fontSize: '0.95rem', color: isSelected ? '#0077b6' : '#334155' }}>
-                          {conf.name}
-                        </span>
-                        <span style={{ fontSize: '0.75rem', fontWeight: 600, color: isSelected ? '#0284c7' : '#64748b' }}>
-                          {conf.usersLimit}
-                        </span>
-                        <span style={{ textDecoration: 'line-through', fontSize: '0.75rem', color: '#94a3b8' }}>
-                          {conf.originalPrice}
-                        </span>
-                        <span style={{ fontWeight: 800, fontSize: '0.9rem', color: '#10b981' }}>
-                          {conf.price}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
+              <div className="options-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '10px' }}>
+                {(["basico", "crescimento", "empresarial", "ilimitado"] as PlanType[]).map((pKey) => {
+                  const conf = PLAN_CONFIG[pKey];
+                  const isSelected = selectedPlanKey === pKey;
+                  return (
+                    <div
+                      key={pKey}
+                      className={`option-card ${isSelected ? "selected" : ""}`}
+                      style={{
+                        padding: '12px 10px',
+                        textAlign: 'center',
+                        cursor: 'pointer',
+                        border: isSelected ? '2px solid #0077b6' : '1px solid #cbd5e1',
+                        borderRadius: '10px',
+                        background: isSelected ? '#f0f9ff' : '#ffffff',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '4px'
+                      }}
+                      onClick={() => setSelectedPlanKey(pKey)}
+                    >
+                      <span style={{ fontWeight: 700, fontSize: '0.95rem', color: isSelected ? '#0077b6' : '#334155' }}>
+                        {conf.name}
+                      </span>
+                      <span style={{ fontSize: '0.75rem', fontWeight: 600, color: isSelected ? '#0284c7' : '#64748b' }}>
+                        {conf.usersLimit}
+                      </span>
+                      <span style={{ textDecoration: 'line-through', fontSize: '0.75rem', color: '#94a3b8' }}>
+                        {conf.originalPrice}
+                      </span>
+                      <span style={{ fontWeight: 800, fontSize: '0.9rem', color: '#10b981' }}>
+                        {conf.price}
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
+            </div>
           </div>
         );
 
@@ -793,6 +861,14 @@ const CriarConta: React.FC = () => {
 
   return (
     <div className="signup-page">
+      <Helmet>
+        <title>Criar Conta | Teste Grátis de 10 Dias - Gestão Boa</title>
+        <meta
+          name="description"
+          content="Crie sua conta na Gestão Boa e experimente por 10 dias grátis sem cartão de crédito. Agendamento online, financeiro e controle total."
+        />
+        <link rel="canonical" href="https://gestaoboa.com.br/criar-conta" />
+      </Helmet>
       {/* Header */}
       <header className="signup-header">
         <div className="header-content">
@@ -800,26 +876,18 @@ const CriarConta: React.FC = () => {
             <img src="/beasier-1-1-1@2x.png" alt="Gestão Boa" />
           </a>
           <div className="header-actions">
-            <a
-              href={IOS_APP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="app-store-header-btn"
-              title="Baixar app para iOS na App Store"
-            >
-              <AppleIcon width={16} height={16} />
-              <span>Baixar no iOS</span>
-            </a>
-            <div className="plan-badge">
-              {planConfig.discount && <span className="discount-badge">{planConfig.discount}</span>}
-              <span className="plan-name">Plano {planConfig.name}</span>
-              <span className="plan-price">
-                {planConfig.originalPrice && (
-                  <span className="original-price">{planConfig.originalPrice}</span>
-                )}
-                {planConfig.price}
-              </span>
-            </div>
+            {planConfig && (
+              <div className="plan-badge">
+                {planConfig.discount && <span className="discount-badge">{planConfig.discount}</span>}
+                <span className="plan-name">Plano {planConfig.name}</span>
+                <span className="plan-price">
+                  {planConfig.originalPrice && (
+                    <span className="original-price">{planConfig.originalPrice}</span>
+                  )}
+                  {planConfig.price}
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </header>
@@ -829,23 +897,51 @@ const CriarConta: React.FC = () => {
         <div className="signup-container">
           {/* Left Side - Info */}
           <div className="signup-info">
-            <h1>
-              {isSupremacy10 ? (
-                <>⭐ Acesso Exclusivo <span className="highlight">Supremacy 10</span></>
-              ) : selectedPlanKey === "black-friday" ? (
-                <>🔥 Aproveite a <span className="highlight">Black Friday</span></>
-              ) : (
-                <>Comece sua jornada com o <span className="highlight">Gestão Boa</span></>
-              )}
-            </h1>
-            <p className="info-description">
-              {isSupremacy10
-                ? "Crie sua conta apenas com e-mail e senha e comece a transformar a gestão do seu negócio agora mesmo!"
-                : selectedPlanKey === "black-friday"
-                ? "Garanta acesso completo ao sistema por apenas R$ 9,90 e transforme a gestão do seu negócio!"
-                : "Simplifique a gestão do seu negócio com nossa plataforma completa e intuitiva."
-              }
-            </p>
+            {isSupremacy10 ? (
+              <>
+                <h1>
+                  Bem-vindo ao Gestão Boa, participante do{" "}
+                  <span className="highlight">Evento Supremacy</span>!
+                </h1>
+                <p className="info-description">
+                  Crie sua conta apenas com e-mail e senha e aproveite o acesso exclusivo com 10% de desconto em todos os planos!
+                </p>
+
+                <div className="supremacy-promo-card">
+                  <div className="supremacy-tag">
+                    <span>🏆 BENEFÍCIO EXCLUSIVO</span>
+                  </div>
+                  <div className="supremacy-content">
+                    <div className="supremacy-discount-header">
+                      <span className="supremacy-discount-num">10% OFF</span>
+                      <span className="supremacy-discount-txt">em todos os planos</span>
+                    </div>
+                    <div className="supremacy-coupon-box">
+                      <span>Cupom aplicado:</span>
+                      <strong>SUPREMACY10</strong>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : selectedPlanKey === "black-friday" ? (
+              <>
+                <h1>
+                  🔥 Aproveite a <span className="highlight">Black Friday</span>
+                </h1>
+                <p className="info-description">
+                  Garanta acesso completo ao sistema por apenas R$ 9,90 e transforme a gestão do seu negócio!
+                </p>
+              </>
+            ) : (
+              <>
+                <h1>
+                  Comece sua jornada com o <span className="highlight">Gestão Boa</span>
+                </h1>
+                <p className="info-description">
+                  Simplifique a gestão do seu negócio com nossa plataforma completa e intuitiva.
+                </p>
+              </>
+            )}
 
             <div className="benefits-list">
               <div className="benefit-item">
@@ -879,25 +975,40 @@ const CriarConta: React.FC = () => {
                 </div>
               </div>
             )}
-
             <div className="app-download-box">
               <div className="app-download-info">
-                <strong>Disponível para iPhone e iPad</strong>
-                <p>Baixe o aplicativo oficial na App Store</p>
+                <strong>Baixe nosso aplicativo</strong>
+                <p>Disponível para iOS e Android</p>
               </div>
-              <a
-                href={IOS_APP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="app-store-badge-btn"
-                title="Baixar na App Store"
-              >
-                <AppleIcon width={22} height={22} />
-                <div className="app-store-btn-labels">
-                  <span className="app-store-sub">Disponível na</span>
-                  <span className="app-store-main">App Store</span>
-                </div>
-              </a>
+              <div className="app-download-badges">
+                <a
+                  href={IOS_APP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="app-store-badge-btn"
+                  title="Baixar na App Store"
+                >
+                  <AppleIcon width={20} height={20} />
+                  <div className="app-store-btn-labels">
+                    <span className="app-store-sub">Disponível na</span>
+                    <span className="app-store-main">App Store</span>
+                  </div>
+                </a>
+
+                <a
+                  href={ANDROID_APP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="app-store-badge-btn play-store-badge-btn"
+                  title="Baixar no Google Play"
+                >
+                  <GooglePlayIcon width={20} height={20} />
+                  <div className="app-store-btn-labels">
+                    <span className="app-store-sub">Disponível no</span>
+                    <span className="app-store-main">Google Play</span>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
 
@@ -1109,24 +1220,103 @@ const CriarConta: React.FC = () => {
                   <div className="confirmation-icon">📱</div>
                   <h2>Verifique seu Celular</h2>
                   <p>
-                    Enviamos um SMS com o código para{" "}
+                    Enviamos um SMS com o código de 6 dígitos para{" "}
                     <strong>{formData.phone}</strong>
                   </p>
 
-                  <div className="code-input-wrapper">
-                    <input
-                      type="text"
-                      maxLength={6} // Updated to 6 digits
-                      value={verificationCode}
-                      onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, ""))}
-                      placeholder="000000" // Updated placeholder to reflect 6 digits
-                      className="code-input"
-                      autoFocus
-                    />
+                  <div className="code-slots-wrapper">
+                    <div className="code-slots-field">
+                      <input
+                        ref={codeInputRef}
+                        type="text"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
+                        autoComplete="one-time-code"
+                        maxLength={6}
+                        value={verificationCode}
+                        onChange={(e) => {
+                          if (error) setError(null);
+                          const val = e.target.value.replace(/\D/g, "").slice(0, 6);
+                          setVerificationCode(val);
+                          setCaretIndex(val.length);
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" && verificationCode.length === 6) {
+                            e.preventDefault();
+                            handleVerifyCode();
+                          }
+                        }}
+                        onClick={(e) => {
+                          const input = e.currentTarget;
+                          const rect = input.getBoundingClientRect();
+                          const clickX = e.clientX - rect.left;
+                          const slotWidth = rect.width / 6;
+                          const clickedIndex = Math.min(Math.floor(clickX / slotWidth), 5);
+                          if (clickedIndex < verificationCode.length) {
+                            input.setSelectionRange(clickedIndex, clickedIndex + 1);
+                            setCaretIndex(clickedIndex);
+                          } else {
+                            const pos = verificationCode.length;
+                            input.setSelectionRange(pos, pos);
+                            setCaretIndex(pos);
+                          }
+                        }}
+                        onKeyUp={(e) => {
+                          const input = e.currentTarget;
+                          setCaretIndex(input.selectionStart ?? input.value.length);
+                        }}
+                        onSelect={(e) => {
+                          const input = e.currentTarget;
+                          setCaretIndex(input.selectionStart ?? input.value.length);
+                        }}
+                        onFocus={() => setIsCodeFocused(true)}
+                        onBlur={() => setIsCodeFocused(false)}
+                        className="code-hidden-input"
+                        autoFocus
+                        aria-label="Código de verificação de 6 dígitos"
+                      />
+
+                      <div className="code-slots-container">
+                        {[0, 1, 2, 3, 4, 5].map((index) => {
+                          const digit = verificationCode[index] || "";
+                          const isCurrent =
+                            isCodeFocused &&
+                            (caretIndex === index || (index === 5 && caretIndex >= 6));
+                          const isFilled = Boolean(digit);
+                          const hasError = Boolean(error);
+
+                          return (
+                            <div
+                              key={index}
+                              className={`code-slot ${isCurrent ? "focused" : ""} ${isFilled ? "filled" : ""} ${hasError ? "has-error" : ""}`}
+                            >
+                              <span className="code-slot-digit">{digit}</span>
+                              {isCurrent && !digit && <span className="code-slot-cursor" />}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {verificationCode.length > 0 && (
+                      <button
+                        type="button"
+                        className="code-clear-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setVerificationCode("");
+                          setCaretIndex(0);
+                          codeInputRef.current?.focus();
+                        }}
+                      >
+                        Limpar código
+                      </button>
+                    )}
                   </div>
 
                   <div className="confirmation-actions">
                     <button
+                      type="button"
                       className="secondary-btn"
                       onClick={handleResendCode}
                       disabled={loading}
@@ -1134,9 +1324,10 @@ const CriarConta: React.FC = () => {
                       {loading ? "Reenviando..." : "Reenviar Código"}
                     </button>
                     <button
+                      type="button"
                       className="primary-btn"
-                      onClick={handleVerifyCode}
-                      disabled={loading || verificationCode.length < 4}
+                      onClick={() => handleVerifyCode()}
+                      disabled={loading || verificationCode.length < 6}
                     >
                       {loading ? "Verificando..." : "Verificar e Continuar →"}
                     </button>
@@ -1146,7 +1337,7 @@ const CriarConta: React.FC = () => {
 
                   <div className="info-box">
                     <span className="info-icon">ℹ️</span>
-                    <p>O código foi enviado via SMS. Caso não receba, verifique se o número informado está correto.</p>
+                    <p>O código de 6 dígitos foi enviado via SMS. Caso não receba, verifique se o número informado está correto.</p>
                   </div>
                 </div>
               )}
@@ -1187,7 +1378,7 @@ const CriarConta: React.FC = () => {
                         {loading ? (
                           <span className="loading-spinner"></span>
                         ) : (
-                          <>Finalizar e Ir para Pagamento 🎉</>
+                          <>{planConfig ? "Finalizar e Ir para Pagamento 🎉" : "Finalizar Cadastro 🎉"}</>
                         )}
                       </button>
                     )}
@@ -1200,15 +1391,6 @@ const CriarConta: React.FC = () => {
               <p className="login-link">
                 Já tem uma conta? <a href="https://app.gestaoboa.com.br">Fazer login</a>
               </p>
-              <a
-                href={IOS_APP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ios-app-link"
-              >
-                <AppleIcon width={16} height={16} />
-                <span>Baixar o App no iOS</span>
-              </a>
             </div>
           </div>
         </div>
@@ -1216,10 +1398,12 @@ const CriarConta: React.FC = () => {
 
       {/* Footer */}
       <footer className="signup-footer">
-        <p>© 2025 Gestão Boa. Todos os direitos reservados.</p>
-        <div className="footer-links">
-          <a href="/terms">Termos de Uso</a>
-          <a href="/privacy">Privacidade</a>
+        <div className="footer-content">
+          <p>© 2025 Gestão Boa. Todos os direitos reservados.</p>
+          <div className="footer-links">
+            <a href="/terms">Termos de Uso</a>
+            <a href="/privacy">Privacidade</a>
+          </div>
         </div>
       </footer>
     </div>
