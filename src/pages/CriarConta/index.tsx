@@ -942,30 +942,6 @@ const CriarConta: React.FC = () => {
                 </p>
               </>
             )}
-
-            <div className="benefits-list">
-              <div className="benefit-item">
-                <span className="benefit-icon">✓</span>
-                <span>Agendamento Online</span>
-              </div>
-              <div className="benefit-item">
-                <span className="benefit-icon">✓</span>
-                <span>Controle Financeiro</span>
-              </div>
-              <div className="benefit-item">
-                <span className="benefit-icon">✓</span>
-                <span>Gestão de Clientes</span>
-              </div>
-              <div className="benefit-item">
-                <span className="benefit-icon">✓</span>
-                <span>Relatórios Completos</span>
-              </div>
-              <div className="benefit-item">
-                <span className="benefit-icon">✓</span>
-                <span>Suporte Dedicado</span>
-              </div>
-            </div>
-
             {selectedPlanKey === "black-friday" && (
               <div className="guarantee-box">
                 <span className="guarantee-icon">🛡️</span>
@@ -1021,7 +997,7 @@ const CriarConta: React.FC = () => {
               {currentStep === 1 && (
                 <>
                   <div className="form-header">
-                    <h2>{isSupremacy10 ? "Criar sua conta Supremacy 10" : "Criar sua conta"}</h2>
+                    <h2>Criar sua conta</h2>
                     <p>{isSupremacy10 ? "Preencha seus dados para começar seu acesso exclusivo" : "Preencha seus dados para começar"}</p>
                   </div>
 
