@@ -2,8 +2,8 @@ import axios from "axios";
 import { PaymentData } from "./paymentApi";
 
 // URL do backend da aplicação
-// const BASE_URL = "https://api.gestaoboa.com.br";
-const BASE_URL = "http://localhost:8080";
+ const BASE_URL = "https://api.gestaoboa.com.br";
+// const BASE_URL = "http://localhost:8080";
 /**
  * Interface para a resposta de pagamento do backend
  */

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import {
+  loginUser,
   loginUserWithPhone,
   registerUser,
   verifyPhoneCode,
@@ -52,41 +53,77 @@ const AppleIcon: React.FC<{ width?: string | number; height?: string | number }>
   </svg>
 );
 
-type PlanType = "basico" | "crescimento" | "empresarial" | "ilimitado" | "black-friday";
+type PlanType = "basico" | "crescimento" | "empresarial" | "ilimitado" | "black-friday" | "supremacy10";
+
+const ASAAS_PLAN_LINKS = {
+  "basico": "https://www.asaas.com/c/sjf0bqiql2cgglm2",
+  "crescimento": "https://www.asaas.com/c/fodhi5rv7zos2blm",
+  "empresarial": "https://www.asaas.com/c/2anme44rr5pvp8vq",
+  "ilimitado": "https://www.asaas.com/c/isjsvgixp3bzyxmz",
+};
 
 const PLAN_CONFIG: Record<PlanType, {
   name: string;
+  usersLimit: string;
+  originalPrice: string;
   price: string;
-  originalPrice?: string;
+  discountPriceVal: number;
   paymentLink: string;
   discount?: string;
 }> = {
   "basico": {
     name: "Básico",
-    price: "R$ 69,90/mês",
-    paymentLink: "https://www.app.gestaoboa.com.br",
+    usersLimit: "1 Profissional",
+    originalPrice: "R$ 79,90/mês",
+    price: "R$ 71,91/mês",
+    discountPriceVal: 71.91,
+    paymentLink: ASAAS_PLAN_LINKS["basico"],
+    discount: "10% OFF",
   },
   "crescimento": {
     name: "Crescimento",
-    price: "R$ 79,90/mês",
-    paymentLink: "https://www.app.gestaoboa.com.br",
+    usersLimit: "2-3 Profissionais",
+    originalPrice: "R$ 99,90/mês",
+    price: "R$ 89,91/mês",
+    discountPriceVal: 89.91,
+    paymentLink: ASAAS_PLAN_LINKS["crescimento"],
+    discount: "10% OFF",
   },
   "empresarial": {
     name: "Empresarial",
-    price: "R$ 109,90/mês",
-    paymentLink: "https://www.app.gestaoboa.com.br",
+    usersLimit: "4-6 Profissionais",
+    originalPrice: "R$ 129,90/mês",
+    price: "R$ 116,91/mês",
+    discountPriceVal: 116.91,
+    paymentLink: ASAAS_PLAN_LINKS["empresarial"],
+    discount: "10% OFF",
   },
   "ilimitado": {
     name: "Ilimitado",
-    price: "R$ 159,90/mês",
-    paymentLink: "https://www.app.gestaoboa.com.br",
+    usersLimit: "Profissionais Ilimitados",
+    originalPrice: "R$ 179,90/mês",
+    price: "R$ 161,91/mês",
+    discountPriceVal: 161.91,
+    paymentLink: ASAAS_PLAN_LINKS["ilimitado"],
+    discount: "10% OFF",
   },
   "black-friday": {
     name: "Black Friday",
-    price: "R$ 9,90",
+    usersLimit: "2-3 Profissionais",
     originalPrice: "R$ 535,00",
-    paymentLink: "https://www.app.gestaoboa.com.br",
+    price: "R$ 9,90",
+    discountPriceVal: 9.90,
+    paymentLink: ASAAS_PLAN_LINKS["crescimento"],
     discount: "98% OFF",
+  },
+  "supremacy10": {
+    name: "Supremacy 10",
+    usersLimit: "2-3 Profissionais",
+    originalPrice: "R$ 99,90/mês",
+    price: "R$ 89,91/mês",
+    discountPriceVal: 89.91,
+    paymentLink: ASAAS_PLAN_LINKS["crescimento"],
+    discount: "Exclusivo",
   },
 };
 
@@ -99,10 +136,27 @@ const SCALE_OPTIONS = [
 
 const CriarConta: React.FC = () => {
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
   const planParam = searchParams.get("plano") as PlanType | null;
   const cupomParam = searchParams.get("cupom") || searchParams.get("desconto");
-  const plan = planParam && PLAN_CONFIG[planParam] ? planParam : "black-friday";
+  const planoParam = searchParams.get("plano");
+  const parceriaParam = searchParams.get("parceria");
+  const origemParam = searchParams.get("origem");
+  const refParam = searchParams.get("ref");
+
+  const isSupremacy10 =
+    (cupomParam?.toUpperCase() === "SUPREMACY10") ||
+    (planoParam?.toUpperCase() === "SUPREMACY10") ||
+    (parceriaParam?.toUpperCase() === "SUPREMACY10") ||
+    (origemParam?.toUpperCase() === "SUPREMACY10") ||
+    (refParam?.toUpperCase() === "SUPREMACY10") ||
+    window.location.pathname.toLowerCase().includes("supremacy");
+
+  const initialPlanKey: PlanType = isSupremacy10
+    ? (planParam && PLAN_CONFIG[planParam] ? planParam : "supremacy10")
+    : (planParam && PLAN_CONFIG[planParam] ? planParam : "crescimento");
+
+  const [selectedPlanKey, setSelectedPlanKey] = useState<PlanType>(initialPlanKey);
+  const plan = selectedPlanKey;
   const planConfig = PLAN_CONFIG[plan];
 
   const [currentStep, setCurrentStep] = useState(1);
@@ -111,6 +165,7 @@ const CriarConta: React.FC = () => {
   const [formData, setFormData] = useState({
     name: "",
     surname: "",
+    email: "",
     phone: "",
     password: "",
     terms: false,
@@ -118,12 +173,15 @@ const CriarConta: React.FC = () => {
   const [verificationCode, setVerificationCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [termsError, setTermsError] = useState(false);
 
   // Company form states
   const [companyName, setCompanyName] = useState("");
-  const [discountCode, setDiscountCode] = useState(cupomParam ? cupomParam.toUpperCase() : "");
+  const [discountCode, setDiscountCode] = useState(
+    isSupremacy10 ? "SUPREMACY10" : cupomParam ? cupomParam.toUpperCase() : ""
+  );
   const [selectedCategory, setSelectedCategory] = useState<EnterpriseBranch | null>(null);
   const [selectedScale, setSelectedScale] = useState<typeof SCALE_OPTIONS[0] | null>(null);
   const [categories, setCategories] = useState<EnterpriseBranch[]>([]);
@@ -133,6 +191,17 @@ const CriarConta: React.FC = () => {
       try {
         const fetchedCategories = await getEnterpriseBranches();
         setCategories(fetchedCategories);
+
+        if (isSupremacy10 && fetchedCategories.length > 0) {
+          const barbeariaCat = fetchedCategories.find((c) =>
+            c.name.toLowerCase().includes("barbearia")
+          );
+          if (barbeariaCat) {
+            setSelectedCategory(barbeariaCat);
+          } else {
+            setSelectedCategory(fetchedCategories[0]);
+          }
+        }
       } catch (err) {
         console.error("Error fetching categories:", err);
       }
@@ -141,7 +210,7 @@ const CriarConta: React.FC = () => {
     if (currentStep === 3) {
       fetchCategories();
     }
-  }, [currentStep]);
+  }, [currentStep, isSupremacy10]);
 
   const formatPhone = (value: string) => {
     const cleaned = value.replace(/\D/g, "").slice(0, 11);
@@ -177,6 +246,13 @@ const CriarConta: React.FC = () => {
       formattedValue = formatPhone(value);
     }
 
+    if (name === "email") {
+      setEmailError(false);
+      if (error === "Por favor, insira um e-mail válido.") {
+        setError(null);
+      }
+    }
+
     if (name === "password") {
       if (value.length >= 6) {
         setPasswordError(false);
@@ -195,11 +271,108 @@ const CriarConta: React.FC = () => {
     }
   };
 
+  const handleEmailBlur = () => {
+    if (isSupremacy10 && formData.email) {
+      const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim());
+      setEmailError(!isValid);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
 
     let hasError = false;
+
+    if (isSupremacy10) {
+      if (!formData.name.trim() || !formData.surname.trim()) {
+        setError("Por favor, preencha seu nome e sobrenome.");
+        hasError = true;
+      }
+
+      const cleanEmail = formData.email.trim().toLowerCase();
+      const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail);
+
+      if (!cleanEmail || !isValidEmail) {
+        setEmailError(true);
+        if (!hasError) {
+          setError("Por favor, insira um e-mail válido.");
+        }
+        hasError = true;
+      } else {
+        setEmailError(false);
+      }
+
+      if (!formData.password || formData.password.length < 6) {
+        setPasswordError(true);
+        if (!hasError) {
+          setError("A senha deve ter pelo menos 6 caracteres.");
+        }
+        hasError = true;
+      } else {
+        setPasswordError(false);
+      }
+
+      if (!formData.terms) {
+        setTermsError(true);
+        if (!hasError) {
+          setError("Você precisa aceitar os termos de uso para continuar.");
+        }
+        hasError = true;
+      } else {
+        setTermsError(false);
+      }
+
+      if (hasError) return;
+
+      setLoading(true);
+
+      try {
+        const userData = {
+          name: formData.name.trim(),
+          surname: formData.surname.trim(),
+          document: "",
+          email: cleanEmail,
+          password: formData.password,
+          birthday: "",
+          phone: formData.phone.replace(/\D/g, ""),
+          gender: "",
+          cep: "",
+          address: "",
+          address_number: "",
+          city: "",
+          district: "",
+          send_email: false,
+          skip_verification: true,
+          cupom: "SUPREMACY10",
+        };
+
+        const result = await registerUser(userData);
+        if (result.error) {
+          const errMsg = typeof result.error === "object" ? result.error.message : result.error;
+          throw new Error(errMsg ?? "Erro ao registrar usuário");
+        }
+
+        // Automatic login with email and password without any verification step
+        const loginResult = await loginUser(cleanEmail, formData.password);
+        if (loginResult.error) {
+          const errMsg = typeof loginResult.error === "object" ? loginResult.error.message : loginResult.error;
+          throw new Error(errMsg ?? "Erro ao realizar login");
+        }
+
+        setUserToken(loginResult.token);
+        // Skip phone verification completely, jump directly to company creation step
+        setCurrentStep(3);
+      } catch (err) {
+        setError(
+          err instanceof Error ? err.message : "Erro ao processar o registro"
+        );
+        console.error("Erro no registro do usuário:", err);
+      } finally {
+        setLoading(false);
+      }
+      return;
+    }
 
     if (!formData.name.trim() || !formData.surname.trim()) {
       setError("Por favor, preencha seu nome e sobrenome.");
@@ -336,7 +509,11 @@ const CriarConta: React.FC = () => {
         setError("Por favor, insira o nome da empresa");
         return;
       }
-      setCompanyStep(1);
+      if (isSupremacy10) {
+        setCompanyStep(2);
+      } else {
+        setCompanyStep(1);
+      }
     } else if (companyStep === 1) {
       if (!selectedCategory) {
         setError("Por favor, selecione uma categoria");
@@ -349,13 +526,39 @@ const CriarConta: React.FC = () => {
   const handleCompanyBack = () => {
     setError(null);
     if (companyStep > 0) {
-      setCompanyStep(companyStep - 1);
+      if (isSupremacy10 && companyStep === 2) {
+        setCompanyStep(0);
+      } else {
+        setCompanyStep(companyStep - 1);
+      }
     }
   };
 
   const handleCompanySubmit = async () => {
     if (!selectedScale) {
       setError("Por favor, selecione o porte da empresa");
+      return;
+    }
+
+    let categoryToUse = selectedCategory;
+    if (isSupremacy10 && !categoryToUse) {
+      let fetchedCats = categories;
+      if (fetchedCats.length === 0) {
+        try {
+          fetchedCats = await getEnterpriseBranches();
+          setCategories(fetchedCats);
+        } catch (err) {
+          console.error("Error fetching categories in submit:", err);
+        }
+      }
+      categoryToUse =
+        fetchedCats.find((c) => c.name.toLowerCase().includes("barbearia")) ||
+        fetchedCats[0] ||
+        null;
+    }
+
+    if (!categoryToUse) {
+      setError("Por favor, selecione uma categoria");
       return;
     }
 
@@ -366,7 +569,7 @@ const CriarConta: React.FC = () => {
       const companyData = {
         name: companyName.trim(),
         id_scale: Number(selectedScale.id),
-        branches: [Number(selectedCategory!.id)],
+        branches: [Number(categoryToUse.id)],
         image: "",
         discount_code: discountCode || undefined,
       };
@@ -379,8 +582,14 @@ const CriarConta: React.FC = () => {
       // Trigger Google Ads conversion event
       gtag_report_conversion();
 
-      window.open(planConfig.paymentLink, "_blank");
-      navigate("/");
+      const createdEnterpriseId = (result as any)?.enterprise?.id || (result as any)?.id;
+      let finalPaymentLink = planConfig.paymentLink;
+      if (createdEnterpriseId) {
+        const separator = finalPaymentLink.includes("?") ? "&" : "?";
+        finalPaymentLink = `${finalPaymentLink}${separator}externalReference=${createdEnterpriseId}`;
+      }
+
+      window.location.href = finalPaymentLink;
     } catch (err) {
       setError(err instanceof Error ? err.message : "Erro ao criar empresa");
       console.error("Error creating company:", err);
@@ -390,49 +599,74 @@ const CriarConta: React.FC = () => {
   };
 
   const renderStepIndicator = () => {
-    const steps = [
-      { number: 1, label: "Criar conta" },
-      { number: 2, label: "Verificar celular" },
-      { number: 3, label: "Criar empresa" },
-    ];
+    const steps = isSupremacy10
+      ? [
+          { number: 1, label: "Criar conta", stepId: 1 },
+          { number: 2, label: "Criar empresa", stepId: 3 },
+        ]
+      : [
+          { number: 1, label: "Criar conta", stepId: 1 },
+          { number: 2, label: "Verificar celular", stepId: 2 },
+          { number: 3, label: "Criar empresa", stepId: 3 },
+        ];
 
     return (
       <div className="signup-steps">
-        {steps.map((step, index) => (
-          <React.Fragment key={step.number}>
-            <div className={`signup-step ${currentStep > step.number ? "completed" : currentStep === step.number ? "active" : ""}`}>
-              <div className="step-circle">
-                {currentStep > step.number ? "✓" : step.number}
+        {steps.map((step, index) => {
+          const isCompleted = isSupremacy10
+            ? currentStep > step.stepId
+            : currentStep > step.stepId;
+          const isActive = isSupremacy10
+            ? (currentStep === 1 && step.stepId === 1) || (currentStep >= 3 && step.stepId === 3)
+            : currentStep === step.stepId;
+
+          return (
+            <React.Fragment key={step.number}>
+              <div className={`signup-step ${isCompleted ? "completed" : isActive ? "active" : ""}`}>
+                <div className="step-circle">
+                  {isCompleted ? "✓" : step.number}
+                </div>
+                <span className="step-label">{step.label}</span>
               </div>
-              <span className="step-label">{step.label}</span>
-            </div>
-            {index < steps.length - 1 && (
-              <div className={`step-connector ${currentStep > step.number ? "completed" : ""}`} />
-            )}
-          </React.Fragment>
-        ))}
+              {index < steps.length - 1 && (
+                <div className={`step-connector ${isCompleted ? "completed" : ""}`} />
+              )}
+            </React.Fragment>
+          );
+        })}
       </div>
     );
   };
 
   const renderCompanySubSteps = () => {
-    const subSteps = ["Nome", "Categoria", "Porte"];
+    const subSteps = isSupremacy10
+      ? ["Nome", "Porte"]
+      : ["Nome", "Categoria", "Porte"];
 
     return (
       <div className="company-substeps">
-        {subSteps.map((label, index) => (
-          <React.Fragment key={index}>
-            <div className={`substep ${companyStep > index ? "completed" : companyStep === index ? "active" : ""}`}>
-              <div className="substep-circle">
-                {companyStep > index ? "✓" : index + 1}
+        {subSteps.map((label, index) => {
+          const isCompleted = isSupremacy10
+            ? index === 0 && companyStep > 0
+            : companyStep > index;
+          const isActive = isSupremacy10
+            ? (index === 0 && companyStep === 0) || (index === 1 && companyStep === 2)
+            : companyStep === index;
+
+          return (
+            <React.Fragment key={index}>
+              <div className={`substep ${isCompleted ? "completed" : isActive ? "active" : ""}`}>
+                <div className="substep-circle">
+                  {isCompleted ? "✓" : index + 1}
+                </div>
+                <span className="substep-label">{label}</span>
               </div>
-              <span className="substep-label">{label}</span>
-            </div>
-            {index < subSteps.length - 1 && (
-              <div className={`substep-connector ${companyStep > index ? "completed" : ""}`} />
-            )}
-          </React.Fragment>
-        ))}
+              {index < subSteps.length - 1 && (
+                <div className={`substep-connector ${isCompleted ? "completed" : ""}`} />
+              )}
+            </React.Fragment>
+          );
+        })}
       </div>
     );
   };
@@ -462,8 +696,52 @@ const CriarConta: React.FC = () => {
                 onChange={(e) => setDiscountCode(e.target.value)}
                 placeholder="Cupom de Desconto (opcional)"
                 className="company-input"
+                readOnly={Boolean(isSupremacy10 || cupomParam)}
+                disabled={Boolean(isSupremacy10 || cupomParam)}
               />
             </div>
+            <div style={{ marginTop: '24px' }}>
+              <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: '#1e293b' }}>
+                Plano Desejado (com 10% de desconto):
+              </label>
+                <div className="options-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '10px' }}>
+                  {(["basico", "crescimento", "empresarial", "ilimitado"] as PlanType[]).map((pKey) => {
+                    const conf = PLAN_CONFIG[pKey];
+                    const isSelected = selectedPlanKey === pKey;
+                    return (
+                      <div
+                        key={pKey}
+                        className={`option-card ${isSelected ? "selected" : ""}`}
+                        style={{
+                          padding: '12px 10px',
+                          textAlign: 'center',
+                          cursor: 'pointer',
+                          border: isSelected ? '2px solid #0077b6' : '1px solid #cbd5e1',
+                          borderRadius: '10px',
+                          background: isSelected ? '#f0f9ff' : '#ffffff',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: '4px'
+                        }}
+                        onClick={() => setSelectedPlanKey(pKey)}
+                      >
+                        <span style={{ fontWeight: 700, fontSize: '0.95rem', color: isSelected ? '#0077b6' : '#334155' }}>
+                          {conf.name}
+                        </span>
+                        <span style={{ fontSize: '0.75rem', fontWeight: 600, color: isSelected ? '#0284c7' : '#64748b' }}>
+                          {conf.usersLimit}
+                        </span>
+                        <span style={{ textDecoration: 'line-through', fontSize: '0.75rem', color: '#94a3b8' }}>
+                          {conf.originalPrice}
+                        </span>
+                        <span style={{ fontWeight: 800, fontSize: '0.9rem', color: '#10b981' }}>
+                          {conf.price}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
           </div>
         );
 
@@ -552,14 +830,18 @@ const CriarConta: React.FC = () => {
           {/* Left Side - Info */}
           <div className="signup-info">
             <h1>
-              {plan === "black-friday" ? (
+              {isSupremacy10 ? (
+                <>⭐ Acesso Exclusivo <span className="highlight">Supremacy 10</span></>
+              ) : selectedPlanKey === "black-friday" ? (
                 <>🔥 Aproveite a <span className="highlight">Black Friday</span></>
               ) : (
                 <>Comece sua jornada com o <span className="highlight">Gestão Boa</span></>
               )}
             </h1>
             <p className="info-description">
-              {plan === "black-friday"
+              {isSupremacy10
+                ? "Crie sua conta apenas com e-mail e senha e comece a transformar a gestão do seu negócio agora mesmo!"
+                : selectedPlanKey === "black-friday"
                 ? "Garanta acesso completo ao sistema por apenas R$ 9,90 e transforme a gestão do seu negócio!"
                 : "Simplifique a gestão do seu negócio com nossa plataforma completa e intuitiva."
               }
@@ -588,7 +870,7 @@ const CriarConta: React.FC = () => {
               </div>
             </div>
 
-            {plan === "black-friday" && (
+            {selectedPlanKey === "black-friday" && (
               <div className="guarantee-box">
                 <span className="guarantee-icon">🛡️</span>
                 <div>
@@ -628,71 +910,158 @@ const CriarConta: React.FC = () => {
               {currentStep === 1 && (
                 <>
                   <div className="form-header">
-                    <h2>Criar sua conta</h2>
-                    <p>Preencha seus dados para começar</p>
+                    <h2>{isSupremacy10 ? "Criar sua conta Supremacy 10" : "Criar sua conta"}</h2>
+                    <p>{isSupremacy10 ? "Preencha seus dados para começar seu acesso exclusivo" : "Preencha seus dados para começar"}</p>
                   </div>
 
                   <form onSubmit={handleSubmit} className="signup-form" noValidate>
-                    <div className="form-row">
-                      <div className="form-group">
-                        <label htmlFor="name">Nome *</label>
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          placeholder="Seu nome"
-                          required
-                        />
-                      </div>
-                      <div className="form-group">
-                        <label htmlFor="surname">Sobrenome *</label>
-                        <input
-                          type="text"
-                          id="surname"
-                          name="surname"
-                          value={formData.surname}
-                          onChange={handleChange}
-                          placeholder="Seu sobrenome"
-                          required
-                        />
-                      </div>
-                    </div>
+                    {isSupremacy10 ? (
+                      <>
+                        <div className="form-row">
+                          <div className="form-group">
+                            <label htmlFor="name">Nome *</label>
+                            <input
+                              type="text"
+                              id="name"
+                              name="name"
+                              value={formData.name}
+                              onChange={handleChange}
+                              placeholder="Seu nome"
+                              autoFocus
+                              required
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label htmlFor="surname">Sobrenome *</label>
+                            <input
+                              type="text"
+                              id="surname"
+                              name="surname"
+                              value={formData.surname}
+                              onChange={handleChange}
+                              placeholder="Seu sobrenome"
+                              required
+                            />
+                          </div>
+                        </div>
 
-                    <div className="form-group">
-                      <label htmlFor="phone">Telefone / Celular *</label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        placeholder="(00) 00000-0000"
-                        maxLength={15}
-                        required
-                      />
-                    </div>
+                        <div className="form-group">
+                          <label htmlFor="email">E-mail *</label>
+                          <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            onBlur={handleEmailBlur}
+                            placeholder="seu@email.com"
+                            className={emailError ? "input-error" : ""}
+                            required
+                          />
+                          {emailError && (
+                            <span className="field-error-text">
+                              Por favor, insira um e-mail válido.
+                            </span>
+                          )}
+                        </div>
 
-                    <div className="form-group">
-                      <label htmlFor="password">Senha *</label>
-                      <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        onBlur={handlePasswordBlur}
-                        placeholder="Mínimo 6 caracteres"
-                        className={passwordError ? "input-error" : ""}
-                        required
-                      />
-                      {passwordError && (
-                        <span className="field-error-text">
-                          A senha deve ter pelo menos 6 caracteres.
-                        </span>
-                      )}
-                    </div>
+                        <div className="form-group">
+                          <label htmlFor="phone">Telefone / Celular (opcional)</label>
+                          <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            placeholder="(00) 00000-0000"
+                            maxLength={15}
+                          />
+                        </div>
+
+                        <div className="form-group">
+                          <label htmlFor="password">Senha *</label>
+                          <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            onBlur={handlePasswordBlur}
+                            placeholder="Mínimo 6 caracteres"
+                            className={passwordError ? "input-error" : ""}
+                            required
+                          />
+                          {passwordError && (
+                            <span className="field-error-text">
+                              A senha deve ter pelo menos 6 caracteres.
+                            </span>
+                          )}
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="form-row">
+                          <div className="form-group">
+                            <label htmlFor="name">Nome *</label>
+                            <input
+                              type="text"
+                              id="name"
+                              name="name"
+                              value={formData.name}
+                              onChange={handleChange}
+                              placeholder="Seu nome"
+                              required
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label htmlFor="surname">Sobrenome *</label>
+                            <input
+                              type="text"
+                              id="surname"
+                              name="surname"
+                              value={formData.surname}
+                              onChange={handleChange}
+                              placeholder="Seu sobrenome"
+                              required
+                            />
+                          </div>
+                        </div>
+
+                        <div className="form-group">
+                          <label htmlFor="phone">Telefone / Celular *</label>
+                          <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            placeholder="(00) 00000-0000"
+                            maxLength={15}
+                            required
+                          />
+                        </div>
+
+                        <div className="form-group">
+                          <label htmlFor="password">Senha *</label>
+                          <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            onBlur={handlePasswordBlur}
+                            placeholder="Mínimo 6 caracteres"
+                            className={passwordError ? "input-error" : ""}
+                            required
+                          />
+                          {passwordError && (
+                            <span className="field-error-text">
+                              A senha deve ter pelo menos 6 caracteres.
+                            </span>
+                          )}
+                        </div>
+                      </>
+                    )}
 
                     <div className="terms-wrapper">
                       <div className={`checkbox-group ${termsError ? "checkbox-group-error" : ""}`}>

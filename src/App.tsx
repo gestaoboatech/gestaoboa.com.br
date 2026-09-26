@@ -39,6 +39,9 @@ function App() {
         <Route path="/sincars" element={<SincaRS />} />
         <Route path="/sinca-rs" element={<SincaRS />} />
         <Route path="/criar-conta" element={<CriarConta />} />
+        <Route path="/supremacy10" element={<CriarConta />} />
+        <Route path="/supremacy-10" element={<CriarConta />} />
+        <Route path="/supremacy" element={<CriarConta />} />
         <Route path="/influenciador" element={<Influenciador />} />
         <Route path="/regulamento-indicacao" element={<RegulamentoIndicacao />} />
         <Route path="/termos-indicacao" element={<RegulamentoIndicacao />} />

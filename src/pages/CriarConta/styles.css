@@ -460,15 +460,17 @@
   border: 2px solid #e9ecef;
   border-radius: 10px;
   font-size: 1rem;
-  background-color: #ffffff;
-  color: #1a1a1a;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #1a1a1a !important;
   transition: all 0.3s ease;
   outline: none;
 }
 
 .form-group input:focus {
   border-color: #0077b6;
-  background-color: #ffffff;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
   box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.1);
 }
 
@@ -478,10 +480,12 @@
 
 .form-group input:-webkit-autofill,
 .form-group input:-webkit-autofill:hover,
-.form-group input:-webkit-autofill:focus {
+.form-group input:-webkit-autofill:focus,
+.form-group input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
   -webkit-text-fill-color: #1a1a1a !important;
   box-shadow: 0 0 0px 1000px #ffffff inset !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 /* Checkbox */
