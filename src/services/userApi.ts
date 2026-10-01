@@ -2,6 +2,7 @@ import axios from "axios";
 
 // Use the same base URL as the app
 const BASE_URL = "https://api.gestaoboa.com.br";
+// const BASE_URL = "http://localhost:8080";
 // ||
 // process.env.BASE_URL
 
@@ -13,12 +14,15 @@ export interface UserRegistrationData {
   birthday: string;
   phone: string;
   gender: string;
+  email?: string;
   cep?: string;
   address?: string;
   address_number?: string;
   city?: string;
   district?: string;
   send_email: boolean;
+  skip_verification?: boolean;
+  cupom?: string;
 }
 
 export async function registerUser(user: UserRegistrationData) {
@@ -29,6 +33,9 @@ export async function registerUser(user: UserRegistrationData) {
   formData.append("password", user.password);
   formData.append("birthday", user.birthday);
   formData.append("phone", user.phone);
+  if (user.email) {
+    formData.append("email", user.email);
+  }
   formData.append("gender", user.gender);
   formData.append("cep", user.cep ?? "");
   formData.append("address", user.address ?? "");
@@ -37,16 +44,30 @@ export async function registerUser(user: UserRegistrationData) {
   formData.append("district", user.district ?? "");
   formData.append("send_email", user.send_email ? "true" : "false");
 
-  const requestConfig = {
+  if (user.skip_verification) {
+    formData.append("skip_verification", "true");
+    formData.append("activated", "true");
+  }
+  if (user.cupom) {
+    formData.append("cupom", user.cupom);
+  }
+
+  const requestConfig: any = {
     headers: {
       Accept: "application/json",
       "Content-Type": "multipart/form-data",
     },
   };
 
+
+
+  const endpoint = user.skip_verification
+    ? `${BASE_URL}/users/?skip_verification=true&cupom=${encodeURIComponent(user.cupom || "SUPREMACY10")}`
+    : `${BASE_URL}/users/`;
+
   try {
     const response = await axios.post(
-      `${BASE_URL}/users/`,
+      endpoint,
       formData,
       requestConfig
     );
