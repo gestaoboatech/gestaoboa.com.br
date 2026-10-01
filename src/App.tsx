@@ -42,6 +42,7 @@ function App() {
           <Route path="/vendas" element={<Sales />} />
           <Route path="/barbearia" element={<Barbershop />} />
           <Route path="/salao-estetica" element={<SalaoEstetica />} />
+          <Route path="/salao-esetica" element={<Navigate to="/salao-estetica" replace />} />
           <Route path="/anuncio-gestaoboa" element={<AnuncioGestaoBoa />} />
           <Route path="/black-friday" element={<BlackFriday />} />
           <Route path="/botgestor" element={<BotGestor />} />

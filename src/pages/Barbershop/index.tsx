@@ -197,8 +197,9 @@ const Barbershop: React.FC = () => {
               <p
                 style={{
                   marginTop: "1.5rem",
-                  color: "#64748b",
+                  color: "#94a3b8",
                   fontSize: "0.9rem",
+                  userSelect: "none",
                 }}
               >
                 ✨ Teste grátis por 10 dias • Sem cartão de crédito

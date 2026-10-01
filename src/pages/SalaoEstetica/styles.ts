@@ -152,6 +152,17 @@ export const HeroBadge = styled.div`
   margin-bottom: 1.75rem;
   box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
   animation: ${fadeIn} 0.8s ease-out;
+  transition: all 0.25s ease;
+  user-select: none;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(212, 175, 55, 0.22);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
 
   span.sparkle {
     color: #d4af37;
@@ -234,7 +245,7 @@ export const PrimaryButton = styled.button`
   color: #ffffff;
   cursor: pointer;
   box-shadow: 0 10px 25px rgba(11, 29, 61, 0.2);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -244,6 +255,15 @@ export const PrimaryButton = styled.button`
     transform: translateY(-2px);
     box-shadow: 0 14px 30px rgba(11, 29, 61, 0.3);
     background: linear-gradient(135deg, #132a54 0%, #2563eb 100%);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #1d56c0;
+    outline-offset: 3px;
   }
 
   @media (max-width: 768px) {
@@ -258,21 +278,31 @@ export const SecondaryButton = styled.a`
   font-weight: 600;
   padding: 1.05rem 2rem;
   border-radius: 12px;
-  border: 1px solid rgba(212, 175, 55, 0.6);
+  border: 1.5px solid rgba(212, 175, 55, 0.6);
   background: #ffffff;
   color: #0b1d3d;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
 
   &:hover {
-    background: #f8e9e9;
+    background: #fbf8f3;
     border-color: #d4af37;
     transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.15);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #d4af37;
+    outline-offset: 3px;
   }
 
   @media (max-width: 768px) {
@@ -313,6 +343,11 @@ export const AuthorityStrip = styled.div`
   .authority-item {
     text-align: center;
     position: relative;
+    transition: transform 0.25s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
 
     &:not(:last-child)::after {
       content: "";
@@ -331,6 +366,8 @@ export const AuthorityStrip = styled.div`
       font-weight: 700;
       color: #0b1d3d;
       line-height: 1.2;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.01em;
     }
 
     span {
@@ -426,7 +463,7 @@ export const PillarCard = styled.div`
   border-radius: 16px;
   padding: 2.25rem 1.5rem;
   text-align: center;
-  transition: all 0.35s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
   box-shadow: 0 8px 24px rgba(11, 29, 61, 0.04);
   position: relative;
   overflow: hidden;
@@ -535,6 +572,15 @@ export const VideoContainer = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+      0 28px 55px rgba(11, 29, 61, 0.18),
+      0 0 0 4px #faf8f5,
+      0 0 0 5px rgba(212, 175, 55, 0.4);
+  }
 
   video {
     width: 100%;
@@ -617,11 +663,22 @@ export const ShowcaseContent = styled.div`
     font-weight: 600;
     color: #0b1d3d;
     text-decoration: none;
-    transition: all 0.25s ease;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 
     &:hover {
       border-color: #d4af37;
       background: #faf2ea;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(212, 175, 55, 0.16);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &:focus-visible {
+      outline: 2px solid #1d56c0;
+      outline-offset: 2px;
     }
 
     svg {
@@ -759,12 +816,12 @@ export const FeatureCard = styled.div`
   border-radius: 16px;
   background: #faf8f5;
   border: 1px solid rgba(212, 175, 55, 0.2);
-  transition: all 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
 
   &:hover {
     background: #ffffff;
     border-color: #d4af37;
-    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.1);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.12);
     transform: translateY(-3px);
   }
 
@@ -778,11 +835,17 @@ export const FeatureCard = styled.div`
     align-items: center;
     justify-content: center;
     margin-bottom: 1.25rem;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
 
     svg {
       width: 26px;
       height: 26px;
     }
+  }
+
+  &:hover .feature-icon {
+    transform: scale(1.08);
+    background: #faf2ea;
   }
 
   h4 {
@@ -816,6 +879,21 @@ export const ReviewsSummary = styled.div`
   font-size: 0.95rem;
   font-weight: 600;
   color: #0b1d3d;
+  font-variant-numeric: tabular-nums;
+  background: #ffffff;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 6px 20px;
+  border-radius: 999px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 15px rgba(11, 29, 61, 0.04);
+  user-select: none;
+  transition: transform 0.25s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
 
   .stars {
     display: flex;
@@ -845,6 +923,13 @@ export const TestimonialCard = styled.div`
   flex-direction: column;
   justify-content: space-between;
   position: relative;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    border-color: rgba(212, 175, 55, 0.6);
+    box-shadow: 0 16px 36px rgba(212, 175, 55, 0.12), 0 6px 18px rgba(11, 29, 61, 0.05);
+  }
 
   &::before {
     content: "“";
@@ -951,6 +1036,18 @@ export const PlanTypeButton = styled.button<{ $active: boolean }>`
     border-color: #d4af37;
     transform: translateY(-2px);
   }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  &:focus-visible {
+    outline: 2px solid #d4af37;
+    outline-offset: 2px;
+  }
 `;
 
 export const PlanTypeDiscount = styled.span<{ $active: boolean }>`
@@ -1038,6 +1135,7 @@ export const PlanBadge = styled.div`
   border-radius: 9999px;
   box-shadow: 0 4px 14px rgba(212, 175, 55, 0.45);
   white-space: nowrap;
+  user-select: none;
 `;
 
 export const PlanName = styled.h3`
@@ -1060,6 +1158,8 @@ export const PlanUserLimit = styled.span`
   border-radius: 8px;
   margin-bottom: 0.85rem;
   width: fit-content;
+  user-select: none;
+  font-variant-numeric: tabular-nums;
 `;
 
 export const PlanSubtitle = styled.p`
@@ -1080,6 +1180,7 @@ export const OriginalPriceStrikethrough = styled.div`
   color: #8c7d70;
   text-decoration: line-through;
   margin-bottom: 3px;
+  font-variant-numeric: tabular-nums;
 `;
 
 export const PlanPrice = styled.div`
@@ -1090,6 +1191,8 @@ export const PlanPrice = styled.div`
   line-height: 1;
   display: flex;
   align-items: baseline;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
 
   span.currency {
     font-size: 1.35rem;
@@ -1109,6 +1212,7 @@ export const DailyPriceSmall = styled.div`
   font-size: 0.82rem;
   color: #6e6259;
   margin-top: 5px;
+  font-variant-numeric: tabular-nums;
 `;
 
 export const PlanFeatures = styled.ul`
@@ -1125,6 +1229,11 @@ export const PlanFeatures = styled.ul`
     color: #0b1d3d;
     margin-bottom: 1rem;
     line-height: 1.5;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: translateX(3px);
+    }
 
     svg {
       width: 22px;
@@ -1132,6 +1241,11 @@ export const PlanFeatures = styled.ul`
       color: #d4af37;
       flex-shrink: 0;
       margin-top: 2px;
+      transition: transform 0.2s ease;
+    }
+
+    &:hover svg {
+      transform: scale(1.15);
     }
 
     strong {
@@ -1154,7 +1268,7 @@ export const PlanCTAButton = styled.button<{ $featured?: boolean }>`
   color: ${(props) => (props.$featured ? "#ffffff" : "#0b1d3d")};
   cursor: pointer;
   width: 100%;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: ${(props) =>
     props.$featured ? "0 8px 22px rgba(11, 29, 61, 0.22)" : "none"};
 
@@ -1165,6 +1279,16 @@ export const PlanCTAButton = styled.button<{ $featured?: boolean }>`
         : "#0b1d3d"};
     color: #ffffff;
     transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(11, 29, 61, 0.25);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #d4af37;
+    outline-offset: 2px;
   }
 `;
 
@@ -1209,10 +1333,16 @@ export const FAQItem = styled.details`
     justify-content: space-between;
     align-items: center;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
     transition: color 0.2s ease;
 
     &:hover {
       color: #1d56c0;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #1d56c0;
+      outline-offset: -2px;
     }
 
     &::-webkit-details-marker {
@@ -1318,6 +1448,15 @@ export const FinalCTASection = styled.section`
     &:hover {
       transform: translateY(-3px) scale(1.02);
       box-shadow: 0 16px 35px rgba(212, 175, 55, 0.55);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: 3px;
     }
   }
 
@@ -1466,6 +1605,14 @@ export const WhatsAppBadge = styled.div`
   width: fit-content;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  transition: all 0.25s ease;
+  user-select: none;
+
+  &:hover {
+    background: rgba(29, 86, 192, 0.14);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(29, 86, 192, 0.15);
+  }
 `;
 
 export const WhatsAppHeading = styled.h2`
@@ -1625,6 +1772,15 @@ export const WhatsAppCTA = styled.a`
     filter: brightness(1.08);
   }
 
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #1d56c0;
+    outline-offset: 3px;
+  }
+
   @media (max-width: 480px) {
     width: 100%;
     justify-content: center;
@@ -1685,6 +1841,7 @@ export const WAChatHeader = styled.div`
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  user-select: none;
 
   .avatar {
     width: 40px;
@@ -1753,6 +1910,12 @@ export const WABubble = styled.div<{ $outgoing?: boolean }>`
   font-size: 0.86rem;
   line-height: 1.45;
   position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(11, 29, 61, 0.1);
+  }
 
   .bubble-badge {
     display: inline-block;

@@ -152,12 +152,18 @@ export const AuthorityStrip = styled.div`
     flex-direction: column;
     align-items: center;
     color: #fff;
+    transition: transform 0.25s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
 
     strong {
       font-size: 1.65rem;
       font-weight: 800;
       color: #60a5fa;
       letter-spacing: -0.01em;
+      font-variant-numeric: tabular-nums;
     }
 
     span {
@@ -211,22 +217,6 @@ export const EssentialsGrid = styled.div`
   }
 `;
 
-export const EssentialCard = styled.div`
-  background: #f8fafc;
-  padding: 2.5rem;
-  border-radius: 24px;
-  text-align: left;
-  transition: all 0.3s ease;
-  border: 1px solid transparent;
-
-  &:hover {
-    background: #fff;
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
-    border-color: #e2e8f0;
-  }
-`;
-
 export const EssentialIcon = styled.div`
   width: 50px;
   height: 50px;
@@ -238,6 +228,28 @@ export const EssentialIcon = styled.div`
   margin-bottom: 1.5rem;
   color: #3b82f6;
   font-size: 1.5rem;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+`;
+
+export const EssentialCard = styled.div`
+  background: #f8fafc;
+  padding: 2.5rem;
+  border-radius: 24px;
+  text-align: left;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+  border: 1px solid #e2e8f0;
+
+  &:hover {
+    background: #fff;
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.12);
+    border-color: #cbd5e1;
+
+    ${EssentialIcon} {
+      transform: scale(1.08);
+      background: #dbeafe;
+    }
+  }
 `;
 
 export const EssentialTitle = styled.h3`
@@ -304,10 +316,16 @@ export const VideoContainer = styled.div`
   flex-shrink: 0;
   border-radius: 32px;
   padding: 8px;
-  border: 1px solid #334155;
+  border: 1px solid rgba(59, 130, 246, 0.4);
   overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45), 0 0 20px rgba(59, 130, 246, 0.15);
   background: #0f172a;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 28px 55px -10px rgba(0, 0, 0, 0.5), 0 0 25px rgba(59, 130, 246, 0.25);
+  }
 
   video {
     width: 100%;
@@ -350,13 +368,26 @@ export const PlatformBadge = styled.a`
   padding: 1rem 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
   color: #1e293b;
   font-weight: 600;
-  transition: transform 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
   text-align: left;
+  text-decoration: none;
 
   &:hover {
     transform: translateX(5px);
+    border-color: #93c5fd;
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
   }
 
   @media (max-width: 768px) {
@@ -369,6 +400,11 @@ export const PlatformBadge = styled.a`
     width: 24px;
     height: 24px;
     color: #3b82f6;
+    transition: transform 0.25s ease;
+  }
+
+  &:hover svg {
+    transform: scale(1.08);
   }
 `;
 
@@ -424,6 +460,14 @@ export const PlanTypeButton = styled.button<{ $active: boolean }>`
 
   &:active {
     transform: scale(0.98);
+  }
+
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  &:focus-visible {
+    outline: 2px solid #60a5fa;
+    outline-offset: 2px;
   }
 `;
 
@@ -515,15 +559,17 @@ export const PlanBadge = styled.span`
   top: -14px;
   left: 50%;
   transform: translateX(-50%);
-  background: #3b82f6;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
   color: #fff;
-  padding: 5px 14px;
+  padding: 5px 16px;
   border-radius: 20px;
   font-size: 0.76rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.45);
+  user-select: none;
 `;
 
 export const PlanName = styled.h3`
@@ -544,6 +590,8 @@ export const PlanUserLimit = styled.span`
   border-radius: 8px;
   margin-bottom: 0.85rem;
   width: fit-content;
+  user-select: none;
+  font-variant-numeric: tabular-nums;
 `;
 
 export const PriceContainer = styled.div`
@@ -555,6 +603,7 @@ export const OriginalPriceStrikethrough = styled.div`
   color: #64748b;
   text-decoration: line-through;
   margin-bottom: 3px;
+  font-variant-numeric: tabular-nums;
 `;
 
 export const PlanPrice = styled.div`
@@ -564,6 +613,8 @@ export const PlanPrice = styled.div`
   line-height: 1;
   display: flex;
   align-items: baseline;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
 
   span.currency {
     font-size: 1.35rem;
@@ -583,6 +634,7 @@ export const DailyPriceSmall = styled.div`
   font-size: 0.82rem;
   color: #94a3b8;
   margin-top: 5px;
+  font-variant-numeric: tabular-nums;
 `;
 
 export const PlanFeatures = styled.ul`
@@ -598,10 +650,21 @@ export const PlanFeatures = styled.ul`
     align-items: center;
     gap: 0.85rem;
     font-size: 0.98rem;
+    transition: transform 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      transform: translateX(4px);
+      color: #ffffff;
+    }
 
     svg {
       color: #3b82f6;
       flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+
+    &:hover svg {
+      transform: scale(1.15);
     }
   }
 `;
@@ -623,7 +686,23 @@ export const TestimonialCard = styled.div`
   background: #fff;
   padding: 2rem;
   border-radius: 16px;
+  border: 1px solid #e2e8f0;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+
+  img {
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e1;
+
+    img {
+      transform: scale(1.06);
+    }
+  }
 `;
 
 export const ReviewsSummary = styled.div`
@@ -631,9 +710,24 @@ export const ReviewsSummary = styled.div`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   font-weight: 600;
   color: #1e293b;
+  font-variant-numeric: tabular-nums;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 6px 18px;
+  border-radius: 999px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  user-select: none;
+  transition: transform 0.25s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
 
   span {
     color: #f59e0b;
@@ -652,11 +746,27 @@ export const FinalCTASection = styled.div`
   padding: 6rem 1rem;
   text-align: center;
   color: #fff;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
 
   h2 {
     font-size: 3rem;
     font-weight: 800;
     margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
 
     @media (max-width: 768px) {
       font-size: 2rem;
@@ -670,6 +780,8 @@ export const FinalCTASection = styled.div`
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
+    z-index: 1;
   }
 `;
 
@@ -776,6 +888,14 @@ export const WhatsAppBadge = styled.div`
   width: fit-content;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  transition: all 0.25s ease;
+  user-select: none;
+
+  &:hover {
+    background: rgba(59, 130, 246, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.18);
+  }
 `;
 
 export const WhatsAppHeading = styled.h2`
@@ -935,6 +1055,15 @@ export const WhatsAppCTA = styled.a`
     filter: brightness(1.06);
   }
 
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 3px;
+  }
+
   @media (max-width: 480px) {
     width: 100%;
     justify-content: center;
@@ -995,6 +1124,7 @@ export const WAChatHeader = styled.div`
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  user-select: none;
 
   .avatar {
     width: 40px;
@@ -1063,6 +1193,12 @@ export const WABubble = styled.div<{ $outgoing?: boolean }>`
   font-size: 0.86rem;
   line-height: 1.45;
   position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  }
 
   .bubble-badge {
     display: inline-block;
