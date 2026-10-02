@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { FB_PIXEL } from "../../utils/pixel";
+import SalaoHeroForm from "./components/SalaoHeroForm";
 import { CheckCircleIcon, StarIcon } from "@heroicons/react/24/solid";
 import {
   CalendarDaysIcon,
@@ -16,7 +17,6 @@ import {
   ComputerDesktopIcon,
   UserGroupIcon,
   ClockIcon,
-  ArrowRightIcon,
 } from "@heroicons/react/24/outline";
 
 import {
@@ -24,13 +24,14 @@ import {
   Container,
   SubBrandHeader,
   HeroSection,
+  SalaoHeroGrid,
+  SalaoHeroLeft,
   HeroBadge,
   HeroTitle,
   HeroSubtitle,
-  CTAButtonGroup,
-  PrimaryButton,
-  SecondaryButton,
-  GuaranteeNotice,
+  SalaoHeroChecklist,
+  SalaoHeroChecklistItem,
+  SalaoHeroSocialProof,
   AuthorityStrip,
   SectionHeader,
   PillarsSection,
@@ -218,36 +219,55 @@ const SalaoEstetica: React.FC = () => {
 
         {/* HERO SECTION */}
         <HeroSection>
-          <HeroBadge>
-            <span className="sparkle">✨</span>
-            Edição Especial para Salões & Clínicas de Estética
-          </HeroBadge>
+          <SalaoHeroGrid>
+            <SalaoHeroLeft>
+              <HeroBadge>
+                <span className="sparkle">✨</span>
+                Edição Especial para Salões & Clínicas de Estética
+              </HeroBadge>
 
-          <HeroTitle>
-            Organização que <span className="gold-accent">valoriza</span> sua
-            arte e <span className="gold-accent">impulsiona</span> seu negócio.
-          </HeroTitle>
+              <HeroTitle style={{ textAlign: "inherit", margin: "0 0 1.25rem" }}>
+                Organização que <span className="gold-accent">valoriza</span> sua
+                arte e <span className="gold-accent">impulsiona</span> seu negócio.
+              </HeroTitle>
 
-          <HeroSubtitle>
-            Menos correria, mais gestão. Mais tempo para o que importa.
-          </HeroSubtitle>
+              <HeroSubtitle style={{ textAlign: "inherit", margin: "0 0 1.75rem" }}>
+                Menos correria, mais gestão. Agendamentos online 24h, lembretes automáticos no WhatsApp e controle completo de comissões.
+              </HeroSubtitle>
 
-          <CTAButtonGroup>
-            <PrimaryButton onClick={handleStartFree}>
-              <span>Começar Grátis por 10 Dias</span>
-              <ArrowRightIcon width={20} />
-            </PrimaryButton>
+              <SalaoHeroChecklist>
+                <SalaoHeroChecklistItem>
+                  <CheckCircleIcon />
+                  <span>
+                    <strong>10 dias de teste grátis</strong> com todos os recursos liberados
+                  </span>
+                </SalaoHeroChecklistItem>
+                <SalaoHeroChecklistItem>
+                  <CheckCircleIcon />
+                  <span>
+                    <strong>Sem cartão de crédito</strong> para iniciar o teste
+                  </span>
+                </SalaoHeroChecklistItem>
+                <SalaoHeroChecklistItem>
+                  <CheckCircleIcon />
+                  <span>
+                    <strong>Controle automático de comissões</strong> da sua equipe
+                  </span>
+                </SalaoHeroChecklistItem>
+              </SalaoHeroChecklist>
 
-            <SecondaryButton href="#planos">
-              <span>Ver Planos & Preços</span>
-            </SecondaryButton>
-          </CTAButtonGroup>
+              <SalaoHeroSocialProof>
+                <div className="stars">★★★★★</div>
+                <span>
+                  Nota <strong>4.9 / 5.0</strong> • Mais de <strong>40.000</strong> agendamentos realizados
+                </span>
+              </SalaoHeroSocialProof>
+            </SalaoHeroLeft>
 
-          <GuaranteeNotice>
-            ✨ Teste grátis por 10 dias <span className="dot">•</span> Sem
-            cartão de crédito <span className="dot">•</span> Cancele quando
-            quiser
-          </GuaranteeNotice>
+            <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
+              <SalaoHeroForm />
+            </div>
+          </SalaoHeroGrid>
 
           <AuthorityStrip>
             <div className="authority-item">

@@ -8,6 +8,55 @@ export interface BarbershopFormData {
   timestamp?: string;
 }
 
+export interface BarbershopHeroLeadData {
+  nome: string;
+  telefone: string;
+  email: string;
+  nomeBarbearia: string;
+  faturamento: string;
+  colaboradores: string;
+  timestamp?: string;
+  origem?: string;
+}
+
+export const sendBarbershopHeroLeadToSheets = async (
+  data: BarbershopHeroLeadData
+): Promise<boolean> => {
+  const GOOGLE_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbzZCVvfSdIzMsq1stPqU6R1Fv1seF-PiF-ea2pAwi2gKup64yhVPQhpwPpi1AYQ5kH5/exec";
+
+  const payload: Record<string, string> = {
+    nomeCompleto: data.nome.trim(),
+    nome: data.nome.trim(),
+    telefone: data.telefone.trim(),
+    email: data.email.trim(),
+    nomeBarbearia: data.nomeBarbearia.trim(),
+    empresa: data.nomeBarbearia.trim(),
+    faturamento: data.faturamento,
+    numeroBarbeiros: data.colaboradores,
+    colaboradores: data.colaboradores,
+    timestamp: data.timestamp || new Date().toISOString(),
+    source: data.origem || "barbearia_hero_form",
+  };
+
+  try {
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams(payload),
+      mode: "no-cors",
+    });
+
+    console.log("Lead de barbearia enviado para Google Sheets com sucesso:", payload);
+    return true;
+  } catch (error) {
+    console.error("Erro ao enviar lead da barbearia para Google Sheets:", error);
+    return false;
+  }
+};
+
 // Função para sanitizar dados removendo caracteres especiais
 const sanitizeData = (data: BarbershopFormData): BarbershopFormData => {
   const sanitizeString = (str: string): string => {
@@ -92,6 +141,57 @@ export interface SalaoFormData {
   numeroProfissionais: string;
   timestamp?: string;
 }
+
+export interface SalaoHeroLeadData {
+  nome: string;
+  telefone: string;
+  email: string;
+  nomeSalao: string;
+  faturamento: string;
+  colaboradores: string;
+  timestamp?: string;
+  origem?: string;
+}
+
+export const sendSalaoHeroLeadToSheets = async (
+  data: SalaoHeroLeadData
+): Promise<boolean> => {
+  const GOOGLE_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbzZCVvfSdIzMsq1stPqU6R1Fv1seF-PiF-ea2pAwi2gKup64yhVPQhpwPpi1AYQ5kH5/exec";
+
+  const payload: Record<string, string> = {
+    nomeCompleto: data.nome.trim(),
+    nome: data.nome.trim(),
+    telefone: data.telefone.trim(),
+    email: data.email.trim(),
+    nomeSalao: data.nomeSalao.trim(),
+    nomeBarbearia: data.nomeSalao.trim(),
+    empresa: data.nomeSalao.trim(),
+    faturamento: data.faturamento,
+    numeroProfissionais: data.colaboradores,
+    numeroBarbeiros: data.colaboradores,
+    colaboradores: data.colaboradores,
+    timestamp: data.timestamp || new Date().toISOString(),
+    source: data.origem || "salao_estetica_hero_form",
+  };
+
+  try {
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams(payload),
+      mode: "no-cors",
+    });
+
+    console.log("Lead de salão/estética enviado para Google Sheets com sucesso:", payload);
+    return true;
+  } catch (error) {
+    console.error("Erro ao enviar lead do salão para Google Sheets:", error);
+    return false;
+  }
+};
 
 // Função para sanitizar dados do salão
 const sanitizeSalaoData = (data: SalaoFormData): SalaoFormData => {

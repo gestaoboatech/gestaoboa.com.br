@@ -5,6 +5,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Button from "../../components/Button";
 import { FB_PIXEL } from "../../utils/pixel";
+import BarbershopHeroForm from "./components/BarbershopHeroForm";
 import { CheckCircleIcon, StarIcon } from "@heroicons/react/24/solid";
 import {
   CalendarDaysIcon,
@@ -21,9 +22,14 @@ import {
   Container,
   Content,
   HeroSection,
+  HeroGridContainer,
+  HeroLeftContent,
+  HeroBadge,
+  HeroChecklist,
+  HeroChecklistItem,
+  HeroSocialProofStrip,
   HeroTitle,
   HeroSubtitle,
-  CTAButtonContainer,
   AuthorityStrip,
   EssentialsSection,
   EssentialsGrid,
@@ -165,45 +171,58 @@ const Barbershop: React.FC = () => {
         <Content>
           {/* HERO SECTION */}
           <HeroSection>
-            <div
-              style={{
-                position: "relative",
-                zIndex: 1,
-                maxWidth: "1000px",
-                margin: "0 auto",
-                textAlign: "center",
-              }}
-            >
-              <HeroTitle>
-                Sua barbearia lotada.
-                <br />
-                <span>Sem você atender o celular.</span>
-              </HeroTitle>
-              <HeroSubtitle>
-                Pare de perder tempo no WhatsApp. Tenha um sistema de
-                agendamento online, lembretes automáticos e controle financeiro
-                completo. Profissionalize seu negócio hoje.
-              </HeroSubtitle>
+            <HeroGridContainer>
+              <HeroLeftContent>
+                <HeroBadge>
+                  <span>💈</span>
+                  Sistema Definitivo para Barbearias
+                </HeroBadge>
 
-              <CTAButtonContainer>
-                <Button
-                  text="Começar Grátis Agora"
-                  method={handleStartFree}
-                  type="focused"
-                  style={{ padding: "1.25rem 2.5rem", fontSize: "1.1rem" }}
-                />
-              </CTAButtonContainer>
+                <HeroTitle>
+                  Sua barbearia lotada.
+                  <br />
+                  <span>Sem você atender o celular.</span>
+                </HeroTitle>
 
-              <p
-                style={{
-                  marginTop: "1.5rem",
-                  color: "#64748b",
-                  fontSize: "0.9rem",
-                }}
-              >
-                ✨ Teste grátis por 10 dias • Sem cartão de crédito
-              </p>
-            </div>
+                <HeroSubtitle>
+                  Pare de perder tempo no WhatsApp. Tenha um sistema de
+                  agendamento online 24h, lembretes automáticos e controle financeiro
+                  completo. Profissionalize seu negócio hoje.
+                </HeroSubtitle>
+
+                <HeroChecklist>
+                  <HeroChecklistItem>
+                    <CheckCircleIcon />
+                    <span>
+                      <strong>10 dias de teste grátis</strong> sem pegadinhas
+                    </span>
+                  </HeroChecklistItem>
+                  <HeroChecklistItem>
+                    <CheckCircleIcon />
+                    <span>
+                      <strong>Sem cartão de crédito</strong> para começar
+                    </span>
+                  </HeroChecklistItem>
+                  <HeroChecklistItem>
+                    <CheckCircleIcon />
+                    <span>
+                      <strong>Reduza até 90% dos furos</strong> com lembretes automáticos
+                    </span>
+                  </HeroChecklistItem>
+                </HeroChecklist>
+
+                <HeroSocialProofStrip>
+                  <div className="stars">★★★★★</div>
+                  <span>
+                    Nota <strong>4.9/5</strong> • Mais de <strong>16.000</strong> agendamentos realizados
+                  </span>
+                </HeroSocialProofStrip>
+              </HeroLeftContent>
+
+              <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
+                <BarbershopHeroForm />
+              </div>
+            </HeroGridContainer>
 
             <AuthorityStrip>
               <div>

@@ -118,6 +118,105 @@ export const HeroSubtitle = styled.p`
   }
 `;
 
+export const HeroGridContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr;
+  gap: 3.5rem;
+  align-items: center;
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  text-align: left;
+  padding: 1rem 1.5rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 3rem;
+  }
+`;
+
+export const HeroLeftContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @media (max-width: 1024px) {
+    align-items: center;
+  }
+`;
+
+export const HeroBadge = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  color: #93c5fd;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+`;
+
+export const HeroChecklist = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  width: 100%;
+
+  @media (max-width: 1024px) {
+    align-items: center;
+    max-width: 500px;
+  }
+`;
+
+export const HeroChecklistItem = styled.li`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #e2e8f0;
+  font-size: 1rem;
+
+  svg {
+    color: #38bdf8;
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+
+  strong {
+    color: #ffffff;
+  }
+`;
+
+export const HeroSocialProofStrip = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  color: #94a3b8;
+  font-size: 0.9rem;
+
+  .stars {
+    color: #f59e0b;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+  }
+
+  @media (max-width: 1024px) {
+    justify-content: center;
+  }
+`;
+
 export const CTAButtonContainer = styled.div`
   z-index: 1;
   display: flex;

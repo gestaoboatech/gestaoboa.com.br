@@ -208,6 +208,91 @@ export const HeroSubtitle = styled.p`
   }
 `;
 
+export const SalaoHeroGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr;
+  gap: 3.5rem;
+  align-items: center;
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  text-align: left;
+  padding: 1rem 1.5rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 3rem;
+  }
+`;
+
+export const SalaoHeroLeft = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @media (max-width: 1024px) {
+    align-items: center;
+  }
+`;
+
+export const SalaoHeroChecklist = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  width: 100%;
+
+  @media (max-width: 1024px) {
+    align-items: center;
+    max-width: 500px;
+  }
+`;
+
+export const SalaoHeroChecklistItem = styled.li`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #334155;
+  font-size: 1rem;
+
+  svg {
+    color: #10b981;
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+
+  strong {
+    color: #0b1d3d;
+  }
+`;
+
+export const SalaoHeroSocialProof = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.25);
+  width: 100%;
+  color: #64748b;
+  font-size: 0.9rem;
+
+  .stars {
+    color: #d4af37;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+  }
+
+  @media (max-width: 1024px) {
+    justify-content: center;
+  }
+`;
+
 export const CTAButtonGroup = styled.div`
   display: flex;
   align-items: center;
