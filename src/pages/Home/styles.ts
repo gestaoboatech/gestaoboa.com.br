@@ -65,6 +65,11 @@ export const HeroBadge = styled.div`
     background: rgba(0, 180, 216, 0.1);
     border-color: rgba(0, 180, 216, 0.4);
     transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(0, 180, 216, 0.18);
+  }
+
+  &:active {
+    transform: scale(0.98);
   }
 
   span.emoji {
@@ -257,6 +262,11 @@ export const Banner = styled.div`
             height: 12px;
             border-radius: 50%;
             display: inline-block;
+            transition: transform 0.2s ease;
+
+            &:hover {
+              transform: scale(1.15);
+            }
 
             &.red { background: #ef4444; }
             &.yellow { background: #f59e0b; }
@@ -274,6 +284,7 @@ export const Banner = styled.div`
           border-radius: 50px;
           font-size: 0.82rem;
           font-weight: 600;
+          user-select: none;
 
           .lock-icon {
             font-size: 0.75rem;
@@ -290,6 +301,7 @@ export const Banner = styled.div`
           background: rgba(56, 189, 248, 0.1);
           padding: 4px 12px;
           border-radius: 50px;
+          user-select: none;
         }
       }
 
@@ -324,6 +336,10 @@ export const Banner = styled.div`
         inset 0 1px 0 rgba(255, 255, 255, 0.25);
       border: 2.5px solid rgba(255, 255, 255, 0.18);
       animation: ${levitate} 6s ease-in-out infinite;
+
+      &:hover {
+        animation-play-state: paused;
+      }
 
       .phone-top-speaker {
         display: flex;
@@ -414,6 +430,7 @@ export const Banner = styled.div`
         bottom: auto;
         margin-top: -35px;
         width: 220px;
+        animation: none;
       }
     }
   }
@@ -508,10 +525,12 @@ export const Awards = styled.div`
   display: flex;
   grid-column: span 12;
   justify-content: space-around;
-  width: "100%";
+  width: 100%;
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #03045e;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
   .item {
     display: flex;
@@ -521,6 +540,11 @@ export const Awards = styled.div`
     color: #fff;
     padding: 0 20px;
     justify-content: center;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
   }
 
   .award-pair {
@@ -533,6 +557,8 @@ export const Awards = styled.div`
   .item .number {
     font-weight: bold;
     font-size: 48px;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
   }
 
   .item .text {
@@ -639,14 +665,18 @@ export const Solutions = styled.div`
     .metric-card {
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
+      border-top: 1px solid rgba(255, 255, 255, 0.28);
       border-radius: 16px;
       padding: 2rem 1.5rem;
       backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
+      -webkit-backdrop-filter: blur(10px);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 
       &:hover {
-        background: rgba(255, 255, 255, 0.12);
-        transform: translateY(-4px);
+        background: rgba(255, 255, 255, 0.13);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-5px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
       }
 
       .metric-icon {
@@ -658,10 +688,16 @@ export const Solutions = styled.div`
         align-items: center;
         justify-content: center;
         margin: 0 auto 1.25rem;
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
 
         svg {
           stroke: #00b4d8;
         }
+      }
+
+      &:hover .metric-icon {
+        transform: scale(1.08);
+        background: rgba(255, 255, 255, 0.18);
       }
 
       .metric-value {
@@ -669,6 +705,8 @@ export const Solutions = styled.div`
         font-weight: 700;
         color: #ffffff;
         margin-bottom: 0.5rem;
+        font-variant-numeric: tabular-nums;
+        letter-spacing: -0.01em;
       }
 
       .metric-label {
@@ -764,13 +802,14 @@ export const Solutions = styled.div`
       border-radius: 12px;
       padding: 1.5rem;
       text-align: left;
-      transition: all 0.3s ease;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
       border: 1px solid #f0f0f0;
 
       &:hover {
-        box-shadow: 0 8px 24px rgba(3, 4, 94, 0.1);
-        border-color: #e0e0e0;
+        transform: translateY(-4px);
+        box-shadow: 0 12px 28px rgba(3, 4, 94, 0.08);
+        border-color: rgba(0, 119, 182, 0.2);
       }
 
       .benefit-icon {
@@ -782,11 +821,17 @@ export const Solutions = styled.div`
         justify-content: center;
         background: #f5f8fc;
         border-radius: 12px;
+        transition: transform 0.3s ease, background-color 0.3s ease;
 
         svg {
           width: 24px;
           height: 24px;
         }
+      }
+
+      &:hover .benefit-icon {
+        transform: scale(1.06);
+        background: #eef5fc;
       }
 
       .info {
@@ -812,9 +857,20 @@ export const Solutions = styled.div`
         color: #0077b6;
         font-size: 0.9rem;
         font-weight: 500;
+        transition: color 0.2s ease, transform 0.2s ease;
         
         &:hover {
           color: #03045e;
+        }
+
+        &:active {
+          transform: scale(0.98);
+        }
+
+        &:focus-visible {
+          outline: 2px solid #0077b6;
+          outline-offset: 2px;
+          border-radius: 4px;
         }
       }
     }
@@ -1063,13 +1119,45 @@ export const Solutions = styled.div`
   }
 
   a.unfocused {
-    border: 1px solid #03045e;
+    border: 1.5px solid #03045e;
     color: #03045e;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &:hover {
+      background: rgba(3, 4, 94, 0.06);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(3, 4, 94, 0.12);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &:focus-visible {
+      outline: 2px solid #0077b6;
+      outline-offset: 3px;
+    }
   }
 
   a.focused {
     background-color: #03045e;
     color: #fff;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &:hover {
+      background-color: #0077b6;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(3, 4, 94, 0.25);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &:focus-visible {
+      outline: 2px solid #03045e;
+      outline-offset: 3px;
+    }
   }
 
   .player {
@@ -1294,6 +1382,7 @@ export const Team = styled.div`
     max-width: 1400px;
     margin: 0 auto;
     scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
@@ -1315,6 +1404,8 @@ export const Team = styled.div`
     overflow: hidden;
     min-width: calc((100% - 80px) / 3);
     flex: 0 0 auto;
+    scroll-snap-align: center;
+    user-select: none;
 
     &:hover {
       transform: translateY(-10px);
@@ -1393,7 +1484,11 @@ export const Team = styled.div`
     color: white;
     font-size: 20px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
     z-index: 10;
     display: flex;
     align-items: center;
@@ -1401,7 +1496,17 @@ export const Team = styled.div`
 
     &:hover {
       background: rgba(255, 255, 255, 0.3);
-      border-color: rgba(255, 255, 255, 0.4);
+      border-color: rgba(255, 255, 255, 0.45);
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    &:active {
+      transform: translateY(-50%) scale(0.92);
+    }
+
+    &:focus-visible {
+      outline: 2px solid #caf0f8;
+      outline-offset: 2px;
     }
 
     &.left {
@@ -1639,6 +1744,16 @@ export const ContactSocial = styled.div`
       color: #03045e;
       transform: translateX(5px);
     }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &:focus-visible {
+      outline: 2px solid #0077b6;
+      outline-offset: 4px;
+      border-radius: 6px;
+    }
   }
 
   @media (max-width: 768px) {
@@ -1659,9 +1774,11 @@ export const ContactFormBox = styled.div`
   flex-direction: column;
   gap: 24px;
   background-color: #03045e;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 20px;
   padding: 40px;
-  box-shadow: 0 20px 40px rgba(3, 4, 94, 0.15);
+  box-shadow: 0 20px 40px rgba(3, 4, 94, 0.18);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
   @media (max-width: 768px) {
     padding: 30px 20px;
@@ -1690,6 +1807,7 @@ export const FormLabel = styled.span`
   font-weight: 600;
   font-size: 16px;
   margin-left: 4px;
+  user-select: none;
 `;
 
 export const FormButtonWrapper = styled.div`
@@ -1757,13 +1875,20 @@ export const FAQ = styled.section`
         color: #1e293b;
         list-style: none;
         background-color: #ffffff;
-        transition: all 0.2s ease;
+        transition: color 0.2s ease;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
 
         &:hover {
           color: #0077b6;
+        }
+
+        &:focus-visible {
+          outline: 2px solid #0077b6;
+          outline-offset: -2px;
         }
 
         &::-webkit-details-marker {
@@ -1922,7 +2047,7 @@ export const Segments = styled.section`
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 16px;
     padding: 1.5rem;
-    transition: all 0.5s ease;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, border-color 0.3s ease, box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
     flex: 1;
@@ -1934,6 +2059,10 @@ export const Segments = styled.section`
       background: rgba(255, 255, 255, 0.12);
       border-color: rgba(255, 255, 255, 0.25);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+
+      .segment-image {
+        transform: scale(1.04);
+      }
     }
 
     &::before {
@@ -1963,6 +2092,7 @@ export const Segments = styled.section`
     object-fit: cover;
     border-radius: 12px;
     margin-bottom: 1rem;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .segment-title {
@@ -2017,6 +2147,15 @@ export const Segments = styled.section`
       transform: translateY(-2px);
       box-shadow: 0 4px 15px rgba(0, 150, 199, 0.3);
     }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &:focus-visible {
+      outline: 2px solid #90e0ef;
+      outline-offset: 2px;
+    }
   }
 
   .carousel-indicators {
@@ -2035,6 +2174,8 @@ export const Segments = styled.section`
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     padding: 0;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 
     &.active {
       background: white;
@@ -2045,6 +2186,11 @@ export const Segments = styled.section`
 
     &:hover:not(.active) {
       background: rgba(255, 255, 255, 0.7);
+    }
+
+    &:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: 3px;
     }
   }
 
@@ -2091,6 +2237,11 @@ export const Segments = styled.section`
 
     .segment-description {
       font-size: 0.85rem;
+    }
+
+    .segment-link {
+      width: 100%;
+      text-align: center;
     }
   }
 
@@ -2203,10 +2354,21 @@ export const InstagramSection = styled.section`
       font-size: 0.9rem;
       padding: 8px 16px;
       border-radius: 20px;
-      transition: background 0.2s;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 
       &:hover {
         background: #03045e;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 119, 182, 0.28);
+      }
+
+      &:active {
+        transform: scale(0.96);
+      }
+
+      &:focus-visible {
+        outline: 2px solid #0077b6;
+        outline-offset: 2px;
       }
     }
   }
@@ -2253,6 +2415,15 @@ export const InstagramSection = styled.section`
       transform: translateY(-6px);
       box-shadow: 0 20px 40px -15px rgba(3, 4, 94, 0.12);
       border-color: rgba(0, 119, 182, 0.25);
+    }
+
+    &:active {
+      transform: scale(0.99);
+    }
+
+    &:focus-visible {
+      outline: 2px solid #0077b6;
+      outline-offset: 3px;
     }
 
     .image-wrapper {
@@ -2412,6 +2583,15 @@ export const PlansCTA = styled.section`
       transform: translateY(-3px);
       box-shadow: 0 15px 30px rgba(255, 255, 255, 0.25);
     }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: 3px;
+    }
   }
 
   .plans-info {
@@ -2533,6 +2713,14 @@ export const WhatsAppBadge = styled.div`
   width: fit-content;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  transition: all 0.25s ease;
+  user-select: none;
+
+  &:hover {
+    background: rgba(0, 119, 182, 0.14);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 119, 182, 0.12);
+  }
 `;
 
 export const WhatsAppHeading = styled.h2`
@@ -2692,6 +2880,15 @@ export const WhatsAppCTA = styled.a`
     filter: brightness(1.06);
   }
 
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0077b6;
+    outline-offset: 3px;
+  }
+
   @media (max-width: 480px) {
     width: 100%;
     justify-content: center;
@@ -2752,6 +2949,7 @@ export const WAChatHeader = styled.div`
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  user-select: none;
 
   .avatar {
     width: 40px;
@@ -2820,6 +3018,12 @@ export const WABubble = styled.div<{ $outgoing?: boolean }>`
   font-size: 0.86rem;
   line-height: 1.45;
   position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09);
+  }
 
   .bubble-badge {
     display: inline-block;

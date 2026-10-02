@@ -226,11 +226,11 @@ const Barbershop: React.FC = () => {
 
             <AuthorityStrip>
               <div>
-                <strong>+R$2.000.000,00</strong>
+                <strong>+R$3.000.000,00</strong>
                 <span>Reais gerenciados</span>
               </div>
               <div>
-                <strong>+16k</strong>
+                <strong>+45k</strong>
                 <span>Agendamentos</span>
               </div>
               <div>
@@ -331,7 +331,7 @@ const Barbershop: React.FC = () => {
                 </WhatsAppDescription>
 
                 <WhatsAppCounter>
-                  <div className="counter-number">+20.000</div>
+                  <div className="counter-number">+30.000</div>
                   <div className="counter-label">
                     mensagens WhatsApp<br />enviadas automaticamente
                   </div>

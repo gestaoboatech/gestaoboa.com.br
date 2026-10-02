@@ -31,8 +31,10 @@ export const Input = styled.input<InputProps>`
     border-radius: 10px;
     border: none;
 
-    :focus{
-        outline: none;
+    &:focus {
+        outline: 2px solid #00b4d8;
+        outline-offset: 1px;
+        box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.25);
     }
 
     @media (max-width: 1450px){

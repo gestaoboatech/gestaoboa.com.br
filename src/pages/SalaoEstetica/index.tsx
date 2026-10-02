@@ -271,11 +271,11 @@ const SalaoEstetica: React.FC = () => {
 
           <AuthorityStrip>
             <div className="authority-item">
-              <strong>+R$ 2.000.000,00</strong>
+              <strong>+R$ 3.000.000,00</strong>
               <span>Reais gerenciados</span>
             </div>
             <div className="authority-item">
-              <strong>+40.000</strong>
+              <strong>+45.000</strong>
               <span>Agendamentos realizados</span>
             </div>
             <div className="authority-item">
@@ -362,7 +362,7 @@ const SalaoEstetica: React.FC = () => {
               </WhatsAppDescription>
 
               <WhatsAppCounter>
-                <div className="counter-number">+20.000</div>
+                <div className="counter-number">+25.000</div>
                 <div className="counter-label">
                   mensagens WhatsApp<br />enviadas automaticamente
                 </div>
