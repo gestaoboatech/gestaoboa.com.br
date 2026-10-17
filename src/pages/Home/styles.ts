@@ -56,6 +56,7 @@ export const HeroBadge = styled.div`
   width: fit-content;
   margin-bottom: -10px;
   cursor: pointer;
+  user-select: none;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -105,6 +106,7 @@ export const Banner = styled.div`
   position: relative;
   overflow: hidden;
   background: linear-gradient(180deg, #f8fafc 0%, #eff6ff 100%);
+  scroll-margin-top: 80px;
 
   /* Soft modern radial glows for background depth */
   &::before {
@@ -192,6 +194,26 @@ export const Banner = styled.div`
     margin-top: 8px;
   }
 
+  .content .buttons .button-link {
+    text-decoration: none;
+    display: inline-flex;
+    border-radius: 10px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &:focus-visible {
+      outline: 2px solid #0077b6;
+      outline-offset: 3px;
+    }
+  }
+
   .content .buttons .button {
     width: auto;
     min-width: 240px;
@@ -262,10 +284,11 @@ export const Banner = styled.div`
             height: 12px;
             border-radius: 50%;
             display: inline-block;
+            cursor: pointer;
             transition: transform 0.2s ease;
 
             &:hover {
-              transform: scale(1.15);
+              transform: scale(1.18);
             }
 
             &.red { background: #ef4444; }
@@ -279,12 +302,20 @@ export const Banner = styled.div`
           align-items: center;
           gap: 6px;
           background: rgba(15, 23, 42, 0.6);
+          border: 1px solid rgba(255, 255, 255, 0.08);
           color: #94a3b8;
           padding: 6px 20px;
           border-radius: 50px;
           font-size: 0.82rem;
           font-weight: 600;
           user-select: none;
+          transition: all 0.25s ease;
+
+          &:hover {
+            background: rgba(15, 23, 42, 0.85);
+            border-color: rgba(0, 180, 216, 0.35);
+            color: #cbd5e1;
+          }
 
           .lock-icon {
             font-size: 0.75rem;
@@ -308,6 +339,7 @@ export const Banner = styled.div`
       .desktop-screen {
         width: 100%;
         background: #ffffff;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
         overflow: hidden;
 
         img {
@@ -316,6 +348,8 @@ export const Banner = styled.div`
           max-height: 520px;
           object-fit: cover;
           display: block;
+          user-select: none;
+          -webkit-user-drag: none;
         }
       }
     }
@@ -378,6 +412,8 @@ export const Banner = styled.div`
           display: block;
           object-fit: cover;
           border-radius: 26px;
+          user-select: none;
+          -webkit-user-drag: none;
         }
       }
     }
@@ -486,6 +522,10 @@ export const Banner = styled.div`
       width: 100%;
     }
 
+    .content .buttons .button-link {
+      width: 100%;
+    }
+
     .content .buttons .button {
       width: 100%;
       min-width: unset;
@@ -538,12 +578,20 @@ export const Awards = styled.div`
     flex-wrap: wrap;
     gap: 15px;
     color: #fff;
-    padding: 0 20px;
+    padding: 10px 20px;
+    border-radius: 14px;
     justify-content: center;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.25s ease;
+    user-select: none;
 
     &:hover {
       transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.05);
+
+      .number {
+        color: #00b4d8;
+        text-shadow: 0 0 16px rgba(0, 180, 216, 0.4);
+      }
     }
   }
 
@@ -559,6 +607,7 @@ export const Awards = styled.div`
     font-size: 48px;
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.02em;
+    transition: color 0.25s ease, text-shadow 0.25s ease;
   }
 
   .item .text {
@@ -606,6 +655,7 @@ export const Solutions = styled.div`
   flex-direction: column;
   grid-column: span 12;
   position: relative;
+  scroll-margin-top: 80px;
 
   .solutionBanner {
     width: 100%;
@@ -671,12 +721,36 @@ export const Solutions = styled.div`
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 16px;
+        right: 16px;
+        height: 2px;
+        background: linear-gradient(90deg, #0077b6, #00b4d8);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        border-radius: 2px;
+        pointer-events: none;
+      }
 
       &:hover {
         background: rgba(255, 255, 255, 0.13);
         border-color: rgba(255, 255, 255, 0.3);
         transform: translateY(-5px);
         box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+
+        &::before {
+          opacity: 1;
+        }
+      }
+
+      &:active {
+        transform: translateY(-2px) scale(0.98);
       }
 
       .metric-icon {
@@ -692,12 +766,17 @@ export const Solutions = styled.div`
 
         svg {
           stroke: #00b4d8;
+          transition: transform 0.3s ease;
         }
       }
 
       &:hover .metric-icon {
         transform: scale(1.08);
         background: rgba(255, 255, 255, 0.18);
+
+        svg {
+          transform: scale(1.1);
+        }
       }
 
       .metric-value {
@@ -707,6 +786,7 @@ export const Solutions = styled.div`
         margin-bottom: 0.5rem;
         font-variant-numeric: tabular-nums;
         letter-spacing: -0.01em;
+        user-select: none;
       }
 
       .metric-label {
@@ -714,11 +794,13 @@ export const Solutions = styled.div`
         font-weight: 600;
         color: #ffffff;
         margin-bottom: 0.25rem;
+        user-select: none;
       }
 
       .metric-description {
         font-size: 0.9rem;
         color: rgba(255, 255, 255, 0.7);
+        user-select: none;
       }
     }
 
@@ -932,6 +1014,20 @@ export const Solutions = styled.div`
           transform: translateY(-6px);
           box-shadow: 0 20px 40px -15px rgba(3, 4, 94, 0.1);
           border-color: rgba(0, 119, 182, 0.25);
+
+          .benefit-content .benefit-title {
+            color: #0077b6;
+          }
+
+          .benefit-link {
+            color: #03045e;
+            transform: translateX(4px);
+            gap: 7px;
+          }
+        }
+
+        &:active {
+          transform: translateY(-2px) scale(0.99);
         }
 
         .benefit-icon {
@@ -944,6 +1040,7 @@ export const Solutions = styled.div`
           background: rgba(0, 119, 182, 0.06);
           border: 1px solid rgba(0, 119, 182, 0.15);
           border-radius: 14px;
+          user-select: none;
           transition: all 0.3s ease;
 
           svg {
@@ -973,6 +1070,7 @@ export const Solutions = styled.div`
             font-weight: 700;
             margin-bottom: 0.5rem;
             color: #1e293b;
+            transition: color 0.25s ease;
           }
 
           .benefit-description {
@@ -986,13 +1084,26 @@ export const Solutions = styled.div`
             text-decoration: none;
             display: inline-flex;
             align-items: center;
+            gap: 4px;
             color: #0077b6;
             font-size: 0.9rem;
             font-weight: 700;
-            transition: color 0.2s;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
             
             &:hover {
               color: #03045e;
+              transform: translateX(4px);
+              gap: 7px;
+            }
+
+            &:active {
+              transform: scale(0.98);
+            }
+
+            &:focus-visible {
+              outline: 2px solid #0077b6;
+              outline-offset: 2px;
+              border-radius: 4px;
             }
           }
         }
@@ -1053,6 +1164,22 @@ export const Solutions = styled.div`
       text-decoration: none;
       max-width: 300px;
       width: 100%;
+      display: inline-block;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+
+      &:active {
+        transform: scale(0.98);
+      }
+
+      &:focus-visible {
+        outline: 2px solid #0077b6;
+        outline-offset: 3px;
+        border-radius: 10px;
+      }
     }
   }
 
@@ -1077,10 +1204,16 @@ export const Solutions = styled.div`
 
   .tutorial .callout .title {
     font-size: 48px;
+    font-weight: 800;
+    color: #03045e;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
   }
 
   .tutorial .callout .description {
-    font-size: 24px;
+    font-size: 20px;
+    color: #475569;
+    line-height: 1.6;
   }
 
   .tutorial .callout span {
@@ -1093,6 +1226,14 @@ export const Solutions = styled.div`
     justify-content: center;
     align-items: center;
     gap: 44px;
+
+    .or {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #94a3b8;
+      user-select: none;
+      text-transform: lowercase;
+    }
   }
 
   .tutorial .callout .buttons .top {
@@ -1112,6 +1253,7 @@ export const Solutions = styled.div`
     border-radius: 10px;
     font-weight: bold;
     gap: 10px;
+    user-select: none;
   }
 
   .tutorial .callout .buttons img.ios-icon {
@@ -1123,10 +1265,18 @@ export const Solutions = styled.div`
     color: #03045e;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 
+    img {
+      transition: transform 0.25s ease;
+    }
+
     &:hover {
       background: rgba(3, 4, 94, 0.06);
       transform: translateY(-2px);
       box-shadow: 0 6px 16px rgba(3, 4, 94, 0.12);
+
+      img {
+        transform: scale(1.12);
+      }
     }
 
     &:active {
@@ -1333,6 +1483,11 @@ export const Solutions = styled.div`
       justify-content: center;
       align-items: center;
       gap: 30px;
+
+      a {
+        width: 100%;
+        max-width: 280px;
+      }
     }
   }
 `;
@@ -1684,6 +1839,7 @@ export const ContactContainer = styled.section`
   margin: 0 auto;
   gap: 80px;
   width: 100%;
+  scroll-margin-top: 80px;
 
   @media (max-width: 1024px) {
     padding: 80px 40px;
@@ -1740,9 +1896,19 @@ export const ContactSocial = styled.div`
     text-decoration: none;
     transition: all 0.2s ease;
 
+    img {
+      transition: transform 0.25s ease;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
     &:hover {
       color: #03045e;
       transform: translateX(5px);
+
+      img {
+        transform: scale(1.1) rotate(-4deg);
+      }
     }
 
     &:active {
@@ -1780,6 +1946,11 @@ export const ContactFormBox = styled.div`
   box-shadow: 0 20px 40px rgba(3, 4, 94, 0.18);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
+  &:focus-within {
+    border-color: rgba(0, 180, 216, 0.45);
+    box-shadow: 0 24px 50px rgba(3, 4, 94, 0.28);
+  }
+
   @media (max-width: 768px) {
     padding: 30px 20px;
   }
@@ -1815,6 +1986,32 @@ export const FormButtonWrapper = styled.div`
   margin-top: 10px;
   display: flex;
   justify-content: flex-end; /* Align button to the right for a cleaner look, or center if preferred. Going with full width typically or end. */
+
+  button {
+    transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(0, 180, 216, 0.35);
+    }
+
+    &:active {
+      transform: scale(0.98) !important;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #00b4d8 !important;
+      outline-offset: 3px !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    justify-content: center;
+
+    button {
+      width: 100% !important;
+    }
+  }
 `;
 
 const faqFadeIn = keyframes`
@@ -1832,6 +2029,7 @@ export const FAQ = styled.section`
   padding: 6rem 2rem;
   grid-column: span 12;
   background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  scroll-margin-top: 80px;
 
   .section-title {
     text-align: center;
@@ -1862,7 +2060,9 @@ export const FAQ = styled.section`
       }
 
       &[open] {
-        border-color: rgba(0, 119, 182, 0.3);
+        border-color: rgba(0, 119, 182, 0.45);
+        border-left: 3.5px solid #0077b6;
+        background-color: #fcfdfe;
         box-shadow: 0 12px 30px -10px rgba(3, 4, 94, 0.08);
       }
 
@@ -1874,8 +2074,8 @@ export const FAQ = styled.section`
         font-size: 1.1rem;
         color: #1e293b;
         list-style: none;
-        background-color: #ffffff;
-        transition: color 0.2s ease;
+        background-color: transparent;
+        transition: color 0.2s ease, transform 0.2s ease;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -1884,6 +2084,10 @@ export const FAQ = styled.section`
 
         &:hover {
           color: #0077b6;
+        }
+
+        &:active {
+          transform: scale(0.995);
         }
 
         &:focus-visible {
@@ -1909,7 +2113,7 @@ export const FAQ = styled.section`
 
       &[open] summary {
         color: #03045e;
-        border-bottom: 1px solid #f1f5f9;
+        border-bottom: 1px solid #e2e8f0;
         
         &::after {
           transform: rotate(-135deg);
@@ -1923,7 +2127,7 @@ export const FAQ = styled.section`
         color: #475569;
         font-size: 1rem;
         line-height: 1.6;
-        background-color: #ffffff;
+        background-color: #fcfdfe;
         animation: ${faqFadeIn} 0.35s ease-out;
       }
     }
@@ -2053,6 +2257,8 @@ export const Segments = styled.section`
     flex: 1;
     max-width: 400px;
     min-height: 500px;
+    display: flex;
+    flex-direction: column;
 
     &:hover {
       transform: translateY(-8px);
@@ -2063,6 +2269,10 @@ export const Segments = styled.section`
       .segment-image {
         transform: scale(1.04);
       }
+    }
+
+    &:active {
+      transform: scale(0.99);
     }
 
     &::before {
@@ -2093,6 +2303,8 @@ export const Segments = styled.section`
     border-radius: 12px;
     margin-bottom: 1rem;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    user-select: none;
+    -webkit-user-drag: none;
   }
 
   .segment-title {
@@ -2121,6 +2333,12 @@ export const Segments = styled.section`
       border-radius: 8px;
       font-size: 0.85rem;
       position: relative;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+
+      &:hover {
+        transform: translateX(3px);
+        background: rgba(255, 255, 255, 0.16);
+      }
 
       &:before {
         content: "✓";
@@ -2318,12 +2536,21 @@ export const InstagramSection = styled.section`
     border: 1px solid #e2e8f0;
     position: relative;
     z-index: 2;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      border-color: rgba(0, 119, 182, 0.35);
+      box-shadow: 0 14px 34px -10px rgba(3, 4, 94, 0.12);
+    }
 
     .avatar {
       width: 50px;
       height: 50px;
       border-radius: 50%;
       border: 2px solid #0077b6;
+      user-select: none;
+      -webkit-user-drag: none;
     }
 
     .info {
@@ -2438,6 +2665,8 @@ export const InstagramSection = styled.section`
         height: 100%;
         object-fit: cover;
         transition: transform 0.5s ease;
+        user-select: none;
+        -webkit-user-drag: none;
       }
 
       .overlay {
@@ -2447,6 +2676,8 @@ export const InstagramSection = styled.section`
         right: 0;
         bottom: 0;
         background: rgba(3, 4, 94, 0.7);
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -2456,6 +2687,8 @@ export const InstagramSection = styled.section`
         color: white;
         font-weight: 700;
         font-size: 1.1rem;
+        user-select: none;
+        pointer-events: none;
 
         span {
           display: flex;
@@ -2499,7 +2732,13 @@ export const InstagramSection = styled.section`
         display: flex;
         align-items: center;
         gap: 4px;
+        transition: transform 0.25s ease, color 0.25s ease;
       }
+    }
+
+    &:hover .card-footer .action-text {
+      transform: translateX(4px);
+      color: #03045e;
     }
   }
 
@@ -2530,6 +2769,7 @@ export const PlansCTA = styled.section`
   grid-column: span 12;
   position: relative;
   overflow: hidden;
+  scroll-margin-top: 80px;
 
   /* Decorative glowing circles */
   &::before {
@@ -2599,6 +2839,7 @@ export const PlansCTA = styled.section`
     color: rgba(255, 255, 255, 0.7);
     margin-top: 1rem;
     font-weight: 600;
+    user-select: none;
   }
 
   @media (max-width: 768px) {
@@ -2616,6 +2857,9 @@ export const PlansCTA = styled.section`
     .cta-button {
       font-size: 1.05rem;
       padding: 14px 28px;
+      width: 100%;
+      max-width: 360px;
+      justify-content: center;
     }
   }
 `;
@@ -2635,12 +2879,25 @@ const countPulse = keyframes`
   100% { transform: scale(1); }
 `;
 
+const onlinePulse = keyframes`
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+`;
+
 export const WhatsAppSection = styled.section`
   grid-column: span 12;
   background: linear-gradient(180deg, #f8fafc 0%, #eff6ff 50%, #ffffff 100%);
   padding: 80px 40px;
   position: relative;
   overflow: hidden;
+  scroll-margin-top: 80px;
 
   &::before {
     content: '';
@@ -2824,6 +3081,10 @@ export const WhatsAppFeatureCard = styled.div`
     border-color: rgba(0, 119, 182, 0.3);
   }
 
+  &:active {
+    transform: scale(0.98);
+  }
+
   .feature-icon {
     width: 42px;
     height: 42px;
@@ -2963,6 +3224,20 @@ export const WAChatHeader = styled.div`
     font-weight: 800;
     font-size: 1.05rem;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+      width: 10px;
+      height: 10px;
+      background: #25d366;
+      border: 2px solid #008069;
+      border-radius: 50%;
+      animation: ${onlinePulse} 2s infinite ease-in-out;
+    }
   }
 
   .info {
@@ -3036,6 +3311,7 @@ export const WABubble = styled.div<{ $outgoing?: boolean }>`
     border-radius: 4px;
     margin-bottom: 6px;
     text-transform: uppercase;
+    user-select: none;
   }
 
   .time {
@@ -3046,6 +3322,7 @@ export const WABubble = styled.div<{ $outgoing?: boolean }>`
     font-size: 0.68rem;
     color: #667781;
     margin-top: 5px;
+    user-select: none;
 
     svg {
       width: 14px;
@@ -3083,6 +3360,10 @@ export const VideoContainer = styled.div`
       0 0 0 6px rgba(0, 119, 182, 0.28);
   }
 
+  &:active {
+    transform: scale(0.99);
+  }
+
   .phone-notch {
     width: 65px;
     height: 10px;
@@ -3099,6 +3380,8 @@ export const VideoContainer = styled.div`
     display: block;
     border-radius: 24px;
     object-fit: cover;
+    user-select: none;
+    transition: transform 0.3s ease;
   }
 
   @media (max-width: 768px) {

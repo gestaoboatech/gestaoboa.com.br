@@ -95,6 +95,16 @@ export const Logo = styled.div`
     gap: 10px;
     font-family: "Montserrat";
     cursor: pointer;
+    user-select: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+        opacity: 0.92;
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
     
     @media (max-width: 1030px) {
         flex: 1;
@@ -109,6 +119,8 @@ export const Logo = styled.div`
 
 export const LogoImg = styled.img`
     width: 48px;
+    user-select: none;
+    -webkit-user-drag: none;
 
     @media (max-width: 1030px){
         width: 40px;
@@ -186,6 +198,12 @@ export const LinkItem = styled.a<{ $active?: boolean }>`
             width: 100%;
         }
     }
+
+    &:focus-visible {
+        outline: 2px solid #0077b6;
+        outline-offset: 4px;
+        border-radius: 4px;
+    }
 `
 
 export const TestNow = styled.div`
@@ -209,6 +227,17 @@ export const MenuButton = styled.button<{ isOpen: boolean }>`
     padding: 0;
     z-index: 300;
     align-items: center;
+    transition: transform 0.2s ease;
+
+    &:active {
+        transform: scale(0.92);
+    }
+
+    &:focus-visible {
+        outline: 2px solid #0077b6;
+        outline-offset: 4px;
+        border-radius: 4px;
+    }
 
     span {
         width: 24px;
@@ -277,6 +306,10 @@ export const MobileLinks = styled.div<{ isOpen: boolean }>`
             border-radius: 8px;
         }
 
+        &:active {
+            transform: scale(0.98);
+        }
+
         &.pricing {
             margin: 10px 0;
             display: block;
@@ -317,4 +350,19 @@ export const MobileLinks = styled.div<{ isOpen: boolean }>`
 export const ButtonLink = styled.a`
     text-decoration: none;
     display: block;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &:hover {
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        transform: scale(0.97);
+    }
+
+    &:focus-visible {
+        outline: 2px solid #0077b6;
+        outline-offset: 3px;
+        border-radius: 8px;
+    }
 `;

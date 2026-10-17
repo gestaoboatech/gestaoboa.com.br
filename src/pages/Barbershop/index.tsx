@@ -223,7 +223,7 @@ const Barbershop: React.FC = () => {
           </HeroSection>
 
           {/* ESSENTIALS SECTION */}
-          <EssentialsSection>
+          <EssentialsSection id="beneficios">
             <SectionTitle>Tudo que você precisa para crescer</SectionTitle>
             <SectionSubtitle>
               Simplificamos a gestão para você focar no que importa: o corte.
@@ -490,7 +490,7 @@ const Barbershop: React.FC = () => {
           </VideoSection>
 
           {/* PRICING SECTION */}
-          <PricingSection>
+          <PricingSection id="planos">
             <SectionTitle>Planos transparentes</SectionTitle>
             <SectionSubtitle>
               Escolha a melhor opção para o seu momento. Mude quando quiser.
@@ -737,7 +737,7 @@ const Barbershop: React.FC = () => {
           </PricingSection>
 
           {/* TESTIMONIALS */}
-          <TestimonialsSection>
+          <TestimonialsSection id="depoimentos">
             <ReviewsSummary>
               <div style={{ display: "flex" }}>
                 {[...Array(5)].map((_, i) => (

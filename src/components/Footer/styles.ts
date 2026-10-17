@@ -20,6 +20,16 @@ export const Container = styled.footer`
             color: #90e0ef;
             transform: translateX(2px);
         }
+
+        &:active {
+            transform: scale(0.98);
+        }
+
+        &:focus-visible {
+            outline: 2px solid #90e0ef;
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
     }
 `;
 
