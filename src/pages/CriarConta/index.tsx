@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import {
   loginUser,
@@ -12,6 +12,7 @@ import {
   getEnterpriseBranches,
   DEFAULT_ENTERPRISE_BRANCHES,
 } from "../../services/userApi";
+import { FB_PIXEL } from "../../utils/pixel";
 import "./styles.css";
 
 // Google Ads Conversion Tracking
@@ -167,16 +168,43 @@ const SCALE_OPTIONS = [
   { id: 4, name: "Outro", description: "Outros tipos de empresa" },
 ];
 
+const formatInitialPhone = (value: string) => {
+  const cleaned = value.replace(/\D/g, "").slice(0, 11);
+  if (!cleaned) return "";
+  if (cleaned.length <= 2) {
+    return `(${cleaned}`;
+  }
+  if (cleaned.length <= 6) {
+    return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2)}`;
+  }
+  if (cleaned.length <= 10) {
+    return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 6)}-${cleaned.slice(6)}`;
+  }
+  return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 7)}-${cleaned.slice(7, 11)}`;
+};
+
 const CriarConta: React.FC = () => {
   const [searchParams] = useSearchParams();
-  const planParam = searchParams.get("plano") as PlanType | null;
-  const cupomParam = searchParams.get("cupom") || searchParams.get("desconto");
+  const location = useLocation();
+  const navState = (location.state as any) || {};
+
   const navigate = useNavigate();
+  const planParam = (searchParams.get("plano") || navState.plan) as PlanType | null;
+  const cupomParam = searchParams.get("cupom") || searchParams.get("desconto");
   const eventoParam = searchParams.get("evento") || searchParams.get("parceria") || searchParams.get("origem");
-  const planoParam = searchParams.get("plano");
+  const planoParam = searchParams.get("plano") || navState.plan;
   const parceriaParam = searchParams.get("parceria");
-  const origemParam = searchParams.get("origem");
+  const origemParam = searchParams.get("origem") || navState.origem;
   const refParam = searchParams.get("ref");
+
+  // Dados pré-preenchidos de formulários externos (ex: /barbearia)
+  const prefilledName = navState.name || searchParams.get("nome") || searchParams.get("name") || "";
+  const prefilledSurname = navState.surname || searchParams.get("sobrenome") || searchParams.get("surname") || "";
+  const prefilledEmail = navState.email || searchParams.get("email") || "";
+  const rawPhone = navState.phone || searchParams.get("telefone") || searchParams.get("phone") || "";
+  const prefilledCompany = navState.companyName || searchParams.get("empresa") || searchParams.get("barbearia") || "";
+  const ramoParam = (navState.category || searchParams.get("ramo") || searchParams.get("segmento") || "").toLowerCase();
+  const colaboradoresParam = navState.colaboradores || searchParams.get("colaboradores") || "";
 
   const isSupremacy10 =
     cupomParam?.toUpperCase() === "SUPREMACY10" ||
@@ -204,10 +232,10 @@ const CriarConta: React.FC = () => {
   const [companyStep, setCompanyStep] = useState(0);
   const [userToken, setUserToken] = useState<string | null>(null);
   const [formData, setFormData] = useState({
-    name: "",
-    surname: "",
-    email: "",
-    phone: "",
+    name: prefilledName,
+    surname: prefilledSurname,
+    email: prefilledEmail,
+    phone: formatInitialPhone(rawPhone),
     password: "",
     terms: false,
   });
@@ -222,6 +250,30 @@ const CriarConta: React.FC = () => {
   const [termsError, setTermsError] = useState(false);
 
   useEffect(() => {
+    FB_PIXEL.pageView();
+    FB_PIXEL.trackCustomEvent("ViewCriarContaPage", {
+      is_supremacy: isSupremacy10,
+      plano: selectedPlanKey,
+    });
+  }, []);
+
+  // Sincroniza dados pré-preenchidos se chegarem via navegação
+  useEffect(() => {
+    if (prefilledName || prefilledSurname || prefilledEmail || rawPhone) {
+      setFormData((prev) => ({
+        ...prev,
+        name: prev.name || prefilledName,
+        surname: prev.surname || prefilledSurname,
+        email: prev.email || prefilledEmail,
+        phone: prev.phone || formatInitialPhone(rawPhone),
+      }));
+    }
+    if (prefilledCompany) {
+      setCompanyName((prev: string) => prev || prefilledCompany);
+    }
+  }, [prefilledName, prefilledSurname, prefilledEmail, rawPhone, prefilledCompany]);
+
+  useEffect(() => {
     if (currentStep === 2) {
       setTimeout(() => {
         codeInputRef.current?.focus();
@@ -229,13 +281,21 @@ const CriarConta: React.FC = () => {
     }
   }, [currentStep]);
 
+  // Determinar porte da empresa com base em colaboradores se fornecido
+  const initialScale = (() => {
+    if (colaboradoresParam === "1") return SCALE_OPTIONS[0]; // MEI
+    if (colaboradoresParam === "2-3" || colaboradoresParam === "4-6") return SCALE_OPTIONS[1]; // ME
+    if (colaboradoresParam === "7+") return SCALE_OPTIONS[1]; // ME
+    return null;
+  })();
+
   // Company form states
-  const [companyName, setCompanyName] = useState("");
+  const [companyName, setCompanyName] = useState(prefilledCompany);
   const [discountCode, setDiscountCode] = useState(
     isSupremacy10 ? "SUPREMACY10" : cupomParam ? cupomParam.toUpperCase() : ""
   );
   const [selectedCategory, setSelectedCategory] = useState<EnterpriseBranch | null>(null);
-  const [selectedScale, setSelectedScale] = useState<typeof SCALE_OPTIONS[0] | null>(null);
+  const [selectedScale, setSelectedScale] = useState<typeof SCALE_OPTIONS[0] | null>(initialScale);
   const [categories, setCategories] = useState<EnterpriseBranch[]>(DEFAULT_ENTERPRISE_BRANCHES);
 
   useEffect(() => {
@@ -245,12 +305,28 @@ const CriarConta: React.FC = () => {
         if (fetchedCategories && fetchedCategories.length > 0) {
           setCategories(fetchedCategories);
 
-          if (isSupremacy10) {
+          if (isSupremacy10 || ramoParam === "barbearia") {
             const barbeariaCat = fetchedCategories.find((c) =>
               c.name.toLowerCase().includes("barbearia")
             );
             if (barbeariaCat) {
               setSelectedCategory(barbeariaCat);
+            } else {
+              setSelectedCategory(fetchedCategories[0]);
+            }
+          } else if (
+            ramoParam === "salao" ||
+            ramoParam === "salao-estetica" ||
+            ramoParam === "estetica"
+          ) {
+            const salaoCat = fetchedCategories.find((c) =>
+              c.name.toLowerCase().includes("salão") ||
+              c.name.toLowerCase().includes("salao") ||
+              c.name.toLowerCase().includes("estética") ||
+              c.name.toLowerCase().includes("estetica")
+            );
+            if (salaoCat) {
+              setSelectedCategory(salaoCat);
             } else {
               setSelectedCategory(fetchedCategories[0]);
             }
@@ -264,7 +340,7 @@ const CriarConta: React.FC = () => {
     if (currentStep === 3) {
       fetchCategories();
     }
-  }, [currentStep, isSupremacy10]);
+  }, [currentStep, isSupremacy10, ramoParam]);
 
   const formatPhone = (value: string) => {
     const cleaned = value.replace(/\D/g, "").slice(0, 11);
@@ -407,6 +483,11 @@ const CriarConta: React.FC = () => {
           throw new Error(errMsg ?? "Erro ao registrar usuário");
         }
 
+        FB_PIXEL.trackStartTrial({
+          content_name: "Registro Supremacy10",
+          plan: selectedPlanKey,
+        });
+
         // Automatic login with email and password without any verification step
         const loginResult = await loginUser(cleanEmail, formData.password);
         if (loginResult.error) {
@@ -481,6 +562,11 @@ const CriarConta: React.FC = () => {
       if (result.error) {
         throw new Error(result.error.message ?? "Erro ao registrar usuário");
       }
+
+      FB_PIXEL.trackLead({
+        content_name: "Cadastro Criar Conta",
+        plan: selectedPlanKey,
+      });
 
       setCurrentStep(2);
     } catch (err) {
@@ -640,7 +726,21 @@ const CriarConta: React.FC = () => {
       // Trigger Google Ads conversion event
       gtag_report_conversion();
 
+      // Trigger Meta Pixel conversion events
+      FB_PIXEL.trackCompleteRegistration({
+        content_name: companyName.trim(),
+        status: "success",
+        plan: planConfig?.name || selectedPlanKey,
+        category: categoryToUse.name,
+      });
+
       if (planConfig?.paymentLink) {
+        FB_PIXEL.trackInitiateCheckout({
+          content_name: planConfig.name,
+          value: planConfig.discountPriceVal || planConfig.price,
+          currency: "BRL",
+        });
+
         const createdEnterpriseId = (result as any)?.enterprise?.id || (result as any)?.id;
         let finalPaymentLink = planConfig.paymentLink;
         if (createdEnterpriseId) {

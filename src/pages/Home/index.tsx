@@ -313,7 +313,7 @@ const Home: FunctionComponent = () => {
           </title>
           <meta
             name="description"
-            content="Sistema de Gestão completo com automação de WhatsApp: chatbot inteligente, lembretes automáticos, mensagens de aniversário, agendamentos, controle financeiro e CRM. +20.000 mensagens WhatsApp enviadas. Teste grátis por 10 dias!"
+            content="Sistema de Gestão completo com automação de WhatsApp: chatbot inteligente, lembretes automáticos, mensagens de aniversário, agendamentos, controle financeiro e CRM. +25.000 mensagens WhatsApp enviadas. Teste grátis por 10 dias!"
           />
           <meta
             name="keywords"
@@ -611,7 +611,7 @@ const Home: FunctionComponent = () => {
                       <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                     </svg>
                   </div>
-                  <div className="metric-value">+R$ 2.000.000</div>
+                  <div className="metric-value">+R$ 3.000.000</div>
                   <div className="metric-label">Gerenciados</div>
                   <div className="metric-description">Através do app</div>
                 </div>
@@ -632,7 +632,7 @@ const Home: FunctionComponent = () => {
                       <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
                     </svg>
                   </div>
-                  <div className="metric-value">+20.000</div>
+                  <div className="metric-value">+25.000</div>
                   <div className="metric-label">Mensagens WhatsApp</div>
                   <div className="metric-description">
                     Enviadas automaticamente
@@ -659,7 +659,7 @@ const Home: FunctionComponent = () => {
                 </WhatsAppDescription>
 
                 <WhatsAppCounter>
-                  <div className="counter-number">+20.000</div>
+                  <div className="counter-number">+25.000</div>
                   <div className="counter-label">
                     mensagens WhatsApp<br />enviadas automaticamente
                   </div>
@@ -1110,7 +1110,7 @@ const Home: FunctionComponent = () => {
                     <p className="benefit-description">
                       Lembretes de agendamento, feliz aniversário com cupom,
                       aviso ao profissional e convite de retorno — tudo 100%
-                      automático pelo WhatsApp. +20.000 mensagens já enviadas.
+                      automático pelo WhatsApp. +25.000 mensagens já enviadas.
                     </p>
                     <a
                       href="#whatsapp-automacao"
@@ -1711,7 +1711,7 @@ const Home: FunctionComponent = () => {
                   mensagens de feliz aniversário com cupom de desconto
                   personalizado, aviso ao profissional quando um cliente agenda
                   pelo site, e convites de retorno para clientes que não
-                  visitam há tempo. Já enviamos mais de 20.000 mensagens
+                  visitam há tempo. Já enviamos mais de 25.000 mensagens
                   automáticas pela plataforma!
                 </p>
               </details>
