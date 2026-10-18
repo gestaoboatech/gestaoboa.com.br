@@ -1439,3 +1439,672 @@
   margin-top: 6px;
   margin-left: 4px;
 }
+
+/* ============================
+   GESTÃO BOA UX ENHANCEMENTS
+   ============================ */
+
+.signup-form-wrapper {
+  max-width: 520px;
+}
+
+.signup-steps {
+  padding: 0 8px;
+}
+
+.step-connector {
+  width: 32px;
+  margin: 0 8px;
+  margin-bottom: 26px;
+}
+
+.header-brand-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.header-official-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+  padding: 5px 12px;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.official-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 8px #4ade80;
+}
+
+.gestao-boa-pill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 119, 182, 0.1);
+  color: #03045e;
+  border: 1px solid rgba(0, 119, 182, 0.25);
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.quick-onboarding-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.onboarding-highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(0, 119, 182, 0.15);
+  border-radius: 14px;
+  padding: 12px 16px;
+  box-shadow: 0 4px 12px rgba(3, 4, 94, 0.04);
+}
+
+.onboarding-highlight-icon {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #03045e 0%, #0077b6 100%);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.onboarding-highlight-item div {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.onboarding-highlight-item strong {
+  color: #03045e;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.onboarding-highlight-item span {
+  color: #4b5563;
+  font-size: 0.82rem;
+}
+
+/* Form Brand Context Bar inside Card */
+.form-brand-context-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 100%);
+  border: 1px solid #cce3fd;
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 18px;
+}
+
+.form-brand-context-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-brand-shield {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.form-brand-context-left div {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  line-height: 1.25;
+}
+
+.form-brand-context-left strong {
+  font-size: 0.86rem;
+  color: #03045e;
+  font-weight: 800;
+}
+
+.form-brand-context-left span {
+  font-size: 0.74rem;
+  color: #0077b6;
+  font-weight: 600;
+}
+
+.form-brand-time-badge {
+  background: #03045e;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 50px;
+  white-space: nowrap;
+}
+
+.mobile-promo-callout {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: linear-gradient(135deg, #03045e 0%, #0077b6 100%);
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  font-size: 0.82rem;
+}
+
+.mobile-promo-pill {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.optional-tag {
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+/* Password show/hide wrapper */
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrapper input {
+  width: 100%;
+  padding-right: 78px !important;
+}
+
+.toggle-password-btn {
+  position: absolute;
+  right: 10px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #03045e;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle-password-btn:hover {
+  background: #e2e8f0;
+}
+
+/* ============================
+   UNIFIED COMPANY STEP (STEP 3)
+   ============================ */
+
+.unified-company-step {
+  text-align: left;
+}
+
+.company-step-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.step-badge-pill {
+  display: inline-block;
+  background: rgba(0, 119, 182, 0.12);
+  color: #0077b6;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 8px;
+}
+
+.company-step-header h3 {
+  color: #03045e;
+  font-size: 1.35rem;
+  margin-bottom: 4px;
+}
+
+.company-field-block {
+  margin-bottom: 18px;
+}
+
+.company-field-label {
+  display: block;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #03045e;
+  margin-bottom: 8px;
+}
+
+.quick-suggestions-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.quick-suggestions-label {
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.suggestion-chip {
+  background: #f0f7ff;
+  border: 1px solid #bae6fd;
+  color: #0369a1;
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.suggestion-chip:hover {
+  background: #e0f2fe;
+  border-color: #0284c7;
+}
+
+.compact-chips-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.compact-chips-grid.scale-chips-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.compact-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 2px solid #e2e8f0;
+  background: #f8fafc;
+  color: #334155;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.compact-chip:hover {
+  border-color: #0077b6;
+  background: #f0f9ff;
+}
+
+.compact-chip.selected {
+  border-color: #0077b6;
+  background: linear-gradient(135deg, rgba(3, 4, 94, 0.08) 0%, rgba(0, 119, 182, 0.15) 100%);
+  color: #03045e;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0, 119, 182, 0.12);
+}
+
+.coupon-inline-box {
+  background: #f8fafc;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px dashed #94a3b8;
+}
+
+/* ============================
+   STEP 4: PRESET SERVICES ONBOARDING
+   ============================ */
+
+.services-onboarding-step {
+  text-align: left;
+}
+
+.services-step-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.services-success-pill {
+  display: inline-block;
+  background: #dcfce7;
+  color: #15803d;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 5px 14px;
+  border-radius: 50px;
+  margin-bottom: 8px;
+}
+
+.services-step-header h3 {
+  color: #03045e;
+  font-size: 1.32rem;
+  margin-bottom: 6px;
+}
+
+.services-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding: 0 2px;
+}
+
+.services-count-badge {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #03045e;
+  background: #e0f2fe;
+  padding: 4px 10px;
+  border-radius: 50px;
+}
+
+.services-select-all-btn {
+  background: none;
+  border: none;
+  color: #0077b6;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 2px 4px;
+}
+
+.preset-services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 410px;
+  overflow-y: auto;
+  padding-right: 4px;
+  margin-bottom: 14px;
+}
+
+.preset-service-card {
+  border: 2px solid #cbd5e1;
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.preset-service-card.selected {
+  border-color: #0077b6;
+  background: #f8fbff;
+  box-shadow: 0 3px 10px rgba(0, 119, 182, 0.08);
+}
+
+.preset-service-card.unselected {
+  opacity: 0.65;
+  background: #f8fafc;
+  border-style: dashed;
+}
+
+.preset-service-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.preset-service-check {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.preset-service-check input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #0077b6;
+  cursor: pointer;
+}
+
+.preset-service-icon {
+  font-size: 1.2rem;
+}
+
+.preset-service-name-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.preset-mini-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 2px;
+  letter-spacing: 0.3px;
+}
+
+.preset-name-input {
+  width: 100%;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #03045e;
+  background: #ffffff;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.preset-name-input:focus {
+  border-color: #0077b6;
+  box-shadow: 0 0 0 2px rgba(0, 119, 182, 0.12);
+}
+
+.preset-remove-btn {
+  background: #fee2e2;
+  border: none;
+  color: #dc2626;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preset-service-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 10px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.preset-field-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.preset-price-input-wrap {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.preset-price-input-wrap:focus-within {
+  border-color: #0077b6;
+  box-shadow: 0 0 0 2px rgba(0, 119, 182, 0.12);
+}
+
+.currency-prefix {
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 7px 8px;
+  border-right: 1px solid #cbd5e1;
+}
+
+.preset-price-input {
+  width: 100%;
+  border: none;
+  padding: 7px 8px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0f172a;
+  outline: none;
+  background: transparent;
+}
+
+.preset-duration-control {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.duration-step-btn {
+  width: 30px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1.5px solid #cbd5e1;
+  background: #f8fafc;
+  color: #03045e;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.duration-step-btn:hover {
+  background: #e0f2fe;
+  border-color: #0077b6;
+}
+
+.preset-duration-select {
+  flex: 1;
+  height: 34px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #03045e;
+  background: #ffffff;
+  outline: none;
+  cursor: pointer;
+}
+
+.add-custom-service-btn {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px dashed #0077b6;
+  border-radius: 12px;
+  background: #f0f9ff;
+  color: #0077b6;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 16px;
+}
+
+.add-custom-service-btn:hover {
+  background: #e0f2fe;
+}
+
+.services-onboarding-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.saving-services-status {
+  text-align: center;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #0077b6;
+  background: #f0f9ff;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.skip-services-btn {
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px;
+  text-decoration: underline;
+}
+
+.skip-services-btn:hover {
+  color: #03045e;
+}
+
+@media (max-width: 992px) {
+  .signup-form-wrapper {
+    order: -1;
+    margin: 0 auto;
+  }
+
+  .mobile-promo-callout {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .preset-service-bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .compact-chips-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .step-connector {
+    width: 18px;
+    margin: 0 4px;
+    margin-bottom: 22px;
+  }
+}
+

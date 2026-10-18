@@ -1,5 +1,5 @@
 import { Suspense, lazy } from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes, useSearchParams } from "react-router-dom";
 import Home from "./pages/Home";
 import WhatsAppButton from "./components/WhatsAppButton";
 import PostHogPageViewTracker from "./components/PostHogPageViewTracker";
@@ -24,6 +24,13 @@ const BotGestor = lazy(() => import("./pages/BotGestor"));
 const SincaRS = lazy(() => import("./pages/SincaRS"));
 const Influenciador = lazy(() => import("./pages/Influenciador"));
 const RegulamentoIndicacao = lazy(() => import("./pages/RegulamentoIndicacao"));
+
+function PromoRedirect() {
+  const [searchParams] = useSearchParams();
+  const newParams = new URLSearchParams(searchParams);
+  newParams.set("cupom", "ALEMDOCORTE");
+  return <Navigate to={`/criar-conta?${newParams.toString()}`} replace />;
+}
 
 function App() {
   return (
@@ -50,9 +57,11 @@ function App() {
           <Route path="/sincars" element={<SincaRS />} />
           <Route path="/sinca-rs" element={<SincaRS />} />
           <Route path="/criar-conta" element={<CriarConta />} />
-          <Route path="/supremacy10" element={<CriarConta />} />
-          <Route path="/supremacy-10" element={<CriarConta />} />
-          <Route path="/supremacy" element={<CriarConta />} />
+          <Route path="/supremacy10" element={<PromoRedirect />} />
+          <Route path="/supremacy-10" element={<PromoRedirect />} />
+          <Route path="/supremacy" element={<PromoRedirect />} />
+          <Route path="/alemdocorte" element={<PromoRedirect />} />
+          <Route path="/alem-do-corte" element={<PromoRedirect />} />
           <Route path="/influenciador" element={<Influenciador />} />
           <Route path="/regulamento-indicacao" element={<RegulamentoIndicacao />} />
           <Route path="/termos-indicacao" element={<RegulamentoIndicacao />} />

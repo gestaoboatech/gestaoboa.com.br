@@ -62,7 +62,7 @@ export async function registerUser(user: UserRegistrationData) {
 
 
   const endpoint = user.skip_verification
-    ? `${BASE_URL}/users/?skip_verification=true&cupom=${encodeURIComponent(user.cupom || "SUPREMACY10")}`
+    ? `${BASE_URL}/users/?skip_verification=true&cupom=${encodeURIComponent(user.cupom || "ALEMDOCORTE")}`
     : `${BASE_URL}/users/`;
 
   try {
@@ -310,3 +310,52 @@ export const validateDiscountCode = async (code: string) => {
     return { error: error.message };
   }
 };
+
+export interface CreateServiceData {
+  name: string;
+  duration_minutes: number;
+  sale_price: number;
+  cost_price?: number;
+  id_enterprise?: number;
+  service_type?: string;
+  show_on_booking?: boolean;
+}
+
+export const createService = async (
+  token: string,
+  serviceData: CreateServiceData
+) => {
+  try {
+    const response = await fetch(`${BASE_URL}/services/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name: serviceData.name.trim(),
+        duration_minutes: Math.max(5, Number(serviceData.duration_minutes) || 30),
+        sale_price: Math.max(0.01, Number(serviceData.sale_price) || 1),
+        cost_price: Number(serviceData.cost_price) || 0,
+        id_enterprise: serviceData.id_enterprise,
+        service_type: serviceData.service_type || "standard",
+        show_on_booking: serviceData.show_on_booking ?? true,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(
+        result.error || result.message || "Erro ao criar serviço"
+      );
+    }
+
+    return result;
+  } catch (error) {
+    console.error("Erro na criação do serviço:", error);
+    throw error;
+  }
+};
+
+
