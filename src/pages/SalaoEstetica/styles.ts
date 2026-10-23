@@ -60,6 +60,7 @@ export const SubBrandHeader = styled.div`
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    user-select: none;
   }
 
   .brand-bars {
@@ -67,6 +68,10 @@ export const SubBrandHeader = styled.div`
     align-items: flex-end;
     gap: 3px;
     height: 24px;
+
+    span {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
     span:nth-child(1) {
       width: 6px;
@@ -88,6 +93,18 @@ export const SubBrandHeader = styled.div`
       background-color: #7cc7e8;
       border-radius: 2px;
       transform: skewX(-12deg);
+    }
+  }
+
+  &:hover .brand-bars {
+    span:nth-child(1) {
+      transform: skewX(-12deg) scaleY(1.2);
+    }
+    span:nth-child(2) {
+      transform: skewX(-12deg) scaleY(1.15);
+    }
+    span:nth-child(3) {
+      transform: skewX(-12deg) scaleY(1.2);
     }
   }
 
@@ -132,6 +149,7 @@ export const HeroSection = styled.section`
   padding: 3rem 0 4rem;
   text-align: center;
   position: relative;
+  scroll-margin-top: 80px;
 
   @media (max-width: 768px) {
     padding: 2rem 0 3rem;
@@ -200,6 +218,10 @@ export const HeroTitle = styled.h1`
   @media (max-width: 768px) {
     font-size: 2.1rem;
     line-height: 1.25;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.85rem;
   }
 `;
 
@@ -336,10 +358,18 @@ export const PrimaryButton = styled.button`
   justify-content: center;
   gap: 0.6rem;
 
+  svg {
+    transition: transform 0.25s ease;
+  }
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 14px 30px rgba(11, 29, 61, 0.3);
     background: linear-gradient(135deg, #132a54 0%, #2563eb 100%);
+
+    svg {
+      transform: translateX(4px);
+    }
   }
 
   &:active {
@@ -406,6 +436,7 @@ export const GuaranteeNotice = styled.p`
   justify-content: center;
   gap: 0.5rem;
   flex-wrap: wrap;
+  user-select: none;
 
   span.dot {
     color: #d4af37;
@@ -428,10 +459,19 @@ export const AuthorityStrip = styled.div`
   .authority-item {
     text-align: center;
     position: relative;
-    transition: transform 0.25s ease;
+    padding: 8px 12px;
+    border-radius: 12px;
+    transition: transform 0.25s ease, background-color 0.25s ease;
+    user-select: none;
 
     &:hover {
       transform: translateY(-2px);
+      background: #faf8f5;
+    }
+
+    &:hover strong {
+      color: #1d56c0;
+      text-shadow: 0 0 16px rgba(29, 86, 192, 0.25);
     }
 
     &:not(:last-child)::after {
@@ -453,6 +493,7 @@ export const AuthorityStrip = styled.div`
       line-height: 1.2;
       font-variant-numeric: tabular-nums;
       letter-spacing: -0.01em;
+      transition: color 0.25s ease, text-shadow 0.25s ease;
     }
 
     span {
@@ -472,6 +513,11 @@ export const AuthorityStrip = styled.div`
 
     .authority-item:not(:last-child)::after {
       display: none;
+    }
+
+    .authority-item:not(:last-child) {
+      border-bottom: 1px solid #efe8de;
+      padding-bottom: 1rem;
     }
   }
 `;
@@ -562,12 +608,21 @@ export const PillarCard = styled.div`
     height: 4px;
     background: linear-gradient(90deg, #d4af37 0%, #bfa58a 100%);
     opacity: 0.8;
+    pointer-events: none;
   }
 
   &:hover {
     transform: translateY(-6px);
     border-color: #d4af37;
     box-shadow: 0 16px 36px rgba(212, 175, 55, 0.15), 0 8px 20px rgba(11, 29, 61, 0.06);
+  }
+
+  &:active {
+    transform: scale(0.985);
+  }
+
+  @media (max-width: 580px) {
+    padding: 1.75rem 1.25rem;
   }
 
   .pillar-icon-box {
@@ -581,18 +636,24 @@ export const PillarCard = styled.div`
     align-items: center;
     justify-content: center;
     color: #d4af37;
-    transition: transform 0.3s ease;
+    user-select: none;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 
     svg {
       width: 32px;
       height: 32px;
       stroke-width: 1.75;
+      transition: transform 0.3s ease;
     }
   }
 
   &:hover .pillar-icon-box {
     transform: scale(1.08);
     background: #faf2ea;
+
+    svg {
+      transform: scale(1.1);
+    }
   }
 
   h3 {
@@ -602,6 +663,11 @@ export const PillarCard = styled.div`
     color: #0b1d3d;
     margin: 0 0 0.75rem;
     line-height: 1.35;
+    transition: color 0.25s ease;
+  }
+
+  &:hover h3 {
+    color: #1d56c0;
   }
 
   p {
@@ -667,6 +733,10 @@ export const VideoContainer = styled.div`
       0 0 0 5px rgba(212, 175, 55, 0.4);
   }
 
+  &:active {
+    transform: scale(0.99);
+  }
+
   video {
     width: 100%;
     max-height: 480px;
@@ -674,6 +744,8 @@ export const VideoContainer = styled.div`
     display: block;
     border-radius: 24px;
     object-fit: cover;
+    user-select: none;
+    transition: transform 0.3s ease;
   }
 
   @media (max-width: 768px) {
@@ -696,6 +768,10 @@ export const ShowcaseContent = styled.div`
     color: #0b1d3d;
     margin: 0 0 1.25rem;
     line-height: 1.3;
+
+    @media (max-width: 768px) {
+      font-size: 1.65rem;
+    }
   }
 
   p {
@@ -719,6 +795,12 @@ export const ShowcaseContent = styled.div`
       color: #0b1d3d;
       margin-bottom: 1rem;
       font-weight: 500;
+      transition: transform 0.2s ease, color 0.2s ease;
+
+      &:hover {
+        transform: translateX(3px);
+        color: #1d56c0;
+      }
 
       svg {
         width: 22px;
@@ -726,6 +808,11 @@ export const ShowcaseContent = styled.div`
         color: #d4af37;
         flex-shrink: 0;
         margin-top: 2px;
+        transition: transform 0.2s ease;
+      }
+
+      &:hover svg {
+        transform: scale(1.15);
       }
     }
   }
@@ -766,10 +853,18 @@ export const ShowcaseContent = styled.div`
       outline-offset: 2px;
     }
 
+    user-select: none;
+
     svg {
       width: 18px;
       height: 18px;
+      flex-shrink: 0;
       color: #1d56c0;
+      transition: transform 0.25s ease;
+    }
+
+    &:hover svg {
+      transform: scale(1.12);
     }
   }
 `;
@@ -799,7 +894,7 @@ export const SegmentCard = styled.div`
   overflow: hidden;
   border: 1px solid rgba(212, 175, 55, 0.3);
   box-shadow: 0 8px 25px rgba(11, 29, 61, 0.04);
-  transition: all 0.35s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
   display: flex;
   flex-direction: column;
 
@@ -807,6 +902,10 @@ export const SegmentCard = styled.div`
     transform: translateY(-6px);
     border-color: #d4af37;
     box-shadow: 0 16px 36px rgba(212, 175, 55, 0.18), 0 6px 16px rgba(11, 29, 61, 0.06);
+  }
+
+  &:active {
+    transform: scale(0.99);
   }
 
   .segment-image-container {
@@ -822,6 +921,8 @@ export const SegmentCard = styled.div`
       object-fit: cover;
       transition: transform 0.5s ease;
       display: block;
+      user-select: none;
+      -webkit-user-drag: none;
     }
   }
 
@@ -845,6 +946,7 @@ export const SegmentCard = styled.div`
     text-transform: uppercase;
     color: #d4af37;
     margin-bottom: 0.35rem;
+    user-select: none;
   }
 
   h4 {
@@ -854,6 +956,11 @@ export const SegmentCard = styled.div`
     color: #0b1d3d;
     margin: 0 0 0.5rem;
     line-height: 1.3;
+    transition: color 0.25s ease;
+  }
+
+  &:hover h4 {
+    color: #1d56c0;
   }
 
   p {
@@ -902,12 +1009,36 @@ export const FeatureCard = styled.div`
   background: #faf8f5;
   border: 1px solid rgba(212, 175, 55, 0.2);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 24px;
+    right: 24px;
+    height: 3px;
+    background: linear-gradient(90deg, #d4af37, #bfa58a);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 4px;
+    pointer-events: none;
+  }
 
   &:hover {
     background: #ffffff;
     border-color: #d4af37;
     box-shadow: 0 10px 25px rgba(212, 175, 55, 0.12);
     transform: translateY(-3px);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  &:active {
+    transform: scale(0.985);
   }
 
   .feature-icon {
@@ -920,17 +1051,23 @@ export const FeatureCard = styled.div`
     align-items: center;
     justify-content: center;
     margin-bottom: 1.25rem;
+    user-select: none;
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
 
     svg {
       width: 26px;
       height: 26px;
+      transition: transform 0.3s ease;
     }
   }
 
   &:hover .feature-icon {
     transform: scale(1.08);
     background: #faf2ea;
+
+    svg {
+      transform: scale(1.1);
+    }
   }
 
   h4 {
@@ -939,6 +1076,11 @@ export const FeatureCard = styled.div`
     font-weight: 600;
     color: #0b1d3d;
     margin: 0 0 0.5rem;
+    transition: color 0.25s ease;
+  }
+
+  &:hover h4 {
+    color: #1d56c0;
   }
 
   p {
@@ -980,6 +1122,10 @@ export const ReviewsSummary = styled.div`
     transform: translateY(-1px);
   }
 
+  &:active {
+    transform: scale(0.98);
+  }
+
   .stars {
     display: flex;
     color: #d4af37;
@@ -1014,6 +1160,15 @@ export const TestimonialCard = styled.div`
     transform: translateY(-5px);
     border-color: rgba(212, 175, 55, 0.6);
     box-shadow: 0 16px 36px rgba(212, 175, 55, 0.12), 0 6px 18px rgba(11, 29, 61, 0.05);
+
+    .author-info .avatar {
+      transform: scale(1.06);
+      box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35);
+    }
+  }
+
+  &:active {
+    transform: scale(0.99);
   }
 
   &::before {
@@ -1025,6 +1180,8 @@ export const TestimonialCard = styled.div`
     font-family: "Lora", serif;
     color: rgba(212, 175, 55, 0.18);
     line-height: 1;
+    user-select: none;
+    pointer-events: none;
   }
 
   p {
@@ -1054,11 +1211,15 @@ export const TestimonialCard = styled.div`
       justify-content: center;
       font-size: 1.5rem;
       overflow: hidden;
+      user-select: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
 
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        user-select: none;
+        -webkit-user-drag: none;
       }
     }
 
@@ -1085,6 +1246,7 @@ export const PricingSection = styled.section`
   max-width: 1360px;
   margin: 0 auto;
   width: 100%;
+  scroll-margin-top: 80px;
 `;
 
 export const PlanTypeSelector = styled.div`
@@ -1094,6 +1256,11 @@ export const PlanTypeSelector = styled.div`
   gap: 0.75rem;
   margin: 0 auto 3rem;
   flex-wrap: wrap;
+
+  @media (max-width: 480px) {
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 export const PlanTypeButton = styled.button<{ $active: boolean }>`
@@ -1132,6 +1299,12 @@ export const PlanTypeButton = styled.button<{ $active: boolean }>`
   &:focus-visible {
     outline: 2px solid #d4af37;
     outline-offset: 2px;
+  }
+
+  @media (max-width: 480px) {
+    min-width: 100px;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.9rem;
   }
 `;
 
@@ -1191,11 +1364,19 @@ export const PlanCard = styled.div<{ $featured?: boolean }>`
     box-shadow: 0 22px 55px rgba(212, 175, 55, 0.25);
   }
 
+  &:active {
+    transform: ${(props) =>
+      props.$featured ? "scale(1.01)" : "scale(0.99)"};
+  }
+
   @media (max-width: 1200px) {
     transform: none;
     padding: 2.25rem 1.5rem;
     &:hover {
       transform: translateY(-4px);
+    }
+    &:active {
+      transform: scale(0.99);
     }
   }
 
@@ -1229,6 +1410,7 @@ export const PlanName = styled.h3`
   font-weight: 700;
   color: #0b1d3d;
   margin: 0 0 0.4rem;
+  user-select: none;
 `;
 
 export const PlanUserLimit = styled.span`
@@ -1266,6 +1448,7 @@ export const OriginalPriceStrikethrough = styled.div`
   text-decoration: line-through;
   margin-bottom: 3px;
   font-variant-numeric: tabular-nums;
+  user-select: none;
 `;
 
 export const PlanPrice = styled.div`
@@ -1278,6 +1461,7 @@ export const PlanPrice = styled.div`
   align-items: baseline;
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.02em;
+  user-select: none;
 
   span.currency {
     font-size: 1.35rem;
@@ -1298,6 +1482,7 @@ export const DailyPriceSmall = styled.div`
   color: #6e6259;
   margin-top: 5px;
   font-variant-numeric: tabular-nums;
+  user-select: none;
 `;
 
 export const PlanFeatures = styled.ul`
@@ -1326,6 +1511,7 @@ export const PlanFeatures = styled.ul`
       color: #d4af37;
       flex-shrink: 0;
       margin-top: 2px;
+      user-select: none;
       transition: transform 0.2s ease;
     }
 
@@ -1382,6 +1568,7 @@ export const FAQSection = styled.section`
   padding: 5rem 0;
   max-width: 860px;
   margin: 0 auto;
+  scroll-margin-top: 80px;
 `;
 
 export const FAQContainer = styled.div`
@@ -1395,7 +1582,7 @@ export const FAQItem = styled.details`
   border: 1px solid rgba(212, 175, 55, 0.3);
   border-radius: 16px;
   padding: 1.25rem 1.5rem;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
 
   &:hover {
     border-color: rgba(212, 175, 55, 0.6);
@@ -1404,6 +1591,7 @@ export const FAQItem = styled.details`
 
   &[open] {
     border-color: #d4af37;
+    background-color: #fffdf9;
     box-shadow: 0 6px 20px rgba(212, 175, 55, 0.12);
   }
 
@@ -1419,10 +1607,14 @@ export const FAQItem = styled.details`
     align-items: center;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, transform 0.2s ease;
 
     &:hover {
       color: #1d56c0;
+    }
+
+    &:active {
+      transform: scale(0.995);
     }
 
     &:focus-visible {
@@ -1478,6 +1670,7 @@ export const FinalCTASection = styled.section`
   position: relative;
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(11, 29, 61, 0.25);
+  scroll-margin-top: 80px;
 
   &::before {
     content: "";
@@ -1593,6 +1786,21 @@ export const FloatingMobileCTA = styled.div`
       color: #ffffff;
       cursor: pointer;
       box-shadow: 0 4px 15px rgba(11, 29, 61, 0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+      &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 18px rgba(11, 29, 61, 0.28);
+      }
+
+      &:active {
+        transform: scale(0.98);
+      }
+
+      &:focus-visible {
+        outline: 2px solid #1d56c0;
+        outline-offset: 2px;
+      }
     }
   }
 `;
@@ -1612,12 +1820,25 @@ const floatAnimation = keyframes`
   50% { transform: translateY(-8px); }
 `;
 
+const onlinePulse = keyframes`
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+`;
+
 export const WhatsAppSection = styled.section`
   width: 100%;
   background: linear-gradient(180deg, #faf8f5 0%, #f0f7ff 50%, #ffffff 100%);
   padding: 80px 20px;
   position: relative;
   overflow: hidden;
+  scroll-margin-top: 80px;
 
   &::before {
     content: '';
@@ -1801,6 +2022,10 @@ export const WhatsAppFeatureCard = styled.div`
     border-color: rgba(29, 86, 192, 0.3);
   }
 
+  &:active {
+    transform: scale(0.98);
+  }
+
   .feature-icon {
     width: 42px;
     height: 42px;
@@ -1940,6 +2165,20 @@ export const WAChatHeader = styled.div`
     font-weight: 800;
     font-size: 1.05rem;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+      width: 10px;
+      height: 10px;
+      background: #25d366;
+      border: 2px solid #008069;
+      border-radius: 50%;
+      animation: ${onlinePulse} 2s infinite ease-in-out;
+    }
   }
 
   .info {
@@ -2013,6 +2252,7 @@ export const WABubble = styled.div<{ $outgoing?: boolean }>`
     border-radius: 4px;
     margin-bottom: 6px;
     text-transform: uppercase;
+    user-select: none;
   }
 
   .time {
@@ -2023,6 +2263,7 @@ export const WABubble = styled.div<{ $outgoing?: boolean }>`
     font-size: 0.68rem;
     color: #667781;
     margin-top: 5px;
+    user-select: none;
 
     svg {
       width: 14px;

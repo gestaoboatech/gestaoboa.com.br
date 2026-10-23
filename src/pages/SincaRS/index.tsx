@@ -920,6 +920,15 @@ const SincaRS: React.FC = () => {
                   key={index}
                   className={`sinca-faq-item ${isOpen ? "sinca-faq-open" : ""}`}
                   onClick={() => toggleFaq(index)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      toggleFaq(index);
+                    }
+                  }}
+                  tabIndex={0}
+                  role="button"
+                  aria-expanded={isOpen}
                 >
                   <div className="sinca-faq-question">
                     <span className="sinca-faq-q-text">{item.question}</span>

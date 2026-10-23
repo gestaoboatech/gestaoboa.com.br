@@ -29,9 +29,14 @@ export const Input = styled.input<InputProps>`
     transition: all ease 0.3s;
     color: #000 !important;
     border-radius: 10px;
-    border: none;
+    border: 1.5px solid #e2e8f0;
+
+    &:hover:not(:focus) {
+        border-color: #cbd5e1;
+    }
 
     &:focus {
+        border-color: #00b4d8;
         outline: 2px solid #00b4d8;
         outline-offset: 1px;
         box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.25);

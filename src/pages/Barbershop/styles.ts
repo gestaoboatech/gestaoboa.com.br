@@ -12,6 +12,7 @@ const SectionBase = styled.section`
   padding: 5rem 1rem;
   position: relative;
   overflow: hidden;
+  scroll-margin-top: 80px;
 
   @media (max-width: 768px) {
     padding: 3rem 1rem;
@@ -102,16 +103,20 @@ export const HeroTitle = styled.h1`
   @media (max-width: 768px) {
     font-size: 2.5rem;
   }
+
+  @media (max-width: 480px) {
+    font-size: 2.1rem;
+  }
 `;
 
 export const HeroSubtitle = styled.p`
   font-size: 1.25rem;
-  color: #94a3b8;
+  color: #cbd5e1;
   max-width: 600px;
   margin-bottom: 2.5rem;
   line-height: 1.6;
   z-index: 1;
-  font-weight: 300;
+  font-weight: 400;
 
   @media (max-width: 768px) {
     font-size: 1.125rem;
@@ -222,11 +227,38 @@ export const CTAButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 1rem;
+  transition: transform 0.25s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  button {
+    box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.45) !important;
+    transition: box-shadow 0.25s ease, transform 0.25s ease !important;
+
+    &:hover {
+      box-shadow: 0 14px 30px -5px rgba(59, 130, 246, 0.6) !important;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #60a5fa !important;
+      outline-offset: 3px !important;
+    }
+  }
 
   @media (max-width: 480px) {
     flex-direction: column;
     width: 100%;
     padding: 0 1rem;
+
+    button, div {
+      width: 100% !important;
+    }
   }
 `;
 
@@ -251,10 +283,25 @@ export const AuthorityStrip = styled.div`
     flex-direction: column;
     align-items: center;
     color: #fff;
-    transition: transform 0.25s ease;
+    padding: 8px 24px;
+    border-radius: 12px;
+    transition: transform 0.25s ease, background-color 0.25s ease;
+    user-select: none;
+    position: relative;
+
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: -1.5rem;
+      top: 20%;
+      height: 60%;
+      width: 1px;
+      background: rgba(255, 255, 255, 0.12);
+    }
 
     &:hover {
       transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.06);
     }
 
     strong {
@@ -263,6 +310,11 @@ export const AuthorityStrip = styled.div`
       color: #60a5fa;
       letter-spacing: -0.01em;
       font-variant-numeric: tabular-nums;
+      transition: text-shadow 0.25s ease;
+    }
+
+    &:hover strong {
+      text-shadow: 0 0 16px rgba(96, 165, 250, 0.4);
     }
 
     span {
@@ -277,6 +329,16 @@ export const AuthorityStrip = styled.div`
   @media (max-width: 768px) {
     gap: 1.5rem;
     padding: 1.5rem 1rem;
+
+    div:not(:last-child)::after {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    div {
+      min-width: 100px;
+    }
   }
 `;
 
@@ -314,6 +376,11 @@ export const EssentialsGrid = styled.div`
   @media (max-width: 1024px) {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
 `;
 
 export const EssentialIcon = styled.div`
@@ -327,7 +394,12 @@ export const EssentialIcon = styled.div`
   margin-bottom: 1.5rem;
   color: #3b82f6;
   font-size: 1.5rem;
+  user-select: none;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+
+  svg {
+    transition: transform 0.3s ease;
+  }
 `;
 
 export const EssentialCard = styled.div`
@@ -337,6 +409,26 @@ export const EssentialCard = styled.div`
   text-align: left;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
   border: 1px solid #e2e8f0;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 24px;
+    right: 24px;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 4px;
+    pointer-events: none;
+  }
+
+  h3 {
+    transition: color 0.25s ease;
+  }
 
   &:hover {
     background: #fff;
@@ -344,10 +436,31 @@ export const EssentialCard = styled.div`
     box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.12);
     border-color: #cbd5e1;
 
+    &::before {
+      opacity: 1;
+    }
+
+    h3 {
+      color: #2563eb;
+    }
+
     ${EssentialIcon} {
       transform: scale(1.08);
       background: #dbeafe;
+
+      svg {
+        transform: scale(1.1);
+      }
     }
+  }
+
+  &:active {
+    transform: scale(0.99);
+  }
+
+  @media (max-width: 640px) {
+    padding: 1.75rem 1.25rem;
+    border-radius: 18px;
   }
 `;
 
@@ -405,6 +518,16 @@ export const VideoTextContent = styled.div`
   @media (max-width: 768px) {
     text-align: center;
     max-width: 100%;
+
+    h2 {
+      font-size: 1.85rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h2 {
+      font-size: 1.6rem;
+    }
   }
 `;
 
@@ -426,6 +549,10 @@ export const VideoContainer = styled.div`
     box-shadow: 0 28px 55px -10px rgba(0, 0, 0, 0.5), 0 0 25px rgba(59, 130, 246, 0.25);
   }
 
+  &:active {
+    transform: scale(0.99);
+  }
+
   video {
     width: 100%;
     max-height: 480px;
@@ -433,6 +560,8 @@ export const VideoContainer = styled.div`
     display: block;
     border-radius: 24px;
     object-fit: cover;
+    user-select: none;
+    transition: transform 0.3s ease;
   }
 
   @media (max-width: 768px) {
@@ -470,6 +599,7 @@ export const PlatformBadge = styled.a`
   border: 1px solid #e2e8f0;
   color: #1e293b;
   font-weight: 600;
+  user-select: none;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
   text-align: left;
   text-decoration: none;
@@ -477,6 +607,7 @@ export const PlatformBadge = styled.a`
   &:hover {
     transform: translateX(5px);
     border-color: #93c5fd;
+    color: #2563eb;
     box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
   }
 
@@ -490,6 +621,10 @@ export const PlatformBadge = styled.a`
   }
 
   @media (max-width: 768px) {
+    flex: 1;
+    min-width: 140px;
+    justify-content: center;
+
     &:hover {
       transform: translateY(-3px);
     }
@@ -498,6 +633,7 @@ export const PlatformBadge = styled.a`
   svg {
     width: 24px;
     height: 24px;
+    flex-shrink: 0;
     color: #3b82f6;
     transition: transform 0.25s ease;
   }
@@ -529,6 +665,11 @@ export const PlanTypeSelector = styled.div`
   gap: 0.75rem;
   margin: 0 auto 3rem;
   flex-wrap: wrap;
+
+  @media (max-width: 480px) {
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 export const PlanTypeButton = styled.button<{ $active: boolean }>`
@@ -568,6 +709,12 @@ export const PlanTypeButton = styled.button<{ $active: boolean }>`
     outline: 2px solid #60a5fa;
     outline-offset: 2px;
   }
+
+  @media (max-width: 480px) {
+    min-width: 96px;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.9rem;
+  }
 `;
 
 export const PlanTypeDiscount = styled.span<{ $active: boolean }>`
@@ -577,6 +724,9 @@ export const PlanTypeDiscount = styled.span<{ $active: boolean }>`
   background-color: ${(props) => (props.$active ? "#ffffff" : "rgba(59, 130, 246, 0.2)")};
   padding: 2px 8px;
   border-radius: 9999px;
+  user-select: none;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.3px;
   transition: all 0.3s ease;
 `;
 
@@ -624,6 +774,10 @@ export const PlanCard = styled.div<{ $featured?: boolean }>`
     box-shadow: 0 20px 45px -10px rgba(59, 130, 246, 0.3);
   }
 
+  &:active {
+    transform: scale(0.99);
+  }
+
   ${(props) =>
     props.$featured &&
     css`
@@ -635,11 +789,19 @@ export const PlanCard = styled.div<{ $featured?: boolean }>`
         transform: scale(1.03) translateY(-6px);
       }
 
+      &:active {
+        transform: scale(1.01);
+      }
+
       @media (max-width: 1200px) {
         transform: none;
 
         &:hover {
           transform: translateY(-6px);
+        }
+
+        &:active {
+          transform: scale(0.99);
         }
       }
     `}
@@ -650,6 +812,25 @@ export const PlanCard = styled.div<{ $featured?: boolean }>`
 
   @media (max-width: 768px) {
     padding: 2rem 1.25rem;
+  }
+
+  button {
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(59, 130, 246, 0.35);
+    }
+
+    &:active {
+      transform: scale(0.98) !important;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #60a5fa !important;
+      outline-offset: 3px !important;
+    }
   }
 `;
 
@@ -669,6 +850,7 @@ export const PlanBadge = styled.span`
   white-space: nowrap;
   box-shadow: 0 4px 14px rgba(59, 130, 246, 0.45);
   user-select: none;
+  pointer-events: none;
 `;
 
 export const PlanName = styled.h3`
@@ -676,6 +858,7 @@ export const PlanName = styled.h3`
   font-weight: 700;
   margin-bottom: 0.4rem;
   color: #fff;
+  user-select: none;
 `;
 
 export const PlanUserLimit = styled.span`
@@ -703,6 +886,7 @@ export const OriginalPriceStrikethrough = styled.div`
   text-decoration: line-through;
   margin-bottom: 3px;
   font-variant-numeric: tabular-nums;
+  user-select: none;
 `;
 
 export const PlanPrice = styled.div`
@@ -714,6 +898,7 @@ export const PlanPrice = styled.div`
   align-items: baseline;
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.02em;
+  user-select: none;
 
   span.currency {
     font-size: 1.35rem;
@@ -734,6 +919,7 @@ export const DailyPriceSmall = styled.div`
   color: #94a3b8;
   margin-top: 5px;
   font-variant-numeric: tabular-nums;
+  user-select: none;
 `;
 
 export const PlanFeatures = styled.ul`
@@ -759,6 +945,7 @@ export const PlanFeatures = styled.ul`
     svg {
       color: #3b82f6;
       flex-shrink: 0;
+      user-select: none;
       transition: transform 0.2s ease;
     }
 
@@ -788,9 +975,40 @@ export const TestimonialCard = styled.div`
   border: 1px solid #e2e8f0;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &::after {
+    content: "“";
+    position: absolute;
+    top: 0.5rem;
+    right: 1.25rem;
+    font-size: 4rem;
+    font-family: Georgia, serif;
+    color: rgba(59, 130, 246, 0.12);
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+  }
 
   img {
-    transition: transform 0.3s ease;
+    border: 2px solid #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+    -webkit-user-drag: none;
   }
 
   &:hover {
@@ -798,9 +1016,19 @@ export const TestimonialCard = styled.div`
     box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.08);
     border-color: #cbd5e1;
 
+    &::before {
+      opacity: 1;
+    }
+
     img {
       transform: scale(1.06);
+      border-color: #3b82f6;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
     }
+  }
+
+  &:active {
+    transform: scale(0.99);
   }
 `;
 
@@ -828,6 +1056,10 @@ export const ReviewsSummary = styled.div`
     transform: translateY(-1px);
   }
 
+  &:active {
+    transform: scale(0.98);
+  }
+
   span {
     color: #f59e0b;
   }
@@ -847,6 +1079,7 @@ export const FinalCTASection = styled.div`
   color: #fff;
   position: relative;
   overflow: hidden;
+  scroll-margin-top: 80px;
 
   &::before {
     content: "";
@@ -882,6 +1115,37 @@ export const FinalCTASection = styled.div`
     position: relative;
     z-index: 1;
   }
+
+  button {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: 3px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 4rem 1rem;
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    button, div > button {
+      width: 100% !important;
+      padding: 1.1rem 1.5rem !important;
+    }
+  }
 `;
 
 export const MobileFixedCTAButton = styled.div`
@@ -909,12 +1173,25 @@ const floatAnimation = keyframes`
   50% { transform: translateY(-8px); }
 `;
 
+const onlinePulse = keyframes`
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+`;
+
 export const WhatsAppSection = styled.section`
   width: 100%;
   background: linear-gradient(180deg, #f8fafc 0%, #eff6ff 50%, #ffffff 100%);
   padding: 80px 20px;
   position: relative;
   overflow: hidden;
+  scroll-margin-top: 80px;
 
   &::before {
     content: '';
@@ -1098,6 +1375,10 @@ export const WhatsAppFeatureCard = styled.div`
     border-color: rgba(37, 99, 235, 0.3);
   }
 
+  &:active {
+    transform: scale(0.98);
+  }
+
   .feature-icon {
     width: 42px;
     height: 42px;
@@ -1237,6 +1518,20 @@ export const WAChatHeader = styled.div`
     font-weight: 800;
     font-size: 1.05rem;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+      width: 10px;
+      height: 10px;
+      background: #25d366;
+      border: 2px solid #008069;
+      border-radius: 50%;
+      animation: ${onlinePulse} 2s infinite ease-in-out;
+    }
   }
 
   .info {
@@ -1310,6 +1605,7 @@ export const WABubble = styled.div<{ $outgoing?: boolean }>`
     border-radius: 4px;
     margin-bottom: 6px;
     text-transform: uppercase;
+    user-select: none;
   }
 
   .time {
@@ -1320,6 +1616,7 @@ export const WABubble = styled.div<{ $outgoing?: boolean }>`
     font-size: 0.68rem;
     color: #667781;
     margin-top: 5px;
+    user-select: none;
 
     svg {
       width: 14px;
