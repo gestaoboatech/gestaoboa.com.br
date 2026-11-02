@@ -9,11 +9,12 @@ export const Container = styled.div<ContainerType>`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 9px;
   cursor: pointer;
-  padding-top: 13px;
-  padding-bottom: 13px;
-  font-weight: bold;
+  padding: 10px 18px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   text-decoration: none;
   ${(props) => (props.width ? `width: ${props.width};` : "")}
   transition: all cubic-bezier(0.16, 1, 0.3, 1) 0.2s;

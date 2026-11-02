@@ -101,12 +101,12 @@ export const Banner = styled.div`
   align-items: center;
   text-align: center;
   grid-column: span 12;
-  padding: 140px 40px 60px;
+  padding: 95px 24px 44px;
   min-height: auto;
   position: relative;
   overflow: hidden;
   background: linear-gradient(180deg, #f8fafc 0%, #eff6ff 100%);
-  scroll-margin-top: 80px;
+  scroll-margin-top: 70px;
 
   /* Soft modern radial glows for background depth */
   &::before {
@@ -146,8 +146,8 @@ export const Banner = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
-    max-width: 900px;
+    gap: 18px;
+    max-width: 820px;
   }
 
   .content .badge-link {
@@ -157,12 +157,12 @@ export const Banner = styled.div`
 
   .content .title {
     font-weight: 800;
-    font-size: 56px;
+    font-size: 42px;
     text-align: center;
-    max-width: 850px;
-    line-height: 1.12;
+    max-width: 800px;
+    line-height: 1.15;
     color: #0f172a;
-    letter-spacing: -1.5px;
+    letter-spacing: -1px;
 
     span.highlight-text {
       background: linear-gradient(90deg, #0077b6 0%, #00b4d8 100%);
@@ -173,11 +173,11 @@ export const Banner = styled.div`
 
   .content .subtitle {
     font-weight: 400;
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     color: #475569;
     text-align: center;
-    max-width: 650px;
-    line-height: 1.6;
+    max-width: 620px;
+    line-height: 1.55;
   }
 
   .content .subtitle span {
@@ -187,11 +187,11 @@ export const Banner = styled.div`
 
   .content .buttons {
     display: flex;
-    gap: 16px;
+    gap: 14px;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 8px;
+    margin-top: 4px;
   }
 
   .content .buttons .button-link {
@@ -216,15 +216,15 @@ export const Banner = styled.div`
 
   .content .buttons .button {
     width: auto;
-    min-width: 240px;
+    min-width: 200px;
   }
 
   .dual-showcase-container {
     display: flex;
     position: relative;
     width: 100%;
-    max-width: 1060px;
-    margin-top: 50px;
+    max-width: 960px;
+    margin-top: 36px;
     align-items: flex-end;
     justify-content: center;
     padding-right: 40px;
@@ -247,7 +247,7 @@ export const Banner = styled.div`
       position: relative;
       z-index: 2;
       width: 86%;
-      max-width: 900px;
+      max-width: 820px;
       background: #0f172a;
       border-radius: 20px;
       border: 1px solid rgba(255, 255, 255, 0.22);
@@ -420,15 +420,15 @@ export const Banner = styled.div`
   }
 
   @media (max-width: 1300px) {
-    padding: 130px 40px 50px;
+    padding: 90px 24px 38px;
 
     .content .title {
-      font-size: 46px;
+      font-size: 38px;
       max-width: 700px;
     }
 
     .dual-showcase-container {
-      max-width: 940px;
+      max-width: 880px;
 
       .mobile-app-mockup {
         width: 210px;
@@ -439,15 +439,15 @@ export const Banner = styled.div`
   }
 
   @media (max-width: 960px) {
-    padding: 120px 24px 40px;
+    padding: 85px 20px 32px;
 
     .content .title {
-      font-size: 36px;
+      font-size: 32px;
       max-width: 100%;
     }
 
     .content .subtitle {
-      font-size: 1.05rem;
+      font-size: 1rem;
     }
 
     .dual-showcase-container {
@@ -465,21 +465,21 @@ export const Banner = styled.div`
         right: auto;
         bottom: auto;
         margin-top: -35px;
-        width: 220px;
+        width: 200px;
         animation: none;
       }
     }
   }
 
   @media (max-width: 800px) {
-    padding: 105px 20px 30px;
+    padding: 80px 16px 28px;
 
     .content .title {
-      font-size: 32px;
+      font-size: 28px;
     }
 
     .content .subtitle {
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
 
     .content .buttons .button {
@@ -487,7 +487,7 @@ export const Banner = styled.div`
     }
 
     .dual-showcase-container {
-      margin-top: 30px;
+      margin-top: 24px;
 
       .desktop-web-mockup .desktop-window-header {
         padding: 8px 12px;
@@ -500,25 +500,25 @@ export const Banner = styled.div`
   }
 
   @media (max-width: 600px) {
-    padding: 95px 16px 30px;
+    padding: 72px 14px 24px;
 
     .content {
-      gap: 18px;
+      gap: 14px;
       width: 100%;
     }
 
     .content .title {
-      font-size: 26px;
+      font-size: 23px;
       letter-spacing: -0.5px;
     }
 
     .content .subtitle {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
     .content .buttons {
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
       width: 100%;
     }
 
@@ -532,7 +532,7 @@ export const Banner = styled.div`
     }
 
     .dual-showcase-container {
-      margin-top: 20px;
+      margin-top: 18px;
 
       .desktop-web-mockup {
         border-radius: 12px;
@@ -566,8 +566,8 @@ export const Awards = styled.div`
   grid-column: span 12;
   justify-content: space-around;
   width: 100%;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 26px;
+  padding-bottom: 26px;
   background-color: #03045e;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -576,10 +576,10 @@ export const Awards = styled.div`
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 12px;
     color: #fff;
-    padding: 10px 20px;
-    border-radius: 14px;
+    padding: 8px 16px;
+    border-radius: 12px;
     justify-content: center;
     transition: transform 0.3s ease, background-color 0.25s ease;
     user-select: none;
@@ -598,23 +598,23 @@ export const Awards = styled.div`
   .award-pair {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin: 0 15px;
+    gap: 12px;
+    margin: 0 10px;
   }
 
   .item .number {
     font-weight: bold;
-    font-size: 48px;
+    font-size: 34px;
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.02em;
     transition: color 0.25s ease, text-shadow 0.25s ease;
   }
 
   .item .text {
-    font-size: 18px;
-    max-width: 313px;
-    line-height: 1.4;
-    margin-bottom: 15px;
+    font-size: 14.5px;
+    max-width: 290px;
+    line-height: 1.35;
+    margin-bottom: 0px;
   }
 
   @media (max-width: 768px) {
@@ -625,27 +625,27 @@ export const Awards = styled.div`
 
     .award-pair {
       flex-direction: column;
-      margin-bottom: 20px;
+      margin-bottom: 14px;
     }
 
-    .item .number {
-      font-size: 36px;
-    }
-
-    .item .text {
-      font-size: 16px;
-      max-width: 100%;
-      padding: 0 10px;
-    }
-  }
-
-  @media (max-width: 600px) {
     .item .number {
       font-size: 28px;
     }
 
     .item .text {
-      font-size: 16px;
+      font-size: 14px;
+      max-width: 100%;
+      padding: 0 8px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .item .number {
+      font-size: 24px;
+    }
+
+    .item .text {
+      font-size: 13.5px;
     }
   }
 `;
@@ -655,12 +655,12 @@ export const Solutions = styled.div`
   flex-direction: column;
   grid-column: span 12;
   position: relative;
-  scroll-margin-top: 80px;
+  scroll-margin-top: 70px;
 
   .solutionBanner {
     width: 100%;
     display: flex;
-    height: 500px;
+    height: 360px;
     background-image: url(/entrepreneur.png);
     background-position: center;
     background-size: cover;
@@ -673,14 +673,14 @@ export const Solutions = styled.div`
     display: flex;
     width: 100%;
     position: absolute;
-    height: 500px;
+    height: 360px;
     background: linear-gradient(rgba(0, 0, 0, 0.1) 20%, rgba(0, 0, 0, 0.8));
   }
 
   .solutionBanner .title {
-    font-size: 72px;
+    font-size: 38px;
     font-weight: bold;
-    margin-bottom: 100px;
+    margin-bottom: 30px;
     color: #fff;
     z-index: 100;
   }
@@ -688,26 +688,26 @@ export const Solutions = styled.div`
   /* Seção de Métricas - Números que falam por si */
   .metrics-section {
     background: linear-gradient(135deg, #03045e 0%, #0077b6 100%);
-    padding: 4rem 2rem;
+    padding: 2.75rem 1.5rem;
     text-align: center;
 
     .metrics-title {
-      font-size: 2.5rem;
+      font-size: 2rem;
       font-weight: 700;
       color: #ffffff;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
     }
 
     .metrics-subtitle {
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: rgba(255, 255, 255, 0.8);
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
     }
 
     .metrics-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
+      gap: 1.25rem;
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -716,8 +716,8 @@ export const Solutions = styled.div`
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-top: 1px solid rgba(255, 255, 255, 0.28);
-      border-radius: 16px;
-      padding: 2rem 1.5rem;
+      border-radius: 14px;
+      padding: 1.5rem 1.25rem;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -979,32 +979,32 @@ export const Solutions = styled.div`
   }
 
   .benefits-section {
-    padding: 6rem 2rem;
+    padding: 3.5rem 1.5rem;
     background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
     
     .benefits-title {
       text-align: center;
-      font-size: 2.5rem;
+      font-size: 2rem;
       font-weight: 800;
       color: #03045e;
-      margin-bottom: 4rem;
+      margin-bottom: 2.25rem;
     }
 
     .benefits {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
+      gap: 1.25rem;
       max-width: 1400px;
       margin: 0 auto;
 
       .benefit {
         display: flex;
         align-items: flex-start;
-        gap: 1.25rem;
+        gap: 1.15rem;
         background: rgba(255, 255, 255, 0.7);
         backdrop-filter: blur(12px);
-        border-radius: 20px;
-        padding: 2rem 1.75rem;
+        border-radius: 16px;
+        padding: 1.5rem 1.25rem;
         transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         box-shadow: 0 10px 30px -10px rgba(3, 4, 94, 0.04);
         border: 1px solid rgba(226, 232, 240, 0.8);
@@ -1185,33 +1185,34 @@ export const Solutions = styled.div`
 
   .tutorial {
     display: grid;
-    padding: 200px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding: 40px 5%;
     align-items: center;
     justify-content: center;
-    width: calc(100% - 400px);
-    grid-template-columns: 3fr 1fr;
-    grid-column-gap: 50px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    grid-template-columns: 3fr 1.2fr;
+    grid-column-gap: 36px;
   }
 
   .tutorial .callout {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 24px;
     justify-content: center;
   }
 
   .tutorial .callout .title {
-    font-size: 48px;
+    font-size: 34px;
     font-weight: 800;
     color: #03045e;
-    line-height: 1.15;
+    line-height: 1.18;
     letter-spacing: -0.02em;
   }
 
   .tutorial .callout .description {
-    font-size: 20px;
+    font-size: 16px;
     color: #475569;
     line-height: 1.6;
   }
@@ -1225,7 +1226,7 @@ export const Solutions = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 44px;
+    gap: 20px;
 
     .or {
       font-size: 0.95rem;
@@ -1496,26 +1497,26 @@ export const Team = styled.div`
   display: flex;
   flex-direction: column;
   grid-column: span 12;
-  padding: 80px 60px;
+  padding: 48px 24px;
   background: linear-gradient(135deg, #03045e 0%, #023e8a 100%);
   color: #fff;
-  gap: 40px;
+  gap: 28px;
   position: relative;
 
   .title {
     text-align: center;
     font-weight: 800;
-    font-size: 64px;
+    font-size: 36px;
     background: linear-gradient(90deg, #fff 0%, #caf0f8 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
   }
 
   .subtitle {
     text-align: center;
-    font-size: 24px;
+    font-size: 17px;
     color: #90e0ef;
     max-width: 800px;
     margin: 0 auto;
@@ -1702,14 +1703,14 @@ export const Team = styled.div`
   }
 
   @media (max-width: 1024px) {
-    padding: 60px 40px;
+    padding: 38px 20px;
 
     .title {
-      font-size: 48px;
+      font-size: 30px;
     }
 
     .subtitle {
-      font-size: 20px;
+      font-size: 16px;
     }
 
     .member {
@@ -1723,12 +1724,12 @@ export const Team = styled.div`
   }
 
   @media (max-width: 768px) {
-    padding: 40px 10px;
-    gap: 25px;
+    padding: 30px 10px;
+    gap: 20px;
 
     .title {
-      font-size: 32px;
-      margin-bottom: 15px;
+      font-size: 24px;
+      margin-bottom: 10px;
     }
 
     .subtitle {
@@ -1833,33 +1834,33 @@ export const ContactContainer = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 100px 5%;
-  max-width: 1400px;
+  padding: 56px 5%;
+  max-width: 1300px;
   grid-column: span 12;
   margin: 0 auto;
-  gap: 80px;
+  gap: 48px;
   width: 100%;
-  scroll-margin-top: 80px;
+  scroll-margin-top: 70px;
 
   @media (max-width: 1024px) {
-    padding: 80px 40px;
+    padding: 44px 24px;
     flex-direction: column;
     align-items: center;
-    gap: 60px;
+    gap: 36px;
   }
 
   @media (max-width: 768px) {
-    padding: 60px 20px;
-    gap: 40px;
+    padding: 36px 16px;
+    gap: 24px;
   }
 `;
 
 export const ContactInfo = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 20px;
   flex: 1;
-  max-width: 600px;
+  max-width: 540px;
 
   @media (max-width: 1024px) {
     max-width: 100%;
@@ -1870,20 +1871,20 @@ export const ContactInfo = styled.div`
 
 export const ContactTitle = styled.h2`
   font-weight: 800;
-  font-size: 56px;
-  line-height: 1.1;
+  font-size: 34px;
+  line-height: 1.15;
   color: #03045e;
   margin: 0;
 
   @media (max-width: 768px) {
-    font-size: 36px;
+    font-size: 26px;
   }
 `;
 
 export const ContactSocial = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 
   a {
     display: flex;
@@ -2026,16 +2027,16 @@ const faqFadeIn = keyframes`
 `;
 
 export const FAQ = styled.section`
-  padding: 6rem 2rem;
+  padding: 3.5rem 1.5rem;
   grid-column: span 12;
   background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-  scroll-margin-top: 80px;
+  scroll-margin-top: 70px;
 
   .section-title {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 800;
-    margin-bottom: 3.5rem;
+    margin-bottom: 2rem;
     color: #03045e;
   }
 
@@ -2044,7 +2045,7 @@ export const FAQ = styled.section`
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 0.85rem;
 
     .faq-item {
       border: 1px solid #e2e8f0;
@@ -2134,27 +2135,27 @@ export const FAQ = styled.section`
   }
 
   @media (max-width: 768px) {
-    padding: 4rem 1rem;
+    padding: 2.5rem 1rem;
 
     .section-title {
-      font-size: 2rem;
-      margin-bottom: 2.5rem;
+      font-size: 1.6rem;
+      margin-bottom: 1.5rem;
     }
 
     .faq-container {
-      gap: 1rem;
+      gap: 0.75rem;
 
       .faq-item {
         border-radius: 12px;
 
         summary {
-          padding: 1.1rem 1.2rem;
-          font-size: 0.95rem;
+          padding: 0.9rem 1.1rem;
+          font-size: 0.92rem;
         }
 
         p {
-          padding: 1rem 1.2rem;
-          font-size: 0.9rem;
+          padding: 0.85rem 1.1rem;
+          font-size: 0.88rem;
         }
       }
     }
@@ -2162,16 +2163,16 @@ export const FAQ = styled.section`
 `;
 
 export const Segments = styled.section`
-  padding: 3rem 2rem;
+  padding: 2.5rem 1.5rem;
   grid-column: span 12;
   background: linear-gradient(135deg, #03045e 0%, #0077b6 100%);
   color: white;
 
   .section-title {
     text-align: center;
-    font-size: 2.2rem;
+    font-size: 1.85rem;
     font-weight: bold;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.6rem;
     color: white;
     background: linear-gradient(90deg, #fff 0%, #90e0ef 100%);
     background-clip: text;
@@ -2181,8 +2182,8 @@ export const Segments = styled.section`
 
   .section-subtitle {
     text-align: center;
-    font-size: 1rem;
-    margin-bottom: 2.5rem;
+    font-size: 0.95rem;
+    margin-bottom: 1.75rem;
     color: #90e0ef;
     max-width: 700px;
     margin-left: auto;
@@ -2497,7 +2498,7 @@ export const Segments = styled.section`
 
 export const InstagramSection = styled.section`
   grid-column: span 12;
-  padding: 80px 40px;
+  padding: 48px 20px;
   background: linear-gradient(180deg, #f8fafc 0%, #eff6ff 100%);
   position: relative;
   overflow: hidden;
@@ -2507,20 +2508,20 @@ export const InstagramSection = styled.section`
 
   .section-header {
     text-align: center;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.75rem;
     max-width: 600px;
 
     h2 {
-      font-size: 2.5rem;
+      font-size: 2rem;
       font-weight: 800;
       color: #03045e;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
     }
 
     p {
-      font-size: 1.15rem;
+      font-size: 1rem;
       color: #64748b;
-      line-height: 1.6;
+      line-height: 1.55;
     }
   }
 
@@ -2528,9 +2529,9 @@ export const InstagramSection = styled.section`
     display: flex;
     align-items: center;
     gap: 16px;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     background: #ffffff;
-    padding: 12px 24px;
+    padding: 10px 20px;
     border-radius: 50px;
     box-shadow: 0 10px 30px -10px rgba(3, 4, 94, 0.05);
     border: 1px solid #e2e8f0;
@@ -2762,14 +2763,14 @@ export const PlansCTA = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 5rem 2rem;
+  padding: 3.5rem 1.5rem;
   background: linear-gradient(135deg, #03045e 0%, #0077b6 100%);
   color: #ffffff;
   text-align: center;
   grid-column: span 12;
   position: relative;
   overflow: hidden;
-  scroll-margin-top: 80px;
+  scroll-margin-top: 70px;
 
   /* Decorative glowing circles */
   &::before {
@@ -2786,18 +2787,18 @@ export const PlansCTA = styled.section`
   }
 
   .cta-title {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 800;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     max-width: 800px;
     line-height: 1.2;
     color: #ffffff;
   }
 
   .cta-text {
-    font-size: 1.25rem;
+    font-size: 1.05rem;
     color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.75rem;
     max-width: 600px;
     line-height: 1.5;
   }
@@ -2806,9 +2807,9 @@ export const PlansCTA = styled.section`
     text-decoration: none;
     background: #00b4d8;
     color: #03045e;
-    font-size: 1.2rem;
-    font-weight: 800;
-    padding: 18px 40px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    padding: 12px 28px;
     border-radius: 50px;
     box-shadow: 0 10px 25px rgba(0, 180, 216, 0.4);
     transition: all 0.3s ease;
@@ -2894,10 +2895,10 @@ const onlinePulse = keyframes`
 export const WhatsAppSection = styled.section`
   grid-column: span 12;
   background: linear-gradient(180deg, #f8fafc 0%, #eff6ff 50%, #ffffff 100%);
-  padding: 80px 40px;
+  padding: 54px 24px;
   position: relative;
   overflow: hidden;
-  scroll-margin-top: 80px;
+  scroll-margin-top: 70px;
 
   &::before {
     content: '';
@@ -2930,17 +2931,17 @@ export const WhatsAppSection = styled.section`
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
-    gap: 60px;
+    gap: 40px;
     align-items: center;
     position: relative;
     z-index: 2;
   }
 
   @media (max-width: 960px) {
-    padding: 60px 20px;
+    padding: 44px 16px;
     .whatsapp-inner {
       grid-template-columns: 1fr;
-      gap: 40px;
+      gap: 32px;
     }
   }
 `;
@@ -2948,7 +2949,7 @@ export const WhatsAppSection = styled.section`
 export const WhatsAppContent = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 18px;
 
   @media (max-width: 960px) {
     text-align: center;
@@ -2962,9 +2963,9 @@ export const WhatsAppBadge = styled.div`
   gap: 8px;
   background: rgba(0, 119, 182, 0.08);
   border: 1px solid rgba(0, 119, 182, 0.2);
-  padding: 6px 16px;
+  padding: 5px 14px;
   border-radius: 100px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   color: #0077b6;
   width: fit-content;
@@ -2981,10 +2982,10 @@ export const WhatsAppBadge = styled.div`
 `;
 
 export const WhatsAppHeading = styled.h2`
-  font-size: 2.75rem;
+  font-size: 2.1rem;
   font-weight: 800;
   color: #03045e;
-  line-height: 1.15;
+  line-height: 1.18;
   margin: 0;
   letter-spacing: -0.5px;
 
@@ -2995,18 +2996,18 @@ export const WhatsAppHeading = styled.h2`
   }
 
   @media (max-width: 768px) {
-    font-size: 2.1rem;
+    font-size: 1.7rem;
   }
 
   @media (max-width: 480px) {
-    font-size: 1.7rem;
+    font-size: 1.4rem;
   }
 `;
 
 export const WhatsAppDescription = styled.p`
-  font-size: 1.1rem;
+  font-size: 0.98rem;
   color: #64748b;
-  line-height: 1.65;
+  line-height: 1.6;
   margin: 0;
   max-width: 540px;
 
@@ -3018,17 +3019,17 @@ export const WhatsAppDescription = styled.p`
 export const WhatsAppCounter = styled.div`
   display: inline-flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   background: #ffffff;
   border: 1px solid rgba(226, 232, 240, 0.9);
-  padding: 14px 22px;
-  border-radius: 16px;
+  padding: 10px 18px;
+  border-radius: 14px;
   box-shadow: 0 10px 25px -5px rgba(3, 4, 94, 0.06);
   width: fit-content;
   animation: ${countPulse} 4s ease-in-out infinite;
 
   .counter-number {
-    font-size: 2.2rem;
+    font-size: 1.85rem;
     font-weight: 900;
     color: #0077b6;
     letter-spacing: -0.5px;
@@ -3036,7 +3037,7 @@ export const WhatsAppCounter = styled.div`
   }
 
   .counter-label {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #475569;
     line-height: 1.35;
     font-weight: 600;
@@ -3044,10 +3045,10 @@ export const WhatsAppCounter = styled.div`
 
   @media (max-width: 480px) {
     .counter-number {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
     }
     .counter-label {
-      font-size: 0.82rem;
+      font-size: 0.78rem;
     }
   }
 `;
@@ -3055,8 +3056,8 @@ export const WhatsAppCounter = styled.div`
 export const WhatsAppFeatures = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-top: 4px;
+  gap: 12px;
+  margin-top: 2px;
 
   @media (max-width: 600px) {
     grid-template-columns: 1fr;
@@ -3065,8 +3066,8 @@ export const WhatsAppFeatures = styled.div`
 
 export const WhatsAppFeatureCard = styled.div`
   background: #ffffff;
-  border-radius: 16px;
-  padding: 18px;
+  border-radius: 14px;
+  padding: 14px;
   border: 1px solid rgba(226, 232, 240, 0.8);
   box-shadow: 0 4px 16px rgba(3, 4, 94, 0.04);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -3076,8 +3077,8 @@ export const WhatsAppFeatureCard = styled.div`
 
   &:hover {
     background: #ffffff;
-    transform: translateY(-4px);
-    box-shadow: 0 16px 32px -8px rgba(3, 4, 94, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px -8px rgba(3, 4, 94, 0.1);
     border-color: rgba(0, 119, 182, 0.3);
   }
 
@@ -3086,16 +3087,16 @@ export const WhatsAppFeatureCard = styled.div`
   }
 
   .feature-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
     background: rgba(0, 119, 182, 0.06);
     border: 1px solid rgba(0, 119, 182, 0.15);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
-    margin-bottom: 10px;
+    font-size: 1.15rem;
+    margin-bottom: 8px;
     transition: all 0.3s ease;
   }
 
@@ -3106,16 +3107,16 @@ export const WhatsAppFeatureCard = styled.div`
   }
 
   .feature-title {
-    font-size: 0.98rem;
+    font-size: 0.92rem;
     font-weight: 700;
     color: #1e293b;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
   }
 
   .feature-desc {
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     color: #64748b;
-    line-height: 1.5;
+    line-height: 1.45;
   }
 `;
 
@@ -3125,9 +3126,9 @@ export const WhatsAppCTA = styled.a`
   gap: 10px;
   background: linear-gradient(90deg, #0077b6 0%, #00b4d8 100%);
   color: #ffffff;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  padding: 16px 34px;
+  padding: 12px 28px;
   border-radius: 50px;
   text-decoration: none;
   box-shadow: 0 8px 24px rgba(0, 119, 182, 0.28);
@@ -3136,8 +3137,8 @@ export const WhatsAppCTA = styled.a`
   cursor: pointer;
 
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(0, 119, 182, 0.38);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(0, 119, 182, 0.35);
     filter: brightness(1.06);
   }
 

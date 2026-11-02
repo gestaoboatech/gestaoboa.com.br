@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import WhatsAppButton from "./components/WhatsAppButton";
 import PostHogPageViewTracker from "./components/PostHogPageViewTracker";
 import ScrollToTop from "./components/ScrollToTop";
+import ScrollReveal from "./components/ScrollReveal";
 import CookieConsentModal from "./components/CookieConsentModal";
 import RouteLoadingFallback from "./components/RouteLoadingFallback";
 import StickyMobileCTA from "./components/StickyMobileCTA";
@@ -36,6 +37,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <ScrollReveal />
       <PostHogPageViewTracker />
       <Suspense fallback={<RouteLoadingFallback />}>
         <Routes>

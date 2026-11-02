@@ -189,12 +189,12 @@ export const HeroBadge = styled.div`
 
 export const HeroTitle = styled.h1`
   font-family: "Poppins", sans-serif;
-  font-size: 3.25rem;
+  font-size: 2.4rem;
   font-weight: 700;
   line-height: 1.2;
   color: #0b1d3d;
-  max-width: 920px;
-  margin: 0 auto 1.5rem;
+  max-width: 850px;
+  margin: 0 auto 1.25rem;
   animation: ${fadeIn} 0.9s ease-out;
 
   span.gold-accent {
@@ -216,28 +216,28 @@ export const HeroTitle = styled.h1`
   }
 
   @media (max-width: 768px) {
-    font-size: 2.1rem;
+    font-size: 1.75rem;
     line-height: 1.25;
   }
 
   @media (max-width: 480px) {
-    font-size: 1.85rem;
+    font-size: 1.5rem;
   }
 `;
 
 export const HeroSubtitle = styled.p`
   font-family: "Lora", serif;
-  font-size: 1.35rem;
+  font-size: 1.05rem;
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.55;
   color: #526071;
-  max-width: 680px;
-  margin: 0 auto 2.5rem;
+  max-width: 640px;
+  margin: 0 auto 1.75rem;
   animation: ${fadeIn} 1s ease-out;
 
   @media (max-width: 768px) {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
+    font-size: 0.98rem;
+    margin-bottom: 1.5rem;
   }
 `;
 
@@ -1835,10 +1835,10 @@ const onlinePulse = keyframes`
 export const WhatsAppSection = styled.section`
   width: 100%;
   background: linear-gradient(180deg, #faf8f5 0%, #f0f7ff 50%, #ffffff 100%);
-  padding: 80px 20px;
+  padding: 50px 20px;
   position: relative;
   overflow: hidden;
-  scroll-margin-top: 80px;
+  scroll-margin-top: 70px;
 
   &::before {
     content: '';
