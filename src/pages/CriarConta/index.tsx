@@ -337,6 +337,52 @@ const formatInitialPhone = (value: string) => {
 
 const CriarConta: React.FC = () => {
   const [searchParams] = useSearchParams();
+  // Timer regressivo de 24 horas para oferta exclusiva
+  const [timeLeft, setTimeLeft] = useState<{ hours: number; minutes: number; seconds: number }>({
+    hours: 23,
+    minutes: 59,
+    seconds: 59,
+  });
+
+  useEffect(() => {
+    const STORAGE_KEY = "gestaoboa_promo_countdown_deadline_v1";
+    let targetTime: number;
+
+    const saved = localStorage.getItem(STORAGE_KEY);
+    const now = Date.now();
+
+    if (saved) {
+      const parsed = parseInt(saved, 10);
+      if (!isNaN(parsed) && parsed > now) {
+        targetTime = parsed;
+      } else {
+        // Se expirou, reinicia mais 24 horas para manter o senso de urgência
+        targetTime = now + 24 * 60 * 60 * 1000;
+        localStorage.setItem(STORAGE_KEY, targetTime.toString());
+      }
+    } else {
+      targetTime = now + 24 * 60 * 60 * 1000;
+      localStorage.setItem(STORAGE_KEY, targetTime.toString());
+    }
+
+    const updateTimer = () => {
+      const current = Date.now();
+      const diff = Math.max(0, targetTime - current);
+
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      setTimeLeft({ hours, minutes, seconds });
+    };
+
+    updateTimer();
+    const interval = setInterval(updateTimer, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const formatTimerPad = (n: number) => n.toString().padStart(2, "0");
+
   const location = useLocation();
   const navState = (location.state as any) || {};
   const navigate = useNavigate();
@@ -509,6 +555,115 @@ const CriarConta: React.FC = () => {
       setDiscountCode("ALEMDOCORTE");
     }
   }, [isSupremacy10]);
+
+  // Persistência de Rascunho no LocalStorage
+  const DRAFT_STORAGE_KEY = "gb_onboarding_draft_v1";
+
+  // Carrega o rascunho salvo ao abrir a página
+  useEffect(() => {
+    try {
+      const savedDraftRaw = localStorage.getItem(DRAFT_STORAGE_KEY);
+      if (!savedDraftRaw) return;
+
+      const draft = JSON.parse(savedDraftRaw);
+      if (draft && typeof draft === "object") {
+        if (draft.formData) {
+          setFormData((prev) => ({
+            ...prev,
+            fullName: draft.formData.fullName || prev.fullName,
+            name: draft.formData.name || prev.name,
+            surname: draft.formData.surname || prev.surname,
+            email: draft.formData.email || prev.email,
+            phone: draft.formData.phone || prev.phone,
+          }));
+        }
+        if (draft.companyName) setCompanyName(draft.companyName);
+        if (draft.userToken) setUserToken(draft.userToken);
+        if (draft.userId) setUserId(draft.userId);
+        if (draft.enterpriseToken) setEnterpriseToken(draft.enterpriseToken);
+        if (draft.createdEnterpriseId) setCreatedEnterpriseId(draft.createdEnterpriseId);
+        if (draft.selectedCategory) setSelectedCategory(draft.selectedCategory);
+        if (draft.servicesList && Array.isArray(draft.servicesList) && draft.servicesList.length > 0) {
+          setServicesList(draft.servicesList);
+        }
+        if (draft.professionalsList && Array.isArray(draft.professionalsList)) {
+          setProfessionalsList(draft.professionalsList);
+        }
+        if (draft.scheduleList && Array.isArray(draft.scheduleList)) {
+          setScheduleList(draft.scheduleList);
+        }
+        // Se já avançou de etapa e tem token/dados, restaura o passo
+        if (draft.currentStep && draft.currentStep > 1 && (draft.userToken || draft.formData?.name)) {
+          setCurrentStep(draft.currentStep);
+        }
+      }
+    } catch (e) {
+      console.error("Erro ao carregar rascunho do onboarding:", e);
+    }
+  }, []);
+
+  // Salva o rascunho sempre que os dados principais mudarem
+  useEffect(() => {
+    // Se já chegou no passo final de sucesso, limpa o rascunho
+    if (currentStep === 6) {
+      try {
+        localStorage.removeItem(DRAFT_STORAGE_KEY);
+      } catch (e) {}
+      return;
+    }
+
+    try {
+      // Salva apenas se o usuário já começou a preencher algo
+      if (
+        formData.fullName ||
+        formData.email ||
+        formData.phone ||
+        companyName ||
+        userToken ||
+        currentStep > 1
+      ) {
+        const draft = {
+          currentStep,
+          formData: {
+            fullName: formData.fullName,
+            name: formData.name,
+            surname: formData.surname,
+            email: formData.email,
+            phone: formData.phone,
+          },
+          companyName,
+          userToken,
+          userId,
+          enterpriseToken,
+          createdEnterpriseId,
+          selectedCategory,
+          servicesList,
+          professionalsList,
+          scheduleList,
+          updatedAt: new Date().toISOString(),
+        };
+        localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(draft));
+      }
+    } catch (e) {
+      console.error("Erro ao salvar rascunho do onboarding:", e);
+    }
+  }, [
+    currentStep,
+    formData.fullName,
+    formData.name,
+    formData.surname,
+    formData.email,
+    formData.phone,
+    companyName,
+    userToken,
+    userId,
+    enterpriseToken,
+    createdEnterpriseId,
+    selectedCategory,
+    servicesList,
+    professionalsList,
+    scheduleList,
+  ]);
 
   // Carrega categorias e ajusta pré-seleção baseada no ramoParam
   useEffect(() => {
@@ -1975,6 +2130,34 @@ const CriarConta: React.FC = () => {
         <link rel="canonical" href="https://gestaoboa.com.br/criar-conta" />
       </Helmet>
 
+      {/* Banner de Oferta Exclusiva com Timer Regressivo de 24h */}
+      <div className="exclusive-offer-topbar">
+        <div className="exclusive-offer-container">
+          <div className="exclusive-offer-left">
+            <span className="offer-fire-badge">🔥 Condição especial de Novembro</span>
+          </div>
+          <div className="exclusive-offer-timer-box">
+            <span className="timer-caption">Expira em:</span>
+            <div className="timer-digits-row">
+              <div className="timer-digit-unit">
+                <span className="digit-val">{formatTimerPad(timeLeft.hours)}</span>
+                <span className="digit-lbl">h</span>
+              </div>
+              <span className="timer-colon">:</span>
+              <div className="timer-digit-unit">
+                <span className="digit-val">{formatTimerPad(timeLeft.minutes)}</span>
+                <span className="digit-lbl">m</span>
+              </div>
+              <span className="timer-colon">:</span>
+              <div className="timer-digit-unit highlight-sec">
+                <span className="digit-val">{formatTimerPad(timeLeft.seconds)}</span>
+                <span className="digit-lbl">s</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Header */}
       <header className="signup-header">
         <div className="header-content">
@@ -2161,6 +2344,7 @@ const CriarConta: React.FC = () => {
             {renderStepIndicator()}
 
             <div className="form-card">
+
               {/* Context Bar */}
               <div className="form-brand-context-bar">
                 <div className="form-brand-context-left">
