@@ -56,13 +56,12 @@ export async function registerUser(user: UserRegistrationData) {
     headers: {
       Accept: "application/json",
       "Content-Type": "multipart/form-data",
+      ...(user.skip_verification ? { "X-Skip-Verification": "true" } : {}),
     },
   };
 
-
-
   const endpoint = user.skip_verification
-    ? `${BASE_URL}/users/?skip_verification=true&cupom=${encodeURIComponent(user.cupom || "ALEMDOCORTE")}`
+    ? `${BASE_URL}/users/?skip_verification=true${user.cupom ? `&cupom=${encodeURIComponent(user.cupom)}` : ""}`
     : `${BASE_URL}/users/`;
 
   try {
@@ -355,6 +354,102 @@ export const createService = async (
   } catch (error) {
     console.error("Erro na criação do serviço:", error);
     throw error;
+  }
+};
+
+export interface EmployeeCreationData {
+  enterprise_id: number;
+  name: string;
+  phone: string;
+  password?: string;
+  commission: number;
+  email?: string;
+}
+
+export const createEmployee = async (token: string, data: EmployeeCreationData) => {
+  const cleanPhone = data.phone.replace(/\D/g, "");
+  const parts = data.name.trim().split(/\s+/);
+  const firstName = parts[0] || "Profissional";
+  const lastName = parts.slice(1).join(" ") || " ";
+  const emailToUse = data.email?.trim() || `${cleanPhone || Date.now()}@gestaoboa.app`;
+  const passwordToUse = data.password?.trim() || "123456";
+
+  const response = await fetch(`${BASE_URL}/employees/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      enterprise_id: data.enterprise_id,
+      name: firstName,
+      surname: lastName,
+      email: emailToUse,
+      password: passwordToUse,
+      phone: cleanPhone || undefined,
+      commission: Number(data.commission) || 0,
+      wage: 0,
+    }),
+  });
+
+  const result = await response.json();
+  if (!response.ok) {
+    throw new Error(result.error || result.message || "Erro ao adicionar profissional");
+  }
+  return result;
+};
+
+export const createOwnerProfessional = async (token: string, enterprise_id: number) => {
+  try {
+    const response = await fetch(`${BASE_URL}/enterprises/${enterprise_id}/owner-professional`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return await response.json();
+  } catch (err) {
+    console.warn("Owner professional already created or error:", err);
+    return null;
+  }
+};
+
+export interface ShiftCreationData {
+  enterprise_id: number;
+  day_id: number;
+  user_id: number;
+  start_time: string; // e.g. "09:00"
+  end_time: string;   // e.g. "20:00"
+  works_at_lunch?: boolean;
+}
+
+export const createEnterpriseShift = async (token: string, shiftData: ShiftCreationData) => {
+  try {
+    const startIso = `2026-01-01T${shiftData.start_time}:00Z`;
+    const endIso = `2026-01-01T${shiftData.end_time}:00Z`;
+
+    const response = await fetch(`${BASE_URL}/enterprises/${shiftData.enterprise_id}/shifts`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        id_enterprise: shiftData.enterprise_id,
+        id_day: shiftData.day_id,
+        id_user: shiftData.user_id,
+        turn_start_hour: startIso,
+        turn_end_hour: endIso,
+        works_at_lunch: shiftData.works_at_lunch ?? true,
+      }),
+    });
+
+    const result = await response.json();
+    return result;
+  } catch (err) {
+    console.warn("Aviso ao salvar turno:", err);
+    return null;
   }
 };
 

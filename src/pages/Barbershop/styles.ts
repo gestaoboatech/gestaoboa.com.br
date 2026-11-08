@@ -86,10 +86,10 @@ export const HeroSection = styled.section`
 `;
 
 export const HeroTitle = styled.h1`
-  font-size: 4rem;
+  font-size: 2.6rem;
   font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
   max-width: 900px;
   z-index: 1;
   letter-spacing: -0.02em;
@@ -101,32 +101,32 @@ export const HeroTitle = styled.h1`
   }
 
   @media (max-width: 768px) {
-    font-size: 2.5rem;
+    font-size: 1.85rem;
   }
 
   @media (max-width: 480px) {
-    font-size: 2.1rem;
+    font-size: 1.6rem;
   }
 `;
 
 export const HeroSubtitle = styled.p`
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   color: #cbd5e1;
   max-width: 600px;
-  margin-bottom: 2.5rem;
-  line-height: 1.6;
+  margin-bottom: 1.75rem;
+  line-height: 1.55;
   z-index: 1;
   font-weight: 400;
 
   @media (max-width: 768px) {
-    font-size: 1.125rem;
+    font-size: 1rem;
   }
 `;
 
 export const HeroGridContainer = styled.div`
   display: grid;
   grid-template-columns: 1.15fr 0.95fr;
-  gap: 3.5rem;
+  gap: 2.5rem;
   align-items: center;
   max-width: 1240px;
   width: 100%;
@@ -139,7 +139,7 @@ export const HeroGridContainer = styled.div`
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
     text-align: center;
-    gap: 3rem;
+    gap: 2.5rem;
   }
 `;
 
@@ -375,13 +375,13 @@ export const EssentialsSection = styled(SectionBase)`
 `;
 
 export const SectionTitle = styled.h2`
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #0f172a;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 
   @media (max-width: 768px) {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 `;
 
@@ -786,6 +786,31 @@ export const PricingGrid = styled.div`
   }
 `;
 
+export const PlanUserLimit = styled.span`
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #93c5fd;
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  padding: 0.25rem 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 0.85rem;
+  width: fit-content;
+  user-select: none;
+  font-variant-numeric: tabular-nums;
+  transition: all 0.25s ease;
+`;
+
+export const DailyPriceSmall = styled.div`
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin-top: 5px;
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+  transition: color 0.25s ease;
+`;
+
 export const PlanCard = styled.div<{ $featured?: boolean }>`
   background: ${(props) =>
     props.$featured
@@ -907,22 +932,6 @@ export const PlanName = styled.h3`
   user-select: none;
 `;
 
-export const PlanUserLimit = styled.span`
-  display: inline-block;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #93c5fd;
-  background: rgba(59, 130, 246, 0.15);
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  padding: 0.25rem 0.75rem;
-  border-radius: 8px;
-  margin-bottom: 0.85rem;
-  width: fit-content;
-  user-select: none;
-  font-variant-numeric: tabular-nums;
-  transition: all 0.25s ease;
-`;
-
 export const PriceContainer = styled.div`
   margin-bottom: 1.75rem;
 `;
@@ -959,15 +968,6 @@ export const PlanPrice = styled.div`
     color: #94a3b8;
     margin-left: 4px;
   }
-`;
-
-export const DailyPriceSmall = styled.div`
-  font-size: 0.82rem;
-  color: #94a3b8;
-  margin-top: 5px;
-  font-variant-numeric: tabular-nums;
-  user-select: none;
-  transition: color 0.25s ease;
 `;
 
 export const PlanFeatures = styled.ul`
@@ -1238,10 +1238,10 @@ const onlinePulse = keyframes`
 export const WhatsAppSection = styled.section`
   width: 100%;
   background: linear-gradient(180deg, #f8fafc 0%, #eff6ff 50%, #ffffff 100%);
-  padding: 80px 20px;
+  padding: 50px 20px;
   position: relative;
   overflow: hidden;
-  scroll-margin-top: 80px;
+  scroll-margin-top: 70px;
 
   &::before {
     content: '';
