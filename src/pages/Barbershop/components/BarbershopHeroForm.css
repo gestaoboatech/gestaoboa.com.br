@@ -127,7 +127,12 @@
   align-items: center;
   justify-content: center;
   pointer-events: none;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.input-with-icon:focus-within .input-icon-wrapper {
+  color: #60a5fa;
+  transform: scale(1.08);
 }
 
 .form-input-custom,
@@ -142,6 +147,12 @@
   outline: none;
   font-family: inherit;
   transition: all 0.2s ease;
+}
+
+.form-input-custom:hover:not(:focus),
+.form-select-custom:hover:not(:focus) {
+  border-color: rgba(148, 163, 184, 0.45);
+  background: rgba(15, 23, 42, 0.85);
 }
 
 .form-select-custom {
@@ -187,6 +198,18 @@
   font-size: 0.75rem;
   color: #f87171;
   margin-top: 0.15rem;
+  animation: errorFadeIn 0.2s ease-out;
+}
+
+@keyframes errorFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .form-general-error {
@@ -197,6 +220,7 @@
   border-radius: 8px;
   font-size: 0.85rem;
   line-height: 1.4;
+  animation: errorFadeIn 0.25s ease-out;
 }
 
 .btn-submit-hero {
@@ -219,6 +243,7 @@
   transition: all 0.25s ease;
   position: relative;
   overflow: hidden;
+  user-select: none;
 }
 
 .btn-submit-hero:hover:not(:disabled) {
@@ -229,7 +254,12 @@
 }
 
 .btn-submit-hero:active:not(:disabled) {
-  transform: translateY(0);
+  transform: scale(0.98);
+}
+
+.btn-submit-hero:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 3px;
 }
 
 .btn-submit-hero:disabled {
@@ -276,6 +306,13 @@
   display: flex;
   align-items: center;
   gap: 0.3rem;
+  user-select: none;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.trust-badge-item:hover {
+  color: #cbd5e1;
+  transform: translateY(-1px);
 }
 
 .trust-badge-item svg {
@@ -285,6 +322,7 @@
 .security-note {
   font-size: 0.75rem;
   color: #64748b;
+  user-select: none;
 }
 
 @media (max-width: 480px) {

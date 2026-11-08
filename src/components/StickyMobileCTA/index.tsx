@@ -25,6 +25,16 @@ const StickyContainer = styled.div<{ $visible: boolean }>`
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
     transform: translateY(${({ $visible }) => ($visible ? "0" : "100%")});
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #0077b6 0%, #00b4d8 50%, #10b981 100%);
+    }
   }
 `;
 
@@ -59,6 +69,7 @@ const StickyButton = styled.a`
   white-space: nowrap;
   box-shadow: 0 4px 12px rgba(0, 119, 182, 0.28);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
 
   &:hover {
     transform: translateY(-1px);
@@ -68,6 +79,11 @@ const StickyButton = styled.a`
 
   &:active {
     transform: scale(0.96);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0077b6;
+    outline-offset: 2px;
   }
 `;
 
@@ -117,7 +133,15 @@ export const StickyMobileCTA: React.FC = () => {
             location: "mobile_bottom_bar",
             source_page: location.pathname,
           });
-          navigate("/criar-conta");
+          const path = location.pathname.toLowerCase();
+          const targetUrl = path.includes("sinca")
+            ? "/criar-conta?parceria=sincars"
+            : path.includes("barbearia")
+            ? "/criar-conta?origem=barbearia"
+            : path.includes("salao")
+            ? "/criar-conta?origem=salao_estetica"
+            : "/criar-conta";
+          navigate(targetUrl);
         }}
       >
         Testar Grátis ➔

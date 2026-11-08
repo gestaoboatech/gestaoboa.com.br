@@ -73,6 +73,15 @@ div.testimonial-card-new p[itemProp="reviewBody"] {
   transform: scale(0.99);
 }
 
+.testimonial-card-new:hover .testimonial-quote {
+  transform: scale(1.15) rotate(-6deg);
+  color: rgba(0, 119, 182, 0.35);
+}
+
+.testimonial-card-new:hover .testimonial-rating .star {
+  transform: scale(1.08);
+}
+
 .testimonial-card-new::before {
   content: '';
   position: absolute;
@@ -160,6 +169,7 @@ div.testimonial-card-new p[itemProp="reviewBody"] {
   color: #ffd700;
   font-size: 18px;
   user-select: none;
+  transition: transform 0.25s ease;
 }
 
 .testimonial-quote {
@@ -172,6 +182,7 @@ div.testimonial-card-new p[itemProp="reviewBody"] {
   line-height: 1;
   user-select: none;
   pointer-events: none;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 /* Responsividade melhorada */
@@ -226,6 +237,10 @@ div.testimonial-card-new p[itemProp="reviewBody"] {
   transform: translateY(-4px);
   box-shadow: 0 30px 60px -20px rgba(3, 4, 94, 0.15);
   border-color: rgba(0, 119, 182, 0.3);
+}
+
+.featured-testimonial:active {
+  transform: scale(0.995);
 }
 
 .featured-testimonial::before {

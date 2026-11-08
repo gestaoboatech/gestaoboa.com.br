@@ -264,6 +264,10 @@ export const Banner = styled.div`
           0 40px 100px -20px rgba(0, 180, 216, 0.35),
           0 0 0 1px rgba(255, 255, 255, 0.15),
           inset 0 1px 0 rgba(255, 255, 255, 0.3);
+
+        .desktop-screen img {
+          transform: scale(1.01);
+        }
       }
 
       .desktop-window-header {
@@ -350,6 +354,7 @@ export const Banner = styled.div`
           display: block;
           user-select: none;
           -webkit-user-drag: none;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
       }
     }
@@ -370,9 +375,15 @@ export const Banner = styled.div`
         inset 0 1px 0 rgba(255, 255, 255, 0.25);
       border: 2.5px solid rgba(255, 255, 255, 0.18);
       animation: ${levitate} 6s ease-in-out infinite;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
 
       &:hover {
         animation-play-state: paused;
+        transform: translateY(-4px) scale(1.02);
+        box-shadow:
+          0 35px 85px -10px rgba(0, 0, 0, 0.75),
+          0 14px 30px -5px rgba(3, 4, 94, 0.45),
+          inset 0 1px 0 rgba(255, 255, 255, 0.3);
       }
 
       .phone-top-speaker {
@@ -1185,20 +1196,26 @@ export const Solutions = styled.div`
 
   .tutorial {
     display: grid;
-    padding: 200px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding: 60px 48px;
     align-items: center;
     justify-content: center;
-    width: calc(100% - 400px);
-    grid-template-columns: 3fr 1fr;
+    max-width: 1240px;
+    width: calc(100% - 60px);
+    margin: 40px auto 60px;
+    grid-template-columns: 1.4fr 1fr;
     grid-column-gap: 50px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 28px;
+    box-shadow: 0 10px 30px rgba(3, 4, 94, 0.04);
+    scroll-margin-top: 80px;
+    box-sizing: border-box;
   }
 
   .tutorial .callout {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 40px;
     justify-content: center;
   }
 
@@ -1217,7 +1234,10 @@ export const Solutions = styled.div`
   }
 
   .tutorial .callout span {
-    font-weight: bold;
+    font-weight: 800;
+    background: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .tutorial .callout .buttons {
@@ -1329,11 +1349,10 @@ export const Solutions = styled.div`
     }
 
     .tutorial {
-      padding: 100px;
-      padding-top: 30px;
-      padding-bottom: 30px;
-      width: calc(100% - 200px);
-      grid-template-columns: 2fr 2fr;
+      padding: 50px 36px;
+      width: calc(100% - 40px);
+      max-width: 1200px;
+      grid-template-columns: 1.3fr 1fr;
     }
 
     .tutorial .callout .buttons {
@@ -1459,14 +1478,15 @@ export const Solutions = styled.div`
     .tutorial {
       display: flex;
       flex-direction: column;
-      padding: 10px;
-      width: calc(100% - 20px);
-      margin-bottom: 50px;
+      padding: 32px 20px;
+      width: calc(100% - 24px);
+      margin: 20px auto 50px;
+      border-radius: 20px;
     }
 
     .tutorial .callout {
-      width: calc(100% - 20px);
-      margin-bottom: 50px;
+      width: 100%;
+      margin-bottom: 40px;
     }
 
     .tutorial .callout .title {
@@ -2220,6 +2240,18 @@ export const Segments = styled.section`
     user-select: none;
     -webkit-tap-highlight-color: transparent;
 
+    svg {
+      transition: transform 0.25s ease;
+    }
+
+    &.carousel-btn-prev:hover svg {
+      transform: translateX(-2px);
+    }
+
+    &.carousel-btn-next:hover svg {
+      transform: translateX(2px);
+    }
+
     &:hover {
       background: rgba(255, 255, 255, 0.28);
       border-color: rgba(255, 255, 255, 0.45);
@@ -2350,7 +2382,9 @@ export const Segments = styled.section`
   }
 
   .segment-link {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%);
     color: white;
     text-decoration: none;
@@ -2359,6 +2393,7 @@ export const Segments = styled.section`
     font-weight: 500;
     transition: all 0.3s ease;
     margin-top: auto;
+    user-select: none;
 
     &:hover {
       background: linear-gradient(135deg, #005577 0%, #0096c7 100%);
@@ -2542,6 +2577,11 @@ export const InstagramSection = styled.section`
       transform: translateY(-2px);
       border-color: rgba(0, 119, 182, 0.35);
       box-shadow: 0 14px 34px -10px rgba(3, 4, 94, 0.12);
+
+      .avatar {
+        transform: scale(1.06);
+        border-color: #03045e;
+      }
     }
 
     .avatar {
@@ -2551,6 +2591,7 @@ export const InstagramSection = styled.section`
       border: 2px solid #0077b6;
       user-select: none;
       -webkit-user-drag: none;
+      transition: transform 0.25s ease, border-color 0.25s ease;
     }
 
     .info {
@@ -2792,6 +2833,7 @@ export const PlansCTA = styled.section`
     max-width: 800px;
     line-height: 1.2;
     color: #ffffff;
+    user-select: none;
   }
 
   .cta-text {
@@ -2816,12 +2858,21 @@ export const PlansCTA = styled.section`
     align-items: center;
     gap: 10px;
     cursor: pointer;
+    user-select: none;
+
+    svg {
+      transition: transform 0.25s ease;
+    }
 
     &:hover {
       background: #ffffff;
       color: #03045e;
       transform: translateY(-3px);
       box-shadow: 0 15px 30px rgba(255, 255, 255, 0.25);
+
+      svg {
+        transform: translateX(4px);
+      }
     }
 
     &:active {
@@ -3026,6 +3077,13 @@ export const WhatsAppCounter = styled.div`
   box-shadow: 0 10px 25px -5px rgba(3, 4, 94, 0.06);
   width: fit-content;
   animation: ${countPulse} 4s ease-in-out infinite;
+  user-select: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px -5px rgba(0, 119, 182, 0.16);
+  }
 
   .counter-number {
     font-size: 2.2rem;
@@ -3110,6 +3168,11 @@ export const WhatsAppFeatureCard = styled.div`
     font-weight: 700;
     color: #1e293b;
     margin-bottom: 4px;
+    transition: color 0.25s ease;
+  }
+
+  &:hover .feature-title {
+    color: #0077b6;
   }
 
   .feature-desc {

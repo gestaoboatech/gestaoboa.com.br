@@ -37,6 +37,7 @@
   font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
   padding-top: 54px; /* fixed header offset */
+  scroll-behavior: smooth;
 }
 
 .sinca-container {
@@ -181,6 +182,15 @@
   font-weight: 300;
   color: #94a3b8;
   user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.sinca-hero-logos:hover .sinca-logo-plus {
+  color: var(--sinca-blue);
+  transform: rotate(90deg) scale(1.1);
 }
 
 .sinca-hero-title {
@@ -642,6 +652,11 @@
   font-weight: 800;
   color: var(--sinca-primary);
   margin: 0 0 10px;
+  transition: color 0.25s ease;
+}
+
+.sinca-essential-card:hover h3 {
+  color: var(--sinca-blue);
 }
 
 .sinca-essential-card p {
@@ -1003,7 +1018,8 @@
 .sinca-period-active {
   background: var(--sinca-blue-subtle);
   border-color: var(--sinca-blue);
-  box-shadow: 0 4px 14px rgba(0, 119, 182, 0.15);
+  box-shadow: 0 4px 18px rgba(0, 119, 182, 0.2);
+  transform: translateY(-1px);
 }
 
 .sinca-period-active span {
@@ -1203,6 +1219,7 @@
   background: #ffffff;
   color: var(--sinca-primary);
   transition: all 0.25s ease;
+  user-select: none;
 }
 
 .sinca-plan-btn:hover {
@@ -1280,6 +1297,15 @@
 
 .sinca-faq-item:hover {
   border-color: rgba(0, 119, 182, 0.4);
+}
+
+.sinca-faq-item:hover .sinca-faq-q-text {
+  color: var(--sinca-blue);
+}
+
+.sinca-faq-item:hover .sinca-faq-chevron {
+  background: rgba(0, 119, 182, 0.16);
+  transform: scale(1.06);
 }
 
 .sinca-faq-open {

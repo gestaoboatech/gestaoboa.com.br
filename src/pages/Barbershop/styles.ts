@@ -165,6 +165,15 @@ export const HeroBadge = styled.div`
   font-size: 0.88rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
+  user-select: none;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: rgba(96, 165, 250, 0.5);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.2);
+  }
 `;
 
 export const HeroChecklist = styled.ul`
@@ -188,12 +197,23 @@ export const HeroChecklistItem = styled.li`
   gap: 0.75rem;
   color: #e2e8f0;
   font-size: 1rem;
+  user-select: none;
+  transition: transform 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    transform: translateX(4px);
+    svg {
+      transform: scale(1.15);
+      color: #60a5fa;
+    }
+  }
 
   svg {
     color: #38bdf8;
     width: 22px;
     height: 22px;
     flex-shrink: 0;
+    transition: transform 0.2s ease, color 0.2s ease;
   }
 
   strong {
@@ -210,11 +230,17 @@ export const HeroSocialProofStrip = styled.div`
   width: 100%;
   color: #94a3b8;
   font-size: 0.9rem;
+  user-select: none;
 
   .stars {
     color: #f59e0b;
     font-size: 1.1rem;
     letter-spacing: 2px;
+    transition: transform 0.25s ease;
+  }
+
+  &:hover .stars {
+    transform: scale(1.06);
   }
 
   @media (max-width: 1024px) {
@@ -604,11 +630,21 @@ export const PlatformBadge = styled.a`
   text-align: left;
   text-decoration: none;
 
+  svg {
+    transition: transform 0.25s ease, color 0.25s ease;
+    flex-shrink: 0;
+  }
+
   &:hover {
     transform: translateX(5px);
     border-color: #93c5fd;
     color: #2563eb;
     box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
+
+    svg {
+      transform: scale(1.15);
+      color: #2563eb;
+    }
   }
 
   &:active {
@@ -772,6 +808,16 @@ export const PlanCard = styled.div<{ $featured?: boolean }>`
     transform: translateY(-6px);
     border-color: rgba(59, 130, 246, 0.6);
     box-shadow: 0 20px 45px -10px rgba(59, 130, 246, 0.3);
+
+    ${PlanUserLimit} {
+      background: rgba(59, 130, 246, 0.28);
+      border-color: rgba(96, 165, 250, 0.5);
+      color: #bfdbfe;
+    }
+
+    ${DailyPriceSmall} {
+      color: #cbd5e1;
+    }
   }
 
   &:active {
@@ -874,6 +920,7 @@ export const PlanUserLimit = styled.span`
   width: fit-content;
   user-select: none;
   font-variant-numeric: tabular-nums;
+  transition: all 0.25s ease;
 `;
 
 export const PriceContainer = styled.div`
@@ -920,6 +967,7 @@ export const DailyPriceSmall = styled.div`
   margin-top: 5px;
   font-variant-numeric: tabular-nums;
   user-select: none;
+  transition: color 0.25s ease;
 `;
 
 export const PlanFeatures = styled.ul`
@@ -1096,6 +1144,7 @@ export const FinalCTASection = styled.div`
   h2 {
     font-size: 3rem;
     font-weight: 800;
+    user-select: none;
     margin-bottom: 1.5rem;
     position: relative;
     z-index: 1;
@@ -1121,6 +1170,7 @@ export const FinalCTASection = styled.div`
 
     &:hover {
       transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(59, 130, 246, 0.45);
     }
 
     &:active {
@@ -1320,6 +1370,13 @@ export const WhatsAppCounter = styled.div`
   box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06);
   width: fit-content;
   animation: ${countPulse} 4s ease-in-out infinite;
+  user-select: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px -5px rgba(37, 211, 102, 0.18);
+  }
 
   .counter-number {
     font-size: 2.2rem;
@@ -1404,6 +1461,11 @@ export const WhatsAppFeatureCard = styled.div`
     font-weight: 700;
     color: #0f172a;
     margin-bottom: 4px;
+    transition: color 0.25s ease;
+  }
+
+  &:hover .feature-title {
+    color: #2563eb;
   }
 
   .feature-desc {

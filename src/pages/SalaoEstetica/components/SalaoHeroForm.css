@@ -125,7 +125,12 @@
   align-items: center;
   justify-content: center;
   pointer-events: none;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.salao-input-with-icon:focus-within .salao-input-icon {
+  color: #1d56c0;
+  transform: scale(1.08);
 }
 
 .salao-input,
@@ -140,6 +145,12 @@
   outline: none;
   font-family: inherit;
   transition: all 0.2s ease;
+}
+
+.salao-input:hover:not(:focus),
+.salao-select:hover:not(:focus) {
+  border-color: #cbd5e1;
+  background: #ffffff;
 }
 
 .salao-select {
@@ -179,6 +190,18 @@
   font-size: 0.75rem;
   color: #ef4444;
   margin-top: 0.15rem;
+  animation: salaoErrorFadeIn 0.2s ease-out;
+}
+
+@keyframes salaoErrorFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .salao-general-error {
@@ -189,6 +212,7 @@
   border-radius: 8px;
   font-size: 0.85rem;
   line-height: 1.4;
+  animation: salaoErrorFadeIn 0.25s ease-out;
 }
 
 .salao-btn-submit {
@@ -208,6 +232,7 @@
   cursor: pointer;
   box-shadow: 0 10px 25px -5px rgba(11, 29, 61, 0.25);
   transition: all 0.25s ease;
+  user-select: none;
 }
 
 .salao-btn-submit:hover:not(:disabled) {
@@ -218,7 +243,12 @@
 }
 
 .salao-btn-submit:active:not(:disabled) {
-  transform: translateY(0);
+  transform: scale(0.98);
+}
+
+.salao-btn-submit:focus-visible {
+  outline: 2px solid #d4af37;
+  outline-offset: 3px;
 }
 
 .salao-btn-submit:disabled {
@@ -265,6 +295,13 @@
   display: flex;
   align-items: center;
   gap: 0.3rem;
+  user-select: none;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.salao-trust-badge-item:hover {
+  color: #0b1d3d;
+  transform: translateY(-1px);
 }
 
 .salao-trust-badge-item svg {
@@ -274,6 +311,7 @@
 .salao-security-note {
   font-size: 0.75rem;
   color: #94a3b8;
+  user-select: none;
 }
 
 @media (max-width: 480px) {

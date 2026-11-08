@@ -292,12 +292,23 @@ export const SalaoHeroChecklistItem = styled.li`
   gap: 0.75rem;
   color: #334155;
   font-size: 1rem;
+  user-select: none;
+  transition: transform 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    transform: translateX(4px);
+    svg {
+      transform: scale(1.15);
+      color: #059669;
+    }
+  }
 
   svg {
     color: #10b981;
     width: 22px;
     height: 22px;
     flex-shrink: 0;
+    transition: transform 0.2s ease, color 0.2s ease;
   }
 
   strong {
@@ -314,11 +325,17 @@ export const SalaoHeroSocialProof = styled.div`
   width: 100%;
   color: #64748b;
   font-size: 0.9rem;
+  user-select: none;
 
   .stars {
     color: #d4af37;
     font-size: 1.1rem;
     letter-spacing: 2px;
+    transition: transform 0.25s ease;
+  }
+
+  &:hover .stars {
+    transform: scale(1.06);
   }
 
   @media (max-width: 1024px) {
