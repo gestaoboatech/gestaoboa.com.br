@@ -271,6 +271,11 @@ div.testimonial-card-new p[itemProp="reviewBody"] {
     border-color: rgba(0, 119, 182, 0.45);
   }
 
+  .featured-testimonial video:focus-visible {
+    outline: 3px solid #0077b6;
+    outline-offset: 3px;
+  }
+
 .featured-testimonial video::-webkit-media-controls-panel {
   background-color: rgba(0, 0, 0, 0.8);
 }
@@ -335,6 +340,7 @@ div.featured-testimonial div.texts div.desc {
   letter-spacing: 0.5px;
   box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
   user-select: none;
+  pointer-events: none;
 }
 
 /* Responsividade para o card em destaque - Otimizado para vídeo vertical */

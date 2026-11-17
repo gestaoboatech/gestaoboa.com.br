@@ -153,6 +153,13 @@ export const Banner = styled.div`
   .content .badge-link {
     text-decoration: none;
     width: fit-content;
+    border-radius: 100px;
+    display: inline-flex;
+
+    &:focus-visible {
+      outline: 2px solid #0077b6;
+      outline-offset: 4px;
+    }
   }
 
   .content .title {
@@ -198,6 +205,7 @@ export const Banner = styled.div`
     text-decoration: none;
     display: inline-flex;
     border-radius: 10px;
+    user-select: none;
     transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 
     &:hover {
@@ -611,6 +619,18 @@ export const Awards = styled.div`
     align-items: center;
     gap: 12px;
     margin: 0 10px;
+    position: relative;
+
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: -15px;
+      top: 15%;
+      height: 70%;
+      width: 1px;
+      background: rgba(255, 255, 255, 0.12);
+      pointer-events: none;
+    }
   }
 
   .item .number {
@@ -637,6 +657,10 @@ export const Awards = styled.div`
     .award-pair {
       flex-direction: column;
       margin-bottom: 14px;
+
+      &:not(:last-child)::after {
+        display: none;
+      }
     }
 
     .item .number {
@@ -734,6 +758,8 @@ export const Solutions = styled.div`
       transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
       overflow: hidden;
+      cursor: default;
+      user-select: none;
 
       &::before {
         content: '';
@@ -757,6 +783,28 @@ export const Solutions = styled.div`
 
         &::before {
           opacity: 1;
+        }
+
+        .metric-value {
+          transform: scale(1.02);
+          text-shadow: 0 0 16px rgba(0, 180, 216, 0.45);
+        }
+      }
+
+      &:nth-child(4):hover {
+        border-color: rgba(37, 211, 102, 0.4);
+        box-shadow: 0 12px 28px rgba(37, 211, 102, 0.2);
+
+        &::before {
+          background: linear-gradient(90deg, #25d366, #128c7e);
+        }
+
+        .metric-icon {
+          background: rgba(37, 211, 102, 0.2);
+        }
+
+        .metric-value {
+          text-shadow: 0 0 16px rgba(37, 211, 102, 0.5);
         }
       }
 
@@ -798,6 +846,7 @@ export const Solutions = styled.div`
         font-variant-numeric: tabular-nums;
         letter-spacing: -0.01em;
         user-select: none;
+        transition: transform 0.25s ease, text-shadow 0.25s ease;
       }
 
       .metric-label {
@@ -905,6 +954,10 @@ export const Solutions = styled.div`
         border-color: rgba(0, 119, 182, 0.2);
       }
 
+      &:active {
+        transform: scale(0.99);
+      }
+
       .benefit-icon {
         width: 48px;
         height: 48px;
@@ -933,6 +986,7 @@ export const Solutions = styled.div`
           font-weight: 600;
           margin-bottom: 0.5rem;
           color: #1a1a1a;
+          transition: color 0.25s ease;
         }
 
         .subtitle {
@@ -1030,6 +1084,10 @@ export const Solutions = styled.div`
             color: #0077b6;
           }
 
+          .benefit-content .benefit-description {
+            color: #334155;
+          }
+
           .benefit-link {
             color: #03045e;
             transform: translateX(4px);
@@ -1065,11 +1123,30 @@ export const Solutions = styled.div`
         &:hover .benefit-icon {
           background: #0077b6;
           border-color: #0077b6;
+          box-shadow: 0 6px 16px rgba(0, 119, 182, 0.3);
 
           svg {
             stroke: #ffffff;
             transform: scale(1.1);
           }
+        }
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 16px;
+          right: 16px;
+          height: 3px;
+          background: linear-gradient(90deg, #0077b6, #00b4d8);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          border-radius: 4px;
+          pointer-events: none;
+        }
+
+        &:hover::before {
+          opacity: 1;
         }
 
         .benefit-content {
@@ -1089,6 +1166,7 @@ export const Solutions = styled.div`
             color: #64748b;
             line-height: 1.6;
             margin-bottom: 0.75rem;
+            transition: color 0.25s ease;
           }
 
           .benefit-link {
@@ -1196,15 +1274,19 @@ export const Solutions = styled.div`
 
   .tutorial {
     display: grid;
-    padding: 40px 5%;
+    padding: 44px 5%;
     align-items: center;
     justify-content: center;
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 1.5rem auto 3rem;
     box-sizing: border-box;
     grid-template-columns: 3fr 1.2fr;
     grid-column-gap: 36px;
+    background: #ffffff;
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: 28px;
+    box-shadow: 0 10px 30px -10px rgba(3, 4, 94, 0.05);
   }
 
   .tutorial .callout {
@@ -1986,6 +2068,10 @@ export const FormInputWrapper = styled.div`
   flex-direction: column;
   gap: 8px;
   width: 100%;
+
+  &:focus-within span {
+    color: #00b4d8;
+  }
 `;
 
 export const FormLabel = styled.span`
@@ -1994,6 +2080,7 @@ export const FormLabel = styled.span`
   font-size: 16px;
   margin-left: 4px;
   user-select: none;
+  transition: color 0.2s ease;
 `;
 
 export const FormButtonWrapper = styled.div`
@@ -2099,6 +2186,7 @@ export const FAQ = styled.section`
 
         &:hover {
           color: #0077b6;
+          background-color: rgba(0, 119, 182, 0.03);
         }
 
         &:active {
@@ -2107,7 +2195,8 @@ export const FAQ = styled.section`
 
         &:focus-visible {
           outline: 2px solid #0077b6;
-          outline-offset: -2px;
+          outline-offset: 2px;
+          border-radius: 12px;
         }
 
         &::-webkit-details-marker {
@@ -2296,6 +2385,10 @@ export const Segments = styled.section`
       .segment-image {
         transform: scale(1.04);
       }
+
+      .segment-title {
+        color: #90e0ef;
+      }
     }
 
     &:active {
@@ -2339,6 +2432,7 @@ export const Segments = styled.section`
     font-weight: bold;
     margin-bottom: 0.8rem;
     color: white;
+    transition: color 0.25s ease;
   }
 
   .segment-description {
@@ -3440,6 +3534,15 @@ export const VideoContainer = styled.div`
     object-fit: cover;
     user-select: none;
     transition: transform 0.3s ease;
+
+    &:focus-visible {
+      outline: 3px solid #0077b6;
+      outline-offset: 2px;
+    }
+  }
+
+  &:hover video {
+    transform: scale(1.01);
   }
 
   @media (max-width: 768px) {

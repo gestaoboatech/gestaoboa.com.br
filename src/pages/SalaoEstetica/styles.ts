@@ -589,6 +589,10 @@ export const SectionHeader = styled.div`
 export const PillarsSection = styled.section`
   padding: 5rem 0;
   position: relative;
+
+  @media (max-width: 768px) {
+    padding: 3rem 0;
+  }
 `;
 
 export const PillarsGrid = styled.div`
@@ -687,12 +691,17 @@ export const PillarCard = styled.div`
     color: #1d56c0;
   }
 
+  &:hover p {
+    color: #3d342d;
+  }
+
   p {
     font-family: "Lora", serif;
     font-size: 0.95rem;
     color: #6e6259;
     line-height: 1.55;
     margin: 0;
+    transition: color 0.25s ease;
   }
 `;
 
@@ -763,6 +772,15 @@ export const VideoContainer = styled.div`
     object-fit: cover;
     user-select: none;
     transition: transform 0.3s ease;
+
+    &:focus-visible {
+      outline: 3px solid #d4af37;
+      outline-offset: 2px;
+    }
+  }
+
+  &:hover video {
+    transform: scale(1.01);
   }
 
   @media (max-width: 768px) {
@@ -865,6 +883,14 @@ export const ShowcaseContent = styled.div`
       transform: scale(0.98);
     }
 
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+
+    &:focus-visible {
+      outline: 2px solid #d4af37;
+      outline-offset: 2px;
+    }
+
     &:focus-visible {
       outline: 2px solid #1d56c0;
       outline-offset: 2px;
@@ -964,6 +990,7 @@ export const SegmentCard = styled.div`
     color: #d4af37;
     margin-bottom: 0.35rem;
     user-select: none;
+    transition: transform 0.25s ease, color 0.25s ease;
   }
 
   h4 {
@@ -980,12 +1007,22 @@ export const SegmentCard = styled.div`
     color: #1d56c0;
   }
 
+  &:hover .segment-badge {
+    transform: translateX(2px);
+    color: #b8931d;
+  }
+
+  &:hover p {
+    color: #3d342d;
+  }
+
   p {
     font-family: "Lora", serif;
     font-size: 0.95rem;
     color: #6e6259;
     line-height: 1.6;
     margin: 0;
+    transition: color 0.25s ease;
   }
 `;
 
@@ -1106,6 +1143,11 @@ export const FeatureCard = styled.div`
     color: #526071;
     line-height: 1.55;
     margin: 0;
+    transition: color 0.25s ease;
+  }
+
+  &:hover p {
+    color: #334155;
   }
 `;
 
@@ -1178,6 +1220,19 @@ export const TestimonialCard = styled.div`
     border-color: rgba(212, 175, 55, 0.6);
     box-shadow: 0 16px 36px rgba(212, 175, 55, 0.12), 0 6px 18px rgba(11, 29, 61, 0.05);
 
+    &::before {
+      color: rgba(212, 175, 55, 0.38);
+      transform: scale(1.1) rotate(-6deg);
+    }
+
+    p {
+      color: #2d3748;
+    }
+
+    .author-info strong {
+      color: #1d56c0;
+    }
+
     .author-info .avatar {
       transform: scale(1.06);
       box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35);
@@ -1199,6 +1254,7 @@ export const TestimonialCard = styled.div`
     line-height: 1;
     user-select: none;
     pointer-events: none;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
   }
 
   p {
@@ -1216,6 +1272,10 @@ export const TestimonialCard = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
+
+    strong {
+      transition: color 0.25s ease;
+    }
 
     .avatar {
       width: 52px;
@@ -1379,6 +1439,15 @@ export const PlanCard = styled.div<{ $featured?: boolean }>`
     transform: ${(props) =>
       props.$featured ? "scale(1.05) translateY(-6px)" : "translateY(-6px)"};
     box-shadow: 0 22px 55px rgba(212, 175, 55, 0.25);
+
+    h3 {
+      color: #1d56c0;
+    }
+
+    span[class*="PlanUserLimit"] {
+      background: #e0edff;
+      border-color: rgba(29, 86, 192, 0.35);
+    }
   }
 
   &:active {
@@ -1419,6 +1488,7 @@ export const PlanBadge = styled.div`
   box-shadow: 0 4px 14px rgba(212, 175, 55, 0.45);
   white-space: nowrap;
   user-select: none;
+  pointer-events: none;
 `;
 
 export const PlanName = styled.h3`
@@ -1428,6 +1498,7 @@ export const PlanName = styled.h3`
   color: #0b1d3d;
   margin: 0 0 0.4rem;
   user-select: none;
+  transition: color 0.25s ease;
 `;
 
 export const PlanUserLimit = styled.span`
@@ -1444,6 +1515,7 @@ export const PlanUserLimit = styled.span`
   width: fit-content;
   user-select: none;
   font-variant-numeric: tabular-nums;
+  transition: all 0.25s ease;
 `;
 
 export const PlanSubtitle = styled.p`
@@ -1548,6 +1620,7 @@ export const PlanCTAButton = styled.button<{ $featured?: boolean }>`
   font-weight: 600;
   padding: 1.15rem 1.75rem;
   border-radius: 14px;
+  user-select: none;
   border: ${(props) => (props.$featured ? "none" : "1.5px solid #0b1d3d")};
   background: ${(props) =>
     props.$featured
@@ -1610,6 +1683,10 @@ export const FAQItem = styled.details`
     border-color: #d4af37;
     background-color: #fffdf9;
     box-shadow: 0 6px 20px rgba(212, 175, 55, 0.12);
+
+    summary {
+      color: #1d56c0;
+    }
   }
 
   summary {
@@ -1672,6 +1749,8 @@ export const FAQItem = styled.details`
     color: #526071;
     line-height: 1.65;
     margin: 1rem 0 0.25rem;
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
+    padding-top: 0.85rem;
     animation: ${fadeIn} 0.3s ease-out;
   }
 `;
@@ -1739,6 +1818,8 @@ export const FinalCTASection = styled.section`
     cursor: pointer;
     box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
     transition: all 0.3s ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 
     &:hover {
       transform: translateY(-3px) scale(1.02);
@@ -2031,6 +2112,7 @@ export const WhatsAppFeatureCard = styled.div`
   display: flex;
   flex-direction: column;
   text-align: left;
+  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     background: #ffffff;
@@ -2068,12 +2150,22 @@ export const WhatsAppFeatureCard = styled.div`
     font-weight: 700;
     color: #0b1d3d;
     margin-bottom: 4px;
+    transition: color 0.25s ease;
+  }
+
+  &:hover .feature-title {
+    color: #1d56c0;
   }
 
   .feature-desc {
     font-size: 0.82rem;
     color: #64748b;
     line-height: 1.5;
+    transition: color 0.25s ease;
+  }
+
+  &:hover .feature-desc {
+    color: #334155;
   }
 `;
 
@@ -2092,6 +2184,8 @@ export const WhatsAppCTA = styled.a`
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   width: fit-content;
   cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     transform: translateY(-3px);

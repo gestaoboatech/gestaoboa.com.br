@@ -246,6 +246,8 @@
   box-shadow: var(--sinca-shadow-glow);
   transition: all 0.3s ease;
   text-decoration: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .sinca-btn-primary svg {
@@ -286,6 +288,8 @@
   cursor: pointer;
   box-shadow: var(--sinca-shadow-sm);
   transition: all 0.25s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .sinca-btn-secondary:hover {
@@ -311,6 +315,11 @@
   color: var(--sinca-text-light);
   margin-bottom: 40px;
   user-select: none;
+  transition: color 0.2s ease;
+}
+
+.sinca-hero-trial-note:hover {
+  color: var(--sinca-primary);
 }
 
 /* ==========================================================================
@@ -342,9 +351,17 @@
   user-select: none;
 }
 
+.sinca-stat-item {
+  cursor: default;
+}
+
 .sinca-stat-item:hover {
   transform: translateY(-2px);
   background: rgba(0, 119, 182, 0.04);
+}
+
+.sinca-stat-item:active {
+  transform: scale(0.98);
 }
 
 .sinca-stat-item:hover .sinca-stat-num {
@@ -398,6 +415,26 @@
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.sinca-niche-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20px;
+  right: 20px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--sinca-blue), var(--sinca-accent-emerald));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.sinca-niche-card:hover::before {
+  opacity: 1;
 }
 
 .sinca-niche-card:hover {
@@ -461,6 +498,11 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   user-select: none;
+  transition: transform 0.2s ease;
+}
+
+.sinca-niche-card:hover .sinca-niche-badge {
+  transform: translateX(2px);
 }
 
 .sinca-niche-pain {
@@ -534,6 +576,14 @@
   flex-direction: column;
   align-items: center;
   gap: 16px;
+}
+
+.sinca-niche-cta-content svg {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sinca-niche-cta-card:hover .sinca-niche-cta-content svg {
+  transform: scale(1.15) rotate(8deg);
 }
 
 .sinca-niche-cta-card h4 {
@@ -664,6 +714,11 @@
   color: var(--sinca-text-muted);
   line-height: 1.6;
   margin: 0;
+  transition: color 0.25s ease;
+}
+
+.sinca-essential-card:hover p {
+  color: #334155;
 }
 
 /* ==========================================================================
@@ -762,6 +817,11 @@
   display: block;
 }
 
+.sinca-showcase-media video:focus-visible {
+  outline: 3px solid var(--sinca-blue);
+  outline-offset: 2px;
+}
+
 .sinca-showcase-content {
   text-align: left;
 }
@@ -772,6 +832,11 @@
   color: var(--sinca-primary);
   margin: 0 0 12px;
   line-height: 1.3;
+  transition: color 0.25s ease;
+}
+
+.sinca-showcase-card:hover .sinca-showcase-content h3 {
+  color: var(--sinca-blue);
 }
 
 .sinca-showcase-content p {
@@ -827,6 +892,7 @@
   line-height: 1.5;
   box-shadow: 0 2px 8px rgba(16, 185, 129, 0.08);
   user-select: none;
+  cursor: default;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
@@ -992,6 +1058,7 @@
   align-items: center;
   gap: 4px;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
   transition: all 0.25s ease;
 }
 
@@ -1065,6 +1132,15 @@
   border-color: var(--sinca-blue);
 }
 
+.sinca-plan-card:hover .sinca-plan-name {
+  color: var(--sinca-blue);
+}
+
+.sinca-plan-card:hover .sinca-plan-limit {
+  background: rgba(0, 119, 182, 0.16);
+  transform: scale(1.02);
+}
+
 .sinca-plan-card:active {
   transform: scale(0.99);
 }
@@ -1109,6 +1185,7 @@
   color: var(--sinca-primary);
   margin: 0 0 6px;
   user-select: none;
+  transition: color 0.25s ease;
 }
 
 .sinca-plan-limit {
@@ -1122,6 +1199,7 @@
   margin-bottom: 20px;
   user-select: none;
   font-variant-numeric: tabular-nums;
+  transition: background-color 0.25s ease, transform 0.25s ease;
 }
 
 .sinca-price-box {
@@ -1321,6 +1399,7 @@
   align-items: center;
   padding: 20px 24px;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .sinca-faq-q-text {
@@ -1444,6 +1523,8 @@
   cursor: pointer;
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
   transition: all 0.3s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .sinca-btn-cta-large svg {

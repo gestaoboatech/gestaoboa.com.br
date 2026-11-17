@@ -55,6 +55,7 @@ function App() {
           <Route path="/anuncio-gestaoboa" element={<AnuncioGestaoBoa />} />
           <Route path="/black-friday" element={<BlackFriday />} />
           <Route path="/botgestor" element={<BotGestor />} />
+          <Route path="/bot-gestor" element={<Navigate to="/botgestor" replace />} />
           <Route path="/SincaRS" element={<SincaRS />} />
           <Route path="/sincars" element={<SincaRS />} />
           <Route path="/sinca-rs" element={<SincaRS />} />

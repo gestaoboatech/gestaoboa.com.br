@@ -174,6 +174,10 @@ export const HeroBadge = styled.div`
     transform: translateY(-1px);
     box-shadow: 0 4px 14px rgba(59, 130, 246, 0.2);
   }
+
+  &:active {
+    transform: scale(0.98);
+  }
 `;
 
 export const HeroChecklist = styled.ul`
@@ -362,8 +366,15 @@ export const AuthorityStrip = styled.div`
   }
 
   @media (max-width: 480px) {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 1.25rem 1rem;
+
     div {
-      min-width: 100px;
+      width: 100%;
+      min-width: unset;
+      padding: 10px 16px;
     }
   }
 `;
@@ -390,6 +401,11 @@ export const SectionSubtitle = styled.p`
   color: #64748b;
   max-width: 600px;
   margin: 0 auto 4rem;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 export const EssentialsGrid = styled.div`
@@ -470,6 +486,10 @@ export const EssentialCard = styled.div`
       color: #2563eb;
     }
 
+    p {
+      color: #334155;
+    }
+
     ${EssentialIcon} {
       transform: scale(1.08);
       background: #dbeafe;
@@ -500,6 +520,7 @@ export const EssentialTitle = styled.h3`
 export const EssentialText = styled.p`
   color: #64748b;
   line-height: 1.6;
+  transition: color 0.25s ease;
 `;
 
 // --- VIDEO SECTION ---
@@ -588,6 +609,15 @@ export const VideoContainer = styled.div`
     object-fit: cover;
     user-select: none;
     transition: transform 0.3s ease;
+
+    &:focus-visible {
+      outline: 3px solid #3b82f6;
+      outline-offset: 2px;
+    }
+  }
+
+  &:hover video {
+    transform: scale(1.01);
   }
 
   @media (max-width: 768px) {
@@ -834,6 +864,10 @@ export const PlanCard = styled.div<{ $featured?: boolean }>`
     border-color: rgba(59, 130, 246, 0.6);
     box-shadow: 0 20px 45px -10px rgba(59, 130, 246, 0.3);
 
+    h3 {
+      color: #60a5fa;
+    }
+
     ${PlanUserLimit} {
       background: rgba(59, 130, 246, 0.28);
       border-color: rgba(96, 165, 250, 0.5);
@@ -885,7 +919,7 @@ export const PlanCard = styled.div<{ $featured?: boolean }>`
     padding: 2rem 1.25rem;
   }
 
-  button {
+  button, div[class*="Container"] {
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
     cursor: pointer;
 
@@ -1049,6 +1083,15 @@ export const TestimonialCard = styled.div`
     line-height: 1;
     user-select: none;
     pointer-events: none;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+  }
+
+  p {
+    transition: color 0.25s ease;
+  }
+
+  strong {
+    transition: color 0.25s ease;
   }
 
   img {
@@ -1068,10 +1111,23 @@ export const TestimonialCard = styled.div`
       opacity: 1;
     }
 
+    &::after {
+      color: rgba(59, 130, 246, 0.28);
+      transform: scale(1.1) rotate(-6deg);
+    }
+
     img {
       transform: scale(1.06);
       border-color: #3b82f6;
       box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+    }
+
+    p {
+      color: #1e293b;
+    }
+
+    strong {
+      color: #2563eb;
     }
   }
 
@@ -1165,7 +1221,7 @@ export const FinalCTASection = styled.div`
     z-index: 1;
   }
 
-  button {
+  button, div[class*="Container"] {
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 
     &:hover {
@@ -1424,6 +1480,7 @@ export const WhatsAppFeatureCard = styled.div`
   display: flex;
   flex-direction: column;
   text-align: left;
+  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     background: #ffffff;
@@ -1472,6 +1529,11 @@ export const WhatsAppFeatureCard = styled.div`
     font-size: 0.82rem;
     color: #64748b;
     line-height: 1.5;
+    transition: color 0.25s ease;
+  }
+
+  &:hover .feature-desc {
+    color: #334155;
   }
 `;
 
@@ -1490,6 +1552,8 @@ export const WhatsAppCTA = styled.a`
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   width: fit-content;
   cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     transform: translateY(-3px);

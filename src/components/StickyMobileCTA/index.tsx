@@ -94,6 +94,8 @@ const EXCLUDED_ROUTES = new Set([
   "/privacidade",
   "/regulamento-indicacao",
   "/termos-indicacao",
+  "/botgestor",
+  "/bot-gestor",
 ]);
 
 export const StickyMobileCTA: React.FC = () => {

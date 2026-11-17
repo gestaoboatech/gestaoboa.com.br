@@ -139,10 +139,21 @@ export const NavCTA = styled.button`
   flex-shrink: 0;
   transition: all 0.2s ease;
   box-shadow: 0 2px 10px rgba(34, 197, 94, 0.25);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     transform: translateY(-1px);
     box-shadow: 0 4px 14px rgba(34, 197, 94, 0.4);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #22c55e;
+    outline-offset: 2px;
   }
 
   @media (max-width: 960px) {
@@ -157,6 +168,23 @@ export const MobileMenuButton = styled.button`
   color: #f8fafc;
   cursor: pointer;
   padding: 0.4rem;
+  border-radius: 8px;
+  transition: background 0.2s ease, transform 0.15s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #22c55e;
+    outline-offset: 2px;
+  }
 
   @media (max-width: 960px) {
     display: flex;
@@ -188,9 +216,21 @@ export const MobileMenu = styled.div<{ $isOpen: boolean }>`
       padding: 0.5rem 0;
       font-size: 0.88rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      transition: color 0.2s ease;
 
       &:hover {
         color: #f8fafc;
+      }
+
+      &:active {
+        color: #22c55e;
+      }
+
+      &:focus-visible {
+        outline: 2px solid #22c55e;
+        outline-offset: 2px;
       }
     }
 
@@ -208,6 +248,18 @@ export const MobileMenu = styled.div<{ $isOpen: boolean }>`
       align-items: center;
       justify-content: center;
       gap: 0.45rem;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+      &:active {
+        transform: scale(0.98);
+      }
+
+      &:focus-visible {
+        outline: 2px solid #22c55e;
+        outline-offset: 2px;
+      }
     }
   }
 `;
@@ -216,6 +268,7 @@ export const MobileMenu = styled.div<{ $isOpen: boolean }>`
 export const HeroSection = styled.section`
   min-height: 100vh;
   padding: 8rem 2rem 4rem;
+  scroll-margin-top: 80px;
   background: 
     radial-gradient(circle at 15% 30%, rgba(34, 197, 94, 0.12) 0%, transparent 45%),
     radial-gradient(circle at 85% 60%, rgba(59, 130, 246, 0.12) 0%, transparent 45%),
@@ -344,10 +397,21 @@ export const PrimaryCTA = styled.button`
   gap: 0.65rem;
   transition: all 0.3s;
   box-shadow: 0 4px 20px rgba(34, 197, 94, 0.35);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 30px rgba(34, 197, 94, 0.5);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #22c55e;
+    outline-offset: 3px;
   }
 `;
 
@@ -364,10 +428,21 @@ export const SecondaryCTA = styled.button`
   align-items: center;
   gap: 0.5rem;
   transition: all 0.3s;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     background: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.4);
+    outline-offset: 3px;
   }
 `;
 
@@ -384,6 +459,7 @@ export const PhoneMockupContainer = styled.div`
 
 export const PhoneMockup = styled.div`
   width: 340px;
+  max-width: 100%;
   height: 620px;
   background: #0f172a;
   border-radius: 38px;
@@ -735,6 +811,13 @@ export const ComparisonCard = styled.div<{ $isPositive?: boolean }>`
   padding: 2.5rem 2rem;
   text-align: left;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+    border-color: ${props => (props.$isPositive ? "rgba(34, 197, 94, 0.5)" : "rgba(239, 68, 68, 0.5)")};
+  }
 
   .header-box {
     display: flex;
@@ -784,6 +867,7 @@ export const FeaturesSection = styled.section`
   background: #0f172a;
   padding: 6rem 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
+  scroll-margin-top: 80px;
 `;
 
 export const FeaturesContent = styled.div`
@@ -872,6 +956,7 @@ export const TechnicalSection = styled.section`
   background: #0b1120;
   padding: 6rem 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
+  scroll-margin-top: 80px;
 `;
 
 export const TechnicalContent = styled.div`
@@ -932,6 +1017,12 @@ export const FlowNode = styled.div`
   min-width: 175px;
   max-width: 200px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: rgba(34, 197, 94, 0.4);
+  }
 
   svg {
     color: #22c55e;
@@ -978,6 +1069,13 @@ export const ArchCard = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
   padding: 2rem;
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: rgba(56, 189, 248, 0.35);
+    background: rgba(255, 255, 255, 0.04);
+  }
 
   .arch-header {
     display: flex;
@@ -1025,6 +1123,7 @@ export const LGPDSection = styled.section`
   background: #0f172a;
   padding: 6rem 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
+  scroll-margin-top: 80px;
 `;
 
 export const LGPDContent = styled.div`
@@ -1091,6 +1190,7 @@ export const RoadmapSection = styled.section`
   background: #0b1120;
   padding: 6rem 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
+  scroll-margin-top: 80px;
 `;
 
 export const RoadmapContent = styled.div`
@@ -1209,6 +1309,7 @@ export const ManagementSection = styled.section`
   background: #0f172a;
   padding: 6rem 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
+  scroll-margin-top: 80px;
 `;
 
 export const ManagementContent = styled.div`
@@ -1238,6 +1339,13 @@ export const StatCard = styled.div`
   border-radius: 18px;
   padding: 2rem 1.5rem;
   text-align: center;
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: rgba(34, 197, 94, 0.35);
+    background: rgba(255, 255, 255, 0.04);
+  }
 
   .stat-value {
     font-size: 2.75rem;
@@ -1433,6 +1541,7 @@ export const QuoteSection = styled.section`
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   position: relative;
   overflow: hidden;
+  scroll-margin-top: 80px;
 
   &::before {
     content: '';
@@ -1540,10 +1649,21 @@ export const QuoteCard = styled.div`
     transition: all 0.3s;
     box-shadow: 0 8px 30px rgba(34, 197, 94, 0.45);
     animation: ${glow} 3s ease-in-out infinite;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 
     &:hover {
       transform: translateY(-2px) scale(1.02);
       box-shadow: 0 12px 40px rgba(34, 197, 94, 0.6);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &:focus-visible {
+      outline: 2px solid #22c55e;
+      outline-offset: 3px;
     }
 
     @media (max-width: 600px) {
